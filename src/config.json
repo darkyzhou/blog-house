@@ -1,0 +1,17 @@
+{
+  "nav": [
+    {
+      "type": "home",
+      "caption": "首页"
+    },
+    {
+      "type": "articles",
+      "caption": "文章"
+    },
+    {
+      "type": "article",
+      "caption": "关于",
+      "slug": "about"
+    }
+  ]
+}

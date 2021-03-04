@@ -1,0 +1,18 @@
+{
+  "base": {
+    "blogName": "Example Blog",
+    "authorName": "darkyzhou",
+    "description": "This is an example blog, enjoy it!",
+    "personalInfo": [
+      {
+        "type": "location",
+        "text": "Guangzhou"
+      },
+      {
+        "type": "github",
+        "text": "@darkyzhou",
+        "link": "https://github.com/darkyzhou"
+      }
+    ]
+  }
+}

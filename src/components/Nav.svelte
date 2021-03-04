@@ -1,60 +1,44 @@
-<script>
-	export let segment;
+<script context="module">
+  const navTypeRoutes = {
+    home: '/',
+    category: 'articles'
+  };
 </script>
 
-<style>
-	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
-		font-weight: 300;
-		padding: 0 1em;
-	}
+<script>
+  import constraints from '../../config/constraints.json';
+  import config from '../config.json';
+  import NavItem from './NavItem.svelte';
 
-	ul {
-		margin: 0;
-		padding: 0;
-	}
+  export let segment;
+</script>
 
-	/* clearfix */
-	ul::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
-
-	li {
-		display: block;
-		float: left;
-	}
-
-	[aria-current] {
-		position: relative;
-		display: inline-block;
-	}
-
-	[aria-current]::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
-	}
-
-	a {
-		text-decoration: none;
-		padding: 1em 0.5em;
-		display: block;
-	}
-</style>
-
-<nav>
-	<ul>
-		<li><a aria-current="{segment === undefined ? 'page' : undefined}" href=".">home</a></li>
-		<li><a aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a></li>
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch aria-current="{segment === 'blog' ? 'page' : undefined}" href="blog">blog</a></li>
-	</ul>
+<nav
+  class="grid font-noto pt-4 pb-8 px-12 mx-auto w-full items-baseline"
+  style="grid-template-areas: 'stack'">
+  <h1 class="justify-self-start text-gray-200 font-bold text-2xl" style="grid-area: stack">
+    {constraints.base.blogName}
+  </h1>
+  <ul
+    class="justify-self-center mx-4 list-none p-0 flex justify-center gap-4"
+    style="grid-area: stack">
+    {#each config.nav as item}
+      <li>
+        {#if item.type === 'home'}
+          <NavItem caption="{item.caption}" route="/" active="{!segment}" />
+        {:else if item.type === 'articles'}
+          <NavItem
+            caption="{item.caption}"
+            route="/articles"
+            active="{segment?.startsWith('articles')}" />
+        {:else if item.type === 'article'}
+          <NavItem
+            caption="{item.caption}"
+            route="/{item.slug}/"
+            active="{segment?.startsWith(item.slug)}" />
+        {/if}
+      </li>
+    {/each}
+  </ul>
+  <button class="justify-self-end px-4" style="grid-area: stack">🌜</button>
 </nav>
