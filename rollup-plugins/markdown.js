@@ -8,7 +8,6 @@ const prism = require('prismjs');
 
 function initMarked() {
   const renderer = new marked.Renderer();
-
   const originalLinkRenderer = renderer.link;
   renderer.link = (href, title, text) => {
     const result = originalLinkRenderer.call(renderer, href, title, text);
@@ -22,7 +21,7 @@ function initMarked() {
           `<a onclick="document.location.hash='${href.substr(1)}';" `
         );
       default:
-        return result.replace(/^<a /, '<a target="_blank" rel="nofollow" ');
+        return result.replace(/^<a /, '<a target="_blank" rel="nofollow noopener" ');
     }
   };
 
@@ -60,7 +59,7 @@ function getTableOfContent(contentHtml) {
           case htmlParser.SyntaxKind.Text:
             return node.value;
           default:
-            throw new Error(`unknown tag type: ${node.type}`);
+            throw new Error(`Unknown tag type: ${node.type}`);
         }
       })
       .join('');

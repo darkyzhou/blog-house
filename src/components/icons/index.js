@@ -2,12 +2,14 @@ import CalendarIcon from './CalendarIcon.svelte';
 import TagIcon from './TagIcon.svelte';
 import LocationIcon from './LocationIcon.svelte';
 import GithubIcon from './GithubIcon.svelte';
+import UpIcon from './UpIcon.svelte';
 
 const iconMapping = {
   calendar: CalendarIcon,
   tag: TagIcon,
   location: LocationIcon,
-  github: GithubIcon
+  github: GithubIcon,
+  up: UpIcon
 };
 
 export function getIcon(type) {
