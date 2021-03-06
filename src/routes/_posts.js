@@ -1,4 +1,4 @@
-import all from '../../posts/*.md';
+import all from '../../source/**/*.md';
 
 export default all
   .map((post) => ({ ...post, html: post.html.replace(/^\t{3}/gm, '') }))

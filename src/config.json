@@ -9,7 +9,7 @@
       "caption": "文章"
     },
     {
-      "type": "article",
+      "type": "page",
       "caption": "关于",
       "slug": "about"
     }

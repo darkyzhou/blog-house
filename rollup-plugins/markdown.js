@@ -107,6 +107,15 @@ function getLatestModificationTime(filename) {
   return mtime.toISOString();
 }
 
+function getSlug(filename) {
+  const parentDirectoryName = path.basename(path.dirname(filename));
+  if (parentDirectoryName !== 'markdown-source') {
+    return parentDirectoryName;
+  } else {
+    return path.basename(filename).split('.')[0];
+  }
+}
+
 function doTransform(mdContent, mdFilename) {
   const { data, content } = matter(mdContent);
   if (!data.title) {
@@ -119,7 +128,7 @@ function doTransform(mdContent, mdFilename) {
   const mainContentHtml = marked(mainContent);
 
   const output = JSON.stringify({
-    slug: path.basename(mdFilename).split('.')[0],
+    slug: getSlug(mdFilename),
     lastModifiedAt: getLatestModificationTime(mdFilename),
     title: data.title,
     hidden: data.hidden,
@@ -142,8 +151,11 @@ initMarked();
 
 export default () => ({
   transform(code, id) {
-    if (!/\.md$/.test(id)) {
+    if (!id.endsWith('.md')) {
       return null;
+    }
+    if (path.basename(path.dirname(id)) !== 'markdown-source' && path.basename(id) !== 'index.md') {
+      this.error(`Markdown file under a specific directory must be named 'index.md': ${id}`);
     }
     if (code?.trim()?.length <= 0) {
       this.error(`Empty markdown file '${id}'`);

@@ -1,10 +1,3 @@
-<script context="module">
-  const navTypeRoutes = {
-    home: '/',
-    category: 'articles'
-  };
-</script>
-
 <script>
   import constraints from '../../config/constraints.json';
   import config from '../config.json';
@@ -31,7 +24,7 @@
             caption="{item.caption}"
             route="/articles"
             active="{segment?.startsWith('articles')}" />
-        {:else if item.type === 'article'}
+        {:else if item.type === 'page'}
           <NavItem
             caption="{item.caption}"
             route="/{item.slug}/"
