@@ -10,6 +10,7 @@ import { terser } from 'rollup-plugin-terser';
 import glob from 'rollup-plugin-glob';
 import config from 'sapper/config/rollup.js';
 import markdown from './rollup-plugins/markdown';
+import sitemap from './rollup-plugins/sitemap';
 import pkg from './package.json';
 
 const mode = process.env.NODE_ENV;
@@ -77,7 +78,8 @@ export default {
       !dev &&
         terser({
           module: true
-        })
+        }),
+      !dev && sitemap()
     ],
 
     preserveEntrySignatures: false,
@@ -112,7 +114,8 @@ export default {
       }),
       commonjs(),
       markdown(),
-      glob()
+      glob(),
+      !dev && sitemap()
     ],
     external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 

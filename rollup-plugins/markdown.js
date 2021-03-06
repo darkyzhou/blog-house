@@ -59,7 +59,7 @@ function getTableOfContent(contentHtml) {
           case htmlParser.SyntaxKind.Text:
             return node.value;
           default:
-            throw new Error(`Unknown tag type: ${node.type}`);
+            this.error(`Unknown tag type: ${node.type}`);
         }
       })
       .join('');
@@ -69,7 +69,7 @@ function getTableOfContent(contentHtml) {
       if (
         parent ||
         node.type !== htmlParser.SyntaxKind.Tag ||
-        !/^h[123456]$/.test(node.name) ||
+        !/^h[1-6]$/.test(node.name) ||
         !Array.isArray(node.body) ||
         !node.body[0]
       ) {
@@ -104,7 +104,7 @@ function getExcerptAndMainContent(content) {
 function doTransform(mdContent, mdFilename) {
   const { data, content } = matter(mdContent);
   if (!data.title) {
-    throw new Error(
+    this.error(
       `Markdown file '${mdFilename}' should includes a title property in the front matter block`
     );
   }
@@ -134,17 +134,17 @@ function doTransform(mdContent, mdFilename) {
 initMarked();
 
 export default () => ({
-  transform(md, id) {
+  transform(code, id) {
     if (!/\.md$/.test(id)) {
       return null;
     }
-    if (md?.trim()?.length <= 0) {
-      throw new Error(`Empty markdown file '${id}'`);
+    if (code?.trim()?.length <= 0) {
+      this.error(`Empty markdown file '${id}'`);
     }
     try {
-      return doTransform(md, id);
+      return doTransform(code, id);
     } catch (e) {
-      throw new Error(`Failed to process markdown file '${id}':\n${e.stack}`);
+      this.error(`Failed to process markdown file '${id}':\n${e.stack}`);
     }
   }
 });

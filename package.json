@@ -6,11 +6,9 @@
   "scripts": {
     "dev": "sapper dev",
     "export": "sapper export --legacy",
-    "start": "node __sapper__/build",
     "watch:tailwind": "postcss static/global.css -o static/global-compiled.css -w",
     "build:tailwind": "NODE_ENV=production postcss static/global.css -o static/global-compiled.css",
-    "build:sapper": "sapper build --legacy",
-    "build": "npm-run-all build:tailwind build:sapper"
+    "build": "npm-run-all build:tailwind export"
   },
   "dependencies": {
     "compression": "^1.7.1",
@@ -45,6 +43,8 @@
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
     "sapper": "^0.28.0",
+    "sitemap": "^6.4.0",
+    "stream": "^0.0.2",
     "svelte": "^3.17.3",
     "tailwindcss": "^2.0.3"
   }
