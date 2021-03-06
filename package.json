@@ -8,7 +8,7 @@
     "export": "sapper export --legacy",
     "watch:tailwind": "postcss static/global.css -o static/global-compiled.css -w",
     "build:tailwind": "NODE_ENV=production postcss static/global.css -o static/global-compiled.css",
-    "build": "npm-run-all build:tailwind export"
+    "build": "NODE_ENV=production npm-run-all build:tailwind export"
   },
   "dependencies": {
     "compression": "^1.7.1",

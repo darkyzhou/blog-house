@@ -1,3 +1,11 @@
+<script context="module">
+  export async function preload({}) {
+    // this is a hacky way to make sapper generate sitemap.xml when exporting
+    // here is a related mr that might change the situation: https://github.com/sveltejs/sapper/pull/1288
+    await this.fetch('sitemap.xml');
+  }
+</script>
+
 <script>
   import constraints from '../../config/constraints.json';
   import NavButton from '../components/NavButton.svelte';

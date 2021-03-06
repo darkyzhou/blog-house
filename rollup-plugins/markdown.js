@@ -5,6 +5,7 @@ const { format } = require('date-fns');
 const readingTime = require('reading-time');
 const htmlParser = require('html5parser');
 const prism = require('prismjs');
+const fs = require('fs');
 
 function initMarked() {
   const renderer = new marked.Renderer();
@@ -101,6 +102,11 @@ function getExcerptAndMainContent(content) {
   }
 }
 
+function getLatestModificationTime(filename) {
+  const { mtime } = fs.lstatSync(filename);
+  return mtime.toISOString();
+}
+
 function doTransform(mdContent, mdFilename) {
   const { data, content } = matter(mdContent);
   if (!data.title) {
@@ -114,6 +120,7 @@ function doTransform(mdContent, mdFilename) {
 
   const output = JSON.stringify({
     slug: path.basename(mdFilename).split('.')[0],
+    lastModifiedAt: getLatestModificationTime(mdFilename),
     title: data.title,
     hidden: data.hidden,
     date: data.date,
