@@ -4,10 +4,6 @@
   export let active;
 </script>
 
-<a
-  class="block px-4 py-2 text-gray-200"
-  class:text-gray-600="{active}"
-  class:bg-gray-200="{active}"
-  href="{route}">
+<a class="block px-4 py-2 text-gray-200 {active && 'text-gray-600 bg-gray-200'}" href="{route}">
   {caption}
 </a>

@@ -13,7 +13,7 @@ export async function get(request, response) {
   response.setHeader('Cache-Control', 'max-age=0, s-max-age=600');
   response.setHeader('Content-Type', 'application/xml');
 
-  let links = [];
+  const links = [];
   for (const post of allPosts) {
     links.push({
       url: concatPageUrl(post.slug),

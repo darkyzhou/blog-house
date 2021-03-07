@@ -50,7 +50,7 @@ function getPrintDate(date) {
 
 function getTableOfContent(contentHtml) {
   const htmlAst = htmlParser.parse(contentHtml);
-  let tableOfContent = [];
+  const tableOfContent = [];
   const resolveText = (nodes) => {
     return (nodes || [])
       .map((node) => {
@@ -86,7 +86,7 @@ function getTableOfContent(contentHtml) {
           data = { ...data, id: attribute.value.value };
         }
       }
-      tableOfContent = tableOfContent.concat(data);
+      tableOfContent.push(data);
     }
   });
   return !tableOfContent.length ? undefined : tableOfContent;
@@ -107,13 +107,17 @@ function getLatestModificationTime(filename) {
   return mtime.toISOString();
 }
 
-function getSlug(filename) {
+function isFromPage(filename) {
   const parentDirectoryName = path.basename(path.dirname(filename));
-  if (parentDirectoryName !== 'markdown-source') {
-    return parentDirectoryName;
-  } else {
-    return path.basename(filename).split('.')[0];
-  }
+  return parentDirectoryName !== 'source';
+}
+
+function getSlugFromName(filename) {
+  return path.basename(filename).split('.')[0];
+}
+
+function getSlugFromDirectory(filename) {
+  return path.basename(path.dirname(filename));
 }
 
 function doTransform(mdContent, mdFilename) {
@@ -127,8 +131,11 @@ function doTransform(mdContent, mdFilename) {
   const [excerpt, mainContent] = getExcerptAndMainContent(content);
   const mainContentHtml = marked(mainContent);
 
+  const isPage = isFromPage(mdFilename);
+
   const output = JSON.stringify({
-    slug: getSlug(mdFilename),
+    isPage,
+    slug: isPage ? getSlugFromDirectory(mdFilename) : getSlugFromName(mdFilename),
     lastModifiedAt: getLatestModificationTime(mdFilename),
     title: data.title,
     hidden: data.hidden,
@@ -154,7 +161,7 @@ export default () => ({
     if (!id.endsWith('.md')) {
       return null;
     }
-    if (path.basename(path.dirname(id)) !== 'markdown-source' && path.basename(id) !== 'index.md') {
+    if (path.basename(path.dirname(id)) !== 'source' && path.basename(id) !== 'index.md') {
       this.error(`Markdown file under a specific directory must be named 'index.md': ${id}`);
     }
     if (code?.trim()?.length <= 0) {
