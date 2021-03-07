@@ -45,7 +45,7 @@ function getReadingTime(contentHtml) {
 }
 
 function getPrintDate(date) {
-  return !date ? undefined : format(new Date(date), 'yyyy-MM-dd');
+  return !date ? undefined : format(new Date(date), 'yyyy/MM/dd');
 }
 
 function getTableOfContent(contentHtml) {

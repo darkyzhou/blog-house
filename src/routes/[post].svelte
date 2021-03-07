@@ -16,6 +16,7 @@
   import TableOfContent from '../components/TableOfContent.svelte';
   import { makeTitle } from './_utils';
   import BackToTop from '../components/BackToTop.svelte';
+  import contraints from '../../config/constraints.json';
 
   export let post;
 
@@ -72,10 +73,10 @@
     const utterances = document.createElement('script');
     const config = Object.entries({
       src: 'https://utteranc.es/client.js',
-      repo: 'darkyzhou/blog-house',
-      'issue-term': 'title',
-      label: 'Utterances 测试',
-      theme: 'github-dark',
+      repo: contraints.comment.config.repository,
+      'issue-term': contraints.comment.config.issueTerm,
+      label: contraints.comment.config.label,
+      theme: contraints.comment.config.theme,
       crossOrigin: 'anonymous',
       async: 'true'
     });
@@ -93,7 +94,7 @@
 
 <div class="max-w-screen-lg mx-auto px-8 font-noto flex text-gray-300 gap-8">
   <div>
-    <article id="article" class="flex-grow max-w-screen-md mb-8">
+    <article id="article" class="flex-grow max-w-screen-md mb-24">
       <header>
         <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">{post.title}</h1>
         <TagsSection post="{post}" extraClasses="mb-6" />
@@ -118,4 +119,4 @@
   {/if}
 </div>
 
-<BackToTop extraClasses="fixed bottom-8 left-4" show="{showBackToTop}" />
+<BackToTop extraClasses="fixed bottom-2 left-2 md:bottom-8 md:left-8" show="{showBackToTop}" />

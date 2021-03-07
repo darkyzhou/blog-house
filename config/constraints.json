@@ -17,5 +17,14 @@
   },
   "sitemap": {
     "urlPrefix": "https://example.com"
+  },
+  "comment": {
+    "type": "utterances",
+    "config": {
+      "repository": "darkyzhou/blog-house",
+      "issueTerm": "title",
+      "label": "Utterances 测试",
+      "theme": "github-dark"
+    }
   }
 }
