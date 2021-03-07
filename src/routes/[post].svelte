@@ -70,13 +70,19 @@
     );
 
     const utterances = document.createElement('script');
-    utterances.setAttribute('src', 'https://utteranc.es/client.js');
-    utterances.setAttribute('repo', 'darkyzhou/blog-house');
-    utterances.setAttribute('issue-term', 'pathname');
-    utterances.setAttribute('label', 'Utterances 测试');
-    utterances.setAttribute('theme', 'photon-dark');
-    utterances.setAttribute('crossOrigin', 'anonymous');
-    utterances.setAttribute('async', 'true');
+    const config = Object.entries({
+      src: 'https://utteranc.es/client.js',
+      repo: 'darkyzhou/blog-house',
+      'issue-term': 'title',
+      label: 'Utterances 测试',
+      theme: 'github-dark',
+      crossOrigin: 'anonymous',
+      async: 'true'
+    });
+    for (const [key, value] of config) {
+      utterances.setAttribute(key, value);
+    }
+
     utterancesContainer.appendChild(utterances);
   });
 </script>
