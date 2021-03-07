@@ -34,14 +34,22 @@
     if (!headingElements) {
       return;
     }
-    headingElements.forEach((element, index) => {
-      const top = element.getBoundingClientRect().top;
-      if (top < 16) {
-        highlightedHeadingIndex = index;
-        window.history.replaceState(null, '', `${location.href.split('#')[0]}#${element.id}`);
-        return;
+    for (let i = 0; i < headingElements.length; i++) {
+      const element = headingElements[i];
+      const nextTop = headingElements[
+        i + 1 >= headingElements.length ? i : i + 1
+      ].getBoundingClientRect().top;
+      if (
+        nextTop > 16 ||
+        (i === headingElements.length - 1 && element.getBoundingClientRect().top < 16)
+      ) {
+        if (highlightedHeadingIndex !== i) {
+          highlightedHeadingIndex = i;
+          window.history.replaceState(null, '', `${location.href.split('#')[0]}#${element.id}`);
+        }
+        break;
       }
-    });
+    }
   }
 
   onMount(() => {
