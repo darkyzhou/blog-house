@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "sapper dev",
     "export": "sapper export --legacy",
-    "watch:tailwind": "postcss static/global.css -o static/global-compiled.css -w",
-    "build:tailwind": "NODE_ENV=production postcss static/global.css -o static/global-compiled.css",
+    "watch:tailwind": "postcss static/global.css -o static/styles/global-compiled.css -w",
+    "build:tailwind": "NODE_ENV=production postcss static/global.css -o static/styles/global-compiled.css",
     "build": "NODE_ENV=production npm-run-all build:tailwind export"
   },
   "dependencies": {

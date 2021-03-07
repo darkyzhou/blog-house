@@ -3,7 +3,7 @@
 /__sapper__/
 
 # Generated global.css
-static/global-compiled.css
+static/styles/global-compiled.css
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
