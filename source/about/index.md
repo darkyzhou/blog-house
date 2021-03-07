@@ -1,6 +1,5 @@
 ---
 title: 关于
-hidden: true
 ---
 
 ### 项目简介

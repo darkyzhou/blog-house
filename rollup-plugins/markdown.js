@@ -97,8 +97,7 @@ function getExcerptAndMainContent(content) {
   if (content.includes(EXCERPT_SEPARATOR)) {
     return content.split(EXCERPT_SEPARATOR);
   } else {
-    // TODO: extract plain-text only
-    return [content.substr(0, 120).replace(/\n/g, '').trim().concat('...'), content];
+    return [undefined, content];
   }
 }
 
@@ -131,14 +130,13 @@ function doTransform(mdContent, mdFilename) {
   const [excerpt, mainContent] = getExcerptAndMainContent(content);
   const mainContentHtml = marked(mainContent);
 
-  const isPage = isFromPage(mdFilename);
+  const isPageArticle = isFromPage(mdFilename);
 
   const output = JSON.stringify({
-    isPage,
-    slug: isPage ? getSlugFromDirectory(mdFilename) : getSlugFromName(mdFilename),
+    isPageArticle,
+    slug: isPageArticle ? getSlugFromDirectory(mdFilename) : getSlugFromName(mdFilename),
     lastModifiedAt: getLatestModificationTime(mdFilename),
     title: data.title,
-    hidden: data.hidden,
     date: data.date,
     excerpt,
     printDate: getPrintDate(data.date),

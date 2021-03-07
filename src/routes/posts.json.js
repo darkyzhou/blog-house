@@ -2,8 +2,8 @@ import posts from './_posts';
 
 const responseJson = JSON.stringify(
   posts.map((p) => ({
+    isPageArticle: p.isPageArticle,
     slug: p.slug,
-    hidden: p.hidden,
     title: p.title,
     excerpt: p.excerpt,
     printDate: p.printDate,

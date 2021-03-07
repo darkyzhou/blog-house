@@ -5,6 +5,10 @@ tags:
   - 测试
 ---
 
+本文章用于测试博客的 Markdown 渲染配置
+
+<!-- more -->
+
 以下测试内容来源：[fullpipe/markdown-test-page](https://github.com/fullpipe/markdown-test-page)
 
 # <a name="top"></a>Markdown Test Page

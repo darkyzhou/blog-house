@@ -12,7 +12,7 @@
 
   export let posts;
 
-  $: shownPosts = posts.filter((p) => !p.hidden);
+  $: articlePosts = posts.filter((p) => !p.isPageArticle);
 </script>
 
 <svelte:head>
@@ -20,7 +20,7 @@
 </svelte:head>
 
 <div class="max-w-screen-md mx-auto px-8">
-  {#each shownPosts as post, i}
+  {#each articlePosts as post, i}
     {#if i}
       <hr class="border-indigo-50 mx-auto w-1/2 opacity-25" />
     {/if}
@@ -33,9 +33,11 @@
           <TagsSection post="{post}" />
         {/if}
       </header>
-      <p class="mt-4 text-base text-gray-300 break-all leading-relaxed">
-        {post.excerpt}
-      </p>
+      {#if post.excerpt}
+        <p class="mt-4 text-base text-gray-300 break-all leading-relaxed">
+          {post.excerpt}
+        </p>
+      {/if}
     </article>
   {/each}
 </div>
