@@ -27,7 +27,7 @@
         {:else if item.type === 'page'}
           <NavItem
             caption="{item.caption}"
-            route="/{item.slug}/"
+            route="/{item.slug}"
             active="{segment?.startsWith(item.slug)}" />
         {/if}
       </li>

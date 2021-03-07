@@ -24,6 +24,8 @@
   let showBackToTop = false;
   let highlightedHeadingIndex = 0;
 
+  let utterancesContainer;
+
   function checkShouldShowToTop() {
     showBackToTop = titleElement?.getBoundingClientRect().top < 0;
   }
@@ -58,6 +60,16 @@
       },
       false
     );
+
+    const utterances = document.createElement('script');
+    utterances.setAttribute('src', 'https://utteranc.es/client.js');
+    utterances.setAttribute('repo', 'darkyzhou/blog-house');
+    utterances.setAttribute('issue-term', 'pathname');
+    utterances.setAttribute('label', 'Utterances 测试');
+    utterances.setAttribute('theme', 'photon-dark');
+    utterances.setAttribute('crossOrigin', 'anonymous');
+    utterances.setAttribute('async', 'true');
+    utterancesContainer.appendChild(utterances);
   });
 </script>
 
@@ -66,15 +78,18 @@
 </svelte:head>
 
 <div class="max-w-screen-lg mx-auto px-8 font-noto flex text-gray-300 gap-8">
-  <article id="article" class="flex-grow max-w-screen-md">
-    <header>
-      <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">{post.title}</h1>
-      <TagsSection post="{post}" extraClasses="mb-6" />
-    </header>
-    <div class="markdown-body">
-      {@html post.html}
-    </div>
-  </article>
+  <div>
+    <article id="article" class="flex-grow max-w-screen-md mb-8">
+      <header>
+        <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">{post.title}</h1>
+        <TagsSection post="{post}" extraClasses="mb-6" />
+      </header>
+      <div class="markdown-body">
+        {@html post.html}
+      </div>
+    </article>
+    <div class="w-full" bind:this="{utterancesContainer}"></div>
+  </div>
   {#if post.tableOfContent?.length}
     <aside class="hidden lg:block">
       <div class="sticky top-8 overflow-x-hidden overflow-y-auto">
