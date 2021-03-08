@@ -4,6 +4,7 @@ import LocationIcon from './LocationIcon.svelte';
 import GithubIcon from './GithubIcon.svelte';
 import UpIcon from './UpIcon.svelte';
 import PenIcon from './PenIcon.svelte';
+import BookIcon from './BookIcon.svelte';
 
 const iconMapping = {
   calendar: CalendarIcon,
@@ -11,7 +12,8 @@ const iconMapping = {
   location: LocationIcon,
   github: GithubIcon,
   up: UpIcon,
-  pen: PenIcon
+  pen: PenIcon,
+  book: BookIcon
 };
 
 export function getIcon(type) {

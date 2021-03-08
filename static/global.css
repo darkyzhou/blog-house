@@ -6,6 +6,7 @@
   /* FIXME: a dirty workaround for a problem that it's hard to configure tailwind to recognize <style>s in .svelte files */
   --bg-gray-800: rgb(31, 41, 55);
   --bg-gray-900: rgb(17, 24, 39);
+  --bg-indigo-200: rgb(199, 210, 254);
 }
 
 .font-noto {

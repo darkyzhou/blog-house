@@ -41,8 +41,8 @@ function initMarked() {
   marked.setOptions({ renderer, highlight });
 }
 
-function getReadingTime(contentHtml) {
-  return !contentHtml ? 0 : readingTime(contentHtml).minutes;
+function getReadingTime(content) {
+  return !content ? 0 : readingTime(content).minutes.toFixed(0);
 }
 
 function getPrintDate(date) {
@@ -137,7 +137,6 @@ function doTransform(mdContent, mdFilename) {
   const mainContentHtml = marked(mainContent);
   const isPageArticle = isFromPage(mdFilename);
   const lastModifiedAt = getLatestModificationTime(mdFilename);
-  console.dir('> ' + typeof lastModifiedAt);
   const printLastModifiedAt = format(lastModifiedAt, 'yyyy/MM/dd');
 
   // NOTICE: by using JSON.stringify, all of the properties holding a Date value
@@ -150,7 +149,8 @@ function doTransform(mdContent, mdFilename) {
     title: data.title,
     date: data.date ? new Date(data.date) : lastModifiedAt,
     printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
-    printReadingTime: getReadingTime(mainContentHtml),
+    wordsCount: [...mainContent].length,
+    readingTime: getReadingTime(mainContent),
     tags: data.tags,
     excerpt,
     tableOfContent: getTableOfContent(mainContentHtml),

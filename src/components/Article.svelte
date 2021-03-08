@@ -14,7 +14,7 @@
     {/if}
   </header>
   {#if post.excerpt}
-    <p class="mt-4 text-base text-gray-300 break-all leading-relaxed">
+    <p class="mt-4 text-base text-gray-200 break-all leading-relaxed">
       {post.excerpt}
     </p>
   {/if}

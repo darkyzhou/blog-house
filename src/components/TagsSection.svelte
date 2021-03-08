@@ -6,9 +6,15 @@
     cursor: help;
   }
 
+  .icon {
+    width: 16px;
+    height: 16px;
+    display: inline;
+    color: var(--bg-indigo-200);
+  }
+
   .tag:not(:last-child)::after {
     content: ',';
-    padding-right: 6px;
   }
 </style>
 
@@ -32,28 +38,44 @@
   export let extraClasses = '';
 </script>
 
-<ul
-  class="tagsContainer list-none p-0 text-base text-indigo-100 flex gap-4 font-light {extraClasses}">
+<ul class="tagsContainer list-none p-0 text-sm flex gap-4 font-light {extraClasses}">
   {#if post.printDate}
     <li title="发表日期">
-      <svelte:component this="{getIcon('calendar')}" extraClasses="w-4 h-4 inline" />
-      <span class="cursor-auto">{post.printDate}</span>
+      <span class="icon">
+        <svelte:component this="{getIcon('calendar')}" />
+      </span>
+      <span class="text-gray-400 cursor-auto">{post.printDate}</span>
     </li>
   {/if}
   {#if post.lastModifiedAt && !isAtSameDay(post.date, post.lastModifiedAt)}
     <li title="最近修改日期">
-      <svelte:component this="{getIcon('pen')}" extraClasses="w-4 h-4 inline" />
-      <span class="cursor-auto">{post.printLastModifiedAt}</span>
+      <span class="icon">
+        <svelte:component this="{getIcon('pen')}" />
+      </span>
+      <span class="text-gray-400 cursor-auto">{post.printLastModifiedAt}</span>
     </li>
   {/if}
+  <li title="字数与阅读时间">
+    <span class="icon">
+      <svelte:component this="{getIcon('book')}" />
+    </span>
+    <span class="text-gray-400">
+      {post.wordsCount} 字
+      {#if post.readingTime}
+        ({post.readingTime} 分钟读完)
+      {/if}
+    </span>
+  </li>
   {#if post.tags?.length > 0}
     <li title="标签">
-      <svelte:component this="{getIcon('tag')}" extraClasses="w-4 h-4 inline" />
+      <span class="icon">
+        <svelte:component this="{getIcon('tag')}" />
+      </span>
       {#each post.tags as tag, j}
         <a
           sapper:prefetch
-          href="/tag/{constraints.tag.items.find((t) => t.name === tag).slug}"
-          class="tag hover:underline cursor-pointer">
+          href="/tags/{constraints.tag.items.find((t) => t.name === tag).slug}"
+          class="tag text-gray-400 hover:underline cursor-pointer">
           {tag}
         </a>
       {/each}

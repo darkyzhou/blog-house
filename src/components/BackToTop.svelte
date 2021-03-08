@@ -2,7 +2,7 @@
   import { getIcon } from './icons';
   import { stores } from '@sapper/app';
 
-  export let extraClasses;
+  export let extraClasses = '';
   export let show;
 
   const { page } = stores();
