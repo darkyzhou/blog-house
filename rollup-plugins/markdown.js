@@ -46,7 +46,7 @@ function getReadingTime(contentHtml) {
 }
 
 function getPrintDate(date) {
-  return !date ? undefined : format(new Date(date), 'yyyy/MM/dd');
+  return !date ? undefined : format(date, 'yyyy/MM/dd');
 }
 
 function getTableOfContent(contentHtml) {
@@ -104,7 +104,7 @@ function getExcerptAndMainContent(content) {
 
 function getLatestModificationTime(filename) {
   const { mtime } = fs.lstatSync(filename);
-  return mtime.toISOString();
+  return mtime;
 }
 
 function isFromPage(filename) {
@@ -135,19 +135,24 @@ function doTransform(mdContent, mdFilename) {
 
   const [excerpt, mainContent] = getExcerptAndMainContent(content);
   const mainContentHtml = marked(mainContent);
-
   const isPageArticle = isFromPage(mdFilename);
+  const lastModifiedAt = getLatestModificationTime(mdFilename);
+  console.dir('> ' + typeof lastModifiedAt);
+  const printLastModifiedAt = format(lastModifiedAt, 'yyyy/MM/dd');
 
+  // NOTICE: by using JSON.stringify, all of the properties holding a Date value
+  // will actually be converted into String!
   const output = JSON.stringify({
-    isPageArticle,
     slug: isPageArticle ? getSlugFromDirectory(mdFilename) : getSlugFromName(mdFilename),
-    lastModifiedAt: getLatestModificationTime(mdFilename),
+    isPageArticle,
+    lastModifiedAt,
+    printLastModifiedAt,
     title: data.title,
-    date: data.date,
-    excerpt,
-    printDate: getPrintDate(data.date),
+    date: data.date ? new Date(data.date) : lastModifiedAt,
+    printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
     printReadingTime: getReadingTime(mainContentHtml),
     tags: data.tags,
+    excerpt,
     tableOfContent: getTableOfContent(mainContentHtml),
     html: mainContentHtml
   });

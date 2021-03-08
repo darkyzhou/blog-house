@@ -16,7 +16,7 @@
   import TableOfContent from '../components/TableOfContent.svelte';
   import { makeTitle } from './_utils';
   import BackToTop from '../components/BackToTop.svelte';
-  import contraints from '../../config/constraints.json';
+  import constraints from '../../config/constraints.json';
 
   export let post;
 
@@ -73,10 +73,10 @@
     const utterances = document.createElement('script');
     const config = Object.entries({
       src: 'https://utteranc.es/client.js',
-      repo: contraints.comment.config.repository,
-      'issue-term': contraints.comment.config.issueTerm,
-      label: contraints.comment.config.label,
-      theme: contraints.comment.config.theme,
+      repo: constraints.comment.config.repository,
+      'issue-term': constraints.comment.config.issueTerm,
+      label: constraints.comment.config.label,
+      theme: constraints.comment.config.theme,
       crossOrigin: 'anonymous',
       async: 'true'
     });
