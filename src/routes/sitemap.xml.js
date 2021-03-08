@@ -1,8 +1,9 @@
-import { SitemapStream, streamToPromise } from 'sitemap';
-import { Readable } from 'stream';
 import posts from './_posts';
 import tags from './tags/_tags';
 import constraints from '../../config/constraints.json';
+// FIXME: don't know why rollup complains about circular dependency issues if we use es import
+const { SitemapStream, streamToPromise } = require('sitemap');
+const { Readable } = require('stream');
 
 function concatPageUrl(pathName) {
   const url = new URL(constraints.sitemap.urlPrefix);
