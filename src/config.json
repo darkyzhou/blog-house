@@ -9,6 +9,10 @@
       "caption": "文章"
     },
     {
+      "type": "tags",
+      "caption": "标签"
+    },
+    {
       "type": "page",
       "caption": "关于",
       "slug": "about"

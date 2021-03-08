@@ -26,5 +26,11 @@
       "label": "Utterances 测试",
       "theme": "github-dark"
     }
+  },
+  "tag": {
+    "descriptions": {
+      "编程": "一些有关计算机编程的东西",
+      "前端": "Web 前端开发相关，涉及 HTML、CSS、JavaScript 等技术的内容"
+    }
   }
 }
