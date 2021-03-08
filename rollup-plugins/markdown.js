@@ -6,6 +6,7 @@ const readingTime = require('reading-time');
 const htmlParser = require('html5parser');
 const prism = require('prismjs');
 const fs = require('fs');
+const constraints = require('./config/constraints.json');
 
 function initMarked() {
   const renderer = new marked.Renderer();
@@ -60,7 +61,7 @@ function getTableOfContent(contentHtml) {
           case htmlParser.SyntaxKind.Text:
             return node.value;
           default:
-            this.error(`Unknown tag type: ${node.type}`);
+            throw new Error(`Unknown tag type: ${node.type}`);
         }
       })
       .join('');
@@ -122,8 +123,13 @@ function getSlugFromDirectory(filename) {
 function doTransform(mdContent, mdFilename) {
   const { data, content } = matter(mdContent);
   if (!data.title) {
-    this.error(
+    throw new Error(
       `Markdown file '${mdFilename}' should includes a title property in the front matter block`
+    );
+  }
+  if (data.tags?.some((t) => !constraints.tag.items.find((tag) => tag.name === t))) {
+    throw new Error(
+      `Markdown file '${mdFilename}' contains a tag that does not described in 'config/constraints.json', make sure you've added the slug of it in the latter file`
     );
   }
 

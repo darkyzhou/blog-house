@@ -18,7 +18,7 @@
   export let route;
 </script>
 
-<a rel="prefetch" class="block group {extraClasses} relative cursor-pointer" href="{route}">
+<a sapper:prefetch class="block group {extraClasses} relative cursor-pointer" href="{route}">
   <div class="imageMask relative">
     <img alt="" src="{backgroundSrc}" class="object-cover pointer-events-none w-full h-full" />
   </div>

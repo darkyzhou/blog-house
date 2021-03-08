@@ -7,8 +7,8 @@
 </script>
 
 <script>
-  import TagsSection from '../components/TagsSection.svelte';
   import { makeTitle } from './_utils';
+  import Article from '../components/Article.svelte';
 
   export let posts;
 
@@ -24,20 +24,6 @@
     {#if i}
       <hr class="border-indigo-50 mx-auto w-1/2 opacity-25" />
     {/if}
-    <article class="my-12">
-      <header>
-        <h1 class="mb-2 text-3xl text-indigo-500">
-          <a rel="prefetch" href="/{post.slug}">{post.title}</a>
-        </h1>
-        {#if post.printDate || post.tags?.length > 0}
-          <TagsSection post="{post}" />
-        {/if}
-      </header>
-      {#if post.excerpt}
-        <p class="mt-4 text-base text-gray-300 break-all leading-relaxed">
-          {post.excerpt}
-        </p>
-      {/if}
-    </article>
+    <Article post="{post}" />
   {/each}
 </div>
