@@ -24,7 +24,7 @@
     {#if i}
       <hr class="border-indigo-50 mx-auto w-1/2 opacity-25" />
     {/if}
-    <article class="font-noto my-12">
+    <article class="my-12">
       <header>
         <h1 class="mb-2 text-3xl text-indigo-500">
           <a rel="prefetch" href="/{post.slug}">{post.title}</a>

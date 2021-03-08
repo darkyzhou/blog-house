@@ -92,7 +92,7 @@
   <title>{makeTitle(post.title)}</title>
 </svelte:head>
 
-<div class="max-w-screen-lg mx-auto px-8 font-noto flex text-gray-300 gap-8">
+<div class="max-w-screen-lg mx-auto px-8 flex text-gray-300 gap-8">
   <div>
     <article id="article" class="flex-grow max-w-screen-md mb-24">
       <header>

@@ -7,7 +7,7 @@
 </script>
 
 <nav
-  class="grid font-noto pt-4 pb-8 px-12 mx-auto w-full items-baseline"
+  class="grid py-4 px-12 mx-auto w-full items-baseline"
   style="grid-template-areas: 'stack'">
   <h1 class="justify-self-start text-gray-200 font-bold text-2xl" style="grid-area: stack">
     {constraints.base.blogName}

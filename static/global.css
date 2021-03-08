@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* FIXME: a dirty workaround for a problem that it's hard to configure tailwind to recognize <style>s in .svelte files */
+  --bg-gray-800: rgb(31, 41, 55);
+  --bg-gray-900: rgb(17, 24, 39);
+}
+
 .font-noto {
   font-family: 'Noto Serif SC', serif;
 }

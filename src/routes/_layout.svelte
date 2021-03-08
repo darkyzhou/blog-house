@@ -6,9 +6,9 @@
   export let segment;
 </script>
 
-<div class="min-h-screen flex flex-col bg-gray-800">
+<div class="min-h-screen flex flex-col bg-gray-800 font-noto text-gray-200">
   <Nav segment="{segment}" />
-  <main class="mt-4 flex-grow flex flex-col items-center mb-8">
+  <main class="flex-grow flex flex-col items-center">
     <slot />
   </main>
   <Footer />
