@@ -1,15 +1,4 @@
 <style>
-  .imageMask::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: var(--bg-gray-900);
-    opacity: 0.2;
-  }
-
   .caption {
     background-color: var(--bg-gray-200);
     opacity: 0;
@@ -46,7 +35,7 @@
   <div class="caption z-10 h-full w-full grid place-items-center" style="grid-area: stack">
     <span class="text-2xl font-bold">{caption}</span>
   </div>
-  <div class="imageMask relative" style="grid-area: stack">
+  <div style="grid-area: stack">
     <img alt="" src="{backgroundSrc}" class="object-cover pointer-events-none w-full h-full" />
   </div>
 </a>
