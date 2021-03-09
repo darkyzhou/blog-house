@@ -4,7 +4,7 @@
   export let post;
 </script>
 
-<article class="my-12">
+<article>
   <header>
     <h1 class="mb-2 text-3xl text-indigo-500">
       <a sapper:prefetch href="/{post.slug}">{post.title}</a>
@@ -14,7 +14,7 @@
     {/if}
   </header>
   {#if post.excerpt}
-    <p class="mt-4 text-base text-gray-200 break-all leading-relaxed">
+    <p class="mt-2 text-base text-gray-200 break-all leading-relaxed">
       {post.excerpt}
     </p>
   {/if}

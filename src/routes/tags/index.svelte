@@ -54,10 +54,10 @@
 
 <div
   bind:this="{columnsContainer}"
-  class="mt-8 w-full flex-grow flex gap-8 px-8 lg:px-16"
+  class="mt-4 sm:mt-8 px-4 sm:px-8 lg:px-16 w-full flex-grow flex gap-6 sm:gap-8"
   style="max-width: 1000px">
   {#each columns as column}
-    <div class="flex flex-col gap-8 flex-1">
+    <div class="flex-1 flex flex-col gap-6 sm:gap-8">
       {#each column as tag}
         <TagCard
           name="{tag.name}"

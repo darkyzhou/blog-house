@@ -23,9 +23,7 @@
 </svelte:head>
 
 <div class="w-full flex-grow flex flex-col items-center mainContainer">
-  <div
-    class="my-auto grid gap-8"
-    style="grid-template-columns: repeat(3, 160px); grid-template-rows: repeat(2, 160px)">
+  <div class="my-auto grid gap-8" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
     <img alt="" class="block" src="avatar.jpg" />
     <div class="col-span-2 flex flex-col gap-2 p-1 justify-between items-center">
       <h1 class="text-gray-100 text-3xl">
@@ -49,8 +47,5 @@
         {/each}
       </ul>
     </div>
-    <NavButton extraClasses="" caption="文章" backgroundSrc="nav-articles.jpg" route="articles" />
-    <NavButton extraClasses="" caption="关于" backgroundSrc="nav-about.jpg" route="about" />
-    <NavButton extraClasses="" caption="标签" backgroundSrc="nav-about.jpg" route="tags" />
   </div>
 </div>

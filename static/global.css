@@ -10,6 +10,10 @@
   --bg-indigo-200: rgb(199, 210, 254);
 }
 
+body {
+  background-color: var(--bg-gray-800);
+}
+
 .font-noto {
   font-family: 'Noto Serif SC', serif;
 }
