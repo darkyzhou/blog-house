@@ -92,16 +92,14 @@
   <title>{makeTitle(post.title)}</title>
 </svelte:head>
 
-<div class="max-w-screen-lg mx-auto px-8 flex text-gray-300 gap-8">
-  <div>
-    <article id="article" class="flex-grow max-w-screen-md mb-24">
-      <header>
-        <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">{post.title}</h1>
-        <TagsSection post="{post}" extraClasses="mb-6" />
-      </header>
-      <div class="markdown-body">
-        {@html post.html}
-      </div>
+<div class="max-w-screen-lg w-full mx-auto px-4 sm:px-8 flex text-gray-300 gap-8">
+  <div class="w-full">
+    <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">
+      {post.title}
+    </h1>
+    <TagsSection post="{post}" extraClasses="mb-6" />
+    <article id="article" class="flex-grow max-w-screen-md mb-24 markdown-body">
+      {@html post.html}
     </article>
     <div class="w-full" bind:this="{utterancesContainer}"></div>
   </div>
