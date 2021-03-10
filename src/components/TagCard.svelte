@@ -1,4 +1,5 @@
 <script>
+  export let extraClasses = '';
   export let name;
   export let route;
   export let description;
@@ -6,7 +7,8 @@
   export let showArticlesCount = true;
 </script>
 
-<article class="relative flex flex-col justify-between gap-2 text-gray-200 bg-gray-700 px-4 py-3">
+<article
+  class="relative flex flex-col justify-between gap-2 text-gray-200 bg-gray-700 px-4 py-3 {extraClasses}">
   <header class="flex-none flex items-baseline justify-between">
     <h1 class="flex-none text-xl" style="max-width: 7em">{name}</h1>
     {#if showArticlesCount}

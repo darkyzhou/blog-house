@@ -21,7 +21,11 @@
 </script>
 
 <div class="max-w-screen-md mx-auto px-8">
-  <TagCard name="{tag.name}" description="{tag.description}" showArticlesCount="{false}" />
+  <TagCard
+    name="{tag.name}"
+    description="{tag.description}"
+    showArticlesCount="{false}"
+    extraClasses="my-8" />
   {#each tag.posts as post, i}
     {#if i}
       <hr class="border-indigo-50 mx-auto w-1/2 opacity-25" />
