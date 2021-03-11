@@ -11,11 +11,8 @@
 }
 
 body {
+  font-family: 'Noto Serif SC', serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   background-color: var(--bg-gray-800);
-}
-
-.font-noto {
-  font-family: 'Noto Serif SC', serif;
 }
 
 /* Modified based on sindresorhus/github-markdown-css */

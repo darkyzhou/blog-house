@@ -92,19 +92,19 @@
   <title>{makeTitle(post.title)}</title>
 </svelte:head>
 
-<div class="max-w-screen-lg w-full mx-auto px-4 sm:px-8 flex text-gray-300 gap-8">
-  <div class="w-full">
+<div class="max-w-screen-lg w-full mt-4 flex text-gray-300 gap-4">
+  <div class="w-full flex-grow px-4 sm:px-8 sm:w-auto">
     <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">
       {post.title}
     </h1>
     <TagsSection post="{post}" extraClasses="mb-6" />
-    <article id="article" class="flex-grow max-w-screen-md mb-24 markdown-body">
+    <article id="article" class="w-full mb-24 markdown-body">
       {@html post.html}
     </article>
     <div class="w-full" bind:this="{utterancesContainer}"></div>
   </div>
   {#if post.tableOfContent?.length}
-    <aside class="hidden lg:block">
+    <aside class="hidden lg:block w-max" style="max-width: 12em;">
       <div class="sticky top-8 overflow-x-hidden overflow-y-auto">
         <h1 class="mb-2 font-bold">大纲</h1>
         <TableOfContent
@@ -117,4 +117,6 @@
   {/if}
 </div>
 
-<BackToTop extraClasses="fixed bottom-2 left-2 md:bottom-8 md:left-8" show="{showBackToTop}" />
+<BackToTop
+  extraClasses="fixed bottom-4 right-4 h-12 w-12 sm:left-4 sm:right-0 md:bottom-8 md:left-8 md:h-16 md:w-16"
+  show="{showBackToTop}" />
