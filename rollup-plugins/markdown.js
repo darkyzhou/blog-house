@@ -10,6 +10,7 @@ const constraints = require('./config/constraints.json');
 
 function initMarked() {
   const renderer = new marked.Renderer();
+
   const originalLinkRenderer = renderer.link;
   renderer.link = (href, title, text) => {
     const result = originalLinkRenderer.call(renderer, href, title, text);
@@ -25,6 +26,12 @@ function initMarked() {
       default:
         return result.replace(/^<a /, '<a target="_blank" rel="nofollow noopener" ');
     }
+  };
+
+  const originalCodeRenderer = renderer.code;
+  renderer.code = (code, info, escaped) => {
+    const result = originalCodeRenderer.call(renderer, code, info, escaped);
+    return `${result.replace(/<\/pre>.*/is, '')}<div class='copy'></div></pre>\n`;
   };
 
   const highlight = (code, lang) => {

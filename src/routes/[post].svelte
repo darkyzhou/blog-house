@@ -17,33 +17,30 @@
   import { makeTitle } from './_utils';
   import BackToTop from '../components/BackToTop.svelte';
   import constraints from '../../config/constraints.json';
+  import ClipboardJS from 'clipboard';
 
   export let post;
 
   let titleElement;
-  let headingElements;
   let showBackToTop = false;
   let highlightedHeadingIndex = 0;
 
   let utterancesContainer;
 
-  function checkShouldShowToTop() {
+  function checkShouldScrollToTop() {
     showBackToTop = titleElement?.getBoundingClientRect().top < 0;
   }
 
-  function updateHighlightedHeadingIndex() {
-    if (!headingElements) {
-      return;
-    }
-    for (let i = 0; i < headingElements.length; i++) {
-      const element = headingElements[i];
-      const nextTop = headingElements[
-        i + 1 >= headingElements.length ? i : i + 1
-      ].getBoundingClientRect().top;
-      if (
-        nextTop > 16 ||
-        (i === headingElements.length - 1 && element.getBoundingClientRect().top < 16)
-      ) {
+  function initScrollToTop() {
+    document.addEventListener('scroll', () => checkShouldScrollToTop(), false);
+    checkShouldScrollToTop();
+  }
+
+  function updateHighlightedHeadingIndex(elements = []) {
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      const nextTop = elements[i + 1 >= elements.length ? i : i + 1].getBoundingClientRect().top;
+      if (nextTop > 16 || (i === elements.length - 1 && element.getBoundingClientRect().top < 16)) {
         if (highlightedHeadingIndex !== i) {
           highlightedHeadingIndex = i;
           window.history.replaceState(null, '', `${location.href.split('#')[0]}#${element.id}`);
@@ -53,23 +50,16 @@
     }
   }
 
-  onMount(() => {
-    checkShouldShowToTop();
-
-    headingElements = [
-      ...document.querySelectorAll(
-        ['.markdown-body > h1', 'h2', 'h3', 'h4', 'h5', 'h6'].join(', .markdown-body > ')
+  function initTableOfContent() {
+    const elements = Array.from(
+      document.querySelectorAll(
+        ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map((item) => `.markdown-body > ${item}`).join(', ')
       )
-    ];
-    document.addEventListener(
-      'scroll',
-      () => {
-        checkShouldShowToTop();
-        updateHighlightedHeadingIndex();
-      },
-      false
     );
+    document.addEventListener('scroll', () => updateHighlightedHeadingIndex(elements), false);
+  }
 
+  function initUtterances() {
     const utterances = document.createElement('script');
     const config = Object.entries({
       src: 'https://utteranc.es/client.js',
@@ -80,11 +70,25 @@
       crossOrigin: 'anonymous',
       async: 'true'
     });
-    for (const [key, value] of config) {
-      utterances.setAttribute(key, value);
-    }
-
+    config.forEach(([key, value]) => utterances.setAttribute(key, value));
     utterancesContainer.appendChild(utterances);
+  }
+
+  function initCodeCopying() {
+    const elements = document.querySelectorAll('.markdown-body pre:not(:empty) .copy');
+    elements.forEach((element) => (element.textContent = '复制代码'));
+    const clipboard = new ClipboardJS(elements, {
+      text: (element) => element.parentElement.querySelector('code').textContent
+    });
+    clipboard.on('success', (e) => (e.trigger.textContent = '复制成功'));
+    clipboard.on('error', (e) => (e.trigger.textContent = '复制失败'));
+  }
+
+  onMount(() => {
+    initScrollToTop();
+    initTableOfContent();
+    initUtterances();
+    initCodeCopying();
   });
 </script>
 

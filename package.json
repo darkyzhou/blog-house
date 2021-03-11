@@ -11,6 +11,7 @@
     "build": "NODE_ENV=production npm-run-all build:tailwind export"
   },
   "dependencies": {
+    "clipboard": "^2.0.8",
     "compression": "^1.7.1",
     "polka": "next",
     "prismjs": "^1.23.0",

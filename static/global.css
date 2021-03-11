@@ -12,7 +12,41 @@
 
 body {
   font-family: 'Noto Serif SC', serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-  background-color: var(--bg-gray-800);
+}
+
+.markdown-body pre {
+  position: relative;
+}
+
+.markdown-body pre:not(:empty) .copy:empty {
+  display: none !important;
+}
+
+.markdown-body pre:not(:empty) .copy {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 6px 8px;
+  font-size: 12px;
+  @apply text-gray-300 bg-gray-800 rounded;
+  cursor: pointer;
+  opacity: 0;
+  transition: 250ms opacity;
+  pointer-events: none;
+  user-select: none;
+}
+
+.markdown-body pre:not(:empty):focus .copy,
+.markdown-body pre:not(:empty):hover .copy {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (hover: none) {
+  .markdown-body pre:not(:empty) .copy {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
 }
 
 /* Modified based on sindresorhus/github-markdown-css */
@@ -838,7 +872,7 @@ body {
 .markdown-body .highlight pre,
 .markdown-body pre {
   padding: 16px;
-  overflow: auto;
+  overflow: hidden;
   font-size: 85%;
   line-height: 1.45;
   border-radius: 3px;
@@ -846,15 +880,15 @@ body {
 }
 
 .markdown-body pre code {
-  display: inline;
-  max-width: auto;
+  display: block;
   padding: 0;
   margin: 0;
-  overflow: visible;
   line-height: inherit;
   word-wrap: normal;
   background-color: initial;
   border: 0;
+  width: auto;
+  overflow: auto;
 }
 
 .markdown-body .commit-tease-sha {
