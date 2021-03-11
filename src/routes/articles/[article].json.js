@@ -1,14 +1,14 @@
-import posts from './_posts';
+import posts from './_articles';
 
 const postsMapping = new Map(posts.map((p) => [p.slug, JSON.stringify(p)]));
 
 export async function get(req, res, next) {
-  const { post } = req.params;
-  if (!postsMapping.has(post)) {
+  const { article } = req.params;
+  if (!postsMapping.has(article)) {
     res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: `Post '${post}' not found` }));
+    res.end(JSON.stringify({ message: `Article '${article}' not found` }));
   } else {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(postsMapping.get(post));
+    res.end(postsMapping.get(article));
   }
 }

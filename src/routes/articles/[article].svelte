@@ -1,25 +1,25 @@
 <script context="module">
   export async function preload({ params, query }) {
-    const response = await this.fetch(`${params.post}.json`);
+    const response = await this.fetch(`/articles/${params.article}.json`);
     const data = await response.json();
     if (response.status !== 200) {
       this.error(response.status, data.message);
       return;
     }
-    return { post: data };
+    return { article: data };
   }
 </script>
 
 <script>
   import { onMount } from 'svelte';
-  import TagsSection from '../components/TagsSection.svelte';
-  import TableOfContent from '../components/TableOfContent.svelte';
-  import { makeTitle } from './_utils';
-  import BackToTop from '../components/BackToTop.svelte';
-  import constraints from '../../config/constraints.json';
+  import TagsSection from '../../components/TagsSection.svelte';
+  import TableOfContent from '../../components/TableOfContent.svelte';
+  import { makeTitle } from '../_utils';
+  import BackToTop from '../../components/BackToTop.svelte';
+  import constraints from '../../../config/constraints.json';
   import ClipboardJS from 'clipboard';
 
-  export let post;
+  export let article;
 
   let titleElement;
   let showBackToTop = false;
@@ -93,28 +93,28 @@
 </script>
 
 <svelte:head>
-  <title>{makeTitle(post.title)}</title>
+  <title>{makeTitle(article.title)}</title>
 </svelte:head>
 
 <div class="max-w-screen-lg w-full mt-4 flex text-gray-300 gap-4">
   <div class="w-full flex-grow px-4 sm:px-8 sm:w-auto">
     <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">
-      {post.title}
+      {article.title}
     </h1>
-    <TagsSection post="{post}" extraClasses="mb-6" />
+    <TagsSection article="{article}" extraClasses="mb-6" />
     <article id="article" class="w-full mb-24 markdown-body">
-      {@html post.html}
+      {@html article.html}
     </article>
     <div class="w-full" bind:this="{utterancesContainer}"></div>
   </div>
-  {#if post.tableOfContent?.length}
-    <aside class="hidden lg:block w-max" style="max-width: 12em;">
+  {#if article.tableOfContent?.length}
+    <aside class="hidden lg:block" style="max-width: 12em;">
       <div class="sticky top-8 overflow-x-hidden overflow-y-auto">
         <h1 class="mb-2 font-bold">大纲</h1>
         <TableOfContent
-          extraClasses="pl-4"
+          extraClasses="pl-4 w-max"
           extraStyles="max-height: 80vh"
-          tableOfContent="{post.tableOfContent}"
+          tableOfContent="{article.tableOfContent}"
           highlightedIndex="{highlightedHeadingIndex}" />
       </div>
     </aside>

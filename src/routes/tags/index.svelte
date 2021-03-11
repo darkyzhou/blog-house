@@ -63,7 +63,7 @@
           name="{tag.name}"
           route="{$page.path}/{tag.slug}"
           description="{tag.description}"
-          articlesCount="{tag.posts.length}" />
+          articlesCount="{tag.articles.length}" />
       {/each}
     </div>
   {/each}

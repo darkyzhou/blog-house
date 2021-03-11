@@ -14,7 +14,7 @@
 </script>
 
 <script>
-  import Article from '../../components/Article.svelte';
+  import ArticleCard from '../../components/ArticleCard.svelte';
   import TagCard from '../../components/TagCard.svelte';
 
   export let tag;
@@ -26,10 +26,10 @@
     description="{tag.description}"
     showArticlesCount="{false}"
     extraClasses="my-8" />
-  {#each tag.posts as post, i}
+  {#each tag.articles as article, i}
     {#if i}
       <hr class="border-indigo-50 mx-auto w-1/2 opacity-25" />
     {/if}
-    <Article post="{post}" />
+    <ArticleCard article="{article}" />
   {/each}
 </div>

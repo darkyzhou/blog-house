@@ -1,18 +1,18 @@
 <script context="module">
   export async function preload({ params, query }) {
-    const response = await this.fetch(`/posts.json`);
+    const response = await this.fetch(`/articles/articles.json`);
     const data = await response.json();
-    return { posts: data };
+    return { articles: data };
   }
 </script>
 
 <script>
-  import { makeTitle } from './_utils';
-  import Article from '../components/Article.svelte';
+  import { makeTitle } from '../_utils';
+  import ArticleCard from '../../components/ArticleCard.svelte';
 
-  export let posts;
+  export let articles;
 
-  $: articlePosts = posts.filter((p) => !p.isPageArticle);
+  $: filteredArticles = articles.filter((p) => !p.isPageArticle);
 </script>
 
 <svelte:head>
@@ -20,10 +20,10 @@
 </svelte:head>
 
 <div class="max-w-screen-md mx-auto mt-4 sm:mt-8 px-4 sm:px-8">
-  {#each articlePosts as post, i}
+  {#each filteredArticles as articles, i}
     {#if i}
       <hr class="border-indigo-50 mx-auto w-1/2 opacity-25" />
     {/if}
-    <Article post="{post}" />
+    <ArticleCard article="{articles}" />
   {/each}
 </div>

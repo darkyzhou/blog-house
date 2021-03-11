@@ -1,4 +1,4 @@
-import posts from './_posts';
+import articles from './articles/_articles';
 import tags from './tags/_tags';
 import constraints from '../../config/constraints.json';
 // FIXME: don't know why rollup complains about circular dependency issues if we use es import
@@ -26,9 +26,9 @@ export async function get(request, response) {
   });
 
   links.push(
-    posts.map((post) => ({
-      url: concatPageUrl(post.slug),
-      lastmod: new Date(post.lastModifiedAt).toISOString()
+    articles.map((article) => ({
+      url: concatPageUrl(article.slug),
+      lastmod: new Date(article.lastModifiedAt).toISOString()
     }))
   );
 

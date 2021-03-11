@@ -1,20 +1,20 @@
-import posts from '../_posts';
+import articles from '../articles/_articles';
 import constraints from '../../../config/constraints.json';
 
-function resolveTags(posts) {
+function resolveTags(articles) {
   const tagsMapping = new Map();
-  posts.forEach((post) =>
-    post.tags?.forEach((tag) => {
+  articles.forEach((article) =>
+    article.tags?.forEach((tag) => {
       if (!tagsMapping.has(tag)) {
         const tagConfig = constraints.tag.items.find((t) => t.name === tag);
         console.assert(!!tagConfig);
         tagsMapping.set(tag, {
-          posts: [post],
+          articles: [article],
           slug: tagConfig.slug,
           description: tagConfig.description
         });
       } else {
-        tagsMapping.get(tag).posts.push(post);
+        tagsMapping.get(tag).articles.push(article);
       }
     })
   );
@@ -23,7 +23,7 @@ function resolveTags(posts) {
     .filter((item) => !tagsMapping.has(item.name))
     .forEach((item) =>
       tagsMapping.set(item.name, {
-        posts: [],
+        articles: [],
         slug: item.slug,
         description: item.description
       })
@@ -32,11 +32,11 @@ function resolveTags(posts) {
   return [...tagsMapping.entries()].map(([tagName, detail]) => ({
     slug: detail.slug,
     name: tagName,
-    posts: detail.posts,
+    articles: detail.articles,
     description: detail.description
   }));
 }
 
-const tags = resolveTags(posts).sort((a, b) => a.name.localeCompare(b.name));
+const tags = resolveTags(articles).sort((a, b) => a.name.localeCompare(b.name));
 
 export default tags;

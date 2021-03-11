@@ -1,21 +1,21 @@
 <script>
   import TagsSection from './TagsSection.svelte';
 
-  export let post;
+  export let article;
 </script>
 
 <article>
   <header>
     <h1 class="mb-2 text-3xl text-indigo-500">
-      <a sapper:prefetch href="/{post.slug}">{post.title}</a>
+      <a sapper:prefetch href="/articles/{article.slug}">{article.title}</a>
     </h1>
-    {#if post.printDate || post.tags?.length > 0}
-      <TagsSection post="{post}" />
+    {#if article.printDate || article.tags?.length > 0}
+      <TagsSection article="{article}" />
     {/if}
   </header>
-  {#if post.excerpt}
+  {#if article.excerpt}
     <p class="mt-2 text-base text-gray-200 break-all leading-relaxed">
-      {post.excerpt}
+      {article.excerpt}
     </p>
   {/if}
 </article>
