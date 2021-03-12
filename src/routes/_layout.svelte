@@ -4,25 +4,26 @@
   import constraints from '../../config/constraints.json';
 
   export let segment;
+
+  // WARNING: DO NOT USE PRETTIER ON THIS FILE
+  // BECAUSE IT'S BROKEN PARSING THE CODES INSIDE @html
 </script>
 
 <svelte:head>
   {#if constraints.analytics.google.gaMeasurementId}
-    <script
-      src="https://www.googletagmanager.com/gtag/js?id={constraints.analytics.google
-        .gaMeasurementId}"
-      async></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
+    {@html `
+<script src="https://www.googletagmanager.com/gtag/js?id=${constraints.analytics.google.gaMeasurementId}" async></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', '${constraints.analytics.google.gaMeasurementId}');
+</script>`}
   {/if}
   {#if constraints.analytics.baidu.id}
-    <script src="https://hm.baidu.com/hm.js?{constraints.analytics.baidu.id}" async></script>
+    {@html `<script src="https://hm.baidu.com/hm.js?${constraints.analytics.baidu.id}" async></script>`}
   {/if}
 </svelte:head>
 
