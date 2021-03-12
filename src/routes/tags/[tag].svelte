@@ -22,7 +22,7 @@
 </script>
 
 <svelte:head>
-  <title>{makeTitle('标签')}</title>
+  <title>{makeTitle(`标签：${tag.name}`)}</title>
   {#if tag.description}
     <meta name="description" content="{tag.description}" />
   {/if}
