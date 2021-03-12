@@ -16,9 +16,17 @@
 <script>
   import ArticleCard from '../../components/ArticleCard.svelte';
   import TagCard from '../../components/TagCard.svelte';
+  import { makeTitle } from '../_utils';
 
   export let tag;
 </script>
+
+<svelte:head>
+  <title>{makeTitle('标签')}</title>
+  {#if tag.description}
+    <meta name="description" content="{tag.description}" />
+  {/if}
+</svelte:head>
 
 <div class="max-w-screen-md mx-auto px-8">
   <TagCard

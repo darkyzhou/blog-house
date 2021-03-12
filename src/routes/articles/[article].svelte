@@ -94,6 +94,9 @@
 
 <svelte:head>
   <title>{makeTitle(article.title)}</title>
+  {#if article.excerpt}
+    <meta name="description" content="{article.excerpt}" />
+  {/if}
 </svelte:head>
 
 <div class="max-w-screen-lg w-full mt-4 flex text-gray-300 gap-4">

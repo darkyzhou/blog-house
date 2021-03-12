@@ -6,9 +6,10 @@
 
 <script context="module">
   export async function preload({}) {
-    // FIXME: this is a hacky way to make sapper generate sitemap.xml when exporting
+    // FIXME: this is a hacky way to make sapper generate static files when running svelte export
     // here is a related mr that might change the situation: https://github.com/sveltejs/sapper/pull/1288
     await this.fetch('sitemap.xml');
+    await this.fetch('robots.txt');
   }
 </script>
 
@@ -20,6 +21,9 @@
 
 <svelte:head>
   <title>{constraints.base.blogName}</title>
+  {#if constraints.base.description}
+    <meta name="description" content="{constraints.base.description}" />
+  {/if}
 </svelte:head>
 
 <div class="w-full flex-grow flex flex-col items-center mainContainer">
