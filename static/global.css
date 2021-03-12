@@ -14,6 +14,10 @@ body {
   font-family: 'Noto Serif SC', serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 }
 
+.utterances {
+  max-width: unset;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
