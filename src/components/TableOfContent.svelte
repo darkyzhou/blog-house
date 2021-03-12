@@ -24,7 +24,7 @@
 </script>
 
 <ul
-  class="list-none p-0 text-gray-400 font-light cursor-pointer {extraClasses}"
+  class="list-none p-0 text-gray-400 font-light cursor-pointer break-words {extraClasses}"
   style="{extraStyles}">
   {#each resolved as item, i}
     <li

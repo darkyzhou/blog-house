@@ -97,7 +97,7 @@
 </svelte:head>
 
 <div class="max-w-screen-lg w-full mt-4 flex text-gray-300 gap-4">
-  <div class="w-full flex-grow px-4 sm:px-8 sm:w-auto">
+  <div class="w-full flex-grow px-4 sm:px-6 sm:w-auto">
     <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
@@ -108,12 +108,12 @@
     <div class="w-full" bind:this="{utterancesContainer}"></div>
   </div>
   {#if article.tableOfContent?.length}
-    <aside class="hidden lg:block" style="max-width: 12em;">
+    <aside class="hidden lg:block px-4">
       <div class="sticky top-8 overflow-x-hidden overflow-y-auto">
         <h1 class="mb-2 font-bold">大纲</h1>
         <TableOfContent
-          extraClasses="pl-4 w-max"
-          extraStyles="max-height: 80vh"
+          extraClasses="pl-4 w-full"
+          extraStyles="max-height: 80vh; max-width: 14em;"
           tableOfContent="{article.tableOfContent}"
           highlightedIndex="{highlightedHeadingIndex}" />
       </div>
