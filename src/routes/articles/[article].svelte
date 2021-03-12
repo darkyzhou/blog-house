@@ -122,5 +122,5 @@
 </div>
 
 <BackToTop
-  extraClasses="fixed bottom-4 right-4 h-12 w-12 sm:left-4 sm:right-0 md:bottom-8 md:left-8 md:h-16 md:w-16"
+  extraClasses="fixed h-12 w-12 sm:h-16 sm:w-16 bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-16"
   show="{showBackToTop}" />
