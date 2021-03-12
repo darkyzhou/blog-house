@@ -18,6 +18,14 @@
   "sitemap": {
     "urlPrefix": "https://example.com"
   },
+  "analytics": {
+    "google": {
+      "gaMeasurementId": ""
+    },
+    "baidu": {
+      "id": ""
+    }
+  },
   "comment": {
     "type": "utterances",
     "config": {
