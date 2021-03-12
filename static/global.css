@@ -14,6 +14,19 @@ body {
   font-family: 'Noto Serif SC', serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-indigo-400;
+}
+
 .markdown-body pre {
   position: relative;
 }
