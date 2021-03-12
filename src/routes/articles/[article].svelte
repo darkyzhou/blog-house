@@ -116,7 +116,7 @@
         <h1 class="mb-2 font-bold">大纲</h1>
         <TableOfContent
           extraClasses="pl-4 w-full"
-          extraStyles="max-height: 80vh; max-width: 14em;"
+          extraStyles="max-height: 80vh; max-width: 14em; width: max-content; min-width: 8em;"
           tableOfContent="{article.tableOfContent}"
           highlightedIndex="{highlightedHeadingIndex}" />
       </div>

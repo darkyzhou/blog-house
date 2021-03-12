@@ -1,6 +1,30 @@
 <style>
-  .mainContainer {
-    background: linear-gradient(to bottom, var(--bg-gray-800), var(--bg-gray-900) 25%);
+  .avatar {
+    height: auto;
+    width: auto;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      max-width: 250px;
+    }
+
+    .avatar {
+      max-width: 180px;
+      margin: 0 auto;
+    }
+
+    .description {
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .card {
+      max-width: 700px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 </style>
 
@@ -15,7 +39,6 @@
 
 <script>
   import constraints from '../../config/constraints.json';
-  import NavButton from '../components/NavButton.svelte';
   import { getIcon } from '../components/icons';
 </script>
 
@@ -26,30 +49,30 @@
   {/if}
 </svelte:head>
 
-<div class="w-full flex-grow flex flex-col items-center mainContainer">
-  <div class="my-auto grid gap-8" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
-    <img alt="" class="block" src="avatar.jpg" />
-    <div class="col-span-2 flex flex-col gap-2 p-1 justify-between items-center">
-      <h1 class="text-gray-100 text-3xl">
-        {constraints.base.authorName}
-      </h1>
-      <p class="text-gray-300 flex-grow text-xl">
-        {constraints.base.description}
-      </p>
-      <ul class="list-none pl-0 flex gap-2 text-sm">
-        {#each constraints.base.personalInfo as info}
-          <li class="mr-2 text-gray-400 flex items-center">
-            <svelte:component this="{getIcon(info.type)}" extraClasses="w-4 h-4 inline mr-0.5" />
-            {#if info.link}
-              <a class="hover:underline" target="_blank" rel="nofollow" href="{info.link}">
-                {info.text}
-              </a>
-            {:else}
-              <span>{info.text}</span>
-            {/if}
-          </li>
-        {/each}
-      </ul>
-    </div>
+<div
+  class="my-auto flex flex-col md:grid p-4 md:p-0 gap-2 card"
+  style="backdrop-filter: blur(10px);">
+  <img alt="头像" class="block avatar" src="avatar.jpg" draggable="false" />
+  <div class="flex-grow md:col-span-2 md:p-2 flex flex-col gap-2 justify-between items-center">
+    <h1 class="text-gray-100 text-xl md:text-2xl lg:text-3xl">
+      {constraints.base.authorName}
+    </h1>
+    <p class="text-gray-300 flex-grow text-sm md:text-xl description">
+      {constraints.base.description}
+    </p>
+    <ul class="list-none pl-0 flex gap-2 text-sm">
+      {#each constraints.base.personalInfo as info}
+        <li class="mr-2 text-gray-400 flex items-center">
+          <svelte:component this="{getIcon(info.type)}" extraClasses="w-4 h-4 inline mr-0.5" />
+          {#if info.link}
+            <a class="hover:underline" target="_blank" rel="nofollow" href="{info.link}">
+              {info.text}
+            </a>
+          {:else}
+            <span>{info.text}</span>
+          {/if}
+        </li>
+      {/each}
+    </ul>
   </div>
 </div>

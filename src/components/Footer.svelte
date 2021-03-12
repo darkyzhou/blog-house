@@ -1,9 +1,7 @@
 <script>
-  import { stores } from '@sapper/app';
-
-  const { page } = stores();
+  export let extraClasses = '';
 </script>
 
-<footer class="text-center text-gray-400 text-sm py-4 {$page.path === '/' && 'bg-gray-900'}">
+<footer class="text-center text-gray-400 text-sm py-4 {extraClasses}">
   Made with ❤️ by darkyzhou
 </footer>
