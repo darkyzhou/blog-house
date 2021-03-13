@@ -5,6 +5,10 @@ import GithubIcon from './GithubIcon.svelte';
 import UpIcon from './UpIcon.svelte';
 import PenIcon from './PenIcon.svelte';
 import BookIcon from './BookIcon.svelte';
+import RightIcon from './RightIcon.svelte';
+import HeartIcon from './HeartIcon.svelte';
+import MessageIcon from './MessageIcon.svelte';
+import CodeIcon from './CodeIcon.svelte';
 
 const iconMapping = {
   calendar: CalendarIcon,
@@ -13,7 +17,11 @@ const iconMapping = {
   github: GithubIcon,
   up: UpIcon,
   pen: PenIcon,
-  book: BookIcon
+  book: BookIcon,
+  right: RightIcon,
+  heart: HeartIcon,
+  message: MessageIcon,
+  code: CodeIcon
 };
 
 export function getIcon(type) {

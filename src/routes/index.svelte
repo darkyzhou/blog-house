@@ -1,30 +1,44 @@
 <style>
+  .card {
+    will-change: transform;
+    transition: 600ms transform;
+  }
+
   .avatar {
-    height: auto;
+    max-height: 220px;
     width: auto;
     object-fit: cover;
   }
 
-  @media (max-width: 768px) {
-    .card {
-      max-width: 250px;
-    }
-
-    .avatar {
-      max-width: 180px;
-      margin: 0 auto;
-    }
-
-    .description {
-      margin-bottom: 2rem;
-    }
+  .cardContent {
+    transition: transform 300ms step-end;
   }
 
-  @media (min-width: 769px) {
-    .card {
-      max-width: 700px;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  #checkbox:checked ~ .card {
+    transform: rotateY(180deg);
+  }
+
+  #checkbox:checked ~ .card .cardContent {
+    transform: rotateY(180deg);
+  }
+
+  .cardContent > * {
+    will-change: opacity;
+    transition-property: opacity;
+    transition-duration: 300ms;
+    transition-delay: 300ms;
+  }
+
+  #checkbox:checked ~ .card .aSideContent {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0ms;
+  }
+
+  #checkbox:not(:checked) ~ .card .bSideContent {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0ms;
   }
 </style>
 
@@ -40,6 +54,10 @@
 <script>
   import constraints from '../../config/constraints.json';
   import { getIcon } from '../components/icons';
+  import { onMount } from 'svelte';
+  import TabContainer from '../components/TabContainer.svelte';
+
+  onMount(() => {});
 </script>
 
 <svelte:head>
@@ -49,30 +67,48 @@
   {/if}
 </svelte:head>
 
-<div
-  class="my-auto flex flex-col md:grid p-4 md:p-0 gap-2 card"
-  style="backdrop-filter: blur(10px);">
-  <img alt="头像" class="block avatar" src="avatar.jpg" draggable="false" />
-  <div class="flex-grow md:col-span-2 md:p-2 flex flex-col gap-2 justify-between items-center">
-    <h1 class="text-gray-100 text-xl md:text-2xl lg:text-3xl">
-      {constraints.base.authorName}
-    </h1>
-    <p class="text-gray-300 flex-grow text-sm md:text-xl description">
-      {constraints.base.description}
-    </p>
-    <ul class="list-none pl-0 flex gap-2 text-sm">
-      {#each constraints.base.personalInfo as info}
-        <li class="mr-2 text-gray-400 flex items-center">
-          <svelte:component this="{getIcon(info.type)}" extraClasses="w-4 h-4 inline mr-0.5" />
-          {#if info.link}
-            <a class="hover:underline" target="_blank" rel="nofollow" href="{info.link}">
-              {info.text}
-            </a>
-          {:else}
-            <span>{info.text}</span>
-          {/if}
-        </li>
-      {/each}
-    </ul>
+<input id="checkbox" type="checkbox" class="hidden" />
+<div class="my-auto flex flex-row-reverse card" style="backdrop-filter: blur(10px);">
+  <label
+    for="checkbox"
+    class="flex-none w-6 grid place-items-center border-transparent hover:border-gray-300 border-2">
+    <svelte:component this="{getIcon('right')}" />
+  </label>
+  <div class="p-4 md:p-0 grid gap-2 cardContent" style="grid-template-areas: 'stack'">
+    <div class="aSideContent grid gap-2" style="grid-area: stack; grid-template-areas: 'a b b';">
+      <img
+        alt="头像"
+        class="avatar block object-cover"
+        src="avatar.jpg"
+        draggable="false"
+        style="grid-area: a" />
+      <div
+        class="info py-4 px-6 flex flex-col gap-2 justify-between items-center"
+        style="grid-area: b">
+        <h1 class="text-gray-100 text-xl md:text-2xl lg:text-3xl">
+          {constraints.base.authorName}
+        </h1>
+        <p class="text-gray-300 flex-grow text-sm md:text-xl description">
+          {constraints.base.description}
+        </p>
+        <ul class="list-none pl-0 flex gap-2 text-sm">
+          {#each constraints.base.personalInfo as info}
+            <li class="mr-2 text-gray-400 flex items-center">
+              <svelte:component this="{getIcon(info.type)}" extraClasses="w-4 h-4 inline mr-0.5" />
+              {#if info.link}
+                <a class="hover:underline" target="_blank" rel="nofollow" href="{info.link}">
+                  {info.text}
+                </a>
+              {:else}
+                <span>{info.text}</span>
+              {/if}
+            </li>
+          {/each}
+        </ul>
+      </div>
+    </div>
+    <div class="bSideContent" style="grid-area: stack;">
+      <TabContainer extraClasses="w-full h-full ml-4" />
+    </div>
   </div>
 </div>
