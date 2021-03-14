@@ -9,6 +9,7 @@ import RightIcon from './RightIcon.svelte';
 import HeartIcon from './HeartIcon.svelte';
 import MessageIcon from './MessageIcon.svelte';
 import CodeIcon from './CodeIcon.svelte';
+import SearchIcon from './SearchIcon.svelte';
 
 const iconMapping = {
   calendar: CalendarIcon,
@@ -21,7 +22,8 @@ const iconMapping = {
   right: RightIcon,
   heart: HeartIcon,
   message: MessageIcon,
-  code: CodeIcon
+  code: CodeIcon,
+  search: SearchIcon
 };
 
 export function getIcon(type) {
