@@ -6,6 +6,7 @@ const readingTime = require('reading-time');
 const htmlParser = require('html5parser');
 const prism = require('prismjs');
 const fs = require('fs');
+const parseTextContent = require('parse-html-text-content');
 const constraints = require('./config/constraints.json');
 
 function initMarked() {
@@ -114,6 +115,10 @@ function getLatestModificationTime(filename) {
   return mtime;
 }
 
+function extractExcerpt(pureTextContent) {
+  return `${pureTextContent.substr(0, 80)}...`;
+}
+
 function isFromPage(filename) {
   const parentDirectoryName = path.basename(path.dirname(filename));
   return parentDirectoryName !== 'source';
@@ -140,8 +145,16 @@ function doTransform(mdContent, mdFilename) {
     );
   }
 
-  const [excerpt, mainContent] = getExcerptAndMainContent(content);
+  const result = getExcerptAndMainContent(content);
+  let excerpt = result[0];
+  const mainContent = result[1];
   const mainContentHtml = marked(mainContent);
+  const pureTextMainContent = parseTextContent(mainContentHtml);
+
+  if (!excerpt) {
+    excerpt = extractExcerpt(pureTextMainContent);
+  }
+
   const isPageArticle = isFromPage(mdFilename);
   const lastModifiedAt = getLatestModificationTime(mdFilename);
   const printLastModifiedAt = format(lastModifiedAt, 'yyyy/MM/dd');
@@ -157,11 +170,12 @@ function doTransform(mdContent, mdFilename) {
     date: data.date ? new Date(data.date) : lastModifiedAt,
     printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
     wordsCount: [...mainContent].length,
-    readingTime: getReadingTime(mainContent),
+    readingTime: getReadingTime(pureTextMainContent),
     tags: data.tags,
     excerpt,
     tableOfContent: getTableOfContent(mainContentHtml),
-    html: mainContentHtml
+    html: mainContentHtml,
+    pureTextContent: pureTextMainContent
   });
 
   return {
