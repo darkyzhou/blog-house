@@ -1,11 +1,36 @@
 <style>
   .card {
-    will-change: transform;
-    transition: 600ms transform cubic-bezier(0.65, 0, 0.35, 1);
+    transition: 600ms transform var(--flip);
   }
 
-  .card #toggle {
-    transition: 600ms opacity cubic-bezier(0.65, 0, 0.35, 1);
+  #checkbox:checked ~ .card {
+    transform: rotateY(180deg);
+  }
+
+  .cardContent {
+    transition: transform 300ms step-end;
+  }
+
+  #checkbox:checked ~ .card .cardContent {
+    transform: rotateY(180deg);
+  }
+
+  .cardContent > * {
+    transition: opacity 280ms;
+  }
+
+  #checkbox:not(:checked) ~ .card .aSideContent,
+  #checkbox:checked ~ .card .bSideContent {
+    transition-timing-function: var(--flip-second-half);
+    transition-delay: 320ms;
+  }
+
+  #checkbox:checked ~ .card .aSideContent,
+  #checkbox:not(:checked) ~ .card .bSideContent {
+    opacity: 0;
+    pointer-events: none;
+    transition-timing-function: var(--flip-first-half);
+    transition-delay: 0ms;
   }
 
   .avatar {
@@ -21,6 +46,14 @@
     .avatar {
       max-height: 160px;
     }
+
+    .aSideContent {
+      grid-template-areas:
+        'a'
+        'b'
+        'b';
+      justify-items: center;
+    }
   }
 
   @media (min-width: 769px) {
@@ -32,48 +65,7 @@
     .avatar {
       max-height: 220px;
     }
-  }
 
-  .cardContent {
-    transition: transform 300ms step-end;
-  }
-
-  #checkbox:checked ~ .card {
-    transform: rotateY(180deg);
-  }
-
-  #checkbox:checked ~ .card .cardContent {
-    transform: rotateY(180deg);
-  }
-
-  .cardContent > * {
-    transition: opacity 280ms cubic-bezier(0.65, 0, 0.8, 0.4);
-    transition-delay: 320ms;
-  }
-
-  #checkbox:checked ~ .card .aSideContent {
-    opacity: 0;
-    pointer-events: none;
-    transition-delay: 0ms;
-  }
-
-  #checkbox:not(:checked) ~ .card .bSideContent {
-    opacity: 0;
-    pointer-events: none;
-    transition-delay: 0ms;
-  }
-
-  @media (max-width: 768px) {
-    .aSideContent {
-      grid-template-areas:
-        'a'
-        'b'
-        'b';
-      justify-items: center;
-    }
-  }
-
-  @media (min-width: 769px) {
     .aSideContent {
       grid-template-areas: 'a b b';
     }
