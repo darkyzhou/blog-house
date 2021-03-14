@@ -16,65 +16,55 @@
   .tabContent > * {
     display: none;
   }
-
-  #toggle1:checked ~ .tabContent div:nth-child(1) {
-    display: block;
-  }
-
-  #toggle1:checked ~ .tabHeader li:nth-child(1) .icon {
-    color: var(--bg-gray-800);
-    background-color: var(--bg-gray-200);
-  }
-
-  #toggle2:checked ~ .tabContent div:nth-child(2) {
-    display: block;
-  }
-
-  #toggle2:checked ~ .tabHeader li:nth-child(2) .icon {
-    color: var(--bg-gray-800);
-    background-color: var(--bg-gray-200);
-  }
-
-  #toggle3:checked ~ .tabContent div:nth-child(3) {
-    display: block;
-  }
-
-  #toggle3:checked ~ .tabHeader li:nth-child(3) .icon {
-    color: var(--bg-gray-800);
-    background-color: var(--bg-gray-200);
-  }
 </style>
 
 <script>
   import { getIcon } from './icons';
 
   export let extraClasses = '';
+  export let tabContents = [];
+
+  $: toggleCss = tabContents
+    .map(
+      (_, i) => `
+  #toggle${i + 1}:checked ~ .tabContent div:nth-child(${i + 1}) {
+    display: block;
+  }
+
+  #toggle${i + 1}:checked ~ .tabHeader li:nth-child(${i + 1}) .icon {
+    color: var(--bg-gray-800);
+    background-color: var(--bg-gray-200);
+  }
+  `
+    )
+    .join('');
+
+  $: toggleCssWrapped = `<style type='text/css'>${toggleCss}</style>`;
 </script>
 
+<svelte:head>
+  {@html toggleCssWrapped}
+</svelte:head>
+
 <div class="flex gap-2 {extraClasses}">
-  <input id="toggle1" type="radio" name="tab" class="hidden" checked />
-  <input id="toggle2" type="radio" name="tab" class="hidden" />
-  <input id="toggle3" type="radio" name="tab" class="hidden" />
+  {#each tabContents as _, i}
+    <input id="toggle{i + 1}" type="radio" name="tab" class="hidden" checked="{!i}" />
+  {/each}
   <ul class="tabHeader flex-none list-none flex flex-col">
-    <li>
-      <label class="icon" for="toggle1">
-        <svelte:component this="{getIcon('message')}" extraClasses="w-8 h-8" />
-      </label>
-    </li>
-    <li>
-      <label class="icon" for="toggle2">
-        <svelte:component this="{getIcon('heart')}" extraClasses="w-8 h-8" />
-      </label>
-    </li>
-    <li>
-      <label class="icon" for="toggle3">
-        <svelte:component this="{getIcon('code')}" extraClasses="w-8 h-8" />
-      </label>
-    </li>
+    {#each tabContents as tab, i}
+      <li>
+        <label
+          class="icon cursor-pointer outline-none border-transparent hover:border-gray-300 focus:border-gray-300 border-2"
+          for="toggle{i + 1}"
+          tabindex="0">
+          <svelte:component this="{getIcon(tab.icon)}" extraClasses="w-8 h-8" />
+        </label>
+      </li>
+    {/each}
   </ul>
-  <div class="tabContent flex-grow">
-    <div>One</div>
-    <div>Two</div>
-    <div>Three</div>
+  <div class="tabContent flex-grow p-2 h-full text-gray-200 text-sm md:text-base leading-relaxed">
+    {#each tabContents as tab}
+      <div class="overflow-y-auto h-full">{@html tab.content}</div>
+    {/each}
   </div>
 </div>

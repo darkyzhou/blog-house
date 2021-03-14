@@ -1,4 +1,20 @@
 {
+  "home": {
+    "cardTabs": [
+      {
+        "icon": "message",
+        "content": "<p>Here is my self-introduction: ...</p>"
+      },
+      {
+        "icon": "heart",
+        "content": "<p>I love programming, collecting xxx ...</p>"
+      },
+      {
+        "icon": "code",
+        "content": "<p>My main programming language is TypeScript and in my mind it's the best programming language in the world</p>"
+      }
+    ]
+  },
   "nav": [
     {
       "type": "home",

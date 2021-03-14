@@ -36,6 +36,9 @@
     <span class="text-2xl font-bold">{caption}</span>
   </div>
   <div style="grid-area: stack">
-    <img alt="" src="{backgroundSrc}" class="imageMask object-cover pointer-events-none w-full h-full" />
+    <img
+      alt=""
+      src="{backgroundSrc}"
+      class="imageMask object-cover pointer-events-none w-full h-full" />
   </div>
 </a>
