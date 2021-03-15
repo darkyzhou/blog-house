@@ -171,7 +171,7 @@ function doTransform(mdContent, mdFilename) {
     printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
     wordsCount: [...mainContent].length,
     readingTime: getReadingTime(pureTextMainContent),
-    tags: data.tags,
+    tags: isPageArticle ? [] : data.tags,
     excerpt,
     tableOfContent: getTableOfContent(mainContentHtml),
     html: mainContentHtml,

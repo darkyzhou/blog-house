@@ -29,11 +29,7 @@
 </svelte:head>
 
 <div class="max-w-screen-md mx-auto px-8">
-  <TagCard
-    name="{tag.name}"
-    description="{tag.description}"
-    showArticlesCount="{false}"
-    extraClasses="my-8" />
+  <TagCard tag="{tag}" showArticlesCount="{false}" extraClasses="my-8" />
   {#each tag.articles as article, i}
     {#if i}
       <hr class="border-indigo-50 mx-auto w-1/2 opacity-25" />

@@ -6,8 +6,6 @@
   class="{extraClasses}"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
-  width="1em"
-  height="1em"
   preserveAspectRatio="xMidYMid meet"
   viewBox="0 0 32 32">
   <path d="M17 22v-8h-4v2h2v6h-3v2h8v-2h-3z" fill="currentColor"></path>

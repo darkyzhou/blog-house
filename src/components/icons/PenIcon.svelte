@@ -5,13 +5,12 @@
 <svg
   class="{extraClasses}"
   xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  stroke="currentColor">
+  role="img"
+  preserveAspectRatio="xMidYMid meet"
+  viewBox="0 0 32 32">
+  <path d="M2 26h28v2H2z" fill="currentColor"></path>
   <path
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    stroke-width="2"
-    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+    d="M25.4 9c.8-.8.8-2 0-2.8l-3.6-3.6c-.8-.8-2-.8-2.8 0l-15 15V24h6.4l15-15zm-5-5L24 7.6l-3 3L17.4 7l3-3zM6 22v-3.6l10-10l3.6 3.6l-10 10H6z"
+    fill="currentColor">
   </path>
 </svg>

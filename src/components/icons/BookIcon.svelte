@@ -4,14 +4,18 @@
 
 <svg
   class="{extraClasses}"
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  stroke="currentColor">
+  aria-hidden="true"
+  role="img"
+  preserveAspectRatio="xMidYMid meet"
+  viewBox="0 0 32 32">
+  <path d="M19 10h7v2h-7z" fill="currentColor"></path>
+  <path d="M19 15h7v2h-7z" fill="currentColor"></path>
+  <path d="M19 20h7v2h-7z" fill="currentColor"></path>
+  <path d="M6 10h7v2H6z" fill="currentColor"></path>
+  <path d="M6 15h7v2H6z" fill="currentColor"></path>
+  <path d="M6 20h7v2H6z" fill="currentColor"></path>
   <path
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    stroke-width="2"
-    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+    d="M28 5H4a2.002 2.002 0 0 0-2 2v18a2.002 2.002 0 0 0 2 2h24a2.002 2.002 0 0 0 2-2V7a2.002 2.002 0 0 0-2-2zM4 7h11v18H4zm13 18V7h11v18z"
+    fill="currentColor">
   </path>
 </svg>

@@ -5,8 +5,8 @@
 <svg
   class="{extraClasses}"
   xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+  role="img"
+  preserveAspectRatio="xMidYMid meet"
+  viewBox="0 0 32 32">
+  <path d="M22 16L12 26l-1.4-1.4l8.6-8.6l-8.6-8.6L12 6z" fill="currentColor"></path>
 </svg>

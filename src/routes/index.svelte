@@ -142,7 +142,7 @@
             <li class="mr-2 text-gray-400 flex leading-none">
               <svelte:component
                 this="{getIcon(info.type)}"
-                extraClasses="inline-block h-full mr-0.5" />
+                extraClasses="inline-block w-4 h-4 mr-0.5" />
               {#if info.link}
                 <a class="hover:underline" target="_blank" rel="nofollow" href="{info.link}">
                   {info.text}

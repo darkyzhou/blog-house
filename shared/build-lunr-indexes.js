@@ -3,20 +3,50 @@ require('lunr-languages-with-chinese-support/lunr.stemmer.support')(lunr);
 require('lunr-languages-with-chinese-support/lunr.zh')(lunr);
 
 export function buildIndexes(articles, tags) {
-  const indexes = lunr(function () {
+  const articleIndexes = lunr(function () {
     this.use(lunr.zh);
+
+    this.ref('slug');
+    this.field('title');
+    this.field('content');
+    this.field('tags');
+
+    articles
+      .filter((a) => !a.isPageArticle)
+      .forEach((article) =>
+        this.add({
+          slug: article.slug,
+          title: article.title,
+          content: article.pureTextContent,
+          tags: article.tags
+        })
+      );
+  });
+
+  const pageIndexes = lunr(function () {
+    this.use(lunr.zh);
+
     this.ref('slug');
     this.field('title');
     this.field('content');
 
-    articles.forEach((article) =>
-      this.add({
-        type: 'article',
-        slug: article.slug,
-        title: article.title,
-        content: article.pureTextContent
-      })
-    );
+    articles
+      .filter((a) => a.isPageArticle)
+      .forEach((article) =>
+        this.add({
+          slug: article.slug,
+          title: article.title,
+          content: article.pureTextContent,
+          tags: article.tags
+        })
+      );
+  });
+
+  const tagIndexes = lunr(function () {
+    this.use(lunr.zh);
+    this.ref('slug');
+    this.field('title');
+    this.field('content');
 
     tags.forEach((tag) =>
       this.add({
@@ -27,5 +57,10 @@ export function buildIndexes(articles, tags) {
       })
     );
   });
-  return JSON.stringify(indexes);
+
+  return JSON.stringify({
+    article: JSON.stringify(articleIndexes),
+    page: JSON.stringify(pageIndexes),
+    tag: JSON.stringify(tagIndexes)
+  });
 }

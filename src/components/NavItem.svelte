@@ -16,7 +16,7 @@
   style="{!active ? 'backdrop-filter: blur(16px);' : ''} {extraStyles}"
   href="{route}">
   {#if icon}
-    <svelte:component this="{getIcon(icon)}" />
+    <svelte:component this="{getIcon(icon)}" extraClasses="w-4 h-4" />
   {/if}
   {#if caption}
     {caption}
