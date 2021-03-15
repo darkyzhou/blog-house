@@ -116,7 +116,7 @@ function getLatestModificationTime(filename) {
 }
 
 function extractExcerpt(pureTextContent) {
-  return `${pureTextContent.substr(0, 80)}...`;
+  return `${pureTextContent.substr(0, 160)}...`;
 }
 
 function isFromPage(filename) {

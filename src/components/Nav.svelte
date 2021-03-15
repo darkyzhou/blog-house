@@ -1,19 +1,53 @@
+<style>
+  .nav {
+    grid-template-areas:
+      'a a'
+      'b b';
+  }
+
+  .heading {
+    grid-area: a;
+  }
+
+  .navItems,
+  .searchIcon {
+    grid-area: b;
+  }
+
+  .navItems {
+    justify-self: start;
+  }
+
+  .searchIcon {
+    justify-self: end;
+  }
+
+  @media (min-width: 769px) {
+    .nav {
+      grid-template-areas: 'stack';
+    }
+
+    .heading,
+    .navItems,
+    .searchIcon {
+      grid-area: stack;
+    }
+  }
+</style>
+
 <script>
   import constraints from '../../config/constraints.json';
   import config from '../config.json';
   import NavItem from './NavItem.svelte';
-  import SearchIcon from './icons/SearchIcon.svelte';
 
   export let segment;
 </script>
 
-<nav class="grid gap-4 py-4 px-4 sm:px-12 mx-auto w-full" style="grid-template-areas: 'stack';">
-  <h1 class="justify-self-start text-gray-200 font-bold text-2xl" style="grid-area: stack">
+<nav class="flex flex-col items-center md:items-baseline md:flex-row justify-between gap-2 md:gap-4 py-4 px-4 sm:px-12 mx-auto w-full">
+  <h1 class="text-gray-200 font-bold text-2xl">
     {constraints.base.blogName}
   </h1>
-  <ul
-    class="justify-self-center mx-4 list-none p-0 flex justify-center gap-2 sm:gap-4 text-sm sm:text-base"
-    style="grid-area: stack">
+  <ul class="md:mx-4 list-none p-0 flex justify-center gap-2 sm:gap-4 text-sm sm:text-base">
     {#each config.nav as item}
       <li>
         {#if item.type === 'home'}
@@ -33,11 +67,12 @@
         {/if}
       </li>
     {/each}
+    <li>
+      <NavItem
+        icon="search"
+        route="/search"
+        active="{segment?.startsWith('search')}"
+        extraClasses="h-full" />
+    </li>
   </ul>
-  <NavItem
-    icon="search"
-    route="/search"
-    active="{segment?.startsWith('search')}"
-    extraClasses='justify-self-end'
-    extraStyles="grid-area: stack;" />
 </nav>

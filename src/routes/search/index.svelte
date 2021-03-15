@@ -27,6 +27,7 @@
   import ArticleCard from '../../components/ArticleCard.svelte';
   import TagCard from '../../components/TagCard.svelte';
   import TagsContainer from '../../components/TagsContainer.svelte';
+  import { getIcon } from '../../components/icons';
 
   export let allArticles;
   export let allTags;
@@ -54,11 +55,16 @@
       if (!criteria || criteria.trim().length <= 0) {
         result = null;
       } else {
-        result = {
+        const newResult = {
           articles: articleIdx.search(criteria).map((result) => allArticlesMap.get(result.ref)),
           pages: pageIdx.search(criteria).map((result) => allArticlesMap.get(result.ref)),
           tags: tagIdx.search(criteria).map((result) => allTagsMap.get(result.ref))
         };
+        if (!Object.values(newResult).some((item) => item?.length > 0)) {
+          result = null;
+        } else {
+          result = newResult;
+        }
       }
     });
   });
@@ -71,7 +77,7 @@
     crossorigin="anonymous"></script>
 </svelte:head>
 
-<div class="mt-4 max-w-screen-md">
+<div class="mt-4 px-4 max-w-screen-sm">
   <input
     id="searchInput"
     type="text"
@@ -79,10 +85,13 @@
     placeholder="搜索页面、文章、标签..." />
 
   {#if !result}
-    No found
+    <p class="mt-12 mx-auto flex flex-col items-center gap-2">
+      <svelte:component this="{getIcon('fish')}" extraClasses="w-12 h-12" />
+      <span class="text-xl md:text-2xl">暂无结果</span>
+    </p>
   {:else}
     {#if result.articles?.length > 0}
-      <h2 class="caption">文章</h2>
+      <h2 class="caption">文章 ({result.articles.length})</h2>
       <ul class="list">
         {#each result.articles as article}
           <li>
@@ -93,7 +102,7 @@
     {/if}
 
     {#if result.pages?.length > 0}
-      <h2 class="caption">页面</h2>
+      <h2 class="caption">页面 ({result.pages.length})</h2>
       <ul class="list">
         {#each result.pages as page}
           <li>
@@ -104,7 +113,7 @@
     {/if}
 
     {#if result.tags?.length > 0}
-      <h2 class="caption">标签</h2>
+      <h2 class="caption">标签 ({result.tags.length})</h2>
       <TagsContainer tags="{result.tags}" />
     {/if}
   {/if}
