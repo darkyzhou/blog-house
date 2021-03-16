@@ -1,0 +1,19 @@
+backend:
+  name: github
+  branch: master
+  repo: darkyzhou/blog-house
+  publish_mode: editorial_workflow
+
+media_folder: 'static/images/uploads'
+public_folder: '/images/uploads'
+
+collections:
+  - name: 'articles'
+    label: '文章'
+    folder: '_posts'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: '标题', name: 'title', widget: 'string' }
+      - { label: '发表日期', name: 'date', widget: 'datetime' }
+      - { label: '标签', name: 'tags', widget: 'list' }

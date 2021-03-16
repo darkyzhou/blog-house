@@ -1,40 +1,3 @@
-<style>
-  .nav {
-    grid-template-areas:
-      'a a'
-      'b b';
-  }
-
-  .heading {
-    grid-area: a;
-  }
-
-  .navItems,
-  .searchIcon {
-    grid-area: b;
-  }
-
-  .navItems {
-    justify-self: start;
-  }
-
-  .searchIcon {
-    justify-self: end;
-  }
-
-  @media (min-width: 769px) {
-    .nav {
-      grid-template-areas: 'stack';
-    }
-
-    .heading,
-    .navItems,
-    .searchIcon {
-      grid-area: stack;
-    }
-  }
-</style>
-
 <script>
   import constraints from '../../config/constraints.json';
   import config from '../config.json';
@@ -43,7 +6,8 @@
   export let segment;
 </script>
 
-<nav class="flex flex-col items-center md:items-baseline md:flex-row justify-between gap-2 md:gap-4 py-4 px-4 sm:px-12 mx-auto w-full">
+<nav
+  class="flex flex-col items-center md:items-baseline md:flex-row justify-between gap-2 md:gap-4 py-4 px-4 sm:px-12 mx-auto w-full">
   <h1 class="text-gray-200 font-bold text-2xl">
     {constraints.base.blogName}
   </h1>

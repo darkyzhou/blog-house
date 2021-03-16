@@ -121,7 +121,7 @@ function extractExcerpt(pureTextContent) {
 
 function isFromPage(filename) {
   const parentDirectoryName = path.basename(path.dirname(filename));
-  return parentDirectoryName !== 'source';
+  return !['source', '_posts'].includes(parentDirectoryName);
 }
 
 function getSlugFromName(filename) {
@@ -184,6 +184,25 @@ function doTransform(mdContent, mdFilename) {
   };
 }
 
+function checkMarkdownFile(code, id) {
+  const filePath = path.resolve(id);
+  const dirname = path.dirname(filePath);
+  if (
+    path.basename(dirname) === 'source' &&
+    path.basename(filePath.substring(0, filePath.lastIndexOf('source'))) !== 'source'
+  ) {
+    throw new Error(`This file should be inside a directory in 'source'`);
+  }
+  if (path.basename(dirname) !== '_posts' && path.basename(id) !== 'index.md') {
+    throw new Error(
+      "This file under a specific directory other than '_posts' must be named 'index.md'"
+    );
+  }
+  if (code?.trim()?.length <= 0) {
+    throw new Error('This file is empty');
+  }
+}
+
 initMarked();
 
 export default () => ({
@@ -191,13 +210,8 @@ export default () => ({
     if (!id.endsWith('.md')) {
       return null;
     }
-    if (path.basename(path.dirname(id)) !== 'source' && path.basename(id) !== 'index.md') {
-      this.error(`Markdown file under a specific directory must be named 'index.md': ${id}`);
-    }
-    if (code?.trim()?.length <= 0) {
-      this.error(`Empty markdown file '${id}'`);
-    }
     try {
+      checkMarkdownFile(code, id);
       return doTransform(code, id);
     } catch (e) {
       this.error(`Failed to process markdown file '${id}':\n${e.stack}`);
