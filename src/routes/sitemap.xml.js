@@ -3,34 +3,33 @@ import tags from './tags/_tags';
 import constraints from '../../config/constraints.json';
 import { concatPageUrl } from './_utils';
 
-// FIXME: don't know why rollup complains about circular dependency issues if we use es import
-const { SitemapStream, streamToPromise } = require('sitemap');
-const { Readable } = require('stream');
-
 export async function get(request, response) {
-  const now = new Date().toISOString();
-  const links = [];
+  response.writeHead(200, { 'Content-Type': 'application/xml' });
 
-  links.push({
+  const now = new Date().toISOString();
+  const items = [];
+
+  items.push({
     url: constraints.sitemap.urlPrefix,
     lastmod: now
   });
 
-  links.push(
-    articles.map((article) => ({
+  items.push(
+    ...articles.map((article) => ({
       url: concatPageUrl(article.slug),
       lastmod: new Date(article.lastModifiedAt).toISOString()
-    }))
-  );
-
-  links.push(
-    tags.map((tag) => ({
+    })),
+    ...tags.map((tag) => ({
       url: concatPageUrl(`tags/${tag.slug}`),
       lastmod: now
     }))
   );
 
-  const stream = new SitemapStream({ hostname: constraints.sitemap.urlPrefix });
-  const contentBuffer = await streamToPromise(Readable.from(links).pipe(stream));
-  response.end(contentBuffer);
+  const content = items
+    .map((item) => `<url><loc>${item.url}</loc><lastmod>${item.lastmod}</lastmod></url>`)
+    .join('');
+
+  response.end(
+    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${content}</urlset>`
+  );
 }

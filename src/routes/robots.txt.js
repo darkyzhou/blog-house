@@ -1,6 +1,3 @@
-import articles from './articles/_articles';
-import tags from './tags/_tags';
-import constraints from '../../config/constraints.json';
 import { concatPageUrl } from './_utils';
 
 const sitemapContent = `
@@ -11,5 +8,6 @@ Sitemap: ${concatPageUrl('sitemap.xml')}
 `;
 
 export async function get(request, response) {
+  response.writeHead(200, { 'Content-Type': 'plain/text' });
   response.end(sitemapContent.trimLeft());
 }
