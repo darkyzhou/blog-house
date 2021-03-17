@@ -119,10 +119,6 @@ function getSlugFromName(filename) {
   return path.basename(filename).split('.')[0];
 }
 
-function getSlugFromDirectory(filename) {
-  return path.basename(path.dirname(filename));
-}
-
 function doTransform(mdContent, mdFilename) {
   const { data, content } = matter(mdContent);
   if (!data.title) {
@@ -146,7 +142,7 @@ function doTransform(mdContent, mdFilename) {
   // NOTICE: by using JSON.stringify, all of the properties holding a Date value
   // will actually be converted into String!
   const output = JSON.stringify({
-    slug: isPageArticle ? getSlugFromDirectory(mdFilename) : getSlugFromName(mdFilename),
+    slug: getSlugFromName(mdFilename),
     isPageArticle,
     lastModifiedAt,
     printLastModifiedAt,
@@ -155,7 +151,7 @@ function doTransform(mdContent, mdFilename) {
     printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
     wordsCount: [...pureTextContent].length,
     readingTime: getReadingTime(pureTextContent),
-    tags: isPageArticle ? [] : data.tags,
+    tags: isPageArticle ? null : data.tags,
     excerpt: data.excerpt || extractExcerpt(pureTextContent),
     tableOfContent: getTableOfContent(contentHtml),
     html: contentHtml,
@@ -176,11 +172,6 @@ function checkMarkdownFile(code, id) {
     path.basename(filePath.substring(0, filePath.lastIndexOf('source'))) !== 'source'
   ) {
     throw new Error(`This file should be inside a directory in 'source'`);
-  }
-  if (path.basename(dirname) !== '_posts' && path.basename(id) !== 'index.md') {
-    throw new Error(
-      "This file under a specific directory other than '_posts' must be named 'index.md'"
-    );
   }
   if (code?.trim()?.length <= 0) {
     throw new Error('This file is empty');
