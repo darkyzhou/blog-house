@@ -14,9 +14,9 @@
 
 <script context="module">
   export async function preload({ params, query }) {
-    const articlesResponse = await this.fetch('/articles/articles.json');
+    const articlesResponse = await this.fetch('/data/articles.json');
     const articles = await articlesResponse.json();
-    const tagsResponse = await this.fetch('/tags/tags.json');
+    const tagsResponse = await this.fetch('/data/tags.json');
     const tags = await tagsResponse.json();
     return { allArticles: articles, allTags: tags };
   }
@@ -27,6 +27,7 @@
   import ArticleCard from '../../components/ArticleCard.svelte';
   import TagsContainer from '../../components/TagsContainer.svelte';
   import { getIcon } from '../../components/icons';
+  import { makeTitle } from '../_utils';
 
   export let allArticles;
   export let allTags;
@@ -70,10 +71,7 @@
 </script>
 
 <svelte:head>
-  <script
-    src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"
-    integrity="sha256-DFDZACuFeAqEKv/7Vnu1Tt5ALa58bcWZegGGFNgET8g="
-    crossorigin="anonymous"></script>
+  <title>{makeTitle('搜索')}</title>
 </svelte:head>
 
 <div class="mt-4 px-4 max-w-screen-sm">

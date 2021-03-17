@@ -1,8 +1,8 @@
 <script context="module">
   export async function preload({ params, query }) {
-    const response = await this.fetch(`/articles/articles.json`);
-    const data = await response.json();
-    return { articles: data };
+    const response = await this.fetch('/data/articles.json');
+    const articles = await response.json();
+    return { articles };
   }
 </script>
 

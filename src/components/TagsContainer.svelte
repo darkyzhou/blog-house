@@ -13,7 +13,7 @@
 
   let columnsContainer;
   let columnCount;
-  let columns = [];
+  let columns = [tags]; // initialize with tags for ssr because onMount is client-only
 
   function checkAndUpdateColumns(width) {
     const newColumnCount = Math.min(
@@ -33,10 +33,14 @@
   }
 
   onMount(() => {
-    const observer = new ResizeObserver((entries) =>
-      checkAndUpdateColumns(entries?.[0].contentBoxSize?.[0].inlineSize)
-    );
-    observer.observe(columnsContainer);
+    if (!window.ResizeObserver) {
+      checkAndUpdateColumns(columnsContainer.clientWidth);
+    } else {
+      const observer = new ResizeObserver((entries) =>
+        checkAndUpdateColumns(entries?.[0].contentBoxSize?.[0].inlineSize)
+      );
+      observer.observe(columnsContainer);
+    }
   });
 </script>
 

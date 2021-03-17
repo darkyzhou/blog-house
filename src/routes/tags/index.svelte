@@ -1,19 +1,16 @@
 <script context="module">
   export async function preload({ params, query }) {
-    const response = await this.fetch('/tags/tags.json');
-    const data = await response.json();
-    return { tags: data };
+    const response = await this.fetch('/data/tags.json');
+    const tags = await response.json();
+    return { tags };
   }
 </script>
 
 <script>
   import { makeTitle } from '../_utils';
   import TagsContainer from '../../components/TagsContainer.svelte';
-  import { onMount } from 'svelte';
 
   export let tags;
-
-  onMount(() => console.dir(tags));
 </script>
 
 <svelte:head>
