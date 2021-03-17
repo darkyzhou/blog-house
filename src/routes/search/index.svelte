@@ -25,7 +25,6 @@
 <script>
   import { onMount } from 'svelte';
   import ArticleCard from '../../components/ArticleCard.svelte';
-  import TagCard from '../../components/TagCard.svelte';
   import TagsContainer from '../../components/TagsContainer.svelte';
   import { getIcon } from '../../components/icons';
 

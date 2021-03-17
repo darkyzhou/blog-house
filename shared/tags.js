@@ -3,6 +3,7 @@ import constraints from '../config/constraints.json';
 
 function resolveTags(articles) {
   const tagsMapping = new Map();
+
   articles.forEach((article) =>
     article.tags?.forEach((tag) => {
       if (!tagsMapping.has(tag)) {

@@ -10,11 +10,16 @@
     <link rel="stylesheet" href="/styles/global-compiled.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="prefetch" href="/lunr-indexes.json" />
+    <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap"
       rel="stylesheet"
     />
+
+    <!-- This contains the contents of the <svelte:head> component, if
+   the current page has one -->
+    %sapper.head%
 
     <!-- Sapper creates a <script> tag containing `src/client.js`
 	     and anything else it needs to hydrate the app and
@@ -25,10 +30,6 @@
 	     for the current page. CSS for the rest of the app is
 	     lazily loaded when it precaches secondary pages -->
     %sapper.styles%
-
-    <!-- This contains the contents of the <svelte:head> component, if
-	     the current page has one -->
-    %sapper.head%
   </head>
   <body>
     <!-- The application will be rendered inside this element,
