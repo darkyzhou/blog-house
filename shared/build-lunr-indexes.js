@@ -1,6 +1,6 @@
 const lunr = require('lunr');
-require('lunr-languages-with-chinese-support/lunr.stemmer.support')(lunr);
-require('lunr-languages-with-chinese-support/lunr.zh')(lunr);
+require('lunr-languages-zh/lunr.stemmer.support')(lunr);
+require('lunr-languages-zh/lunr.zh')(lunr);
 
 export function buildIndexes(articles, tags) {
   const articleIndexes = lunr(function () {
