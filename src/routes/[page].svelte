@@ -1,12 +1,10 @@
 <script context="module">
   export async function preload({ params, query }) {
-    const response = await this.fetch(`/articles/${params.page}.json`);
-    const data = await response.json();
-    if (response.status !== 200) {
-      this.error(response.status, data.message);
-      return;
-    }
-    return { article: data };
+    const articleSlug = params.page;
+    const response = await this.fetch('/articles/articles.json');
+    const articles = await response.json();
+    const targetArticle = articles.find((a) => a.slug === articleSlug);
+    return { article: targetArticle };
   }
 </script>
 
