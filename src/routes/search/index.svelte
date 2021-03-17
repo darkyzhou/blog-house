@@ -14,9 +14,9 @@
 
 <script context="module">
   export async function preload({ params, query }) {
-    const articlesResponse = await this.fetch('/data/articles.json');
+    const articlesResponse = await this.fetch('data/articles.json');
     const articles = await articlesResponse.json();
-    const tagsResponse = await this.fetch('/data/tags.json');
+    const tagsResponse = await this.fetch('data/tags.json');
     const tags = await tagsResponse.json();
     return { allArticles: articles, allTags: tags };
   }

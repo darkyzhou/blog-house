@@ -1,7 +1,7 @@
 <script context="module">
   export async function preload({ params, query }) {
     const tagSlug = params.tag;
-    const response = await this.fetch('/data/tags.json');
+    const response = await this.fetch('data/tags.json');
     const tags = await response.json();
     const targetTag = tags.find((t) => t.slug === tagSlug);
     return { tag: targetTag };
