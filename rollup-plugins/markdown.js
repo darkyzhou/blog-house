@@ -101,15 +101,6 @@ function getTableOfContent(contentHtml) {
   return !tableOfContent.length ? undefined : tableOfContent;
 }
 
-const EXCERPT_SEPARATOR = '<!-- more -->';
-function getExcerptAndMainContent(content) {
-  if (content.includes(EXCERPT_SEPARATOR)) {
-    return content.split(EXCERPT_SEPARATOR);
-  } else {
-    return [undefined, content];
-  }
-}
-
 function getLatestModificationTime(filename) {
   const { mtime } = fs.lstatSync(filename);
   return mtime;
@@ -145,15 +136,8 @@ function doTransform(mdContent, mdFilename) {
     );
   }
 
-  const result = getExcerptAndMainContent(content);
-  let excerpt = result[0];
-  const mainContent = result[1];
-  const mainContentHtml = marked(mainContent);
-  const pureTextMainContent = parseTextContent(mainContentHtml);
-
-  if (!excerpt) {
-    excerpt = extractExcerpt(pureTextMainContent);
-  }
+  const contentHtml = marked(content);
+  const pureTextContent = parseTextContent(contentHtml);
 
   const isPageArticle = isFromPage(mdFilename);
   const lastModifiedAt = getLatestModificationTime(mdFilename);
@@ -169,13 +153,13 @@ function doTransform(mdContent, mdFilename) {
     title: data.title,
     date: data.date ? new Date(data.date) : lastModifiedAt,
     printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
-    wordsCount: [...mainContent].length,
-    readingTime: getReadingTime(pureTextMainContent),
+    wordsCount: [...pureTextContent].length,
+    readingTime: getReadingTime(pureTextContent),
     tags: isPageArticle ? [] : data.tags,
-    excerpt,
-    tableOfContent: getTableOfContent(mainContentHtml),
-    html: mainContentHtml,
-    pureTextContent: pureTextMainContent
+    excerpt: data.excerpt || extractExcerpt(pureTextContent),
+    tableOfContent: getTableOfContent(contentHtml),
+    html: contentHtml,
+    pureTextContent
   });
 
   return {

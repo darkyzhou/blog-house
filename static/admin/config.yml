@@ -7,13 +7,21 @@ backend:
 media_folder: 'static/images/uploads'
 public_folder: '/images/uploads'
 
+slug:
+  encoding: 'ascii'
+  clean_accents: true
+
 collections:
   - name: 'articles'
     label: '文章'
-    folder: '_posts'
+    folder: 'source/_posts'
     create: true
     slug: '{{slug}}'
     fields:
       - { label: '标题', name: 'title', widget: 'string' }
       - { label: '发表日期', name: 'date', widget: 'datetime' }
-      - { label: '标签', name: 'tags', widget: 'list' }
+      - { label: '标签', name: 'tags', widget: 'list', hint: '每个标签之间使用英文逗号,分割' }
+      - { label: '摘要', name: 'excerpt', widget: 'text', required: false, hint: '字数控制在50到80字效果最佳' }
+      - { label: '内容', name: 'body', widget: 'markdown' }
+
+locale: 'zh_Hans'
