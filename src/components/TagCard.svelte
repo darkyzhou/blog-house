@@ -11,16 +11,13 @@
       {tag.name}
     </h1>
     {#if showArticlesCount}
-      <a
-        sapper:prefetch
-        class="text-gray-500 text-sm hover:underline cursor-pointer"
-        href="/tags/{tag.slug}">
+      <span class="text-gray-500 text-sm">
         {#if tag.articles?.length}
           {tag.articles.length} 篇文章
         {:else}
           暂无文章
         {/if}
-      </a>
+      </span>
     {/if}
   </header>
   {#if tag.description}

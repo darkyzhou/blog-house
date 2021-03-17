@@ -47,7 +47,12 @@
   {#each columns as column}
     <div class="flex-1 flex flex-col gap-6 sm:gap-8">
       {#each column as tag}
-        <TagCard tag="{tag}" />
+        <a
+          sapper:prefetch
+          href="/tags/{tag.slug}"
+          class="block outline-none border-transparent hover:border-gray-300 focus:border-gray-300 border-2">
+          <TagCard tag="{tag}" />
+        </a>
       {/each}
     </div>
   {/each}

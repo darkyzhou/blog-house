@@ -6,9 +6,11 @@
 
 <article>
   <header>
-    <h1 class="mb-2 text-3xl text-indigo-500">
-      <a sapper:prefetch href="/articles/{article.slug}">{article.title}</a>
-    </h1>
+    <a sapper:prefetch href="/articles/{article.slug}">
+      <h1 class="mb-2 text-3xl text-indigo-500 hover:underline">
+        {article.title}
+      </h1>
+    </a>
     {#if article.printDate || article.tags?.length > 0}
       <TagsSection article="{article}" />
     {/if}
