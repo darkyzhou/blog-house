@@ -1,5 +1,5 @@
-import articles from './articles/_articles';
-import tags from './tags/_tags';
+import articles from '../../shared/articles';
+import tags from '../../shared/tags';
 import constraints from '../../config/constraints.json';
 import { concatPageUrl } from './_utils';
 

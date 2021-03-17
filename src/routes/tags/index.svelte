@@ -9,8 +9,11 @@
 <script>
   import { makeTitle } from '../_utils';
   import TagsContainer from '../../components/TagsContainer.svelte';
+  import { onMount } from 'svelte';
 
   export let tags;
+
+  onMount(() => console.dir(tags));
 </script>
 
 <svelte:head>

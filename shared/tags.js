@@ -1,5 +1,5 @@
-import articles from '../../../shared/articles';
-import constraints from '../../../config/constraints.json';
+import articles from './articles';
+import constraints from '../config/constraints.json';
 
 function resolveTags(articles) {
   const tagsMapping = new Map();
