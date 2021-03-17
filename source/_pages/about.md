@@ -1,5 +1,6 @@
 ---
 title: 关于
+pageSlug: about
 ---
 
 ### 项目简介

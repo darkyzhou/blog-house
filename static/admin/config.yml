@@ -42,7 +42,7 @@ collections:
           label: '页面路径名称',
           name: 'pageSlug',
           widget: 'string',
-          hint: '纯英文数字以及下划线组合，如果填写“test”，那么此页面的 URL 将会是 https://xxx/test',
+          hint: '纯英文数字以及下划线组合，如果填写“test”，那么此页面的 URL 将会是 “https://xxx/test”',
           pattern: ['^[\d\w_-]+$', '纯英文数字以及下划线组合']
         }
       - { label: '内容', name: 'body', widget: 'markdown' }
