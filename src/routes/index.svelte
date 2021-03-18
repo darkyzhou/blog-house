@@ -3,6 +3,34 @@
     transition: 600ms transform var(--flip);
   }
 
+  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    .card {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  }
+
+  @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+    .card {
+      position: relative;
+    }
+
+    .card > * {
+      z-index: 10;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: #262626;
+      opacity: 0.8;
+    }
+  }
+
   #checkbox:checked ~ .card {
     transform: rotateY(180deg);
   }
@@ -113,7 +141,7 @@
 </svelte:head>
 
 <input id="checkbox" type="checkbox" class="hidden" />
-<div class="my-auto flex flex-row-reverse card" style="backdrop-filter: blur(10px);">
+<div class="my-auto flex flex-row-reverse card">
   <label
     id="toggle"
     for="checkbox"
