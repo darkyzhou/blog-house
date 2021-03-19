@@ -1,8 +1,6 @@
 <style>
   .tabHeader > * {
-    flex-grow: 1;
-    display: grid;
-    place-items: center;
+    flex: 1 1 0%;
   }
 
   .tabHeader .icon {
@@ -46,7 +44,7 @@
   {@html toggleCssWrapped}
 </svelte:head>
 
-<div class="flex gap-2 {extraClasses}">
+<div class="flex {extraClasses}">
   {#each tabContents as _, i}
     <input id="toggle{i + 1}" type="radio" name="tab" class="hidden" checked="{!i}" />
   {/each}

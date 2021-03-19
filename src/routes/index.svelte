@@ -3,14 +3,14 @@
     transition: 600ms transform var(--flip);
   }
 
-  @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+  @supports (backdrop-filter: blur(10px)) {
     .card {
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
   }
 
-  @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  @supports not (backdrop-filter: blur(10px)) {
     .card {
       position: relative;
     }
@@ -158,7 +158,7 @@
         draggable="false"
         style="grid-area: a" />
       <div
-        class="info py-2 md:py-4 px-3 md:px-6 flex flex-col gap-2 justify-between items-center"
+        class="info py-2 md:py-4 px-3 md:px-6 flex flex-col c-gap c-gap-2 justify-between items-center"
         style="grid-area: b">
         <h1 class="text-gray-100 text-xl md:text-2xl lg:text-3xl">
           {constraints.base.authorName}
@@ -166,7 +166,7 @@
         <p class="text-gray-300 flex-grow text-sm md:text-xl mb-4 md:mb-0">
           {constraints.base.description}
         </p>
-        <ul class="list-none pl-0 flex gap-2 text-sm">
+        <ul class="list-none pl-0 flex c-gap c-gap-2 text-sm">
           {#each constraints.base.personalInfo as info}
             <li class="mr-2 text-gray-400 flex leading-none">
               <svelte:component

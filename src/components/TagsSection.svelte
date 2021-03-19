@@ -2,15 +2,15 @@
   .tagsContainer > li {
     display: flex;
     align-items: center;
-    gap: 4px;
     cursor: help;
   }
 
   .icon {
     width: 16px;
     height: 16px;
-    display: inline;
+    display: inline-block;
     color: var(--bg-indigo-200);
+    margin-right: 2px;
   }
 
   .tag:not(:last-child)::after {
@@ -38,7 +38,7 @@
   export let extraClasses = '';
 </script>
 
-<ul class="tagsContainer list-none p-0 text-sm flex flex-wrap gap-2 sm:gap-4 font-light {extraClasses}">
+<ul class="tagsContainer list-none p-0 text-sm flex flex-wrap c-gap c-gap-2 sm:c-gap-4 font-light {extraClasses}">
   {#if article.printDate}
     <li title="发表日期">
       <span class="icon">

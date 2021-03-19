@@ -96,7 +96,7 @@
   {/if}
 </svelte:head>
 
-<div class="max-w-screen-lg w-full mt-4 flex text-gray-300 gap-4">
+<div class="max-w-screen-lg w-full mt-4 flex text-gray-300 c-gap c-gap-4">
   <div class="w-full flex-grow px-4 sm:px-6 sm:w-auto">
     <h1 class="text-3xl text-indigo-500 mb-2" bind:this="{titleElement}">
       {article.title}

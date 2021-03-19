@@ -46,10 +46,10 @@
 
 <div
   bind:this="{columnsContainer}"
-  class="flex gap-6 sm:gap-8 {extraClasses}"
+  class="flex c-gap c-gap-6 sm:c-gap-8 {extraClasses}"
   style="{extraStyles}">
   {#each columns as column}
-    <div class="flex-1 flex flex-col gap-6 sm:gap-8">
+    <div class="flex-1 flex flex-col c-gap c-gap-6 sm:c-gap-8">
       {#each column as tag}
         <a
           sapper:prefetch

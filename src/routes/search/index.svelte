@@ -8,7 +8,6 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
   }
 </style>
 
@@ -89,7 +88,7 @@
   {:else}
     {#if result.articles?.length > 0}
       <h2 class="caption">文章 ({result.articles.length})</h2>
-      <ul class="list">
+      <ul class="list c-gap c-gap-4">
         {#each result.articles as article}
           <li>
             <ArticleCard article="{article}" />
@@ -100,7 +99,7 @@
 
     {#if result.pages?.length > 0}
       <h2 class="caption">页面 ({result.pages.length})</h2>
-      <ul class="list">
+      <ul class="list c-gap c-gap-4">
         {#each result.pages as page}
           <li>
             <ArticleCard article="{page}" />
