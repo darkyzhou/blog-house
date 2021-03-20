@@ -28,7 +28,7 @@
   style="{extraStyles}">
   {#each resolved as item, i}
     <li
-      class="my-2 hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
+      class="mt-2 mb-2 hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
         highlightedIndex && 'text-carbonblue-300'}"
       style="padding-left: {item.padding}rem">
       {#if item.id}

@@ -161,7 +161,7 @@
       <div
         class="info py-2 md:py-4 px-3 md:px-6 flex flex-col c-gap c-gap-2 justify-between items-center"
         style="grid-area: b">
-        <h1 class="text-carbongray-100 text-xl md:text-2xl lg:text-3xl">
+        <h1 class="text-carbongray-100 text-xl md:text-2xl">
           {constraints.base.authorName}
         </h1>
         <p class="text-carbongray-200 flex-grow text-sm md:text-xl mb-4 md:mb-0">
