@@ -11,7 +11,7 @@
       },
       {
         "icon": "code",
-        "content": "<p>My main programming language is TypeScript and in my mind it's the best programming language in the world</p>"
+        "content": "<p>My main programming language is TypeScript and in my mind it\"s the best programming language in the world</p>"
       }
     ]
   },
@@ -33,5 +33,9 @@
       "caption": "关于",
       "slug": "about"
     }
-  ]
+  ],
+  "footer": {
+    "left": "&copy; 2021 darkyzhou. Powered by <a target=\"_blank\" rel=\"nofollow noopener\" href=\"https://github.com/blog-house/blog-house\">blog-house</a>.",
+    "right": "Made with ❤️ by darkyzhou."
+  }
 }
