@@ -96,9 +96,9 @@
   {/if}
 </svelte:head>
 
-<div class="max-w-screen-lg w-full mt-4 flex text-carbongray-200 c-gap c-gap-4">
+<div class="max-w-screen-lg w-full mt-4 flex text-carbongray-200">
   <div class="w-full flex-grow px-4 sm:px-6 sm:w-auto">
-    <h1 class="text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
+    <h1 class="text-xl sm:text-2xl md:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
     <TagsSection article="{article}" extraClasses="mb-6" />
@@ -108,7 +108,7 @@
     <div class="w-full" bind:this="{utterancesContainer}"></div>
   </div>
   {#if article.tableOfContent?.length}
-    <aside class="hidden lg:block px-4">
+    <aside class="hidden lg:block px-4 ml-4">
       <div class="sticky top-8 overflow-x-hidden overflow-y-auto">
         <h1 class="mb-2 font-bold">大纲</h1>
         <TableOfContent

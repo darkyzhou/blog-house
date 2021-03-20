@@ -38,7 +38,7 @@
   export let extraClasses = '';
 </script>
 
-<ul class="tagsContainer list-none p-0 text-sm flex flex-wrap c-gap c-gap-2 sm:c-gap-4 font-light {extraClasses}">
+<ul class="tagsContainer list-none p-0 flex flex-wrap c-gap c-gap-2 sm:c-gap-4 {extraClasses}">
   {#if article.printDate}
     <li title="发表日期">
       <span class="icon">
