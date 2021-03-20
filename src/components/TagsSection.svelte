@@ -9,7 +9,7 @@
     width: 16px;
     height: 16px;
     display: inline-block;
-    color: var(--bg-carbonblue-200);
+    color: var(--bg-carbonblue-100);
     margin-right: 2px;
   }
 

@@ -98,7 +98,7 @@
 
 <div class="max-w-screen-lg w-full mt-4 flex text-carbongray-200 c-gap c-gap-4">
   <div class="w-full flex-grow px-4 sm:px-6 sm:w-auto">
-    <h1 class="text-3xl text-carbonblue-500 mb-2" bind:this="{titleElement}">
+    <h1 class="text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
     <TagsSection article="{article}" extraClasses="mb-6" />
