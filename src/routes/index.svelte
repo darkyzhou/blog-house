@@ -107,6 +107,7 @@
     await this.fetch('sitemap.xml');
     await this.fetch('robots.txt');
     await this.fetch('lunr-indexes.json');
+    await this.fetch('site.webmanifest');
   }
 </script>
 
