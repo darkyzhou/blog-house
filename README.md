@@ -1,157 +1,35 @@
-# sapper-template
+# blog-house
 
-The default template for setting up a [Sapper](https://github.com/sveltejs/sapper) project. Can use either Rollup or webpack as bundler.
+### 正在开发中，项目尚不可用，敬请期待！
 
+### 简介
 
-## Getting started
+[Blog House](https://github.com/darkyzhou/blog-house) 是一个基于 Web 前端框架 [Sapper](https://sapper.svelte.dev/) 的静态博客生成器，后者基于 [Svelte](https://svelte.dev/) 。
+除此之外，Blog House 还使用了 [Tailwind CSS](https://tailwindcss.com/) 框架，简化了样式代码的复杂度，同时结合 PurgeCSS 的使用，降低了构建产物的体积。
 
+为了提供完善的博客功能、提升用户体验，Blog House 还使用了 [Lunr](https://lunrjs.com/) 和 [Netlify CMS](https://www.netlifycms.org/) 框架，不仅带来了方便快捷的文章、标签搜索功能，还提供了功能强大的在线 Markdown 文章编辑器。
+Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来了基于 Github Issues 的评论区功能，用户的访客只需要登录 Github 即可发表评论。
+除此之外，Blog House 还提供了基本的 SEO 优化。
 
-### Using `degit`
+### 特色
 
-To create a new Sapper project based on Rollup locally, run
+1. 编译速度快，产物体积小。Svelte 项目的编译产物仅包含框架自身的一些工具代码，并不像 React、Vue 等流行的框架那样还包含体积庞大的框架运行时。
+2. 源代码结构简单，高度可自定义。它使用 `routes` 文件夹下的各个源文件来表示网页路由、使用 `components` 文件夹存放各种可复用的组件源文件、使用 `source` 存放所有文章、页面的源 Markdown 文件。
+3. 配置简单。用户只需 fork 本仓库，然后 clone 到本地，再运行初始化脚本即可进行交互式配置。整个过程十分钟之内就能完成。
+4. 自带的主题含有功能完整的各种页面。例如包含悬浮大纲栏目、评论功能的文章页，以及含有搜索、排序功能的文章列表页。
+5. 自带 Netlify CMS，用户只需使用浏览器打开它，就能在线编写、修改文章和页面，保存的修改会由 Netlify 的 Bot 自动更新到 Github 仓库中，同时借助 Github Actions 的帮助运行构建，在数分钟之内上线修改。整个过程不需要用户手动操作。
+6. 自带基本的 SEO 优化，例如 `name` 和 `description` 的 meta tag、自动生成的 Sitemap、内置 Google Analytics 和百度统计支持。
+7. 自带评论区功能，基于 Utterances 实现，用户的访客只需要登录 Github 即可发表评论，同时这些评论由于是对应于 Issue 的评论，可以被引用、保存。
+8. 自带搜索功能，基于 Lunr 实现，用户可以使用各种关键词搜索文章、页面和标签。此功能基于每次构建之后生成的静态索引文件，不需要依赖第三方的服务器实现。
 
-```bash
-npx degit "sveltejs/sapper-template#rollup" my-app
-```
+### Demo
 
-For a webpack-based project, instead run
+请看作者的个人博客：[Darky's Blog](https://darkyzhou.net)。
 
-```bash
-npx degit "sveltejs/sapper-template#webpack" my-app
-```
+### 安装
 
-[`degit`](https://github.com/Rich-Harris/degit) is a scaffolding tool that lets you create a directory from a branch in a repository.
+待补
 
-Replace `my-app` with the path where you wish to create the project.
+### Roadmap
 
-
-### Using GitHub templates
-
-Alternatively, you can create the new project as a GitHub repository using GitHub's template feature.
-
-Go to either [sapper-template-rollup](https://github.com/sveltejs/sapper-template-rollup) or [sapper-template-webpack](https://github.com/sveltejs/sapper-template-webpack) and click on "Use this template" to create a new project repository initialized by the template.
-
-
-### Running the project
-
-Once you have created the project, install dependencies and run the project in development mode:
-
-```bash
-cd my-app
-npm install # or yarn
-npm run dev
-```
-
-This will start the development server on [localhost:3000](http://localhost:3000). Open it and click around.
-
-You now have a fully functional Sapper project! To get started developing, consult [sapper.svelte.dev](https://sapper.svelte.dev).
-
-### Using TypeScript
-
-By default, the template uses plain JavaScript. If you wish to use TypeScript instead, you need some changes to the project:
-
- * Add `typescript` as well as typings as dependences in `package.json`
- * Configure the bundler to use [`svelte-preprocess`](https://github.com/sveltejs/svelte-preprocess) and transpile the TypeScript code.
- * Add a `tsconfig.json` file
- * Update the project code to TypeScript
-
-The template comes with a script that will perform these changes for you by running
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-`@sapper` dependencies are resolved through `src/node_modules/@sapper`, which is created during the build. You therefore need to run or build the project once to avoid warnings about missing dependencies.
-
-The script does not support webpack at the moment.
-
-## Directory structure
-
-Sapper expects to find two directories in the root of your project —  `src` and `static`.
-
-
-### src
-
-The [src](src) directory contains the entry points for your app — `client.js`, `server.js` and (optionally) a `service-worker.js` — along with a `template.html` file and a `routes` directory.
-
-
-#### src/routes
-
-This is the heart of your Sapper app. There are two kinds of routes — *pages*, and *server routes*.
-
-**Pages** are Svelte components written in `.svelte` files. When a user first visits the application, they will be served a server-rendered version of the route in question, plus some JavaScript that 'hydrates' the page and initialises a client-side router. From that point forward, navigating to other pages is handled entirely on the client for a fast, app-like feel. (Sapper will preload and cache the code for these subsequent pages, so that navigation is instantaneous.)
-
-**Server routes** are modules written in `.js` files, that export functions corresponding to HTTP methods. Each function receives Express `request` and `response` objects as arguments, plus a `next` function. This is useful for creating a JSON API, for example.
-
-There are three simple rules for naming the files that define your routes:
-
-* A file called `src/routes/about.svelte` corresponds to the `/about` route. A file called `src/routes/blog/[slug].svelte` corresponds to the `/blog/:slug` route, in which case `params.slug` is available to the route
-* The file `src/routes/index.svelte` (or `src/routes/index.js`) corresponds to the root of your app. `src/routes/about/index.svelte` is treated the same as `src/routes/about.svelte`.
-* Files and directories with a leading underscore do *not* create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `src/routes/_helpers/datetime.js` and it would *not* create a `/_helpers/datetime` route.
-
-
-#### src/node_modules/images
-
-Images added to `src/node_modules/images` can be imported into your code using `import 'images/<filename>'`. They will be given a dynamically generated filename containing a hash, allowing for efficient caching and serving the images on a CDN.
-
-See [`index.svelte`](src/routes/index.svelte) for an example.
-
-
-#### src/node_modules/@sapper
-
-This directory is managed by Sapper and generated when building. It contains all the code you import from `@sapper` modules.
-
-
-### static
-
-The [static](static) directory contains static assets that should be served publicly. Files in this directory will be available directly under the root URL, e.g. an `image.jpg` will be available as `/image.jpg`.
-
-The default [service-worker.js](src/service-worker.js) will preload and cache these files, by retrieving a list of `files` from the generated manifest:
-
-```js
-import { files } from '@sapper/service-worker';
-```
-
-If you have static files you do not want to cache, you should exclude them from this list after importing it (and before passing it to `cache.addAll`).
-
-Static files are served using [sirv](https://github.com/lukeed/sirv).
-
-
-## Bundler configuration
-
-Sapper uses Rollup or webpack to provide code-splitting and dynamic imports, as well as compiling your Svelte components. With webpack, it also provides hot module reloading. As long as you don't do anything daft, you can edit the configuration files to add whatever plugins you'd like.
-
-
-## Production mode and deployment
-
-To start a production version of your app, run `npm run build && npm start`. This will disable live reloading, and activate the appropriate bundler plugins.
-
-You can deploy your application to any environment that supports Node 10 or above. As an example, to deploy to [Vercel Now](https://vercel.com) when using `sapper export`, run these commands:
-
-```bash
-npm install -g vercel
-vercel
-```
-
-If your app can't be exported to a static site, you can use the [vercel-sapper](https://github.com/thgh/vercel-sapper) builder. You can find instructions on how to do so in its [README](https://github.com/thgh/vercel-sapper#basic-usage).
-
-
-## Using external components
-
-When using Svelte components installed from npm, such as [@sveltejs/svelte-virtual-list](https://github.com/sveltejs/svelte-virtual-list), Svelte needs the original component source (rather than any precompiled JavaScript that ships with the component). This allows the component to be rendered server-side, and also keeps your client-side app smaller.
-
-Because of that, it's essential that the bundler doesn't treat the package as an *external dependency*. You can either modify the `external` option under `server` in [rollup.config.js](rollup.config.js) or the `externals` option in [webpack.config.js](webpack.config.js), or simply install the package to `devDependencies` rather than `dependencies`, which will cause it to get bundled (and therefore compiled) with your app:
-
-```bash
-npm install -D @sveltejs/svelte-virtual-list
-```
-
-## Troubleshooting
-
-Using Windows and WSL2? 
-
-If your project lives outside the WSL root directory, [this limitation](https://github.com/microsoft/WSL/issues/4169) is known to cause live-reloading to fail. See [this issue](https://github.com/sveltejs/sapper/issues/1150) for details.
-
-## Bugs and feedback
-
-Sapper is in early development, and may have the odd rough edge here and there. Please be vocal over on the [Sapper issue tracker](https://github.com/sveltejs/sapper/issues).
+目前，Blog house 仍处于早期阶段，还有许多有用的功能没有来得及实现：
