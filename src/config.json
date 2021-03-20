@@ -35,7 +35,7 @@
     }
   ],
   "footer": {
-    "left": "&copy; 2021 darkyzhou. Powered by <a target=\"_blank\" rel=\"nofollow noopener\" href=\"https://github.com/blog-house/blog-house\">blog-house</a>. <a href=\"http://beian.miit.gov.cn/\" target=\"_blank\" rel=\"noopener nofollow\">粤ICP备20039545号</a>.",
-    "right": "别把看重的东西附上无边的价值"
+    "left": "别把看重的东西附上无边的价值",
+    "right": "&copy; 2021 darkyzhou. Powered by <a target=\"_blank\" rel=\"nofollow noopener\" href=\"https://github.com/blog-house/blog-house\">Blog House</a>."
   }
 }
