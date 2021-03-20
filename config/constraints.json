@@ -31,7 +31,7 @@
   "comment": {
     "type": "utterances",
     "config": {
-      "repository": "darkyzhou/blog-house",
+      "repository": "blog-house/blog-house",
       "issueTerm": "title",
       "label": "Utterances 测试",
       "theme": "github-dark"
