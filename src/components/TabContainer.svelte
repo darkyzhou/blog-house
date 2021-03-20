@@ -4,7 +4,7 @@
   }
 
   .tabHeader .icon {
-    color: var(--bg-gray-200);
+    color: var(--bg-carbongray-200);
     display: flex;
     align-items: center;
     padding: 4px 6px;
@@ -30,8 +30,8 @@
   }
 
   #toggle${i + 1}:checked ~ .tabHeader li:nth-child(${i + 1}) .icon {
-    color: var(--bg-gray-800);
-    background-color: var(--bg-gray-200);
+    color: var(--bg-carbongray-800);
+    background-color: var(--bg-carbongray-200);
   }
   `
     )
@@ -52,7 +52,7 @@
     {#each tabContents as tab, i}
       <li>
         <label
-          class="icon cursor-pointer outline-none border-transparent hover:border-gray-300 focus:border-gray-300 border-2"
+          class="icon cursor-pointer outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2"
           for="toggle{i + 1}"
           tabindex="0">
           <svelte:component this="{getIcon(tab.icon)}" extraClasses="w-8 h-8" />
@@ -60,7 +60,7 @@
       </li>
     {/each}
   </ul>
-  <div class="tabContent flex-grow p-2 h-full text-gray-200 text-sm md:text-base leading-relaxed">
+  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 text-sm md:text-base leading-relaxed">
     {#each tabContents as tab}
       <div class="overflow-y-auto h-full">{@html tab.content}</div>
     {/each}

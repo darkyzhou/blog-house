@@ -77,7 +77,7 @@
   <input
     id="searchInput"
     type="text"
-    class="block mx-auto bg-transparent outline-none border-gray-200 border-2 py-2 px-4"
+    class="block mx-auto bg-transparent outline-none border-carbongray-200 border-2 py-2 px-4"
     placeholder="搜索页面、文章、标签..." />
 
   {#if !result}

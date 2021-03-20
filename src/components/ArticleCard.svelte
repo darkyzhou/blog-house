@@ -7,7 +7,7 @@
 <article>
   <header>
     <a sapper:prefetch href="/articles/{article.slug}">
-      <h1 class="mb-2 text-3xl text-indigo-500 hover:underline">
+      <h1 class="mb-2 text-3xl text-carbonblue-500 hover:underline">
         {article.title}
       </h1>
     </a>
@@ -16,7 +16,7 @@
     {/if}
   </header>
   {#if article.excerpt}
-    <p class="mt-2 text-base text-gray-200 break-all leading-relaxed">
+    <p class="mt-2 text-base text-carbongray-100 break-all leading-relaxed">
       {article.excerpt}
     </p>
   {/if}

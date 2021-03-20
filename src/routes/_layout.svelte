@@ -36,13 +36,13 @@
 </svelte:head>
 
 <div
-  class="min-h-screen flex flex-col text-gray-200 {!segment ? 'homeContainer' : 'dotsContainer'}">
+  class="min-h-screen flex flex-col text-carbongray-200 {!segment ? 'homeContainer' : 'dotsContainer'}">
   {#if segment}
     <span class="dots"></span>
   {/if}
-  <Nav segment="{segment}" />
-  <main class="flex-grow flex flex-col items-center">
+  <Nav segment="{segment}" extraClasses="z-10" />
+  <main class="flex-grow flex flex-col items-center z-10">
     <slot />
   </main>
-  <Footer />
+  <Footer extraClasses="z-10" />
 </div>

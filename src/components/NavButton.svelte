@@ -1,6 +1,6 @@
 <style>
   .caption {
-    background-color: var(--bg-gray-200);
+    background-color: var(--bg-carbongray-200);
     opacity: 0;
     transform: skew(100deg, -10deg) scale(0);
     will-change: transform, opacity;

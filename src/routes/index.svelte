@@ -145,7 +145,7 @@
   <label
     id="toggle"
     for="checkbox"
-    class="flex-none w-6 grid place-items-center border-transparent outline-none hover:border-gray-300 focus:border-gray-300 border-2 cursor-pointer"
+    class="flex-none w-6 grid place-items-center border-transparent outline-none hover:border-carbongray-300 focus:border-carbongray-300 border-2 cursor-pointer"
     tabindex="0">
     <svelte:component this="{getIcon('right')}" />
   </label>
@@ -160,15 +160,15 @@
       <div
         class="info py-2 md:py-4 px-3 md:px-6 flex flex-col c-gap c-gap-2 justify-between items-center"
         style="grid-area: b">
-        <h1 class="text-gray-100 text-xl md:text-2xl lg:text-3xl">
+        <h1 class="text-carbongray-100 text-xl md:text-2xl lg:text-3xl">
           {constraints.base.authorName}
         </h1>
-        <p class="text-gray-300 flex-grow text-sm md:text-xl mb-4 md:mb-0">
+        <p class="text-carbongray-200 flex-grow text-sm md:text-xl mb-4 md:mb-0">
           {constraints.base.description}
         </p>
         <ul class="list-none pl-0 flex c-gap c-gap-2 text-sm">
           {#each constraints.base.personalInfo as info}
-            <li class="mr-2 text-gray-400 flex leading-none">
+            <li class="mr-2 text-carbongray-300 flex leading-none">
               <svelte:component
                 this="{getIcon(info.type)}"
                 extraClasses="inline-block w-4 h-4 mr-0.5" />

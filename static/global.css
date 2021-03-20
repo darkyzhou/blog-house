@@ -9,10 +9,6 @@
   --flip-first-half: cubic-bezier(0.65, 0, 0.8, 0.4);
   --flip-second-half: cubic-bezier(0, 0.65, 0.4, 0.8);
   /* FIXME: a dirty workaround for a problem that it's hard to configure tailwind to recognize <style>s in .svelte files */
-  --bg-gray-200: #e5e7eb;
-  --bg-gray-800: #1f2937;
-  --bg-gray-900: #111827;
-  --bg-indigo-200: #c7d2fe;
   --bg-carbongray-50: #f2f4f8;
   --bg-carbongray-100: #dde1e6;
   --bg-carbongray-200: #c1c7cd;
@@ -48,11 +44,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-800;
+  @apply bg-carbongray-800;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-indigo-400;
+  @apply bg-carbonblue-400;
 }
 
 .markdown-body pre {
@@ -69,7 +65,7 @@ body {
   right: 1rem;
   padding: 6px 8px;
   font-size: 12px;
-  @apply text-gray-300 bg-gray-800 rounded;
+  @apply text-carbongray-200 bg-carbongray-700 rounded;
   cursor: pointer;
   opacity: 0;
   transition: 250ms opacity;
@@ -155,7 +151,7 @@ body {
   -webkit-text-size-adjust: 100%;
   line-height: 1.8;
   letter-spacing: 0.02em;
-  @apply text-gray-300;
+  @apply text-carbongray-200;
   font-size: 16px;
   word-wrap: break-word;
 }
@@ -229,7 +225,7 @@ body {
 }
 
 .markdown-body a {
-  @apply text-indigo-400;
+  @apply text-carbonblue-400;
   text-decoration: none;
 }
 
@@ -248,7 +244,7 @@ body {
   background: transparent;
   border: 0;
   border-bottom-width: 1px;
-  @apply border-solid border-indigo-100;
+  @apply border-solid border-carbonblue-100;
 }
 
 .markdown-body hr:after,
@@ -390,7 +386,7 @@ body {
 .markdown-body :checked + .radio-label {
   position: relative;
   z-index: 1;
-  @apply border-indigo-400;
+  @apply border-carbonblue-400;
 }
 
 .markdown-body .border {
@@ -733,9 +729,9 @@ body {
 
 .markdown-body blockquote {
   padding: 0 1em;
-  @apply text-gray-400;
+  @apply text-carbongray-300;
   border-left: 0.15em solid;
-  @apply border-gray-400;
+  @apply border-carbongray-400;
 }
 
 .markdown-body blockquote > :first-child {
@@ -756,7 +752,7 @@ body {
   margin-bottom: 16px;
   font-weight: 600;
   line-height: 1.25;
-  @apply text-indigo-400;
+  @apply text-carbonblue-400;
 }
 
 .markdown-body h1 {
@@ -852,13 +848,13 @@ body {
 .markdown-body table th {
   padding: 6px 13px;
   border: 1px solid;
-  @apply border-gray-500;
+  @apply border-carbongray-500;
 }
 
 .markdown-body table tr {
-  @apply bg-gray-800;
+  @apply bg-carbongray-800;
   border-top: 1px solid;
-  @apply border-gray-500;
+  @apply border-carbongray-500;
 }
 
 .markdown-body table tr:nth-child(2n) {
@@ -868,7 +864,7 @@ body {
 .markdown-body img {
   max-width: 100%;
   box-sizing: initial;
-  @apply bg-gray-900;
+  @apply bg-carbongray-900;
 }
 
 .markdown-body img[align='right'] {
@@ -884,7 +880,7 @@ body {
   margin: 0;
   border-radius: 4px;
   font-size: 0.95em;
-  @apply bg-gray-700;
+  @apply bg-carbongray-700;
 }
 
 .markdown-body pre {
@@ -917,7 +913,7 @@ body {
   font-size: 85%;
   line-height: 1.45;
   border-radius: 3px;
-  @apply bg-gray-900;
+  @apply bg-carbongray-800;
 }
 
 .markdown-body pre code {

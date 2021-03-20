@@ -27,8 +27,10 @@
   <TagCard tag="{tag}" showArticlesCount="{false}" extraClasses="my-8" />
   {#each tag.articles as article, i}
     {#if i}
-      <hr class="border-indigo-50 mx-auto w-1/2 opacity-25" />
+      <hr class="border-carbonblue-50 mx-auto w-1/2 opacity-25" />
     {/if}
     <ArticleCard article="{article}" />
+  {:else}
+    <p class="text-center">暂无文章</p>
   {/each}
 </div>

@@ -24,12 +24,12 @@
 </script>
 
 <ul
-  class="list-none p-0 text-gray-400 font-light cursor-pointer break-words {extraClasses}"
+  class="list-none p-0 text-carbongray-200 font-light cursor-pointer break-words {extraClasses}"
   style="{extraStyles}">
   {#each resolved as item, i}
     <li
       class="my-2 hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
-        highlightedIndex && 'text-indigo-400'}"
+        highlightedIndex && 'text-carbonblue-300'}"
       style="padding-left: {item.padding}rem">
       {#if item.id}
         <a href="{$page.path}#{item.id}">{item.caption}</a>
