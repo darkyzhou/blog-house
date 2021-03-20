@@ -5,8 +5,8 @@
 </script>
 
 <article
-  class="relative flex flex-col justify-between c-gap c-gap-2 text-gray-200 bg-gray-700 px-4 py-3 {extraClasses}">
-  <header class="flex-none flex items-baseline justify-between">
+  class="relative flex flex-col justify-between text-gray-200 bg-gray-700 px-4 py-3 {extraClasses}">
+  <header class="flex-none flex items-baseline justify-between mb-2">
     <h1 class="flex-none text-xl" style="max-width: 7em">
       {tag.name}
     </h1>

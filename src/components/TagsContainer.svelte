@@ -1,10 +1,11 @@
 <script context="module">
-  const TAG_CARD_NORMAL_WIDTH_PX = 220;
+  const TAG_CARD_NORMAL_WIDTH_PX = 240;
   const MAX_COLUMNS_COUNT = 4;
 </script>
 
 <script>
   import { onMount } from 'svelte';
+  import { ResizeObserver } from '@juggle/resize-observer';
   import TagCard from './TagCard.svelte';
 
   export let extraClasses = '';
@@ -18,7 +19,8 @@
   function checkAndUpdateColumns(width) {
     const newColumnCount = Math.min(
       Math.floor(width / TAG_CARD_NORMAL_WIDTH_PX),
-      MAX_COLUMNS_COUNT
+      MAX_COLUMNS_COUNT,
+      tags.length
     );
     if (!width || newColumnCount === columnCount) {
       return;
@@ -33,14 +35,12 @@
   }
 
   onMount(() => {
-    if (!window.ResizeObserver) {
-      checkAndUpdateColumns(columnsContainer.clientWidth);
-    } else {
-      const observer = new ResizeObserver((entries) =>
-        checkAndUpdateColumns(entries?.[0].contentBoxSize?.[0].inlineSize)
-      );
-      observer.observe(columnsContainer);
-    }
+    const observer = new ResizeObserver((entries) => {
+      const width =
+        entries?.[0].contentBoxSize?.[0]?.inlineSize || entries?.[0]?.contentRect?.width;
+      checkAndUpdateColumns(width);
+    });
+    observer.observe(columnsContainer);
   });
 </script>
 
@@ -49,7 +49,7 @@
   class="flex c-gap c-gap-6 sm:c-gap-8 {extraClasses}"
   style="{extraStyles}">
   {#each columns as column}
-    <div class="flex-1 flex flex-col c-gap c-gap-6 sm:c-gap-8">
+    <div class="flex-1 flex flex-col c-gap c-gap-4">
       {#each column as tag}
         <a
           sapper:prefetch

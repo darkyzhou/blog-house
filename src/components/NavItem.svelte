@@ -11,6 +11,7 @@
 
 <a
   sapper:prefetch
+  tabindex="0"
   class="grid place-items-center px-2 py-1 md:px-4 md:py-2 text-gray-200 outline-none border-transparent hover:border-gray-300 focus:border-gray-300 border-2 {active &&
     'text-gray-600 bg-gray-200'} {extraClasses}"
   style="{!active ? 'backdrop-filter: blur(16px);' : ''} {extraStyles}"
