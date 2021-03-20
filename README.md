@@ -20,6 +20,7 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 5. 自带 Netlify CMS，用户只需使用浏览器打开它，就能在线编写、修改文章和页面，保存的修改会由 Netlify 的 Bot 自动更新到 Github 仓库中，同时借助 Github Actions 的帮助运行构建，在数分钟之内上线修改。整个过程不需要用户手动操作。
 6. 自带基本的 SEO 优化，例如 `name` 和 `description` 的 meta tag、自动生成的 Sitemap、内置 Google Analytics 和百度统计支持。
 7. 自带评论区功能，基于 Utterances 实现，用户的访客只需要登录 Github 即可发表评论，同时这些评论由于是对应于 Issue 的评论，可以被引用、保存。
+8. 自带搜索功能，基于 Lunr 实现，用户可以使用各种关键词搜索文章、页面和标签。此功能基于每次构建之后生成的静态索引文件，不需要依赖第三方的服务器实现。
 
 ### Demo
 
@@ -32,5 +33,3 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 ### Roadmap
 
 目前，Blog house 仍处于早期阶段，还有许多有用的功能没有来得及实现：
-
-
