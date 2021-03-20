@@ -1,10 +1,10 @@
 {
   "base": {
-    "blogName": "Example Blog",
+    "blogName": "Darky's Blog",
     "dir": "ltr",
     "lang": "zh-CN",
     "authorName": "darkyzhou",
-    "description": "This is an example blog, enjoy it!",
+    "description": "别把看重的东西附上无边的价值",
     "personalInfo": [
       {
         "type": "location",
@@ -18,22 +18,22 @@
     ]
   },
   "sitemap": {
-    "urlPrefix": "https://example.com"
+    "urlPrefix": "https://darkyzhou.net"
   },
   "analytics": {
     "google": {
-      "gaMeasurementId": ""
+      "gaMeasurementId": "UA-169813168-1"
     },
     "baidu": {
-      "id": ""
+      "id": "f60a9a2b48d8e5dd35145c273edec8ef"
     }
   },
   "comment": {
     "type": "utterances",
     "config": {
-      "repository": "darkyzhou/blog-house",
+      "repository": "darkyzhou/blog",
       "issueTerm": "title",
-      "label": "Utterances 测试",
+      "label": "Utterances",
       "theme": "github-dark"
     }
   },
@@ -48,10 +48,6 @@
         "slug": "web-frontend",
         "name": "Web 前端",
         "description": "Web 前端开发相关，涉及 HTML、CSS、JavaScript 等技术的内容"
-      },
-      {
-        "slug": "i-have-no-description",
-        "name": "我没有描述"
       }
     ]
   }
