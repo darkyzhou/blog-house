@@ -17,9 +17,5 @@
       "caption": "关于",
       "slug": "about"
     }
-  ],
-  "footer": {
-    "left": "别把看重的东西附上无边的价值",
-    "right": "&copy; 2021 darkyzhou. Powered by <a target=\"_blank\" rel=\"nofollow noopener\" href=\"https://github.com/blog-house/blog-house\">Blog House</a>."
-  }
+  ]
 }

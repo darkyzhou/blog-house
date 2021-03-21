@@ -1,3 +1,5 @@
+_markdownFields:
+  - 'tabsContent.*.content'
 tabsContent:
   - icon: message
     content: 'Here is my self-introduction: ...'

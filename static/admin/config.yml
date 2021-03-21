@@ -49,13 +49,23 @@ collections:
   - name: 'specialContent'
     label: '特殊内容'
     files:
+      - name: 'footerConfiguration'
+        label: '底栏配置'
+        file: 'src/footer-configuration.yml'
+        fields:
+          - name: 'leftContent'
+            label: '左侧内容'
+            widget: 'string'
+          - name: 'rightContent'
+            label: '右侧内容'
+            widget: 'string'
       - name: 'homePageConfiguration'
         label: '首页组件配置'
         file: 'src/home-page-configuration.yml'
         fields:
-          - name: tabsContent
+          - name: 'tabsContent'
             label: '标签页内容'
-            widget: list
+            widget: 'list'
             fields:
               - {
                   label: '图标名',

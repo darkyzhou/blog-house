@@ -1,4 +1,7 @@
-# Blog House
+<div style="text-align: center">
+  <img src="https://github.com/blog-house/blog-house/raw/master/logo.png" />
+  <h2>Blog House</h2>
+</div>
 
 ### 正在开发中，项目尚不可用，敬请期待！
 
