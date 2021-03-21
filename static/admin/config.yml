@@ -55,10 +55,10 @@ collections:
         fields:
           - name: 'leftContent'
             label: '左侧内容'
-            widget: 'string'
+            widget: 'markdown'
           - name: 'rightContent'
             label: '右侧内容'
-            widget: 'string'
+            widget: 'markdown'
       - name: 'homePageConfiguration'
         label: '首页组件配置'
         file: 'src/home-page-configuration.yml'

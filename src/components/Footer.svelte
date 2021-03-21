@@ -10,20 +10,20 @@
 </style>
 
 <script>
-  import config from '../config.json';
+  import footerConfiguration from '../footer-configuration.yml';
 
   export let extraClasses = '';
 </script>
 
 <footer class="footer text-carbongray-300 text-sm py-2 px-4 sm:py-4 sm:px-12 flex justify-between flex-wrap {extraClasses}">
-  {#if config.footer.left}
+  {#if footerConfiguration.leftContentHtml}
     <p>
-      {@html config.footer.left}
+      {@html footerConfiguration.leftContentHtml}
     </p>
   {/if}
-  {#if config.footer.right}
+  {#if footerConfiguration.rightContentHtml}
     <p>
-      {@html config.footer.right}
+      {@html footerConfiguration.rightContentHtml}
     </p>
   {/if}
 </footer>

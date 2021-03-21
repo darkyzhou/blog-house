@@ -27,7 +27,7 @@ function getTableOfContent(contentHtml) {
           case htmlParser.SyntaxKind.Text:
             return node.value;
           default:
-            throw new Error(`Unknown tag type: ${node.type}`);
+            throw new Error(`parse-markdown-articles.js: Unknown tag type: ${node.type}`);
         }
       })
       .join('');
@@ -81,12 +81,12 @@ function doTransform(mdContent, mdFilename) {
   const { data, content } = matter(mdContent);
   if (!data.title) {
     throw new Error(
-      `Markdown file '${mdFilename}' should includes a title property in the front matter block`
+      `parse-markdown-articles.js: Markdown file '${mdFilename}' should includes a title property in the front matter block`
     );
   }
   if (data.tags?.some((t) => !constraints.tag.items.find((tag) => tag.name === t))) {
     throw new Error(
-      `Markdown file '${mdFilename}' contains a tag that does not described in 'config/constraints.json', make sure you've added the slug of it in the latter file`
+      `parse-markdown-articles.js: Markdown file '${mdFilename}' contains a tag that does not described in 'config/constraints.json', make sure you've added the slug of it in the latter file`
     );
   }
 
@@ -130,10 +130,12 @@ function checkMarkdownFile(code, id) {
     path.basename(dirname) === 'source' &&
     path.basename(filePath.substring(0, filePath.lastIndexOf('source'))) !== 'source'
   ) {
-    throw new Error(`This file should be inside a directory in 'source'`);
+    throw new Error(
+      `parse-markdown-articles.js: This file should be inside a directory in 'source'`
+    );
   }
   if (code?.trim()?.length <= 0) {
-    throw new Error('This file is empty');
+    throw new Error('parse-markdown-articles.js: This file is empty');
   }
 }
 
@@ -146,7 +148,9 @@ export default () => ({
       checkMarkdownFile(code, id);
       return doTransform(code, id);
     } catch (e) {
-      this.error(`Failed to process markdown file '${id}':\n${e.stack}`);
+      this.error(
+        `parse-markdown-articles.js: Failed to process markdown file '${id}':\n${e.stack}`
+      );
     }
   }
 });

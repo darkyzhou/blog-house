@@ -1,7 +1,7 @@
 import allArticles from '../source/{_pages,_posts}/*.md';
 
 if (allArticles?.length <= 0) {
-  console.warn("No articles found inside 'source' folder");
+  console.warn("articles.js: No articles found inside 'source/_posts' and 'source/_pages' folder");
 }
 
 const articles =

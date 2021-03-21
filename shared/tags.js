@@ -41,7 +41,7 @@ function resolveTags(articles) {
 const resolved = resolveTags(articles);
 
 if (resolved.length <= 0) {
-  console.warn('No tags found');
+  console.warn('tags.js: No tags found');
 }
 
 const tags = (resolved?.length <= 0 ? [] : resolved).sort((a, b) => a.name.localeCompare(b.name));
