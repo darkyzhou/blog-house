@@ -2,7 +2,6 @@ const path = require('path');
 const marked = require('marked');
 const matter = require('gray-matter');
 const { format } = require('date-fns');
-const readingTime = require('reading-time');
 const htmlParser = require('html5parser');
 const prism = require('prismjs');
 const fs = require('fs');
@@ -49,8 +48,8 @@ function initMarked() {
   marked.setOptions({ renderer, highlight });
 }
 
-function getReadingTime(content) {
-  return !content ? 0 : readingTime(content).minutes.toFixed(0);
+function getReadingTime(wordsCount) {
+  return (wordsCount / 300).toFixed(1);
 }
 
 function getPrintDate(date) {
@@ -138,6 +137,7 @@ function doTransform(mdContent, mdFilename) {
   const isPageArticle = isFromPage(mdFilename);
   const lastModifiedAt = getLatestModificationTime(mdFilename);
   const printLastModifiedAt = format(lastModifiedAt, 'yyyy/MM/dd');
+  const wordsCount = [...pureTextContent].length;
 
   // NOTICE: by using JSON.stringify, all of the properties holding a Date value
   // will actually be converted into String!
@@ -149,8 +149,8 @@ function doTransform(mdContent, mdFilename) {
     title: data.title,
     date: data.date ? new Date(data.date) : lastModifiedAt,
     printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
-    wordsCount: [...pureTextContent].length,
-    readingTime: getReadingTime(pureTextContent),
+    wordsCount,
+    readingTime: getReadingTime(wordsCount),
     tags: isPageArticle ? null : data.tags,
     excerpt: data.excerpt || extractExcerpt(pureTextContent),
     tableOfContent: getTableOfContent(contentHtml),

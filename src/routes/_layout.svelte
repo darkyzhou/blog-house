@@ -28,9 +28,8 @@
 
   export let segment;
 
-  let loading = false;
-
   const { preloading } = stores();
+  let loading = false;
 
   onMount(() => {
     preloading.subscribe((preloading) => (loading = preloading));
