@@ -1,7 +1,7 @@
-<div style="text-align: center">
-  <img src="https://github.com/blog-house/blog-house/raw/master/logo.png" />
-  <h2>Blog House</h2>
-</div>
+<p align="center">
+  <img width="300" src="https://github.com/blog-house/blog-house/raw/master/logo.png" alt="Blog house logo">
+</p>
+<h2 align="center">Blog House</h2>
 
 ### 正在开发中，项目尚不可用，敬请期待！
 
