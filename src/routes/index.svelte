@@ -102,7 +102,7 @@
 
 <script>
   import constraints from '../../config/constraints.json';
-  import config from '../config.json';
+  import homePageConfiguration from '../home-page-configuration.yml';
   import { getIcon } from '../components/icons';
   import { onMount } from 'svelte';
   import TabContainer from '../components/TabContainer.svelte';
@@ -175,7 +175,7 @@
       </div>
     </div>
     <div class="bSideContent" style="grid-area: stack;">
-      <TabContainer tabContents="{config.home.cardTabs}" extraClasses="w-full h-full" />
+      <TabContainer tabContents="{homePageConfiguration.tabsContent}" extraClasses="w-full h-full" />
     </div>
   </div>
 </div>

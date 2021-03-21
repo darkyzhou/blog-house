@@ -60,9 +60,12 @@
       </li>
     {/each}
   </ul>
-  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 text-sm md:text-base leading-relaxed">
+  <div
+    class="tabContent flex-grow p-2 h-full text-carbongray-100 text-sm md:text-base leading-relaxed">
     {#each tabContents as tab}
-      <div class="overflow-y-auto h-full">{@html tab.content}</div>
+      <div class="overflow-y-auto h-full">
+        {@html tab.contentHtml}
+      </div>
     {/each}
   </div>
 </div>

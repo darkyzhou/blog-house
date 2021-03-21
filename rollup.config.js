@@ -9,7 +9,8 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import glob from 'rollup-plugin-glob';
 import config from 'sapper/config/rollup.js';
-import markdown from './rollup-plugins/markdown';
+import markdown from './rollup-plugins/parse-markdown-articles';
+import yaml from './rollup-plugins/parse-yaml';
 import pkg from './package.json';
 
 const mode = process.env.NODE_ENV;
@@ -48,6 +49,7 @@ export default {
         extensions: ['.mjs', '.js', '.json', '.node', '.md']
       }),
       commonjs(),
+      yaml(),
       markdown(),
       glob(),
       legacy &&
@@ -111,6 +113,7 @@ export default {
         dedupe: ['svelte']
       }),
       commonjs(),
+      yaml(),
       markdown(),
       glob()
     ],

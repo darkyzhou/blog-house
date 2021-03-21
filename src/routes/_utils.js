@@ -6,6 +6,6 @@ export function makeTitle(title) {
 
 export function concatPageUrl(pathName) {
   const url = new URL(constraints.sitemap.urlPrefix);
-  url.pathname = `${pathName}`;
+  url.pathname = pathName;
   return url.href;
 }

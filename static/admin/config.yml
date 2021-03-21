@@ -49,13 +49,18 @@ collections:
   - name: 'specialContent'
     label: '特殊内容'
     files:
-      - name: 'homePageTabsContent'
-        label: '首页标签页组件内容'
-        file: 'source/_special/home-page-tabs-content.md'
+      - name: 'homePageConfiguration'
+        label: '首页组件配置'
+        file: 'src/home-page-configuration.yml'
         fields:
-          - name: tab
-            label: '标签页'
+          - name: tabsContent
+            label: '标签页内容'
             widget: list
             fields:
-              - { label: '图标名', name: 'icon', widget: 'string' }
-              - { label: '内容', name: 'body', widget: 'markdown' }
+              - {
+                  label: '图标名',
+                  name: 'icon',
+                  widget: 'string',
+                  hint: '必须填写正确的图标名，否则无法正确显示，具体请见文档'
+                }
+              - { label: '内容', name: 'content', widget: 'markdown' }
