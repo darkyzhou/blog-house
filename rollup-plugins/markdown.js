@@ -49,7 +49,7 @@ function initMarked() {
 }
 
 function getReadingTime(wordsCount) {
-  return (wordsCount / 300).toFixed(1);
+  return Math.min(1, wordsCount / 350).toFixed(0);
 }
 
 function getPrintDate(date) {
