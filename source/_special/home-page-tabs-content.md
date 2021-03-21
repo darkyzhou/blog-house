@@ -1,5 +1,5 @@
 ---
 tab:
   - icon: message
-    body: "Here is my self-introduction: ..."
+    body: "**Here is my self-introduction: ...**"
 ---
