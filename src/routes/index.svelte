@@ -3,31 +3,16 @@
     transition: 600ms transform var(--flip);
   }
 
-  @supports (backdrop-filter: blur(10px)) {
+  @supports (backdrop-filter: none) or (-webkit-backdrop-filter: none) {
     .card {
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
   }
 
-  @supports not (backdrop-filter: blur(10px)) {
+  @supports not ((backdrop-filter: none) or (-webkit-backdrop-filter: none)) {
     .card {
-      position: relative;
-    }
-
-    .card > * {
-      z-index: 10;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: #262626;
-      opacity: 0.8;
+      background-color: rgba(38, 38, 38, 0.75);
     }
   }
 
@@ -40,7 +25,7 @@
   }
 
   #checkbox:checked ~ .card .cardContent {
-    transform: rotateY(180deg);
+    transform: scale(-1, 1);
   }
 
   .cardContent > * {
@@ -132,6 +117,7 @@
 
 <input id="checkbox" type="checkbox" class="hidden" />
 <div class="my-auto flex flex-row-reverse card">
+  <div class="ios-blur hidden"></div>
   <label
     id="toggle"
     for="checkbox"
@@ -175,7 +161,9 @@
       </div>
     </div>
     <div class="bSideContent" style="grid-area: stack;">
-      <TabContainer tabContents="{homePageConfiguration.tabsContent}" extraClasses="w-full h-full" />
+      <TabContainer
+        tabContents="{homePageConfiguration.tabsContent}"
+        extraClasses="w-full h-full" />
     </div>
   </div>
 </div>
