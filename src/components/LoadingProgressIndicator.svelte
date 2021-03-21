@@ -4,8 +4,8 @@
     left: 0;
     pointer-events: none;
     will-change: opacity, right;
+    transition: all 0s cubic-bezier(0, 0.55, 0.45, 1);
     transition-property: opacity, right;
-    transition-duration: 0s, 0s;
     opacity: 0;
     right: 100%;
   }
@@ -17,7 +17,7 @@
   }
 
   .indicator--finished {
-    transition-duration: 1s, 1s;
+    transition-duration: 900ms, 600ms;
     opacity: 0;
     right: 0;
   }
