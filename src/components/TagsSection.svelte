@@ -10,11 +10,7 @@
     height: 16px;
     display: inline-block;
     color: var(--bg-carbonblue-100);
-    margin-right: 2px;
-  }
-
-  .tag:not(:last-child)::after {
-    content: ',';
+    margin-right: 4px;
   }
 </style>
 
@@ -78,6 +74,9 @@
           class="tag text-carbongray-300 hover:underline cursor-pointer">
           {tag}
         </a>
+        {#if j < article.tags.length - 1}
+          <span class="pl-0.5 pr-2">,</span>
+        {/if}
       {/each}
     </li>
   {/if}

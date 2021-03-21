@@ -1,6 +1,6 @@
 <style>
   .homeContainer {
-    background: url('/background.jpg') fixed 50% / cover no-repeat;
+    background: url('/background.jpg') fixed 50% / cover no-repeat var(--bg-carbongray-900);
   }
 
   .dotsContainer {
@@ -22,11 +22,19 @@
   import Footer from '../components/Footer.svelte';
   import constraints from '../../config/constraints.json';
   import Analytics from '../components/Analytics.svelte';
+  import LoadingProgressIndicator from '../components/LoadingProgressIndicator.svelte';
+  import { stores } from '@sapper/app';
+  import { onMount } from 'svelte';
 
   export let segment;
 
-  // WARNING: DO NOT USE PRETTIER ON THIS FILE
-  // BECAUSE IT'S BROKEN PARSING THE CODES INSIDE @html
+  let loading = false;
+
+  const { preloading } = stores();
+
+  onMount(() => {
+    preloading.subscribe((preloading) => (loading = preloading));
+  });
 </script>
 
 <svelte:head>
@@ -35,8 +43,12 @@
     baiduId="{constraints.analytics.baidu.id}" />
 </svelte:head>
 
+<LoadingProgressIndicator loading="{loading}" />
+
 <div
-  class="min-h-screen flex flex-col text-carbongray-200 {!segment ? 'homeContainer' : 'dotsContainer'}">
+  class="min-h-screen flex flex-col text-carbongray-200 {!segment
+    ? 'homeContainer'
+    : 'dotsContainer'}">
   {#if segment}
     <span class="dots"></span>
   {/if}
