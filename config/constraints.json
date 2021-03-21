@@ -1,10 +1,10 @@
 {
   "base": {
-    "blogName": "Darky's Blog",
+    "blogName": "Example Blog",
     "dir": "ltr",
     "lang": "zh-CN",
     "authorName": "darkyzhou",
-    "description": "别把看重的东西附上无边的价值",
+    "description": "This is an example blog, enjoy it!",
     "personalInfo": [
       {
         "type": "location",
@@ -18,20 +18,20 @@
     ]
   },
   "sitemap": {
-    "urlPrefix": "https://darkyzhou.net"
+    "urlPrefix": "https://example.com"
   },
   "analytics": {
     "google": {
-      "gaMeasurementId": "UA-169813168-1"
+      "gaMeasurementId": ""
     },
     "baidu": {
-      "id": "f60a9a2b48d8e5dd35145c273edec8ef"
+      "id": ""
     }
   },
   "comment": {
     "type": "utterances",
     "config": {
-      "repository": "darkyzhou/blog",
+      "repository": "blog-house/blog-house",
       "issueTerm": "title",
       "label": "Utterances",
       "theme": "github-dark"
@@ -43,6 +43,10 @@
         "slug": "programming",
         "name": "编程",
         "description": "一些有关计算机编程的东西"
+      },
+      {
+        "slug": "i-have-no-description",
+        "name": "我没有描述"
       },
       {
         "slug": "web-frontend",
