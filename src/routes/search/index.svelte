@@ -71,6 +71,11 @@
 
 <svelte:head>
   <title>{makeTitle('搜索')}</title>
+  <script
+    src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"
+    integrity="sha256-DFDZACuFeAqEKv/7Vnu1Tt5ALa58bcWZegGGFNgET8g="
+    crossorigin="anonymous"
+    defer></script>
 </svelte:head>
 
 <div class="mt-4 px-4 max-w-screen-sm">

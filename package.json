@@ -5,7 +5,7 @@
   "private": false,
   "scripts": {
     "dev": "node --inspect node_modules/sapper/dist/cli.js dev",
-    "export": "NODE_ENV=production sapper export --concurrent 1",
+    "export": "NODE_ENV=production sapper export --concurrent 1 --entry '/ stub'",
     "watch:tailwind": "postcss static/global.css -o static/styles/global-compiled.css -w",
     "build:tailwind": "NODE_ENV=production postcss static/global.css -o static/styles/global-compiled.css",
     "build": "npm-run-all build:tailwind export"

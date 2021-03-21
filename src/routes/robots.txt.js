@@ -3,6 +3,7 @@ import { concatPageUrl } from './_utils';
 const sitemapContent = `
 User-agent: *
 Disallow: /admin/
+Disallow: /stub/
 
 Sitemap: ${concatPageUrl('sitemap.xml')}
 `;
