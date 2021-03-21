@@ -46,3 +46,16 @@ collections:
           pattern: ['^[\d\w_-]+$', '纯英文数字以及下划线组合']
         }
       - { label: '内容', name: 'body', widget: 'markdown' }
+  - name: 'specialContent'
+    label: '特殊内容'
+    files:
+      - name: 'homePageTabsContent'
+        label: '首页标签页组件内容'
+        file: 'source/_special/home-page-tabs-content.md'
+        fields:
+          - name: tab
+            label: '标签页'
+            widget: list
+            fields:
+              - { label: '图标名', name: 'icon', widget: 'string' }
+              - { label: '内容', name: 'body', widget: 'markdown' }
