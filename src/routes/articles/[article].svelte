@@ -1,3 +1,9 @@
+<style>
+  .commentsContainer:empty ~ .loadingIndicator {
+    display: block;
+  }
+</style>
+
 <script context="module">
   export async function preload({ params, query }) {
     const articleSlug = params.article;
@@ -105,7 +111,8 @@
     <article id="article" class="w-full mb-24 markdown-body">
       {@html article.html}
     </article>
-    <div class="w-full" bind:this="{utterancesContainer}"></div>
+    <div class="commentsContainer w-full" bind:this="{utterancesContainer}"></div>
+    <p class="loadingIndicator hidden text-center">评论区加载中...</p>
   </div>
   {#if article.tableOfContent?.length}
     <aside class="hidden lg:block px-4 ml-4">
