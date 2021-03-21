@@ -3,7 +3,7 @@ const tailwindcss = require('tailwindcss');
 module.exports = {
   plugins: [
     tailwindcss('./tailwind.js'),
-
+    require('postcss-100vh-fix'),
     ...(process.env.NODE_ENV !== 'production'
       ? []
       : [
