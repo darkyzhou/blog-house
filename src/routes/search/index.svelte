@@ -31,28 +31,23 @@
   export let allArticles;
   export let allTags;
 
+  let searchInput;
   let fetchingIndexes = true;
+  let fetchErrorMessage;
   let articleIdx, pageIdx, tagIdx;
-  let result;
+
+  // undefined represents that user does not have any input yet
+  // null represents that the search criteria cannot match any results
+  let result = undefined;
 
   $: allArticlesMap = new Map(allArticles.map((article) => [article.slug, article]));
   $: allTagsMap = new Map(allTags.map((tag) => [tag.slug, tag]));
 
-  onMount(() => {
-    const searchInput = document.getElementById('searchInput');
-
-    fetch('/lunr-indexes.json')
-      .then((response) => response.json())
-      .then((indexes) => {
-        articleIdx = lunr.Index.load(JSON.parse(indexes['article']));
-        pageIdx = lunr.Index.load(JSON.parse(indexes['page']));
-        tagIdx = lunr.Index.load(JSON.parse(indexes['tag']));
-      });
-
+  function initInputHandler() {
     searchInput.addEventListener('input', () => {
       const criteria = searchInput.value;
       if (!criteria || criteria.trim().length <= 0) {
-        result = null;
+        result = undefined;
       } else {
         const newResult = {
           articles: articleIdx.search(criteria).map((result) => allArticlesMap.get(result.ref)),
@@ -66,6 +61,21 @@
         }
       }
     });
+  }
+
+  onMount(async () => {
+    try {
+      const response = await fetch('/lunr-indexes.json');
+      const indexes = await response.json();
+      articleIdx = lunr.Index.load(JSON.parse(indexes['article']));
+      pageIdx = lunr.Index.load(JSON.parse(indexes['page']));
+      tagIdx = lunr.Index.load(JSON.parse(indexes['tag']));
+      initInputHandler();
+    } catch (error) {
+      fetchErrorMessage = error.message;
+    } finally {
+      fetchingIndexes = false;
+    }
   });
 </script>
 
@@ -75,21 +85,37 @@
     src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"
     integrity="sha256-DFDZACuFeAqEKv/7Vnu1Tt5ALa58bcWZegGGFNgET8g="
     crossorigin="anonymous"
-    defer></script>
+    async></script>
 </svelte:head>
 
 <div class="mt-4 px-4 max-w-screen-sm">
   <input
-    id="searchInput"
     type="text"
-    class="block mx-auto bg-transparent outline-none border-carbongray-200 border-2 py-2 px-4"
-    placeholder="搜索页面、文章、标签..." />
+    class="{fetchingIndexes || fetchErrorMessage
+      ? 'hidden pointer-events-none'
+      : 'block'} mx-auto bg-transparent outline-none border-carbongray-200 border-2 py-2 px-4"
+    placeholder="搜索页面、文章、标签..."
+    bind:this="{searchInput}" />
+  {#if fetchingIndexes}
+    <p class="mt-12 mx-auto">加载索引中...</p>
+  {/if}
+  {#if fetchErrorMessage}
+    <p class="mt-12 mx-auto flex flex-col items-center c-gap c-gap-2">
+      <svelte:component this="{getIcon('dizzyFace')}" extraClasses="w-12 h-12" />
+      <span class="text-xl md:text-2xl">加载索引失败</span>
+      <span>
+        {fetchErrorMessage}
+      </span>
+    </p>
+  {/if}
 
   {#if !result}
-    <p class="mt-12 mx-auto flex flex-col items-center gap-2">
-      <svelte:component this="{getIcon('fish')}" extraClasses="w-12 h-12" />
-      <span class="text-xl md:text-2xl">暂无结果</span>
-    </p>
+    {#if result !== undefined}
+      <p class="mt-12 mx-auto flex flex-col items-center c-gap c-gap-2">
+        <svelte:component this="{getIcon('dizzyFace')}" extraClasses="w-12 h-12" />
+        <span class="text-xl md:text-2xl">暂无结果</span>
+      </p>
+    {/if}
   {:else}
     {#if result.articles?.length > 0}
       <h2 class="caption">文章 ({result.articles.length})</h2>

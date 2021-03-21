@@ -10,7 +10,7 @@ import HeartIcon from './HeartIcon.svelte';
 import MessageIcon from './MessageIcon.svelte';
 import CodeIcon from './CodeIcon.svelte';
 import SearchIcon from './SearchIcon.svelte';
-import FishIcon from './FishIcon.svelte';
+import DizzyFaceIcon from './DizzyFaceIcon.svelte';
 
 const iconMapping = {
   calendar: CalendarIcon,
@@ -25,7 +25,7 @@ const iconMapping = {
   message: MessageIcon,
   code: CodeIcon,
   search: SearchIcon,
-  fish: FishIcon
+  dizzyFace: DizzyFaceIcon
 };
 
 export function getIcon(type) {
