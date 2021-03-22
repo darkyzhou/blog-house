@@ -218,7 +218,7 @@ collections:
           - name: 'additionalContent'
             label: '额外内容'
             widget: 'code'
-            default_language: 'text/plain'
+            allow_language_selection: false
             output_code_only: true
             hint: '向 robots.txt 中补充的额外内容，对于它原本含有的内容请见 src/routes/robots.txt.js'
       - name: 'sitemapXmlConfiguration'
@@ -228,6 +228,7 @@ collections:
           - name: 'additionalContent'
             label: '额外内容'
             widget: 'code'
-            default_language: 'application/xml'
+            allow_language_selection: false
+            default_language: 'xml'
             output_code_only: true
             hint: '向 sitemap.xml 中补充的额外内容，对于它原本含有的内容请见 src/routes/sitemap.xml.js'
