@@ -58,8 +58,8 @@
     <span class="dots"></span>
   {/if}
   <Nav segment="{segment}" extraClasses="z-10" />
-  <main class="flex-grow flex flex-col items-center z-10">
+  <main class="flex-grow flex flex-col items-center z-20">
     <slot />
   </main>
-  <Footer extraClasses="z-10 my-4 sm:m-0" />
+  <Footer extraClasses="my-4 sm:m-0 z-10" />
 </div>

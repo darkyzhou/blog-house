@@ -134,7 +134,6 @@
 
 <input id="checkbox" type="checkbox" class="hidden" />
 <div class="my-auto flex flex-row-reverse card">
-  <div class="ios-blur hidden"></div>
   <label
     id="toggle"
     for="checkbox"
