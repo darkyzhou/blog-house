@@ -1,9 +1,8 @@
 import { concatPageUrl } from './_utils';
+import robotsTxtConfiguration from '../../config/robots-txt-configuration.yml';
 
 const sitemapContent = `
-User-agent: *
-Disallow: /admin/
-Disallow: /stub/
+${robotsTxtConfiguration.additionalContent.trim()}
 
 Sitemap: ${concatPageUrl('sitemap.xml')}
 `;

@@ -1,6 +1,7 @@
 import articles from '../../shared/articles';
 import tags from '../../shared/tags';
 import basicConfiguration from '../../config/basic-configuration.yml';
+import sitemapXmlConfiguration from '../../config/sitemap-xml-configuration.yml';
 import { concatPageUrl } from './_utils';
 
 export async function get(request, response) {
@@ -30,6 +31,9 @@ export async function get(request, response) {
     .join('');
 
   response.end(
-    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${content}</urlset>`
+    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    ${content}
+    ${sitemapXmlConfiguration.additionalContent.trim()}
+    </urlset>`
   );
 }

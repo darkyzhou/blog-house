@@ -1,0 +1,4 @@
+additionalContent: |
+  User-agent: *
+  Disallow: /admin/
+  Disallow: /stub/
