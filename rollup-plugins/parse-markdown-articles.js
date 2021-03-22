@@ -5,7 +5,6 @@ const htmlParser = require('html5parser');
 const fs = require('fs');
 const marked = require('./shared/marked-wrapped');
 const parseTextContent = require('parse-html-text-content');
-const constraints = require('./config/constraints.json');
 
 function getReadingTime(wordsCount) {
   return Math.max(1, wordsCount / 350).toFixed(0);

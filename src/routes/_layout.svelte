@@ -26,7 +26,7 @@
 <script>
   import Nav from '../components/Nav.svelte';
   import Footer from '../components/Footer.svelte';
-  import constraints from '../../config/constraints.json';
+  import basicConfiguration from '../../config/basic-configuration.yml';
   import Analytics from '../components/Analytics.svelte';
   import LoadingProgressIndicator from '../components/LoadingProgressIndicator.svelte';
   import { stores } from '@sapper/app';
@@ -44,8 +44,8 @@
 
 <svelte:head>
   <Analytics
-    gaMeasurementId="{constraints.analytics.google.gaMeasurementId}"
-    baiduId="{constraints.analytics.baidu.id}" />
+    gaMeasurementId="{basicConfiguration.analytics.gaMeasurementId}"
+    baiduId="{basicConfiguration.analytics.baiduId}" />
 </svelte:head>
 
 <LoadingProgressIndicator loading="{loading}" />

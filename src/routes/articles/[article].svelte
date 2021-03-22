@@ -19,7 +19,7 @@
   import TableOfContent from '../../components/TableOfContent.svelte';
   import { makeTitle } from '../_utils';
   import BackToTop from '../../components/BackToTop.svelte';
-  import constraints from '../../../config/constraints.json';
+  import basicConfiguration from '../../../config/basic-configuration.yml';
   import ClipboardJS from 'clipboard';
 
   export let article;
@@ -62,14 +62,14 @@
     document.addEventListener('scroll', () => updateHighlightedHeadingIndex(elements), false);
   }
 
-  function initUtterances() {
+  function initUtterances(configuration) {
     const utterances = document.createElement('script');
     const config = Object.entries({
       src: 'https://utteranc.es/client.js',
-      repo: constraints.comment.config.repository,
-      'issue-term': constraints.comment.config.issueTerm,
-      label: constraints.comment.config.label,
-      theme: constraints.comment.config.theme,
+      repo: configuration.repository,
+      'issue-term': configuration.issueTerm,
+      label: configuration.label,
+      theme: configuration.theme,
       crossOrigin: 'anonymous',
       async: 'true'
     });
@@ -90,8 +90,10 @@
   onMount(() => {
     initScrollToTop();
     initTableOfContent();
-    initUtterances();
     initCodeCopying();
+    if (basicConfiguration.comments[0]?.type === 'utterances') {
+      initUtterances(basicConfiguration.comments[0]);
+    }
   });
 </script>
 

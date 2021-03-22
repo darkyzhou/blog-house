@@ -1,11 +1,11 @@
-import constraints from '../../config/constraints.json';
+import basicConfiguration from '../../config/basic-configuration.yml';
 
 const data = {
-  name: constraints.base.blogName,
-  short_name: constraints.base.blogName,
-  description: constraints.base.description,
-  dir: constraints.base.dir,
-  lang: constraints.base.lang,
+  name: basicConfiguration.blogName,
+  short_name: basicConfiguration.blogName,
+  description: basicConfiguration.description,
+  dir: basicConfiguration.dir,
+  lang: basicConfiguration.language,
   theme_color: '#121619',
   background_color: '#121619',
   display: 'standalone',

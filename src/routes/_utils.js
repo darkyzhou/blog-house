@@ -1,11 +1,11 @@
-import constraints from '../../config/constraints.json';
+import basicConfiguration from '../../config/basic-configuration.yml';
 
 export function makeTitle(title) {
-  return `${title} · ${constraints.base.blogName}`;
+  return `${title} · ${basicConfiguration.blogName}`;
 }
 
 export function concatPageUrl(pathName) {
-  const url = new URL(constraints.sitemap.urlPrefix);
+  const url = new URL(basicConfiguration.url);
   url.pathname = pathName;
   return url.href;
 }

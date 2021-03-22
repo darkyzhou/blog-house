@@ -103,7 +103,7 @@
 </style>
 
 <script>
-  import constraints from '../../config/constraints.json';
+  import basicConfiguration from '../../config/basic-configuration.yml';
   import homePageConfiguration from '../../config/home-page-configuration.yml';
   import { getIcon } from '../components/icons';
   import { onMount } from 'svelte';
@@ -126,9 +126,9 @@
 </script>
 
 <svelte:head>
-  <title>{constraints.base.blogName}</title>
-  {#if constraints.base.description}
-    <meta name="description" content="{constraints.base.description}" />
+  <title>{basicConfiguration.blogName}</title>
+  {#if basicConfiguration.description}
+    <meta name="description" content="{basicConfiguration.description}" />
   {/if}
 </svelte:head>
 
@@ -154,10 +154,10 @@
         class="info py-2 md:py-4 px-3 md:px-6 flex flex-col c-gap c-gap-2 justify-between items-center"
         style="grid-area: b">
         <h1 class="text-carbongray-100 text-xl md:text-2xl">
-          {constraints.base.authorName}
+          {basicConfiguration.authorName}
         </h1>
         <p class="text-carbongray-200 flex-grow text-sm md:text-xl mb-4 md:mb-0">
-          {constraints.base.description}
+          {basicConfiguration.description}
         </p>
         <ul class="list-none pl-0 flex c-gap c-gap-2 text-sm">
           {#each homePageConfiguration.contact as info}

@@ -1,6 +1,6 @@
 import articles from '../../shared/articles';
 import tags from '../../shared/tags';
-import constraints from '../../config/constraints.json';
+import basicConfiguration from '../../config/basic-configuration.yml';
 import { concatPageUrl } from './_utils';
 
 export async function get(request, response) {
@@ -10,7 +10,7 @@ export async function get(request, response) {
   const items = [];
 
   items.push({
-    url: constraints.sitemap.urlPrefix,
+    url: basicConfiguration.url,
     lastmod: now
   });
 
