@@ -1,7 +1,7 @@
 <script>
   import constraints from '../../config/constraints.json';
-  import config from '../config.json';
   import NavItem from './NavItem.svelte';
+  import navConfiguration from '../../config/nav-configuration.yml';
 
   export let segment;
   export let extraClasses = '';
@@ -14,7 +14,7 @@
   </h1>
   <ul
     class="md:mx-4 list-none p-0 flex justify-center c-gap c-gap-2 sm:c-gap-4 text-sm sm:text-base">
-    {#each config.nav as item}
+    {#each navConfiguration.navItems as item}
       <li>
         {#if item.type === 'home'}
           <NavItem caption="{item.caption}" route="/" active="{!segment}" />

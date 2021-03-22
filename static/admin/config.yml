@@ -39,7 +39,7 @@ collections:
     fields:
       - { label: '标题', name: 'title', widget: 'string' }
       - {
-          label: '页面路径名称',
+          label: '路径名称',
           name: 'pageSlug',
           widget: 'string',
           hint: '纯英文数字以及下划线组合，如果填写“my-page”，那么此页面的 URL 将会是 “https://xxx/my-page”',
@@ -49,16 +49,32 @@ collections:
   - name: 'configuration'
     label: '博客配置'
     files:
-      - name: 'footerConfiguration'
-        label: '底栏配置'
-        file: 'config/footer-configuration.yml'
+      - name: 'navConfiguration'
+        label: '导航栏配置'
+        file: 'config/nav-configuration.yml'
         fields:
-          - name: 'leftContent'
-            label: '左侧内容'
-            widget: 'markdown'
-          - name: 'rightContent'
-            label: '右侧内容'
-            widget: 'markdown'
+          - name: 'navItems'
+            label: '导航栏项目'
+            widget: 'list'
+            fields:
+              - label: '类型'
+                name: 'type'
+                widget: 'select'
+                hint: '不同类型的导航栏项目有着不同的功能'
+                options:
+                  - { label: '首页', value: 'home' }
+                  - { label: '文章', value: 'articles' }
+                  - { label: '标签', value: 'tags' }
+                  - { label: '页面', value: 'page' }
+              - label: '标题'
+                name: 'caption'
+                widget: 'string'
+                hint: '对应这个导航栏项目的按钮文本'
+              - label: '路径名称'
+                name: 'slug'
+                required: false
+                widget: 'string'
+                hint: '除了"页面"选项都不需要填写，"页面"选项必须填写，对应需要导航到的页面的路径名称'
       - name: 'tagsConfiguration'
         label: '标签配置'
         file: 'config/tags-configuration.yml'
@@ -68,7 +84,7 @@ collections:
             widget: 'list'
             fields:
               - {
-                  label: '路由名称',
+                  label: '路径名称',
                   name: 'slug',
                   widget: 'string',
                   hint: '纯英文数字以及下划线组合，如果填写“my-tag”，那么此标签页面的 URL 将会是 “https://xxx/tags/my-tag”',
@@ -96,3 +112,13 @@ collections:
                   hint: '必须填写正确的图标名，否则无法正确显示，具体请见文档'
                 }
               - { label: '内容', name: 'content', widget: 'markdown' }
+      - name: 'footerConfiguration'
+        label: '底栏配置'
+        file: 'config/footer-configuration.yml'
+        fields:
+          - name: 'leftContent'
+            label: '左侧内容'
+            widget: 'markdown'
+          - name: 'rightContent'
+            label: '右侧内容'
+            widget: 'markdown'
