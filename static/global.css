@@ -49,6 +49,21 @@ body {
 
 ::-webkit-scrollbar-thumb {
   @apply bg-carbonblue-400;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-button {
+  background-color: transparent;
+}
+
+body {
+  /* For Firefox */
+  scrollbar-color: var(--bg-carbonblue-400) var(--bg-carbongray-800);
+  scrollbar-width: thin;
 }
 
 .markdown-body pre {
