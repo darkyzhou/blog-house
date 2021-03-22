@@ -84,19 +84,6 @@ collections:
             label: '语言'
             widget: 'string'
             hint: '博客主要使用的语言'
-          - name: 'contact'
-            label: '联系方式'
-            widget: 'list'
-            fields:
-              - label: '类型'
-                name: 'type'
-                widget: 'select'
-                options:
-                  - { label: '位置', value: 'location' }
-                  - { label: 'GitHub 用户名', value: 'github' }
-              - label: '值'
-                name: 'text'
-                widget: 'string'
           - name: 'analytic'
             label: '统计'
             widget: 'object'
@@ -173,17 +160,30 @@ collections:
         label: '首页组件配置'
         file: 'config/home-page-configuration.yml'
         fields:
+          - name: 'contact'
+            label: '卡片的联系方式'
+            widget: 'list'
+            fields:
+              - label: '类型'
+                name: 'type'
+                widget: 'select'
+                options:
+                  - { label: '位置', value: 'location' }
+                  - { label: 'GitHub 用户名', value: 'github' }
+              - label: '值'
+                name: 'text'
+                widget: 'string'
           - name: 'tabsContent'
             label: '标签页内容'
             widget: 'list'
             fields:
-              - {
-                  label: '图标名',
-                  name: 'icon',
-                  widget: 'string',
-                  hint: '必须填写正确的图标名，否则无法正确显示，具体请见文档'
-                }
-              - { label: '内容', name: 'content', widget: 'markdown' }
+              - label: '图标名'
+                name: 'icon'
+                widget: 'string'
+                hint: '必须填写正确的图标名，否则无法正确显示，具体请见文档'
+              - label: '内容'
+                name: 'content'
+                widget: 'markdown'
       - name: 'footerConfiguration'
         label: '底栏配置'
         file: 'config/footer-configuration.yml'

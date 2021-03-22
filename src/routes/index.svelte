@@ -160,13 +160,17 @@
           {constraints.base.description}
         </p>
         <ul class="list-none pl-0 flex c-gap c-gap-2 text-sm">
-          {#each constraints.base.personalInfo as info}
+          {#each homePageConfiguration.contact as info}
             <li class="mr-2 text-carbongray-300 flex leading-none">
               <svelte:component
                 this="{getIcon(info.type)}"
                 extraClasses="inline-block w-4 h-4 mr-0.5" />
-              {#if info.link}
-                <a class="hover:underline" target="_blank" rel="nofollow" href="{info.link}">
+              {#if info.type === 'github'}
+                <a
+                  class="hover:underline"
+                  target="_blank"
+                  rel="nofollow"
+                  href="https://github.com/{info.text}">
                   {info.text}
                 </a>
               {:else}

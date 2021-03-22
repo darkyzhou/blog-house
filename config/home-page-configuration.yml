@@ -1,5 +1,10 @@
 _markdownFields:
   - 'tabsContent.*.content'
+contact:
+  - type: location
+    text: Guangzhou
+  - type: github
+    text: darkyzhou
 tabsContent:
   - icon: message
     content: 'Here is my self-introduction: ...'
