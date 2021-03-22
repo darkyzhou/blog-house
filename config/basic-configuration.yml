@@ -7,5 +7,10 @@ lang: 'zh-CN'
 analytics:
   gaMeasurementId: ''
   baiduId: ''
-comment:
-  type: utterances
+comments:
+  - type: 'utterances'
+    repository: 'blog-house/blog-house'
+    'issueTerm': 'title'
+    'label': 'Utterances'
+    'theme': 'github-dark'
+  - type: 'none'

@@ -98,16 +98,36 @@ collections:
                 name: 'baiduId'
                 widget: 'string'
                 hint: '百度统计的 ID，参见百度统计的官方文档'
-          - name: 'comment'
-            label: '评论区'
-            widget: 'object'
-            fields:
-              - label: '评论区插件'
-                name: 'type'
-                widget: 'select'
-                options:
-                  - { label: 'Utterances', value: 'utterances' }
-                  - { label: '关闭', value: 'none' }
+          - name: 'comments'
+            label: '评论区实现'
+            - label: '实现'
+              name: 'implementations'
+              widget: 'list'
+              hint: '以这个列表的第一项作为生效配置'
+              types:
+                - label: '无'
+                  name: 'none'
+                - label: 'Utterances'
+                  name: 'utterances'
+                  widget: 'object'
+                  fields:
+                    - label: '仓库名'
+                      name: 'repository'
+                      widget: 'string'
+                      hint: '目前仅支持 GitHub 仓库，格式为：<人名>/<仓库名>，例如：darkyzhou/blog'
+                    - label: 'Issue 名称来源'
+                      name: 'issueTerm'
+                      widget: 'string'
+                      hint: '用于容纳评论的 Issue 名称的来源，可选的值见 utteranc.es'
+                    - label: 'Issue 前缀'
+                      name: 'label'
+                      required: false
+                      widget: 'string'
+                      hint: '用于容纳评论的 Issue 名称前缀'
+                    - label: '主题'
+                      name: 'theme'
+                      widget: 'string'
+                      hint: '控制博客评论区的外观，可选的值见 utteranc.es'
       - name: 'navConfiguration'
         label: '导航栏配置'
         file: 'config/nav-configuration.yml'
@@ -142,20 +162,19 @@ collections:
             label: '标签'
             widget: 'list'
             fields:
-              - {
-                  label: '路径名称',
-                  name: 'slug',
-                  widget: 'string',
-                  hint: '纯英文数字以及下划线组合，如果填写“my-tag”，那么此标签页面的 URL 将会是 “https://xxx/tags/my-tag”',
-                  pattern: ['^[\d\w_-]+$', '纯英文数字以及下划线组合']
-                }
-              - {
-                  label: '名称',
-                  name: 'name',
-                  widget: 'string',
-                  hint: '用于显示在文章的标签部分中，同时也用在编写文章时指定标签'
-                }
-              - { label: '简介', name: 'description', widget: 'text', required: false }
+              - label: '路径名称'
+                name: 'slug'
+                widget: 'string'
+                hint: '纯英文数字以及下划线组合，如果填写“my-tag”，那么此标签页面的 URL 将会是 “https://xxx/tags/my-tag”'
+                pattern: ['^[\d\w_-]+$', '纯英文数字以及下划线组合']
+              - label: '名称'
+                name: 'name'
+                widget: 'string'
+                hint: '用于显示在文章的标签部分中，同时也用在编写文章时指定标签'
+              - label: '简介'
+                name: 'description'
+                widget: 'text'
+                required: false
       - name: 'homePageConfiguration'
         label: '首页组件配置'
         file: 'config/home-page-configuration.yml'
