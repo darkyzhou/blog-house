@@ -1,0 +1,16 @@
+blogName: 'Example Blog'
+authorName: 'darkyzhou'
+url: 'https://example.com'
+description: 'This is an example blog, enjoy it!'
+dir: 'ltr'
+lang: 'zh-CN'
+contact:
+  - type: location
+    text: Guangzhou
+  - type: github
+    text: darkyzhou
+analytics:
+  gaMeasurementId: ''
+  baiduId: ''
+comment:
+  type: utterances

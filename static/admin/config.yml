@@ -28,7 +28,7 @@ collections:
           name: 'excerpt',
           widget: 'text',
           required: false,
-          hint: '字数控制在50到80字效果最佳'
+          hint: '如果摘要留空，则会自动截取内容的前至多 160 个文字作为摘要'
         }
       - { label: '内容', name: 'body', widget: 'markdown' }
   - name: 'pages'
@@ -48,7 +48,79 @@ collections:
       - { label: '内容', name: 'body', widget: 'markdown' }
   - name: 'configuration'
     label: '博客配置'
+    editor:
+      preview: false
     files:
+      - name: 'basicConfiguration'
+        label: '博客基本配置'
+        file: 'config/basic-configuration.yml'
+        fields:
+          - name: 'blogName'
+            label: '博客名称'
+            widget: 'string'
+            hint: '用于显示在导航栏左侧，以及标题、Sitemap 等处'
+          - name: 'authorName'
+            label: '作者名称'
+            widget: 'string'
+            hint: '你的大名，主要显示在首页卡片中'
+          - name: 'url'
+            label: '博客 URL'
+            widget: 'string'
+            hint: '用于 Sitemap 的生成，例子：https://example.com'
+          - name: 'description'
+            label: '简介'
+            widget: 'string'
+            hint: '对于你或你的博客的简要介绍，用于 SEO、首页卡片的文字，长度最好不要超过 10 个汉字'
+          - name: 'dir'
+            label: '书写方向'
+            widget: 'select'
+            hint: '博客主要使用的文字的书写方向，主要用于 Webmanifest 中作为标识'
+            default: 'ltr'
+            options:
+              - { label: '左到右', value: 'ltr' }
+              - { label: '右到左', value: 'rtl' }
+              - { label: '自动', value: 'auto' }
+          - name: 'language'
+            label: '语言'
+            widget: 'string'
+            hint: '博客主要使用的语言'
+          - name: 'contact'
+            label: '联系方式'
+            widget: 'list'
+            fields:
+              - label: '类型'
+                name: 'type'
+                widget: 'select'
+                options:
+                  - { label: '位置', value: 'location' }
+                  - { label: 'GitHub 用户名', value: 'github' }
+              - label: '值'
+                name: 'text'
+                widget: 'string'
+          - name: 'analytic'
+            label: '统计'
+            widget: 'object'
+            hint: '利用谷歌、百度的统计服务，获取你的博客访客情况'
+            required: false
+            fields:
+              - label: 'Google Analytics Measurement ID'
+                name: 'gaMeasurementId'
+                widget: 'string'
+                hint: '谷歌统计的 Measurement ID，参见谷歌统计的官方文档'
+              - label: '百度统计 ID'
+                name: 'baiduId'
+                widget: 'string'
+                hint: '百度统计的 ID，参见百度统计的官方文档'
+          - name: 'comment'
+            label: '评论区'
+            widget: 'object'
+            fields:
+              - label: '评论区插件'
+                name: 'type'
+                widget: 'select'
+                options:
+                  - { label: 'Utterances', value: 'utterances' }
+                  - { label: '关闭', value: 'none' }
       - name: 'navConfiguration'
         label: '导航栏配置'
         file: 'config/nav-configuration.yml'
@@ -96,7 +168,7 @@ collections:
                   widget: 'string',
                   hint: '用于显示在文章的标签部分中，同时也用在编写文章时指定标签'
                 }
-              - { label: '简介', name: 'description', widget: 'string', required: false }
+              - { label: '简介', name: 'description', widget: 'text', required: false }
       - name: 'homePageConfiguration'
         label: '首页组件配置'
         file: 'config/home-page-configuration.yml'
