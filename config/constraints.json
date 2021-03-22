@@ -36,23 +36,5 @@
       "label": "Utterances",
       "theme": "github-dark"
     }
-  },
-  "tag": {
-    "items": [
-      {
-        "slug": "programming",
-        "name": "编程",
-        "description": "一些有关计算机编程的东西"
-      },
-      {
-        "slug": "i-have-no-description",
-        "name": "我没有描述"
-      },
-      {
-        "slug": "web-frontend",
-        "name": "Web 前端",
-        "description": "Web 前端开发相关，涉及 HTML、CSS、JavaScript 等技术的内容"
-      }
-    ]
   }
 }

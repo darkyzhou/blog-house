@@ -1,26 +1,27 @@
 import articles from './articles';
-import constraints from '../config/constraints.json';
+import tagsConfiguration from '../config/tags-configuration.yml';
 
 function resolveTags(articles) {
+  const predefinedTags = tagsConfiguration.tags;
   const tagsMapping = new Map();
 
   articles.forEach((article) =>
-    article.tags?.forEach((tag) => {
-      if (!tagsMapping.has(tag)) {
-        const tagConfig = constraints.tag.items.find((t) => t.name === tag);
-        console.assert(!!tagConfig);
-        tagsMapping.set(tag, {
-          articles: [article],
-          slug: tagConfig.slug,
-          description: tagConfig.description
-        });
-      } else {
-        tagsMapping.get(tag).articles.push(article);
+    article.tags?.forEach((name) => {
+      if (tagsMapping.has(name)) {
+        const tag = tagsMapping.get(name);
+        tag.articles.push(article);
+        return;
       }
+      const predefinedTag = predefinedTags.find((t) => t.name === name);
+      tagsMapping.set(name, {
+        articles: [article],
+        slug: predefinedTag?.slug,
+        description: predefinedTag?.description
+      });
     })
   );
 
-  constraints.tag.items
+  predefinedTags
     .filter((item) => !tagsMapping.has(item.name))
     .forEach((item) =>
       tagsMapping.set(item.name, {
@@ -31,10 +32,10 @@ function resolveTags(articles) {
     );
 
   return [...tagsMapping.entries()].map(([tagName, detail]) => ({
-    slug: detail.slug,
     name: tagName,
     articles: detail.articles,
-    description: detail.description
+    slug: detail.slug || null,
+    description: detail.description || null
   }));
 }
 

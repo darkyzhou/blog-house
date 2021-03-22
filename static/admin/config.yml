@@ -42,16 +42,16 @@ collections:
           label: '页面路径名称',
           name: 'pageSlug',
           widget: 'string',
-          hint: '纯英文数字以及下划线组合，如果填写“test”，那么此页面的 URL 将会是 “https://xxx/test”',
+          hint: '纯英文数字以及下划线组合，如果填写“my-page”，那么此页面的 URL 将会是 “https://xxx/my-page”',
           pattern: ['^[\d\w_-]+$', '纯英文数字以及下划线组合']
         }
       - { label: '内容', name: 'body', widget: 'markdown' }
-  - name: 'specialContent'
-    label: '特殊内容'
+  - name: 'configuration'
+    label: '博客配置'
     files:
       - name: 'footerConfiguration'
         label: '底栏配置'
-        file: 'src/footer-configuration.yml'
+        file: 'config/footer-configuration.yml'
         fields:
           - name: 'leftContent'
             label: '左侧内容'
@@ -59,9 +59,31 @@ collections:
           - name: 'rightContent'
             label: '右侧内容'
             widget: 'markdown'
+      - name: 'tagsConfiguration'
+        label: '标签配置'
+        file: 'config/tags-configuration.yml'
+        fields:
+          - name: 'tags'
+            label: '标签'
+            widget: 'list'
+            fields:
+              - {
+                  label: '路由名称',
+                  name: 'slug',
+                  widget: 'string',
+                  hint: '纯英文数字以及下划线组合，如果填写“my-tag”，那么此标签页面的 URL 将会是 “https://xxx/tags/my-tag”',
+                  pattern: ['^[\d\w_-]+$', '纯英文数字以及下划线组合']
+                }
+              - {
+                  label: '名称',
+                  name: 'name',
+                  widget: 'string',
+                  hint: '用于显示在文章的标签部分中，同时也用在编写文章时指定标签'
+                }
+              - { label: '简介', name: 'description', widget: 'string', required: false }
       - name: 'homePageConfiguration'
         label: '首页组件配置'
-        file: 'src/home-page-configuration.yml'
+        file: 'config/home-page-configuration.yml'
         fields:
           - name: 'tabsContent'
             label: '标签页内容'

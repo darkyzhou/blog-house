@@ -28,7 +28,7 @@
 
 <script>
   import { getIcon } from './icons';
-  import constraints from '../../config/constraints.json';
+  import tagsConfiguration from '../../config/tags-configuration.yml';
 
   export let article;
   export let extraClasses = '';
@@ -68,12 +68,17 @@
         <svelte:component this="{getIcon('tag')}" />
       </span>
       {#each article.tags as tag, j}
-        <a
-          sapper:prefetch
-          href="/tags/{constraints.tag.items.find((t) => t.name === tag).slug}"
-          class="tag text-carbongray-300 hover:underline cursor-pointer">
-          {tag}
-        </a>
+        {#if tagsConfiguration.tags.some((t) => t.name === tag)}
+          <a
+            sapper:prefetch
+            href="/tags/{tagsConfiguration.tags.find((t) => t.name === tag).slug}"
+            class="text-carbongray-300 hover:underline cursor-pointer">
+            {tag}
+          </a>
+        {:else}
+          <span class="text-carbongray-300">{tag}</span>
+        {/if}
+
         {#if j < article.tags.length - 1}
           <span class="pl-0.5 pr-2">,</span>
         {/if}

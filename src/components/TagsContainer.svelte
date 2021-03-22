@@ -51,12 +51,16 @@
   {#each columns as column}
     <div class="flex-1 flex flex-col c-gap c-gap-4">
       {#each column as tag}
-        <a
-          sapper:prefetch
-          href="/tags/{tag.slug}"
-          class="block outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2">
+        {#if tag.slug}
+          <a
+            sapper:prefetch
+            href="/tags/{tag.slug}"
+            class="block outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2">
+            <TagCard tag="{tag}" />
+          </a>
+        {:else}
           <TagCard tag="{tag}" />
-        </a>
+        {/if}
       {/each}
     </div>
   {/each}

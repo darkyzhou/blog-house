@@ -10,7 +10,7 @@
 </style>
 
 <script>
-  import footerConfiguration from '../footer-configuration.yml';
+  import footerConfiguration from '../../config/footer-configuration.yml';
 
   export let extraClasses = '';
 </script>

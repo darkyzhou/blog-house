@@ -1,8 +1,4 @@
 <style>
-  .card {
-    transition: 600ms transform var(--flip);
-  }
-
   @supports (backdrop-filter: none) or (-webkit-backdrop-filter: none) {
     .card {
       backdrop-filter: blur(10px);
@@ -14,6 +10,10 @@
     .card {
       background-color: rgba(38, 38, 38, 0.75);
     }
+  }
+
+  .card {
+    transition: 600ms transform var(--flip);
   }
 
   #checkbox:checked ~ .card {
@@ -87,7 +87,7 @@
 
 <script>
   import constraints from '../../config/constraints.json';
-  import homePageConfiguration from '../home-page-configuration.yml';
+  import homePageConfiguration from '../../config/home-page-configuration.yml';
   import { getIcon } from '../components/icons';
   import { onMount } from 'svelte';
   import TabContainer from '../components/TabContainer.svelte';

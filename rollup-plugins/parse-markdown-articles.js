@@ -84,11 +84,6 @@ function doTransform(mdContent, mdFilename) {
       `parse-markdown-articles.js: Markdown file '${mdFilename}' should includes a title property in the front matter block`
     );
   }
-  if (data.tags?.some((t) => !constraints.tag.items.find((tag) => tag.name === t))) {
-    throw new Error(
-      `parse-markdown-articles.js: Markdown file '${mdFilename}' contains a tag that does not described in 'config/constraints.json', make sure you've added the slug of it in the latter file`
-    );
-  }
 
   const contentHtml = marked(content);
   const pureTextContent = parseTextContent(contentHtml);
