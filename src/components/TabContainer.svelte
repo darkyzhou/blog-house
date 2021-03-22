@@ -14,6 +14,20 @@
   .tabContent > * {
     display: none;
   }
+
+  @media (max-width: 767px) {
+    .tabContent .markdown-body {
+      font-size: 0.875rem !important;
+      line-height: 1.5rem !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .tabContent .markdown-body {
+      font-size: 1rem !important;
+      line-height: 1.8rem !important;
+    }
+  }
 </style>
 
 <script>
@@ -61,9 +75,9 @@
     {/each}
   </ul>
   <div
-    class="tabContent flex-grow p-2 h-full text-carbongray-100 text-sm md:text-base leading-relaxed">
+    class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
     {#each tabContents as tab}
-      <div class="overflow-y-auto h-full">
+      <div class="overflow-y-auto h-full markdown-body">
         {@html tab.contentHtml}
       </div>
     {/each}

@@ -32,7 +32,7 @@
   class="link overflow-hidden grid cursor-pointer {extraClasses}"
   style="grid-template-areas: 'stack'"
   href="{route}">
-  <div class="caption z-10 h-full w-full grid place-items-center" style="grid-area: stack">
+  <div class="caption z-20 h-full w-full grid place-items-center" style="grid-area: stack">
     <span class="text-2xl font-bold">{caption}</span>
   </div>
   <div style="grid-area: stack">

@@ -385,7 +385,7 @@ body {
 
 .markdown-body :checked + .radio-label {
   position: relative;
-  z-index: 1;
+  z-index: 100;
   @apply border-carbonblue-400;
 }
 
@@ -1345,7 +1345,7 @@ pre[data-line] {
 
 pre[class*='language-'] > code[class*='language-'] {
   position: relative;
-  z-index: 1;
+  z-index: 100;
 }
 
 .line-highlight {
@@ -1356,7 +1356,7 @@ pre[class*='language-'] > code[class*='language-'] {
   margin-top: 1em;
   background: #f7ebc6;
   box-shadow: inset 5px 0 0 #f7d87c;
-  z-index: 0;
+  z-index: 100;
   pointer-events: none;
   line-height: inherit;
   white-space: pre;

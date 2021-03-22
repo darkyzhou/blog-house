@@ -15,6 +15,12 @@
     background-size: 16px;
     opacity: 0.25;
   }
+
+  @media (max-width: 640px) {
+    .dots {
+      background-size: 12px;
+    }
+  }
 </style>
 
 <script>
@@ -55,5 +61,5 @@
   <main class="flex-grow flex flex-col items-center z-10">
     <slot />
   </main>
-  <Footer extraClasses="z-10" />
+  <Footer extraClasses="z-10 my-4 sm:m-0" />
 </div>

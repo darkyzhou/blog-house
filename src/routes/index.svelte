@@ -51,15 +51,32 @@
     object-fit: cover;
   }
 
-  @media (max-width: 768px) {
-    .cardContent {
-      max-width: 300px;
+  @media (max-width: 340px) {
+    .card {
+      margin: auto 18px;
+    }
+
+    .cardContent > * {
+      height: 280px;
+    }
+
+    .avatar {
+      max-height: 120px;
+    }
+  }
+
+  @media (min-width: 341px) and (max-width: 768px) {
+    .cardContent > * {
+      width: 300px;
+      height: 320px;
     }
 
     .avatar {
       max-height: 160px;
     }
+  }
 
+  @media (max-width: 768px) {
     .aSideContent {
       grid-template-areas:
         'a'
@@ -70,13 +87,13 @@
   }
 
   @media (min-width: 769px) {
-    .cardContent {
-      max-height: 220px;
-      max-width: 600px;
+    .cardContent > * {
+      height: 220px;
+      width: 600px;
     }
 
     .avatar {
-      max-height: 220px;
+      height: 220px;
     }
 
     .aSideContent {
