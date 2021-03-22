@@ -121,8 +121,8 @@
       <div class="sticky top-8 overflow-x-hidden overflow-y-auto">
         <h1 class="mb-2 font-bold">大纲</h1>
         <TableOfContent
-          extraClasses="pl-4 w-full"
-          extraStyles="max-height: 80vh; max-width: 14em; width: max-content; min-width: 8em;"
+          class="pl-4 w-full"
+          style="max-height: 80vh; max-width: 14em; width: max-content; min-width: 8em;"
           tableOfContent="{article.tableOfContent}"
           highlightedIndex="{highlightedHeadingIndex}" />
       </div>
@@ -131,5 +131,5 @@
 </div>
 
 <BackToTop
-  extraClasses="fixed h-12 w-12 sm:h-16 sm:w-16 bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-16"
+  class="fixed h-12 w-12 sm:h-16 sm:w-16 bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-16"
   show="{showBackToTop}" />

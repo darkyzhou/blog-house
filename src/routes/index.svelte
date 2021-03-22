@@ -181,9 +181,7 @@
       </div>
     </div>
     <div class="bSideContent" style="grid-area: stack;">
-      <TabContainer
-        tabContents="{homePageConfiguration.tabsContent}"
-        extraClasses="w-full h-full" />
+      <TabContainer tabContents="{homePageConfiguration.tabsContent}" class="w-full h-full" />
     </div>
   </div>
 </div>

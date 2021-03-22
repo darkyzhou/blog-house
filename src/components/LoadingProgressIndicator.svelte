@@ -26,7 +26,6 @@
 <script>
   import { afterUpdate } from 'svelte';
 
-  export let extraClasses = '';
   export let loading = false;
 
   let indicator;
@@ -54,4 +53,4 @@
   });
 </script>
 
-<div class="indicator h-0.5 bg-carbonblue-300 {extraClasses}" bind:this="{indicator}"></div>
+<div class="indicator h-0.5 bg-carbonblue-300" bind:this="{indicator}"></div>

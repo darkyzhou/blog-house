@@ -12,7 +12,7 @@
       </h1>
     </a>
     {#if article.printDate || article.tags?.length > 0}
-      <TagsSection article="{article}" extraClasses="font-light text-sm" />
+      <TagsSection article="{article}" class="font-light text-sm" />
     {/if}
   </header>
   {#if article.excerpt}

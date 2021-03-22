@@ -12,7 +12,8 @@
 <script>
   import footerConfiguration from '../../config/footer-configuration.yml';
 
-  export let extraClasses = '';
+  let extraClasses;
+  export { extraClasses as class };
 </script>
 
 <footer class="footer text-carbongray-300 text-sm py-2 px-4 sm:py-4 sm:px-12 flex justify-between flex-wrap {extraClasses}">

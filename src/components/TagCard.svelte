@@ -1,5 +1,6 @@
 <script>
-  export let extraClasses = '';
+  let extraClasses;
+  export { extraClasses as class };
   export let showArticlesCount = true;
   export let tag;
 </script>

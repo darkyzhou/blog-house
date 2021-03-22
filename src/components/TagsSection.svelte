@@ -31,7 +31,8 @@
   import tagsConfiguration from '../../config/tags-configuration.yml';
 
   export let article;
-  export let extraClasses = '';
+  let extraClasses;
+  export { extraClasses as class };
 </script>
 
 <ul

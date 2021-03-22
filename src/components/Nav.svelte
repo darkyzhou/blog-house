@@ -4,7 +4,8 @@
   import navConfiguration from '../../config/nav-configuration.yml';
 
   export let segment;
-  export let extraClasses = '';
+  let extraClasses;
+  export { extraClasses as class };
 </script>
 
 <nav
@@ -38,7 +39,7 @@
         icon="search"
         route="/search"
         active="{segment?.startsWith('search')}"
-        extraClasses="h-full" />
+        class="h-full" />
     </li>
   </ul>
 </nav>

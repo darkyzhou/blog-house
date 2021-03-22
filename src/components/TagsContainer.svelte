@@ -8,8 +8,10 @@
   import { ResizeObserver } from '@juggle/resize-observer';
   import TagCard from './TagCard.svelte';
 
-  export let extraClasses = '';
-  export let extraStyles = '';
+  let extraClasses;
+  export { extraClasses as class };
+  let extraStyles;
+  export { extraStyles as style };
   export let tags;
 
   let columnsContainer;

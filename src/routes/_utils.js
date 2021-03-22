@@ -9,3 +9,7 @@ export function concatPageUrl(pathName) {
   url.pathname = pathName;
   return url.href;
 }
+
+export function getCssSegment(styles) {
+  return `<style type='text/css'>${styles}</style>`;
+}

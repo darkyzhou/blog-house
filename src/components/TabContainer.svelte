@@ -32,8 +32,10 @@
 
 <script>
   import { getIcon } from './icons';
+  import { getCssSegment } from '../routes/_utils';
 
-  export let extraClasses = '';
+  let extraClasses;
+  export { extraClasses as class };
   export let tabContents = [];
 
   $: toggleCss = tabContents
@@ -51,7 +53,7 @@
     )
     .join('');
 
-  $: toggleCssWrapped = `<style type='text/css'>${toggleCss}</style>`;
+  $: toggleCssWrapped = getCssSegment(toggleCss);
 </script>
 
 <svelte:head>

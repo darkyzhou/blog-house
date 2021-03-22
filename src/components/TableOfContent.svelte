@@ -1,8 +1,10 @@
 <script>
   import { stores } from '@sapper/app';
 
-  export let extraClasses = '';
+  let extraClasses;
+  export { extraClasses as class };
   export let extraStyles = '';
+  export { extraStyles as style };
   export let tableOfContent;
   export let highlightedIndex;
 
