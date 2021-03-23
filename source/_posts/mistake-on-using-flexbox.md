@@ -11,7 +11,7 @@ tags:
 
 最近开发某反馈系统的前端，偶然发现顶部导航栏的高度在 MacOS 或 iOS 下的 Safari 中计算异常：
 
-![](/images/mistake-on-using-flexbox/1.png)
+![](/images/uploads/mistake-on-using-flexbox-1.png)
 
 首页的布局以及相关的样式大体如下：
 
