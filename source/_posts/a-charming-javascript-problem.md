@@ -1,5 +1,6 @@
 ---
 title: 如何令 a === a + 1？一道迷人的JS小题目
+slug: a-charming-javascript-problem
 date: 2021-03-02T17:16:38.104Z
 tags:
   - 前端技术
