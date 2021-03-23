@@ -84,7 +84,7 @@ collections:
             label: '语言'
             widget: 'string'
             hint: '博客主要使用的语言'
-          - name: 'analytic'
+          - name: 'analytics'
             label: '统计'
             widget: 'object'
             hint: '利用谷歌、百度的统计服务，获取你的博客访客情况'
