@@ -2,15 +2,25 @@
 title: 关于
 pageSlug: about
 ---
+## 我是谁
 
-### 项目简介
+我叫 Darkyzhou，以前的 ID 是 Darkyoooooo，也可以简写成 Darky。朋友们总是称我为“达克油”，但其实我不会制油。我生于 2001 年，目前就读于广州某高校的软件工程系，最近加入了学院的课程平台的开发团队，成为了其中前端团队的负责人。
 
-[Blog House](https://github.com/blog-house/blog-house) 是一个基于 Web 前端框架 [Sapper](https://sapper.svelte.dev/) 的静态博客生成器，后者基于 [Svelte](https://svelte.dev/) 。
-除此之外，Blog House 还使用了 [Tailwind CSS](https://tailwindcss.com/) 框架，简化了样式代码的复杂度，同时结合 PurgeCSS 的使用，降低了构建产物的体积。
+我熟悉 HTML、CSS、JavaScript 和 TypeScript，以及一些前端工程化的概念，最常用的前端框架是 Angular。短期的目标是尽可能地学习更多有关前端的知识，从框架的原理到团队的建设；长期的目标是学习 Go 语言，将触角伸向后端。
 
-为了提供完善的博客功能、提升用户体验，Blog House 还使用了 [Lunr](https://lunrjs.com/) 和 [Netlify CMS](https://www.netlifycms.org/) 框架，不仅带来了方便快捷的文章、标签搜索功能，还提供了功能强大的在线 Markdown 文章编辑器。
-除此之外，Blog House 还提供了基本的 SEO 优化，例如 `name` 和 `description` 的 meta tag、自动生成的 Sitemap、内置 Google Analytics 和百度统计支持。
+## 我的经历
 
-### 特色
+我成长在粤北的一个小城市里，9 岁那年家里有了第一台电脑。2012 年的初春，我接触到了 Minecraft 这款游戏。
 
-后文见[仓库简介](https://github.com/blog-house/blog-house) 。
+在那个由方块构成的广袤无边的世界，我站在一处小山坡上，俯瞰崇山峻岭、万物之灵，内心受到极大的触动。从那以后 Minecraft 成为了我最喜欢的游戏，我加入过许多服务器，结识了不少有趣的人，也自己建立过服务器，和伙伴共度美好时光。2013 年的暑假，我开始阅读 Minecraft Mod 的编写教程，一脚踏入了编程的大门。在那时，我极度缺少电脑知识，连开发环境都苦苦配置了一个星期。在通读了购买的 Java 入门书籍后，总算对编程有了一个大概的认识，也尝试制作了几个小 Mod。在看到自己的 Mod 成功运行时，我欣喜之余感到了一种莫名的震撼感，即使是这样广袤无边的世界，我都能通过敲击键盘去深刻地影响它、改变它，全凭自己的意志。
+
+但在我准备中考、进入高中之后，我难以再给出足够时间到编程之上。但闲暇之余我仍不时会思考，编程究竟是个多么奇妙的东西。编程是一门技术，却也是一门哲学，给了我解决问题的能力，也给了我考察问题的思维。我常常惊讶于人类能在短短半个多世纪的时间中，用 0 和 1 两个数字构筑起今日宏伟壮观的信息时代。每次思索这些问题时，我的内心里那股对计算机的热爱便会膨胀，坚定了我在大学考入计算机系学习的心。
+
+我的高中生活于 2019 年盛夏被划上句号，几个月后，我又带着书和对编程的热忱进入了大学堂。我和计算机的故事还能讲多少？目前看来，这个问题还未有答案。
+
+## 联系方式
+
+- E-mail: darkyoooooo@gmail.com
+- Github: [https://github.com/darkyzhou](https://github.com/darkyzhou)
+
+欢迎交换友链，请将链接回复到评论区里。
