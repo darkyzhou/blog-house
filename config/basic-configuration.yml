@@ -1,16 +1,16 @@
-blogName: 'Example Blog'
-authorName: 'darkyzhou'
-url: 'https://example.com'
-description: 'This is an example blog, enjoy it!'
-dir: 'ltr'
-language: 'zh-CN'
+blogName: Darky's Blog
+authorName: darkyzhou
+url: https://darkyzhou.net
+description: 别把看重的东西附上无边的价值
+dir: ltr
+language: zh-CN
 analytics:
-  gaMeasurementId: ''
-  baiduId: ''
+  baiduId: f60a9a2b48d8e5dd35145c273edec8ef
+  gaMeasurementId: UA-169813168-1
 comments:
-  - type: 'utterances'
-    repository: 'blog-house/blog-house'
-    issueTerm: 'title'
-    label: ''
-    theme: 'github-dark'
-  - type: 'none'
+  - type: utterances
+    repository: darkyzhou/blog
+    issueTerm: title
+    label: ""
+    theme: github-dark
+  - type: none
