@@ -109,7 +109,7 @@
     <h1 class="text-xl sm:text-2xl md:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
-    <TagsSection article="{article}" extraClasses="mb-6" />
+    <TagsSection article="{article}" class="mb-6" />
     <article id="article" class="w-full mb-24 markdown-body">
       {@html article.html}
     </article>
