@@ -1,6 +1,7 @@
 _markdownFields:
   - 'tabsContent.*.content'
 avatar: '/images/uploads/avatar.jpg'
+background: '/images/uploads/background.jpg'
 contact:
   - type: location
     text: Guangzhou
