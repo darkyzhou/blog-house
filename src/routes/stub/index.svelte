@@ -5,7 +5,7 @@
     await this.fetch('sitemap.xml');
     await this.fetch('robots.txt');
     await this.fetch('lunr-indexes.json');
-    await this.fetch('site.webmanifest');
+    await this.fetch('manifest.json');
     return this.redirect(302, '/');
   }
 </script>
