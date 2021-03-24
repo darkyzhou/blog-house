@@ -5,6 +5,10 @@
     cursor: help;
   }
 
+  .tagsContainer > li:not(:last-child) {
+    margin-right: 1rem;
+  }
+
   .icon {
     width: 16px;
     height: 16px;
@@ -35,8 +39,7 @@
   export { extraClasses as class };
 </script>
 
-<ul
-  class="tagsContainer text-sm sm:text-base list-none p-0 flex flex-wrap c-gap c-gap-2 sm:c-gap-4 {extraClasses}">
+<ul class="tagsContainer text-sm sm:text-base list-none p-0 flex flex-wrap {extraClasses}">
   {#if article.printDate}
     <li title="发表日期">
       <span class="icon">

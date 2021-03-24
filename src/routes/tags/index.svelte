@@ -19,5 +19,5 @@
 
 <TagsContainer
   tags="{tags}"
-  class="mt-4 sm:mt-8 px-4 sm:px-8 lg:px-16 w-full flex-grow"
+  class="pageContainer px-4 sm:px-8 lg:px-16 w-full flex-grow"
   style="max-width: 1000px;" />
