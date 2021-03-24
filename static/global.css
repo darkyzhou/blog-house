@@ -895,7 +895,7 @@ body {
   margin: 0 0.1em;
   border-radius: 4px;
   font-size: 0.95em;
-  @apply bg-carbongray-700;
+  @apply bg-carbongray-800;
 }
 
 .markdown-body pre {
