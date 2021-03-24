@@ -1,8 +1,4 @@
 <style>
-  .homeContainer {
-    background: url('/background.jpg') fixed 50% / cover no-repeat var(--bg-carbongray-900);
-  }
-
   .dotsContainer {
     background: var(--bg-carbongray-900);
   }
@@ -27,6 +23,7 @@
   import Nav from '../components/Nav.svelte';
   import Footer from '../components/Footer.svelte';
   import basicConfiguration from '../../config/basic-configuration.yml';
+  import homeConfiguration from '../../config/home-page-configuration.yml';
   import Analytics from '../components/Analytics.svelte';
   import LoadingProgressIndicator from '../components/LoadingProgressIndicator.svelte';
   import { stores } from '@sapper/app';
@@ -40,6 +37,10 @@
   onMount(() => {
     preloading.subscribe((preloading) => (loading = preloading));
   });
+
+  function makeBackgroundStyle() {
+    return `background: url('${homeConfiguration.background}') fixed 50% / cover no-repeat var(--bg-carbongray-900);`;
+  }
 </script>
 
 <svelte:head>
@@ -51,9 +52,8 @@
 <LoadingProgressIndicator loading="{loading}" />
 
 <div
-  class="min-h-screen flex flex-col text-carbongray-200 {!segment
-    ? 'homeContainer'
-    : 'dotsContainer'}">
+  class="min-h-screen flex flex-col text-carbongray-200 {!segment ? '' : 'dotsContainer'}"
+  style="{segment ? '' : makeBackgroundStyle()}">
   {#if segment}
     <span class="dots"></span>
   {/if}
