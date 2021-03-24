@@ -1,0 +1,33 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js v14
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Build
+      run: |
+          npm i
+          npm run build
+
+    - name: Deploy to OSS
+      uses: fangbinwei/aliyun-oss-website-action@v1
+      with:
+        accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
+        accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
+        bucket: "darky-blog"
+        endpoint: "https://darkyzhou.net"
+        cname: true
+        folder: "__sapper__/export"
+        exclude: |
+          admin/
