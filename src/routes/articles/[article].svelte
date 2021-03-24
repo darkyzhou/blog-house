@@ -104,8 +104,8 @@
   {/if}
 </svelte:head>
 
-<div class="pageContainer flex text-carbongray-200">
-  <div class="lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg flex-grow px-4 sm:px-6 sm:w-auto">
+<div class="pageContainer flex text-carbongray-200 w-full sm:w-auto">
+  <div class="w-full sm:w-auto lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg flex-grow px-4 sm:px-6">
     <h1 class="text-xl sm:text-2xl md:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
