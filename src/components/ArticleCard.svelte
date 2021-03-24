@@ -16,7 +16,7 @@
     {/if}
   </header>
   {#if article.excerpt}
-    <p class="mt-2 text-sm sm:text-base text-carbongray-100 break-all leading-relaxed">
+    <p class="mt-2 text-sm sm:text-base text-carbongray-200 break-all leading-relaxed">
       {article.excerpt}
     </p>
   {/if}
