@@ -26,7 +26,7 @@ jobs:
         accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
         accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
         bucket: "darky-blog"
-        endpoint: "https://darkyzhou.net"
+        endpoint: "https://darky-blog.oss-cn-guangzhou.aliyuncs.com"
         cname: true
         folder: "__sapper__/export"
         exclude: |
