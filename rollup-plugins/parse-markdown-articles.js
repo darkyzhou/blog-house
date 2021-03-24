@@ -7,7 +7,7 @@ const marked = require('./shared/marked-wrapped');
 const parseTextContent = require('parse-html-text-content');
 
 function getReadingTime(wordsCount) {
-  return Math.max(1, wordsCount / 350).toFixed(0);
+  return Math.max(1, wordsCount / 420).toFixed(0);
 }
 
 function getPrintDate(date) {
