@@ -146,7 +146,7 @@
       <img
         alt="头像"
         class="avatar block object-cover"
-        src="avatar.jpg"
+        src="{homePageConfiguration.avatar}"
         draggable="false"
         style="grid-area: a" />
       <div

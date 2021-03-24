@@ -177,6 +177,9 @@ collections:
         label: '首页组件配置'
         file: 'config/home-page-configuration.yml'
         fields:
+          - name: 'avatar'
+            label: '头像'
+            widget: 'image'
           - name: 'contact'
             label: '卡片的联系方式'
             widget: 'list'
