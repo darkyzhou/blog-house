@@ -1,7 +1,7 @@
 ---
-title: 探究DDD在前端开发中的应用：前言
+title: 探究 DDD 在前端开发中的应用：前言
 slug: frontend-with-ddd
-date: 2020-07-31T23:12:54.123Z
+date: 2020-07-27T23:12:54.123Z
 tags:
   - 前端技术
   - DDD

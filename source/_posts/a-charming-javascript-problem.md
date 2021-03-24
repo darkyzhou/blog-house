@@ -1,5 +1,5 @@
 ---
-title: 如何令 a === a + 1？一道迷人的JS小题目
+title: 如何令 a === a + 1？一道迷人的 JS 小题目
 slug: a-charming-javascript-problem
 date: 2021-03-02T17:16:38.104Z
 tags:
@@ -7,6 +7,7 @@ tags:
   - JavaScript
 excerpt: 如何令 a === a + 1 成立？看看笔者的几个思路，以及这个看似简单的问题背后涉及的各种知识！
 ---
+
 ### 前言
 
 最近，网络上出现了一道很有意思的 JavaScript 小题目：

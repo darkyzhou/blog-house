@@ -1,7 +1,7 @@
 ---
 title: 探究 DDD 在前端开发中的应用（一）：从软件开发的本质讲起
 slug: frontend-with-ddd-1
-date: 2020-07-31T23:13:54.123Z
+date: 2020-07-28T23:13:54.123Z
 tags:
   - 前端技术
   - DDD

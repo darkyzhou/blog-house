@@ -6,10 +6,8 @@ tags:
   - 前端技术
   - CSS
   - HTML
-excerpt: 通过一个简单的导航栏布局问题看CSS Grid布局的强大作用，以及背后的Box Alignment规范。
+excerpt: 通过一个简单的导航栏布局问题看 CSS Grid 布局的强大作用，以及背后的 Box Alignment 规范。
 ---
-
-## 绝对布局的“现代接任者”？——记 CSS Grid 布局的一个妙用
 
 ### 顶部导航栏问题
 

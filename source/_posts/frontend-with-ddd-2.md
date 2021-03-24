@@ -1,7 +1,7 @@
 ---
 title: 探究 DDD 在前端开发中的应用（二）：什么是 DDD
 slug: frontend-with-ddd-2
-date: 2020-07-31T23:14:54.123Z
+date: 2020-07-29T23:14:54.123Z
 tags:
   - 前端技术
   - DDD
