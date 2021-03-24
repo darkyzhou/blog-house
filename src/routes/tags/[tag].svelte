@@ -23,7 +23,7 @@
   {/if}
 </svelte:head>
 
-<div class="max-w-screen-md mx-auto px-8">
+<div class="pageContainer max-w-screen-md mx-auto px-8">
   <TagCard tag="{tag}" showArticlesCount="{false}" class="my-8" />
   {#each tag.articles as article, i}
     {#if i}

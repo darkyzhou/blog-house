@@ -104,7 +104,7 @@
   {/if}
 </svelte:head>
 
-<div class="mt-4 flex text-carbongray-200">
+<div class="pageContainer flex text-carbongray-200">
   <div class="lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg flex-grow px-4 sm:px-6 sm:w-auto">
     <h1 class="text-xl sm:text-2xl md:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
@@ -122,7 +122,7 @@
         <h1 class="mb-2 font-bold">大纲</h1>
         <TableOfContent
           class="pl-4 w-full"
-          style="max-height: 80vh; max-width: 14em; width: max-content; min-width: 8em;"
+          style="max-height: 85vh; max-width: 14em; width: max-content; min-width: 8em;"
           tableOfContent="{article.tableOfContent}"
           highlightedIndex="{highlightedHeadingIndex}" />
       </div>

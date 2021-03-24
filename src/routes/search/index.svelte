@@ -88,7 +88,7 @@
     async></script>
 </svelte:head>
 
-<div class="mt-4 px-4 max-w-screen-sm">
+<div class="pageContainer px-4 max-w-screen-sm">
   <input
     type="text"
     class="{fetchingIndexes || fetchErrorMessage

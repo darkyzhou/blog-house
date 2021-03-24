@@ -1,5 +1,5 @@
 <style>
-  .indicator {
+  :global(.indicator) {
     position: fixed;
     left: 0;
     pointer-events: none;
@@ -10,13 +10,13 @@
     right: 100%;
   }
 
-  .indicator--loading {
-    transition-duration: 1s, 3s;
+  :global(.indicator--loading) {
+    transition-duration: 1s, 2s;
     opacity: 1;
     right: 5%;
   }
 
-  .indicator--finished {
+  :global(.indicator--finished) {
     transition-duration: 900ms, 600ms;
     opacity: 0;
     right: 0;

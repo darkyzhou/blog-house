@@ -19,7 +19,7 @@
   <title>{makeTitle('文章')}</title>
 </svelte:head>
 
-<div class="max-w-screen-md mx-auto mt-4 sm:mt-8 px-4 sm:px-8">
+<div class="max-w-screen-md mx-auto pageContainer px-4 sm:px-8">
   {#each filteredArticles as article, i}
     {#if i}
       <hr class="border-carbonblue-50 mx-auto w-1/2 opacity-25 my-6 sm:my-12" />

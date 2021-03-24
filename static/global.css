@@ -66,6 +66,10 @@ body {
   scrollbar-width: thin;
 }
 
+.pageContainer {
+  @apply my-4 sm:my-8;
+}
+
 .markdown-body pre {
   position: relative;
 }
