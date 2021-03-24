@@ -1,6 +1,7 @@
 <style>
   :global(.indicator) {
     position: fixed;
+    height: 3px;
     left: 0;
     pointer-events: none;
     will-change: opacity, right;
@@ -53,4 +54,4 @@
   });
 </script>
 
-<div class="indicator h-0.5 bg-carbonblue-300" bind:this="{indicator}"></div>
+<div class="indicator bg-carbonblue-400" bind:this="{indicator}"></div>
