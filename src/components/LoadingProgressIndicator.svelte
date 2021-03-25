@@ -1,7 +1,7 @@
 <style>
   :global(.indicator) {
     position: fixed;
-    height: 3px;
+    height: 4px;
     left: 0;
     pointer-events: none;
     will-change: opacity, right;
@@ -11,8 +11,14 @@
     right: 100%;
   }
 
+  @media (max-width: 768px) {
+    :global(.indicator) {
+      height: 6px;
+    }
+  }
+
   :global(.indicator--loading) {
-    transition-duration: 1s, 2s;
+    transition-duration: 1s, 1600ms;
     opacity: 1;
     right: 5%;
   }
