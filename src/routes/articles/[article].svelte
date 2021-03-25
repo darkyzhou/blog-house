@@ -27,16 +27,12 @@
   let titleElement;
   let showBackToTop = false;
   let highlightedHeadingIndex = 0;
-
   let utterancesContainer;
+  let scrollToTopListener;
+  let tableOfContentListener;
 
   function checkShouldScrollToTop() {
     showBackToTop = titleElement?.getBoundingClientRect().top < 0;
-  }
-
-  function initScrollToTop() {
-    document.addEventListener('scroll', () => checkShouldScrollToTop(), false);
-    checkShouldScrollToTop();
   }
 
   function updateHighlightedHeadingIndex(elements = []) {
@@ -46,20 +42,36 @@
       if (nextTop > 16 || (i === elements.length - 1 && element.getBoundingClientRect().top < 16)) {
         if (highlightedHeadingIndex !== i) {
           highlightedHeadingIndex = i;
-          window.history.replaceState(null, '', `${location.href.split('#')[0]}#${element.id}`);
+          console.dir(window.history.state);
+          window.history.replaceState(
+            window.history.state,
+            '',
+            `${location.href.split('#')[0]}#${element.id}`
+          );
         }
         break;
       }
     }
   }
 
-  function initTableOfContent() {
+  function scrollEvent() {
+    scrollToTopListener = () => checkShouldScrollToTop();
+    document.addEventListener('scroll', scrollToTopListener, false);
+
     const elements = Array.from(
       document.querySelectorAll(
         ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map((item) => `.markdown-body > ${item}`).join(', ')
       )
     );
-    document.addEventListener('scroll', () => updateHighlightedHeadingIndex(elements), false);
+    tableOfContentListener = () => updateHighlightedHeadingIndex(elements);
+    document.addEventListener('scroll', tableOfContentListener, false);
+
+    return {
+      destroy: () => {
+        document.removeEventListener('scroll', scrollToTopListener);
+        document.removeEventListener('scroll', tableOfContentListener);
+      }
+    };
   }
 
   function initUtterances(configuration) {
@@ -88,8 +100,7 @@
   }
 
   onMount(() => {
-    initScrollToTop();
-    initTableOfContent();
+    checkShouldScrollToTop();
     initCodeCopying();
     if (basicConfiguration.comments[0]?.type === 'utterances') {
       initUtterances(basicConfiguration.comments[0]);
@@ -104,8 +115,9 @@
   {/if}
 </svelte:head>
 
-<div class="pageContainer flex text-carbongray-200 w-full sm:w-auto">
-  <div class="w-full sm:w-auto lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg flex-grow px-4 sm:px-6">
+<div class="pageContainer flex text-carbongray-200 w-full sm:w-auto" use:scrollEvent>
+  <div
+    class="w-full sm:w-auto lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg flex-grow px-4 sm:px-6">
     <h1 class="text-xl sm:text-2xl md:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
