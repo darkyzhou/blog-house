@@ -89,7 +89,7 @@
     type="text"
     class="{fetchingIndexes || fetchErrorMessage
       ? 'hidden pointer-events-none'
-      : 'block'} mx-auto bg-transparent outline-none border-carbongray-200 border-2 py-2 px-4"
+      : 'block'} mx-auto bg-transparent outline-none border-carbongray-200 border-2 rounded-none py-2 px-4"
     placeholder="搜索页面、文章、标签..."
     bind:this="{searchInput}" />
   {#if fetchingIndexes}
