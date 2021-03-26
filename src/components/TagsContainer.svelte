@@ -4,7 +4,6 @@
 </script>
 
 <script>
-  import { onMount } from 'svelte';
   import { ResizeObserver } from '@juggle/resize-observer';
   import TagCard from './TagCard.svelte';
 
@@ -14,9 +13,9 @@
   export { extraStyles as style };
   export let tags;
 
-  let columnsContainer;
   let columnCount;
   let columns = [tags]; // initialize with tags for ssr because onMount is client-only
+  let observer;
 
   function checkAndUpdateColumns(width) {
     const newColumnCount = Math.min(
@@ -36,20 +35,23 @@
     columns = newColumns;
   }
 
-  onMount(() => {
-    const observer = new ResizeObserver((entries) => {
+  function observeResize(element) {
+    observer = new ResizeObserver((entries) => {
       const width =
         entries?.[0].contentBoxSize?.[0]?.inlineSize || entries?.[0]?.contentRect?.width;
       checkAndUpdateColumns(width);
     });
-    observer.observe(columnsContainer);
-  });
+    observer.observe(element);
+    return {
+      destroy: () => observer.disconnect()
+    };
+  }
 </script>
 
 <div
-  bind:this="{columnsContainer}"
   class="flex c-gap c-gap-6 sm:c-gap-8 {extraClasses}"
-  style="{extraStyles}">
+  style="{extraStyles}"
+  use:observeResize>
   {#each columns as column}
     <div class="flex-1 flex flex-col c-gap c-gap-4">
       {#each column as tag}
