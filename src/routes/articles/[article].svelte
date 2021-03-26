@@ -42,7 +42,6 @@
       if (nextTop > 16 || (i === elements.length - 1 && element.getBoundingClientRect().top < 16)) {
         if (highlightedHeadingIndex !== i) {
           highlightedHeadingIndex = i;
-          console.dir(window.history.state);
           window.history.replaceState(
             window.history.state,
             '',
