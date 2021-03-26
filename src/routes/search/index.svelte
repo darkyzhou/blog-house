@@ -27,6 +27,7 @@
   import TagsContainer from '../../components/TagsContainer.svelte';
   import { getIcon } from '../../components/icons';
   import { makeTitle } from '../_utils';
+  import lunr from 'lunr';
 
   export let allArticles;
   export let allTags;
@@ -81,11 +82,6 @@
 
 <svelte:head>
   <title>{makeTitle('搜索')}</title>
-  <script
-    src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"
-    integrity="sha256-DFDZACuFeAqEKv/7Vnu1Tt5ALa58bcWZegGGFNgET8g="
-    crossorigin="anonymous"
-    async></script>
 </svelte:head>
 
 <div class="pageContainer px-4 max-w-screen-sm">
