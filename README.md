@@ -3,10 +3,11 @@
 </p>
 <h2 align="center">Blog House</h2>
 <p align="center">
+  <img alt="GitHub" src="https://img.shields.io/github/license/blog-house/blog-house">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/blog-house/blog-house">
   <img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/blog-house/blog-house">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blog-house/blog-house?style=social">
   <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/blog-house/blog-house">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blog-house/blog-house?style=social">
 </p>
 
 ### 简介
