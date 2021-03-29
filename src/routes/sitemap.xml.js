@@ -20,10 +20,12 @@ export async function get(request, response) {
       url: concatPageUrl(article.slug),
       lastmod: new Date(article.lastModifiedAt).toISOString()
     })),
-    ...tags.map((tag) => ({
-      url: concatPageUrl(`tags/${tag.slug}`),
-      lastmod: now
-    }))
+    ...tags
+      .filter((t) => t.slug)
+      .map((tag) => ({
+        url: concatPageUrl(`tags/${tag.slug}`),
+        lastmod: now
+      }))
   );
 
   const content = items

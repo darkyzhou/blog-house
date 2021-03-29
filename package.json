@@ -1,7 +1,7 @@
 {
   "name": "blog-house",
   "description": "A static site generator for personal blogs based on Sapper.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": false,
   "scripts": {
     "dev": "node --inspect node_modules/sapper/dist/cli.js dev",
