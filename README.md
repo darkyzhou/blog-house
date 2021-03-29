@@ -2,8 +2,12 @@
   <img width="300" src="https://github.com/blog-house/blog-house/raw/master/logo.png" alt="Blog house logo">
 </p>
 <h2 align="center">Blog House</h2>
-
-### 
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/blog-house/blog-house">
+  <img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/release/blog-house/blog-house">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/blog-house/blog-house?style=social">
+  <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/blog-house/blog-house">
+</p>
 
 ### 简介
 
