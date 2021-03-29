@@ -3,7 +3,7 @@
 </p>
 <h2 align="center">Blog House</h2>
 
-### 正在开发中，项目尚不可用，敬请期待！
+### 
 
 ### 简介
 
@@ -27,12 +27,24 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 
 ### Demo
 
-请看作者的个人博客：[Darky's Blog](https://darkyzhou.net)。
+请见作者的个人博客：[Darky's Blog](https://darkyzhou.net)。
 
 ### 安装
 
-待补
+请见 Wiki 中的[安装方法](https://github.com/blog-house/blog-house/wiki/%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95)。
 
 ### Roadmap
 
 目前，Blog house 仍处于早期阶段，还有许多有用的功能没有来得及实现：
+
+| 功能                      | 完成情况 |
+| ------------------------- | -------- |
+| 文章列表页面左侧的时间轴  | 🚧 工作中 |
+| 文章页面点击图片放大      | 🚧 工作中 |
+| 支持 RSS                  | 🚧 工作中 |
+| 使用 Netlify CMS 管理图标 | 🚧 工作中 |
+| 文章页分页                | 📅 计划中 |
+| 文章分类（Category）      | 📅 计划中 |
+
+如果你有好的Good idea，欢迎发表 Issue！
+
