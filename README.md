@@ -36,7 +36,7 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 
 ### 安装
 
-请见 Wiki 中的[安装方法](https://github.com/blog-house/blog-house/wiki/%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95)。
+请见 Wiki 中的[安装方法](https://github.com/blog-house/blog-house/wiki/安装-&-配置方法)。
 
 ### Roadmap
 
