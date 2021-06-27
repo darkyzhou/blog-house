@@ -1,5 +1,6 @@
 import articles from './articles';
 import tagsConfiguration from '../config/tags-configuration.yml';
+import { slugify } from 'transliteration';
 
 function resolveTags(articles) {
   const predefinedTags = tagsConfiguration.tags;
@@ -34,8 +35,8 @@ function resolveTags(articles) {
   return [...tagsMapping.entries()].map(([tagName, detail]) => ({
     name: tagName,
     articles: detail.articles,
-    slug: detail.slug || null,
-    description: detail.description || null
+    slug: detail.slug || slugify(tagName),
+    description: detail.description || '暂无描述'
   }));
 }
 

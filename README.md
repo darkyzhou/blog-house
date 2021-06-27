@@ -23,7 +23,7 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 
 1. 编译速度快，产物体积小。Svelte 项目的编译产物仅包含框架自身的一些工具代码，并不像 React、Vue 等流行的框架那样还包含体积庞大的框架运行时。
 2. 源代码结构简单，高度可自定义。它使用 `routes` 文件夹下的各个源文件来表示网页路由、使用 `components` 文件夹存放各种可复用的组件源文件、使用 `source` 存放所有文章、页面的源 Markdown 文件。
-3. 配置简单。用户只需 fork 本仓库，然后 clone 到本地，再运行初始化脚本即可进行交互式配置。整个过程十分钟之内就能完成。
+3. 配置简单。博客几乎所有的配置都可以在网页上直接配置，借助 Netlify CMS 的帮助。
 4. 自带的主题含有功能完整的各种页面。例如包含悬浮大纲栏目、评论功能的文章页，以及含有搜索、排序功能的文章列表页。
 5. 自带 Netlify CMS，用户只需使用浏览器打开它，就能在线编写、修改文章和页面，保存的修改会由 Netlify 的 Bot 自动更新到 Github 仓库中，同时借助 Github Actions 的帮助运行构建，在数分钟之内上线修改。整个过程不需要用户手动操作。
 6. 自带基本的 SEO 优化，例如 `name` 和 `description` 的 meta tag、自动生成的 Sitemap、内置 Google Analytics 和百度统计支持。
@@ -36,14 +36,20 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 
 ### 安装
 
-请见 Wiki 中的[安装方法](https://github.com/blog-house/blog-house/wiki/%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95)。
+请见 Wiki 中的[安装方法](https://github.com/blog-house/blog-house/wiki/安装-&-配置方法)。
+
+### 关于名称
+
+为什么本项目叫 Blog House？其实 Blog House 指的是一个很小众的 EDM（电子舞曲） 流派，它脱胎于 French House，在 Bass 的使用上拥抱 Electro，听起来总是有一股电气打击的感觉。
+
+不过对于 House 音乐而言，本人其实更喜欢 Deep House，它们节奏更加舒缓、意境颇为深远。这里推荐一下 Haywyre 的《Do You Don't You》。
 
 ### Roadmap
 
 目前，Blog house 仍处于早期阶段，还有许多有用的功能没有来得及实现：
 
-| 功能                      | 完成情况 |
-| ------------------------- | -------- |
+| 功能                      | 完成情况  |
+| ------------------------- | --------- |
 | 文章列表页面左侧的时间轴  | 🚧 工作中 |
 | 文章页面点击图片放大      | 🚧 工作中 |
 | 支持 RSS                  | 🚧 工作中 |
@@ -51,5 +57,4 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 | 文章页分页                | 📅 计划中 |
 | 文章分类（Category）      | 📅 计划中 |
 
-如果你有好的Good idea，欢迎发表 Issue！
-
+如果你有好的 good idea，欢迎[发表 issue](https://github.com/blog-house/blog-house/issues/new)！
