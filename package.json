@@ -14,7 +14,8 @@
     "compression": "^1.7.1",
     "polka": "next",
     "prismjs": "^1.23.0",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "transliteration": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
