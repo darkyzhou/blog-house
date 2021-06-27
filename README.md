@@ -38,12 +38,18 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 
 请见 Wiki 中的[安装方法](https://github.com/blog-house/blog-house/wiki/安装-&-配置方法)。
 
+### 关于名称
+
+为什么本项目叫 Blog House？其实 Blog House 指的是一个很小众的 EDM（电子舞曲） 流派，它脱胎于 French House，在 Bass 的使用上拥抱 Electro，听起来总是有一股电气打击的感觉。
+
+不过对于 House 音乐而言，本人其实更喜欢 Deep House，它们节奏更加舒缓、意境颇为深远。这里推荐一下 Haywyre 的《Do You Don't You》。
+
 ### Roadmap
 
 目前，Blog house 仍处于早期阶段，还有许多有用的功能没有来得及实现：
 
-| 功能                      | 完成情况 |
-| ------------------------- | -------- |
+| 功能                      | 完成情况  |
+| ------------------------- | --------- |
 | 文章列表页面左侧的时间轴  | 🚧 工作中 |
 | 文章页面点击图片放大      | 🚧 工作中 |
 | 支持 RSS                  | 🚧 工作中 |
@@ -51,5 +57,4 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 | 文章页分页                | 📅 计划中 |
 | 文章分类（Category）      | 📅 计划中 |
 
-如果你有好的Good idea，欢迎发表 Issue！
-
+如果你有好的 good idea，欢迎[发表 issue](https://github.com/blog-house/blog-house/issues/new)！
