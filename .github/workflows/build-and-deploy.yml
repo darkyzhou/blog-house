@@ -21,7 +21,7 @@ jobs:
           npm run build
 
     - name: Deploy to OSS
-      uses: fangbinwei/aliyun-oss-website-action@v1
+      uses: docker://fangbinwei/aliyun-oss-website-action:v1
       with:
         accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
         accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
@@ -31,3 +31,5 @@ jobs:
         folder: "__sapper__/export"
         exclude: |
           admin/
+        otherCacheControl: "public"
+        imageCacheControl: "public"
