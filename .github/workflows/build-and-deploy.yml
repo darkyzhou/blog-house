@@ -21,7 +21,7 @@ jobs:
           npm run build
 
     - name: Deploy to OSS
-      uses: docker://fangbinwei/aliyun-oss-website-action:v1
+      uses: fangbinwei/aliyun-oss-website-action@v1
       with:
         accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
         accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
