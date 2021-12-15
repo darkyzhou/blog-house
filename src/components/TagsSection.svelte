@@ -75,7 +75,7 @@
       {#each article.tags as tag, j}
         {#if tagsConfiguration.tags.some((t) => t.name === tag)}
           <a
-            sapper:prefetch
+            sveltekit:prefetch
             href="/tags/{tagsConfiguration.tags.find((t) => t.name === tag).slug}"
             class="text-carbongray-300 hover:underline cursor-pointer">
             {tag}

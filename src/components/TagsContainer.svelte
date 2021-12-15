@@ -53,7 +53,7 @@
       {#each column as tag}
         {#if tag.slug}
           <a
-            sapper:prefetch
+            sveltekit:prefetch
             href="/tags/{tag.slug}"
             class="block outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2">
             <TagCard tag="{tag}" />

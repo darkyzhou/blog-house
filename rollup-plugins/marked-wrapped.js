@@ -1,7 +1,8 @@
-const marked = require('marked');
-const prism = require('prismjs');
+import marked from 'marked';
+import shiki from 'shiki';
 
 const renderer = new marked.Renderer();
+const highlighter = await shiki.getHighlighter({});
 
 const originalLinkRenderer = renderer.link;
 renderer.link = (href, title, text) => {
@@ -24,16 +25,9 @@ renderer.code = (code, info, escaped) => {
 };
 
 const highlight = (code, lang) => {
-  if (!prism.languages[lang]) {
-    return code;
-  } else {
-    return prism.highlight(code, prism.languages[lang], lang);
-  }
+  return highlighter.codeToHtml(code, { lang });
 };
-
-// load all supported language from prismjs
-require('prismjs/components/')();
 
 marked.setOptions({ renderer, highlight });
 
-module.exports = marked;
+export default marked;

@@ -6,7 +6,7 @@
 
 <article>
   <header>
-    <a sapper:prefetch href="/articles/{article.slug}">
+    <a sveltekit:prefetch href="/articles/{article.slug}">
       <h1 class="mb-2 text-xl sm:text-2xl text-carbonblue-400 hover:underline">
         {article.title}
       </h1>

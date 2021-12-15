@@ -1,6 +1,5 @@
-module.exports = {
-  purge: false, // we use @fullhuman/postcss-purgecss to purge unused css instead
-  darkMode: 'media', // or 'media' or 'class'
+export default {
+  darkMode: 'media',
   theme: {
     extend: {
       colors: {
@@ -30,13 +29,5 @@ module.exports = {
         }
       }
     }
-  },
-  variants: {
-    extend: {}
-  },
-  plugins: [
-    require('tailwindcss-gap')({
-      prefix: 'c-' // defaults to 'c-'
-    })
-  ]
+  }
 };

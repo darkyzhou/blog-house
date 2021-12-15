@@ -7,7 +7,8 @@ ${robotsTxtConfiguration.additionalContent.trim()}
 Sitemap: ${concatPageUrl('sitemap.xml')}
 `;
 
-export async function get(request, response) {
-  response.writeHead(200, { 'Content-Type': 'plain/text' });
-  response.end(sitemapContent.trimLeft());
+export async function get() {
+  return {
+    body: sitemapContent.trimLeft()
+  };
 }

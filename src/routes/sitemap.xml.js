@@ -4,9 +4,7 @@ import basicConfiguration from '../../config/basic-configuration.yml';
 import sitemapXmlConfiguration from '../../config/sitemap-xml-configuration.yml';
 import { concatPageUrl } from './_utils';
 
-export async function get(request, response) {
-  response.writeHead(200, { 'Content-Type': 'application/xml' });
-
+export async function get() {
   const now = new Date().toISOString();
   const items = [];
 
@@ -32,10 +30,7 @@ export async function get(request, response) {
     .map((item) => `<url><loc>${item.url}</loc><lastmod>${item.lastmod}</lastmod></url>`)
     .join('');
 
-  response.end(
-    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${content}
-    ${sitemapXmlConfiguration.additionalContent.trim()}
-    </urlset>`
-  );
+  return {
+    body: `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${content}${sitemapXmlConfiguration.additionalContent.trim()}</urlset>`
+  };
 }

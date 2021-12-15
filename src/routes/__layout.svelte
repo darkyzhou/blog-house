@@ -1,4 +1,4 @@
-<style>
+<style windi:preflights:global windi:safelist:global>
   .dotsContainer {
     background: var(--bg-carbongray-900);
   }
@@ -26,16 +26,16 @@
   import homeConfiguration from '../../config/home-page-configuration.yml';
   import Analytics from '../components/Analytics.svelte';
   import LoadingProgressIndicator from '../components/LoadingProgressIndicator.svelte';
-  import { stores } from '@sapper/app';
   import { onMount } from 'svelte';
+  import { getStores } from '$app/stores';
 
   export let segment;
 
-  const { preloading } = stores();
+  const { navigating } = getStores();
   let loading = false;
 
   onMount(() => {
-    preloading.subscribe((preloading) => (loading = preloading));
+    navigating.subscribe((val) => (loading = !!val));
   });
 
   function makeBackgroundStyle() {

@@ -1,6 +1,6 @@
-const yaml = require('@rollup/plugin-yaml');
-const objectPath = require('object-path');
-const marked = require('./shared/marked-wrapped');
+import yaml from '@rollup/plugin-yaml';
+import objectPath from 'object-path';
+import marked from './marked-wrapped.js';
 
 function range(to) {
   let result = [];

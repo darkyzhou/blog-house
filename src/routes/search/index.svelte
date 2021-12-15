@@ -12,12 +12,14 @@
 </style>
 
 <script context="module">
-  export async function preload({ params, query }) {
-    const articlesResponse = await this.fetch('data/articles.json');
+  export async function load({ fetch }) {
+    const articlesResponse = await fetch('data/articles.json');
     const articles = await articlesResponse.json();
-    const tagsResponse = await this.fetch('data/tags.json');
+    const tagsResponse = await fetch('data/tags.json');
     const tags = await tagsResponse.json();
-    return { allArticles: articles, allTags: tags };
+    return {
+      props: { allArticles: articles, allTags: tags }
+    };
   }
 </script>
 
@@ -25,9 +27,7 @@
   import { onMount } from 'svelte';
   import ArticleCard from '../../components/ArticleCard.svelte';
   import TagsContainer from '../../components/TagsContainer.svelte';
-  import { getIcon } from '../../components/icons';
   import { makeTitle } from '../_utils';
-  import lunr from 'lunr';
 
   export let allArticles;
   export let allTags;
@@ -65,18 +65,18 @@
   }
 
   onMount(async () => {
-    try {
-      const response = await fetch('/lunr-indexes.json');
-      const indexes = await response.json();
-      articleIdx = lunr.Index.load(JSON.parse(indexes['article']));
-      pageIdx = lunr.Index.load(JSON.parse(indexes['page']));
-      tagIdx = lunr.Index.load(JSON.parse(indexes['tag']));
-      initInputHandler();
-    } catch (error) {
-      fetchErrorMessage = error.message;
-    } finally {
-      fetchingIndexes = false;
-    }
+    // try {
+    //   const response = await fetch('/lunr-indexes.json');
+    //   const indexes = await response.json();
+    //   articleIdx = lunr.Index.load(JSON.parse(indexes['article']));
+    //   pageIdx = lunr.Index.load(JSON.parse(indexes['page']));
+    //   tagIdx = lunr.Index.load(JSON.parse(indexes['tag']));
+    //   initInputHandler();
+    // } catch (error) {
+    //   fetchErrorMessage = error.message;
+    // } finally {
+    //   fetchingIndexes = false;
+    // }
   });
 </script>
 

@@ -1,10 +1,10 @@
-const path = require('path');
-const matter = require('gray-matter');
-const { format } = require('date-fns');
-const htmlParser = require('html5parser');
-const fs = require('fs');
-const marked = require('./shared/marked-wrapped');
-const parseTextContent = require('parse-html-text-content');
+import path from 'path';
+import matter from 'gray-matter';
+import { format } from 'date-fns';
+import htmlParser from 'html5parser';
+import fs from 'fs';
+import parseTextContent from 'parse-html-text-content';
+import marked from './marked-wrapped.js';
 
 function getReadingTime(wordsCount) {
   return Math.max(1, wordsCount / 420).toFixed(0);
@@ -134,6 +134,7 @@ function checkMarkdownFile(code, id) {
 }
 
 export default () => ({
+  name: 'markdown',
   transform(code, id) {
     if (!id.endsWith('.md')) {
       return null;

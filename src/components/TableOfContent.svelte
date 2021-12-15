@@ -1,5 +1,5 @@
 <script>
-  import { stores } from '@sapper/app';
+  import { getStores } from '$app/stores';
 
   let extraClasses;
   export { extraClasses as class };
@@ -8,7 +8,7 @@
   export let tableOfContent;
   export let highlightedIndex;
 
-  const { page } = stores();
+  const { page } = getStores();
 
   let resolved;
   $: {
