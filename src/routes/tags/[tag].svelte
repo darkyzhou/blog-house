@@ -1,7 +1,7 @@
 <script context="module">
   export async function load({ page, fetch }) {
     const tagSlug = page.params.tag;
-    const response = await fetch('data/tags.json');
+    const response = await fetch('/data/tags.json');
     const tags = await response.json();
     const targetTag = tags.find((t) => t.slug === tagSlug);
     return { props: { targetTag } };
@@ -23,7 +23,7 @@
   {/if}
 </svelte:head>
 
-<div class="pageContainer max-w-screen-md mx-auto px-8">
+<div class="my-4 sm:my-8 max-w-screen-md mx-auto px-8">
   <TagCard tag="{tag}" showArticlesCount="{false}" class="my-8" />
   {#each tag.articles as article, i}
     {#if i}

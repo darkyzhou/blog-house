@@ -7,7 +7,7 @@
 <script context="module">
   export async function load({ page, fetch }) {
     const articleSlug = page.params.article;
-    const response = await fetch(`data/articles/${articleSlug}.json`);
+    const response = await fetch(`/data/articles/${articleSlug}.json`);
     const article = await response.json();
     return { props: { article } };
   }
@@ -114,13 +114,13 @@
   {/if}
 </svelte:head>
 
-<div class="pageContainer flex text-carbongray-200 w-full sm:w-auto" use:scrollEvent>
+<div class="my-4 sm:my-8 flex text-carbongray-200 w-full sm:w-auto" use:scrollEvent>
   <div
     class="w-full sm:w-auto lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg flex-grow px-4 sm:px-6">
     <h1 class="text-xl sm:text-2xl md:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
-    <TagsSection article="{article}" class="mb-6" />
+    <TagsSection article="{article}" />
     <article id="article" class="mb-24 markdown-body">
       {@html article.html}
     </article>

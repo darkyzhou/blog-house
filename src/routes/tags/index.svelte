@@ -1,6 +1,6 @@
 <script context="module">
   export async function load({ fetch }) {
-    const response = await fetch('data/tags.json');
+    const response = await fetch('/data/tags.json');
     const tags = await response.json();
     return { props: { tags } };
   }
@@ -19,5 +19,5 @@
 
 <TagsContainer
   tags="{tags}"
-  class="pageContainer px-4 sm:px-8 lg:px-16 w-full flex-grow"
+  class="my-4 sm:my-8 px-4 sm:px-8 lg:px-16 w-full flex-grow"
   style="max-width: 1000px;" />

@@ -47,9 +47,9 @@
   }
 </script>
 
-<div class="flex c-gap c-gap-6 sm:c-gap-8 {extraClasses}" style="{extraStyles}" use:observeResize>
+<div class="flex gap-6 sm:gap-8 {extraClasses}" style="{extraStyles}" use:observeResize>
   {#each columns as column}
-    <div class="flex-1 flex flex-col c-gap c-gap-4">
+    <div class="flex-1 flex flex-col gap-4">
       {#each column as tag}
         {#if tag.slug}
           <a

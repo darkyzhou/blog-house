@@ -4,7 +4,6 @@ const c = [
 	() => import("../../../src/routes/index.svelte"),
 	() => import("../../../src/routes/articles/index.svelte"),
 	() => import("../../../src/routes/articles/[article].svelte"),
-	() => import("../../../src/routes/search/index.svelte"),
 	() => import("../../../src/routes/stub/index.svelte"),
 	() => import("../../../src/routes/tags/index.svelte"),
 	() => import("../../../src/routes/tags/[tag].svelte"),
@@ -29,9 +28,6 @@ export const routes = [
 	// src/routes/articles/[article].svelte
 	[/^\/articles\/([^/]+?)\/?$/, [c[0], c[4]], [c[1]], (m) => ({ article: d(m[1])})],
 
-	// src/routes/search/index.svelte
-	[/^\/search\/?$/, [c[0], c[5]], [c[1]]],
-
 	,
 
 	,
@@ -39,16 +35,16 @@ export const routes = [
 	,
 
 	// src/routes/stub/index.svelte
-	[/^\/stub\/?$/, [c[0], c[6]], [c[1]]],
+	[/^\/stub\/?$/, [c[0], c[5]], [c[1]]],
 
 	// src/routes/tags/index.svelte
-	[/^\/tags\/?$/, [c[0], c[7]], [c[1]]],
+	[/^\/tags\/?$/, [c[0], c[6]], [c[1]]],
 
 	// src/routes/tags/[tag].svelte
-	[/^\/tags\/([^/]+?)\/?$/, [c[0], c[8]], [c[1]], (m) => ({ tag: d(m[1])})],
+	[/^\/tags\/([^/]+?)\/?$/, [c[0], c[7]], [c[1]], (m) => ({ tag: d(m[1])})],
 
 	// src/routes/[page].svelte
-	[/^\/([^/]+?)\/?$/, [c[0], c[9]], [c[1]], (m) => ({ page: d(m[1])})]
+	[/^\/([^/]+?)\/?$/, [c[0], c[8]], [c[1]], (m) => ({ page: d(m[1])})]
 ];
 
 // we import the root layout/error components eagerly, so that

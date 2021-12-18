@@ -1,5 +1,5 @@
 <script>
-  import { getIcon } from './icons';
+  import ArrowUp16 from 'carbon-icons-svelte/lib/ArrowUp16';
 
   let extraClasses;
   export { extraClasses as class };
@@ -19,5 +19,5 @@
     : 'opacity-0 pointer-events-none'} {extraClasses}"
   style="transition-property: opacity; transition-duration: 250ms"
   on:click="{backToTop}">
-  <svelte:component this="{getIcon('up')}" />
+  <ArrowUp16 />
 </div>

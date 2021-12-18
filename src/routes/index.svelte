@@ -105,9 +105,9 @@
 <script>
   import basicConfiguration from '../../config/basic-configuration.yml';
   import homePageConfiguration from '../../config/home-page-configuration.yml';
-  import { getIcon } from '../components/icons';
   import { onMount } from 'svelte';
   import TabContainer from '../components/TabContainer.svelte';
+  import ChevronRight16 from 'carbon-icons-svelte/lib/ChevronRight16';
 
   onMount(() => {
     const toggle = document.getElementById('toggle');
@@ -139,7 +139,7 @@
     for="checkbox"
     class="flex-none w-6 grid place-items-center border-transparent outline-none hover:border-carbongray-300 focus:border-carbongray-300 border-2 cursor-pointer"
     tabindex="0">
-    <svelte:component this="{getIcon('right')}" />
+    <ChevronRight16 />
   </label>
   <div class="cardContent grid gap-2" style="grid-template-areas: 'stack'">
     <div class="aSideContent px-2 py-4 md:p-0 grid gap-1 md:gap-2" style="grid-area: stack;">
@@ -150,7 +150,7 @@
         draggable="false"
         style="grid-area: a" />
       <div
-        class="info py-2 md:py-4 px-3 md:px-6 flex flex-col c-gap c-gap-2 justify-between items-center"
+        class="info py-2 md:py-4 px-3 md:px-6 flex flex-col c-gap-2 justify-between items-center"
         style="grid-area: b">
         <h1 class="text-carbongray-100 text-xl md:text-2xl">
           {basicConfiguration.authorName}
@@ -158,12 +158,12 @@
         <p class="text-carbongray-200 flex-grow text-sm md:text-xl mb-4 md:mb-0">
           {basicConfiguration.description}
         </p>
-        <ul class="list-none pl-0 flex c-gap c-gap-2 text-sm">
+        <ul class="list-none pl-0 flex c-gap-2 text-sm">
           {#each homePageConfiguration.contact as info}
             <li class="mr-2 text-carbongray-300 flex leading-none">
-              <svelte:component
+              <!-- <svelte:component
                 this="{getIcon(info.type)}"
-                extraClasses="inline-block w-4 h-4 mr-0.5" />
+                extraClasses="inline-block w-4 h-4 mr-0.5" /> -->
               {#if info.type === 'github'}
                 <a
                   class="hover:underline"

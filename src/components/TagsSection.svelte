@@ -31,36 +31,37 @@
 </script>
 
 <script>
-  import { getIcon } from './icons';
+  import Calendar16 from 'carbon-icons-svelte/lib/Calendar16';
+  import Pen16 from 'carbon-icons-svelte/lib/Pen16';
+  import Book16 from 'carbon-icons-svelte/lib/Book16';
+  import Tag16 from 'carbon-icons-svelte/lib/Tag16';
   import tagsConfiguration from '../../config/tags-configuration.yml';
 
   export let article;
-  let extraClasses;
-  export { extraClasses as class };
 </script>
 
-<ul class="tagsContainer text-sm sm:text-base list-none p-0 flex flex-wrap {extraClasses}">
+<ul class="tagsContainer text-sm sm:text-base list-none p-0 flex flex-wrap mb-4">
   {#if article.printDate}
     <li title="发表日期">
       <span class="icon">
-        <svelte:component this="{getIcon('calendar')}" />
+        <Calendar16 />
       </span>
-      <span class="text-carbongray-300 cursor-auto">{article.printDate}</span>
+      <span class="text-carbongray-300 cursor-auto text-sm">{article.printDate}</span>
     </li>
   {/if}
   {#if article.lastModifiedAt && !isAtSameDay(article.date, article.lastModifiedAt)}
     <li title="最近修改日期">
       <span class="icon">
-        <svelte:component this="{getIcon('pen')}" />
+        <Pen16 />
       </span>
-      <span class="text-carbongray-300 cursor-auto">{article.printLastModifiedAt}</span>
+      <span class="text-carbongray-300 cursor-auto text-sm">{article.printLastModifiedAt}</span>
     </li>
   {/if}
   <li title="字数与阅读时间">
     <span class="icon">
-      <svelte:component this="{getIcon('book')}" />
+      <Book16 />
     </span>
-    <span class="text-carbongray-300">
+    <span class="text-carbongray-300 text-sm">
       {article.wordsCount} 字
       {#if article.readingTime}
         ({article.readingTime} 分钟读完)
@@ -70,22 +71,22 @@
   {#if article.tags?.length > 0}
     <li title="标签">
       <span class="icon">
-        <svelte:component this="{getIcon('tag')}" />
+        <Tag16 />
       </span>
       {#each article.tags as tag, j}
         {#if tagsConfiguration.tags.some((t) => t.name === tag)}
           <a
             sveltekit:prefetch
             href="/tags/{tagsConfiguration.tags.find((t) => t.name === tag).slug}"
-            class="text-carbongray-300 hover:underline cursor-pointer">
+            class="text-carbongray-300 hover:underline cursor-pointer text-sm">
             {tag}
           </a>
         {:else}
-          <span class="text-carbongray-300">{tag}</span>
+          <span class="text-carbongray-300 text-sm">{tag}</span>
         {/if}
 
         {#if j < article.tags.length - 1}
-          <span class="pl-0.5 pr-2">,</span>
+          <span class="pl-0.5 pr-2 text-sm">,</span>
         {/if}
       {/each}
     </li>

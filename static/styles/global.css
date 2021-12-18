@@ -13,19 +13,25 @@
   --bg-carbongray-700: #343a3f;
   --bg-carbongray-800: #21272a;
   --bg-carbongray-900: #121619;
-  --bg-carbonblue-50: #d0e2ff;
-  --bg-carbonblue-100: #a6c8ff;
-  --bg-carbonblue-200: #78a9ff;
-  --bg-carbonblue-300: #4589ff;
-  --bg-carbonblue-400: #0f62fe;
-  --bg-carbonblue-500: #0043ce;
-  --bg-carbonblue-600: #002d9c;
-  --bg-carbonblue-700: #001d6c;
-  --bg-carbonblue-800: #001141;
+  --bg-carbonblue-50: #edf5ff;
+  --bg-carbonblue-100: #d0e2ff;
+  --bg-carbonblue-200: #a6c8ff;
+  --bg-carbonblue-300: #78a9ff;
+  --bg-carbonblue-400: #4589ff;
+  --bg-carbonblue-500: #0f62fe;
+  --bg-carbonblue-600: #0043ce;
+  --bg-carbonblue-700: #002d9c;
+  --bg-carbonblue-800: #001d6c;
+  --bg-carbonblue-900: #001141;
+}
+
+@font-face {
+  font-family: 'Lxgw975GoSC';
+  src: url('/fonts/Lxgw975GoSC-200W.woff2') format('woff2');
 }
 
 body {
-  font-family: 'Noto Serif SC', serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-family: 'Lxgw975GoSC', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji' !important;
 }
 
 .utterances {
@@ -38,13 +44,16 @@ body {
 }
 
 ::-webkit-scrollbar-corner,
-::-webkit-scrollbar-button,
+::-webkit-scrollbar-button {
+  background-color: var(--bg-carbongray-700);
+}
+
 ::-webkit-scrollbar-track {
-  @apply bg-carbongray-800;
+  background-color: var(--bg-carbongray-800);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-carbonblue-400;
+  background-color: var(--bg-carbonblue-400);
   border-radius: 0;
 }
 
@@ -52,10 +61,6 @@ body {
   /* For Firefox */
   scrollbar-color: var(--bg-carbonblue-400) var(--bg-carbongray-800);
   scrollbar-width: thin;
-}
-
-.pageContainer {
-  @apply my-4 sm:my-8;
 }
 
 .markdown-body pre {
@@ -72,7 +77,9 @@ body {
   right: 1rem;
   padding: 6px 8px;
   font-size: 12px;
-  @apply text-carbongray-200 bg-carbongray-700 rounded;
+  color: var(--bg-carbongray-200);
+  background-color: var(--bg-carbongray-700);
+  border-radius: 0.25rem;
   cursor: pointer;
   opacity: 0;
   transition: 250ms opacity;
@@ -158,7 +165,7 @@ body {
   -webkit-text-size-adjust: 100%;
   line-height: 1.8;
   letter-spacing: 0.02em;
-  @apply text-carbongray-200;
+  color: var(--bg-carbongray-200);
   font-size: 16px;
   word-wrap: break-word;
 }
@@ -197,7 +204,7 @@ body {
 .markdown-body code,
 .markdown-body kbd,
 .markdown-body pre {
-  font-family: monospace, monospace;
+  /* font-family: monospace, monospace; use the familiy provided by windicss */
   font-size: 1em;
 }
 
@@ -232,7 +239,7 @@ body {
 }
 
 .markdown-body a {
-  @apply text-carbonblue-400;
+  color: var(--bg-carbonblue-400);
   text-decoration: none;
 }
 
@@ -251,7 +258,8 @@ body {
   background: transparent;
   border: 0;
   border-bottom-width: 1px;
-  @apply border-solid border-carbonblue-100;
+  border-style: solid;
+  border-color: var(--bg-carbonblue-100);
 }
 
 .markdown-body hr:after,
@@ -281,7 +289,7 @@ body {
 .markdown-body kbd {
   display: inline-block;
   padding: 3px 5px;
-  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  /* font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
   line-height: 10px;
   color: #444d56;
   vertical-align: middle;
@@ -374,7 +382,7 @@ body {
 
 .markdown-body code,
 .markdown-body pre {
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  /* font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
   font-size: 12px;
 }
 
@@ -393,7 +401,7 @@ body {
 .markdown-body :checked + .radio-label {
   position: relative;
   z-index: 100;
-  @apply border-carbonblue-400;
+  border-color:var(--bg-carbonblue-400);
 }
 
 .markdown-body .border {
@@ -689,7 +697,7 @@ body {
 .markdown-body kbd {
   display: inline-block;
   padding: 3px 5px;
-  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  /* font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
   line-height: 10px;
   color: #444d56;
   vertical-align: middle;
@@ -736,9 +744,9 @@ body {
 
 .markdown-body blockquote {
   padding: 0 1em;
-  @apply text-carbongray-300;
+  color: var(--bg-carbongray-300);
   border-left: 0.15em solid;
-  @apply border-carbongray-400;
+  border-color: var(--bg-carbongray-400);
 }
 
 .markdown-body blockquote > :first-child {
@@ -759,7 +767,7 @@ body {
   margin-bottom: 16px;
   font-weight: 600;
   line-height: 1.25;
-  @apply text-carbonblue-400;
+  color: var(--bg-carbonblue-400);
 }
 
 .markdown-body h1 {
@@ -855,13 +863,13 @@ body {
 .markdown-body table th {
   padding: 6px 13px;
   border: 1px solid;
-  @apply border-carbongray-500;
+  border-color: var(--bg-carbongray-500)
 }
 
 .markdown-body table tr {
-  @apply bg-carbongray-800;
+  background-color: var(--bg-carbongray-800);
   border-top: 1px solid;
-  @apply border-carbongray-500;
+  border-color: var(--bg-carbongray-500);
 }
 
 .markdown-body table tr:nth-child(2n) {
@@ -871,7 +879,7 @@ body {
 .markdown-body img {
   max-width: 100%;
   box-sizing: initial;
-  @apply bg-carbongray-900;
+  background-color: var(--bg-carbongray-900);
 }
 
 .markdown-body img[align='right'] {
@@ -883,11 +891,11 @@ body {
 }
 
 .markdown-body code {
-  padding: 0.1em 0.4em;
-  margin: 0 0.1em;
+  padding: 0.15em 0.5em;
+  margin: 0 0.05em;
   border-radius: 4px;
-  font-size: 0.95em;
-  @apply bg-carbongray-800;
+  font-size: 0.85em;
+  background-color: var(--bg-carbongray-800);
 }
 
 .markdown-body pre {
@@ -920,7 +928,7 @@ body {
   font-size: 85%;
   line-height: 1.45;
   border-radius: 3px;
-  @apply bg-carbongray-800;
+  background-color: var(--bg-carbongray-800);
 }
 
 .markdown-body pre code {
@@ -937,7 +945,7 @@ body {
 
 .markdown-body .commit-tease-sha {
   display: inline-block;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  /* font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
   font-size: 90%;
   color: #444d56;
 }
@@ -962,7 +970,7 @@ body {
   min-width: 50px;
   padding-right: 10px;
   padding-left: 10px;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  /* font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
   font-size: 12px;
   line-height: 20px;
   color: rgba(27, 31, 35, 0.3);
@@ -994,7 +1002,7 @@ body {
 
 .markdown-body .blob-code-inner {
   overflow: visible;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  /* font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
   font-size: 12px;
   color: #24292e;
   word-wrap: normal;
