@@ -135,7 +135,7 @@
         </div>
         {#if showBackToTop}
           <div
-            class="flex py-2 text-sm justify-center cursor-pointer hover:bg-carbongray-700"
+            class="flex py-2 text-sm justify-center cursor-pointer bg-carbongray-700"
             on:click="{backToTop}">
             <ArrowUp16 />
             <span class="pl-1">回到顶部</span>

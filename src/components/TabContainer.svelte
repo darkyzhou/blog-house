@@ -54,7 +54,6 @@
     .join('');
 
   $: toggleCssWrapped = getCssSegment(toggleCss);
-  $: console.log(tabContents);
 </script>
 
 <svelte:head>
