@@ -10,7 +10,7 @@
 
 <nav
   class="flex flex-col items-center md:items-baseline md:flex-row justify-between gap-2 md:gap-4 py-4 px-4 sm:px-12 mx-auto w-full {extraClasses}">
-  <h1 class="text-carbongray-100 font-bold text-2xl">
+  <h1 class="text-carbongray-100 font-bold text-2xl tracking-wider">
     {basicConfiguration.blogName}
   </h1>
   <ul class="md:mx-4 list-none p-0 flex justify-center gap-2 sm:gap-4 text-sm sm:text-base">

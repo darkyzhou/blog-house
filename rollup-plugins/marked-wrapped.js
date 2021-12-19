@@ -21,9 +21,6 @@ renderer.link = (href, title, text) => {
 const originalCodeRenderer = renderer.code;
 renderer.code = (code, info, escaped) => {
   const result = originalCodeRenderer.call(renderer, code, info, escaped);
-  if (code.includes('Delegate')) {
-    console.log(result);
-  }
   return `${result.replace(/^<pre><code[^>]*>/is, '').trim().replace(/<\/pre>(.*)<\/pre>$/is, '')}<div class='copy'></div></pre>\n`;
 };
 

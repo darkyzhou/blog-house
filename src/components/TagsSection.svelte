@@ -41,7 +41,7 @@
       <span class="icon">
         <Calendar16 />
       </span>
-      <span class="text-carbongray-300 cursor-auto {textXs ? 'text-xs' : 'text-sm'}">
+      <span class="text-carbongray-300 {textXs ? 'text-xs' : 'text-sm'}">
         {article.printDate}
       </span>
     </li>
@@ -51,7 +51,7 @@
       <span class="icon">
         <Pen16 />
       </span>
-      <span class="text-carbongray-300 cursor-auto {textXs ? 'text-xs' : 'text-sm'}">
+      <span class="text-carbongray-300 {textXs ? 'text-xs' : 'text-sm'}">
         {article.printLastModifiedAt}
       </span>
     </li>
@@ -60,7 +60,7 @@
     <span class="icon">
       <Document16 />
     </span>
-    <span class="text-carbongray-300 cursor-auto {textXs ? 'text-xs' : 'text-sm'}">
+    <span class="text-carbongray-300 {textXs ? 'text-xs' : 'text-sm'}">
       {article.wordsCount} 字
     </span>
   </li>

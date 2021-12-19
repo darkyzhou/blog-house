@@ -23,7 +23,7 @@
 {#if article}
   <Article article="{article}" />
 {:else}
-  <p class="mt-12 mx-auto flex flex-col items-center c-gap c-gap-2">
+  <p class="mt-12 mx-auto flex flex-col items-center gap gap-2">
     <FaceDizzy32 />
     <span class="pt-4 md:text-xl">文章不存在</span>
   </p>

@@ -2,7 +2,6 @@
   --flip: cubic-bezier(0.65, 0, 0.35, 1);
   --flip-first-half: cubic-bezier(0.65, 0, 0.8, 0.4);
   --flip-second-half: cubic-bezier(0, 0.65, 0.4, 0.8);
-  /* FIXME: a dirty workaround for a problem that it's hard to configure tailwind to recognize <style>s in .svelte files */
   --bg-carbongray-50: #f2f4f8;
   --bg-carbongray-100: #dde1e6;
   --bg-carbongray-200: #c1c7cd;

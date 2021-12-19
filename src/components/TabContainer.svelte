@@ -31,8 +31,8 @@
 </style>
 
 <script>
-  import { getIcon } from './icons';
   import { getCssSegment } from '../routes/_utils';
+  import Icon from './Icon.svelte';
 
   let extraClasses;
   export { extraClasses as class };
@@ -54,6 +54,7 @@
     .join('');
 
   $: toggleCssWrapped = getCssSegment(toggleCss);
+  $: console.log(tabContents);
 </script>
 
 <svelte:head>
@@ -71,13 +72,14 @@
           class="icon cursor-pointer outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2"
           for="toggle{i + 1}"
           tabindex="0">
-          <svelte:component this="{getIcon(tab.icon)}" extraClasses="w-8 h-8" />
+          <span class="w-8 h-8">
+            <Icon type="{tab.icon}" />
+          </span>
         </label>
       </li>
     {/each}
   </ul>
-  <div
-    class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
+  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
     {#each tabContents as tab}
       <div class="overflow-y-auto h-full markdown-body">
         {@html tab.contentHtml}
