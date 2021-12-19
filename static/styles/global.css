@@ -39,8 +39,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-corner,
@@ -53,13 +53,13 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--bg-carbonblue-400);
+  background-color: var(--bg-carbongray-400);
   border-radius: 0;
 }
 
 body {
   /* For Firefox */
-  scrollbar-color: var(--bg-carbonblue-400) var(--bg-carbongray-800);
+  scrollbar-color: var(--bg-carbongray-400) var(--bg-carbongray-800);
   scrollbar-width: thin;
 }
 
