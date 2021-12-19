@@ -1,17 +1,18 @@
 <script>
   import ArrowRight24 from 'carbon-icons-svelte/lib/ArrowRight24';
 
-  export let showArticlesCount = true;
   export let tag;
+  export let displayMode = false;
 </script>
 
 <article
-  class="relative flex flex-col justify-between text-carbongray-100 bg-carbongray-800 px-4 py-3 hover:bg-carbongray-700">
+  class="relative flex flex-col justify-between text-carbongray-100 bg-carbongray-800 px-4 py-3 {!displayMode &&
+    'hover:bg-carbongray-700'}">
   <header class="flex-none flex items-baseline justify-between">
     <h1 class="flex-none text-xl" style="max-width: 7em">
       {tag.name}
     </h1>
-    {#if showArticlesCount}
+    {#if !displayMode}
       <span class="text-carbongray-400 text-sm">
         {#if tag.articles?.length}
           {tag.articles.length} 篇文章
@@ -26,7 +27,9 @@
       {tag.description}
     </p>
   {/if}
-  <div class="flex flex-row-reverse mt-2">
-    <ArrowRight24 />
-  </div>
+  {#if !displayMode}
+    <div class="flex flex-row-reverse mt-2">
+      <ArrowRight24 />
+    </div>
+  {/if}
 </article>
