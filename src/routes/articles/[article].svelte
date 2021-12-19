@@ -122,7 +122,7 @@
 </svelte:head>
 
 <div class="flex text-carbongray-200 w-full sm:w-auto relative" use:scrollEvent>
-  <aside class="absolute left-[-220px] top-0 bottom-0 h-full m-4 hidden lg:block">
+  <aside class="absolute left-[-220px] top-0 bottom-0 h-full m-4 hidden lg:block max-w-[200px]">
     {#if article.tableOfContent?.length}
       <div class="sticky top-0 overflow-x-hidden overflow-y-auto max-h-[80vh] bg-carbongray-800">
         <div class="px-6 py-4">

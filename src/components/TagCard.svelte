@@ -1,4 +1,6 @@
 <script>
+  import ArrowRight24 from 'carbon-icons-svelte/lib/ArrowRight24';
+
   export let showArticlesCount = true;
   export let tag;
 </script>
@@ -24,4 +26,7 @@
       {tag.description}
     </p>
   {/if}
+  <div class="flex flex-row-reverse mt-2">
+    <ArrowRight24 />
+  </div>
 </article>
