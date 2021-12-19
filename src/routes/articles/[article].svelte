@@ -121,7 +121,7 @@
       {article.title}
     </h1>
     <TagsSection article="{article}" />
-    <article id="article" class="mb-24 markdown-body">
+    <article id="article" class="mt-4 mb-24 markdown-body">
       {@html article.html}
     </article>
     <div class="commentsContainer w-full" bind:this="{utterancesContainer}"></div>
@@ -141,6 +141,4 @@
   {/if}
 </div>
 
-<BackToTop
-  class="fixed h-12 w-12 sm:h-16 sm:w-16 bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-16"
-  show="{showBackToTop}" />
+<BackToTop show="{showBackToTop}" />

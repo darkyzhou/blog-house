@@ -1,5 +1,5 @@
 <script>
-  import ArrowUp16 from 'carbon-icons-svelte/lib/ArrowUp16';
+  import ArrowUp32 from 'carbon-icons-svelte/lib/ArrowUp32';
 
   let extraClasses;
   export { extraClasses as class };
@@ -14,10 +14,10 @@
 </script>
 
 <div
-  class="block z-20 p-2 bg-carbongray-600 text-carbongray-100 grid place-items-center cursor-pointer {show
+  class="fixed h-12 w-12 sm:h-16 sm:w-16 bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-16 block z-20 p-2 bg-carbongray-600 text-carbongray-100 grid place-items-center cursor-pointer {show
     ? 'opacity-90'
     : 'opacity-0 pointer-events-none'} {extraClasses}"
   style="transition-property: opacity; transition-duration: 250ms"
   on:click="{backToTop}">
-  <ArrowUp16 />
+  <ArrowUp32 />
 </div>

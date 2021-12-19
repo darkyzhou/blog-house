@@ -6,10 +6,6 @@ import fs from 'fs';
 import parseTextContent from 'parse-html-text-content';
 import marked from './marked-wrapped.js';
 
-function getReadingTime(wordsCount) {
-  return Math.max(1, wordsCount / 420).toFixed(0);
-}
-
 function getPrintDate(date) {
   return !date ? undefined : format(date, 'yyyy/MM/dd');
 }
@@ -103,7 +99,6 @@ function doTransform(mdContent, mdFilename) {
     date: data.date ? new Date(data.date) : lastModifiedAt,
     printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
     wordsCount,
-    readingTime: getReadingTime(wordsCount),
     tags: isPageArticle ? null : data.tags,
     excerpt: data.excerpt || extractExcerpt(pureTextContent),
     tableOfContent: getTableOfContent(contentHtml),

@@ -13,10 +13,13 @@
   import footerConfiguration from '../../config/footer-configuration.yml';
 
   let extraClasses;
+  export let useGrayBg = false;
   export { extraClasses as class };
 </script>
 
-<footer class="footer text-carbongray-300 text-sm py-2 px-4 sm:py-4 sm:px-12 flex justify-between flex-wrap {extraClasses}">
+<footer
+  class="footer text-carbongray-300 text-sm py-2 px-4 sm:py-4 sm:px-12 flex justify-between flex-wrap {useGrayBg &&
+    'bg-carbongray-900'} {extraClasses}">
   {#if footerConfiguration.leftContentHtml}
     <p>
       {@html footerConfiguration.leftContentHtml}

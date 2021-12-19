@@ -17,7 +17,4 @@
   <title>{makeTitle('标签')}</title>
 </svelte:head>
 
-<TagsContainer
-  tags="{tags}"
-  class="my-4 sm:my-8 px-4 sm:px-8 lg:px-16 w-full flex-grow"
-  style="max-width: 1000px;" />
+<TagsContainer tags="{tags}" style="max-width: 1000px;" />

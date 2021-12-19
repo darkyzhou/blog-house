@@ -32,14 +32,11 @@
 
 <LoadingProgressIndicator loading="{loading}" />
 
-<div
-  class="min-h-screen flex flex-col text-carbongray-200 {$page.path == '/'
-    ? ''
-    : 'bg-carbongray-900'}"
-  style="{$page.path != '/' ? '' : makeBackgroundStyle()}">
+<div class="min-h-screen flex flex-col text-carbongray-200" style="{makeBackgroundStyle()}">
   <Nav class="z-10" />
-  <main class="flex-grow flex flex-col items-center z-20">
+  <main
+    class="flex-grow flex flex-col items-center z-20 {$page.path !== '/' && 'bg-carbongray-900'}">
     <slot />
   </main>
-  <Footer class="my-4 sm:m-0 z-10" />
+  <Footer class="my-4 sm:m-0 z-10" useGrayBg="{$page.path !== '/'}" />
 </div>

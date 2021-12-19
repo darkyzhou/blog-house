@@ -1,12 +1,10 @@
 <script>
-  let extraClasses = '';
-  export { extraClasses as class };
   export let showArticlesCount = true;
   export let tag;
 </script>
 
 <article
-  class="relative flex flex-col justify-between text-carbongray-100 bg-carbongray-800 px-4 py-3 {extraClasses}">
+  class="relative flex flex-col justify-between text-carbongray-100 bg-carbongray-800 px-4 py-3 hover:bg-carbongray-700">
   <header class="flex-none flex items-baseline justify-between">
     <h1 class="flex-none text-xl" style="max-width: 7em">
       {tag.name}

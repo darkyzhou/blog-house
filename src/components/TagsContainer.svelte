@@ -7,8 +7,6 @@
   import { ResizeObserver } from '@juggle/resize-observer';
   import TagCard from './TagCard.svelte';
 
-  let extraClasses;
-  export { extraClasses as class };
   let extraStyles;
   export { extraStyles as style };
   export let tags;
@@ -47,20 +45,19 @@
   }
 </script>
 
-<div class="flex gap-6 sm:gap-8 {extraClasses}" style="{extraStyles}" use:observeResize>
+<div
+  class="flex gap-6 sm:gap-8 my-4 sm:my-8 px-24 sm:px-8 lg:px-16 w-full flex-grow"
+  style="{extraStyles}"
+  use:observeResize>
   {#each columns as column}
     <div class="flex-1 flex flex-col gap-4">
       {#each column as tag}
-        {#if tag.slug}
-          <a
-            sveltekit:prefetch
-            href="/tags/{tag.slug}"
-            class="block outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2">
-            <TagCard tag="{tag}" />
-          </a>
-        {:else}
+        <a
+          sveltekit:prefetch
+          href="/tags/{tag.slug}"
+          class="block outline-none border-transparent border-2 focus:border-carbongray-200">
           <TagCard tag="{tag}" />
-        {/if}
+        </a>
       {/each}
     </div>
   {/each}
