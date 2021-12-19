@@ -121,15 +121,15 @@
   {/if}
 </svelte:head>
 
-<div class="flex text-carbongray-200 w-full sm:w-auto relative" use:scrollEvent>
-  <aside class="absolute left-[-280px] top-0 bottom-0 h-full m-4 hidden lg:block w-[240px]">
+<div class="relative text-carbongray-200 px-8 lg:p-2 w-screen lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg" use:scrollEvent>
+  <aside class="absolute left-[-220px] top-0 bottom-0 h-full m-4 hidden lg:block w-[200px]">
     {#if article.tableOfContent?.length}
       <div class="sticky top-0 overflow-auto max-h-[80vh] bg-carbongray-800">
         <div class="px-6 py-4">
           <h1 class="mb-2 font-bold">大纲</h1>
           <TableOfContent
             class="pl-4 w-full"
-            style="max-width: 14em; width: max-content; min-width: 8em;"
+            style="max-width: 100%; min-width: 8em;"
             tableOfContent="{article.tableOfContent}"
             highlightedIndex="{highlightedHeadingIndex}" />
         </div>
@@ -145,8 +145,8 @@
     {/if}
   </aside>
   <div
-    class="my-4 sm:my-8 w-full sm:w-auto lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg flex-grow px-4 sm:px-6">
-    <h1 class="text-xl sm:text-2xl md:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
+    class="my-4 sm:my-8 px-2">
+    <h1 class="text-2xl lg:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
     <TagsSection article="{article}" />
