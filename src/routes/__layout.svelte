@@ -34,9 +34,9 @@
 
 <div class="min-h-screen flex flex-col text-carbongray-200" style="{makeBackgroundStyle()}">
   <Nav class="z-10" />
-  <main
+  <div
     class="flex-grow flex flex-col items-center z-20 {$page.path !== '/' && 'bg-carbongray-900'}">
     <slot />
-  </main>
+  </div>
   <Footer class="my-4 sm:m-0 z-10" useGrayBg="{$page.path !== '/'}" />
 </div>
