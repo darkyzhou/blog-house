@@ -121,21 +121,21 @@
   {/if}
 </svelte:head>
 
-<div class="relative text-carbongray-200 px-8 lg:p-2 w-screen lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg" use:scrollEvent>
+<div
+  class="relative text-carbongray-200 px-8 lg:p-2 w-screen lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg"
+  use:scrollEvent>
   <aside class="absolute left-[-220px] top-0 bottom-0 h-full m-4 hidden lg:block w-[200px]">
     {#if article.tableOfContent?.length}
-      <div class="sticky top-0 overflow-auto max-h-[80vh] bg-carbongray-800">
-        <div class="px-6 py-4">
-          <h1 class="mb-2 font-bold">大纲</h1>
+      <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
+        <h1 class="font-bold px-6 pt-2">大纲</h1>
+        <div class="flex-1 px-6 overflow-auto">
           <TableOfContent
-            class="pl-4 w-full"
-            style="max-width: 100%; min-width: 8em;"
             tableOfContent="{article.tableOfContent}"
             highlightedIndex="{highlightedHeadingIndex}" />
         </div>
         {#if showBackToTop}
           <div
-            class="flex py-2 text-sm justify-center cursor-pointer bg-carbongray-700"
+            class="flex-none flex py-2 text-sm justify-center cursor-pointer bg-carbongray-700"
             on:click="{backToTop}">
             <ArrowUp16 />
             <span class="pl-1">回到顶部</span>
@@ -144,8 +144,7 @@
       </div>
     {/if}
   </aside>
-  <div
-    class="my-4 sm:my-8 px-2">
+  <div class="my-4 sm:my-8 px-2">
     <h1 class="text-2xl lg:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>

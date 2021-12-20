@@ -44,7 +44,8 @@ body {
 
 ::-webkit-scrollbar-corner,
 ::-webkit-scrollbar-button {
-  background-color: var(--bg-carbongray-700);
+  background-color: var(--bg-carbongray-800);
+  display: none;
 }
 
 ::-webkit-scrollbar-track {
@@ -399,7 +400,7 @@ body {
 .markdown-body :checked + .radio-label {
   position: relative;
   z-index: 100;
-  border-color:var(--bg-carbonblue-400);
+  border-color: var(--bg-carbonblue-400);
 }
 
 .markdown-body .border {
@@ -861,7 +862,7 @@ body {
 .markdown-body table th {
   padding: 6px 13px;
   border: 1px solid;
-  border-color: var(--bg-carbongray-500)
+  border-color: var(--bg-carbongray-500);
 }
 
 .markdown-body table tr {
@@ -902,6 +903,7 @@ body {
 
 .markdown-body pre > code {
   padding: 0;
+  padding-bottom: 8px;
   margin: 0;
   font-size: 100%;
   word-break: normal;

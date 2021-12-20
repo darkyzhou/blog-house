@@ -25,6 +25,9 @@ renderer.code = (code, info, escaped) => {
 };
 
 const highlight = (code, lang) => {
+  if (!highlighter.getLoadedLanguages().includes(lang)) {
+    return highlighter.codeToHtml(code, {});
+  }
   return highlighter.codeToHtml(code, { lang });
 };
 
