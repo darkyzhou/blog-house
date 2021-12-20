@@ -2,7 +2,6 @@ import path from 'path';
 import matter from 'gray-matter';
 import { format } from 'date-fns';
 import htmlParser from 'html5parser';
-import fs from 'fs';
 import parseTextContent from 'parse-html-text-content';
 import marked from './marked-wrapped.js';
 
@@ -54,11 +53,6 @@ function getTableOfContent(contentHtml) {
   return !tableOfContent.length ? undefined : tableOfContent;
 }
 
-function getLatestModificationTime(filename) {
-  const { mtime } = fs.lstatSync(filename);
-  return mtime;
-}
-
 function extractExcerpt(pureTextContent) {
   return `${pureTextContent.substr(0, 160)}...`;
 }
@@ -82,23 +76,19 @@ function doTransform(mdContent, mdFilename) {
 
   const contentHtml = marked(content);
   const pureTextContent = parseTextContent(contentHtml);
-
   const isPageArticle = isFromPage(mdFilename);
-  const lastModifiedAt = getLatestModificationTime(mdFilename);
-  const printLastModifiedAt = format(lastModifiedAt, 'yyyy/MM/dd');
-  const wordsCount = [...pureTextContent].length;
 
   // NOTICE: by using JSON.stringify, all of the properties holding a Date value
   // will actually be converted into String!
   const output = JSON.stringify({
     slug: getSlugFromName(mdFilename),
     isPageArticle,
-    lastModifiedAt,
-    printLastModifiedAt,
+    lastModifiedAt: data.modificationDate ? new Date(data.modificationDate) : null,
+    printLastModifiedAt: data.modificationDate ? format(data.modificationDate, 'yyyy/MM/dd') : null,
     title: data.title,
-    date: data.date ? new Date(data.date) : lastModifiedAt,
-    printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
-    wordsCount,
+    date: new Date(data.date),
+    printDate: getPrintDate(data.date),
+    wordsCount: [...pureTextContent].length,
     category: isPageArticle ? null : data.category,
     tags: isPageArticle ? null : data.tags,
     excerpt: data.excerpt || extractExcerpt(pureTextContent),

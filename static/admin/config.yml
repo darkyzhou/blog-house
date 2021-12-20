@@ -22,8 +22,9 @@ collections:
     fields:
       - { label: '标题', name: 'title', widget: 'string' }
       - { label: '发表日期', name: 'date', widget: 'datetime' }
+      - { label: '修改日期', name: 'modificationDate', widget: 'datetime', default: '', hint: '对已经发布的文章进行修改之后，可以修改此项内容来提示读者' }
       - { label: '分类', name: 'title', widget: 'string', hint: '留空则不会加入到分类中' }
-      - { label: '标签', name: 'tags', widget: 'list', hint: '每个标签之间使用英文逗号,分割' }
+      - { label: '标签', name: 'tags', widget: 'list', hint: '每个标签之间使用英文逗号,分隔' }
       - {
           label: '摘要',
           name: 'excerpt',
