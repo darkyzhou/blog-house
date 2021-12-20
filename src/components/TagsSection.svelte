@@ -29,14 +29,18 @@
 </script>
 
 <script>
+  import tagsConfiguration from '../../config/tags-configuration.yml';
+  import categoriesConfiguration from '../../config/categories-configuration.yml';
   import Calendar16 from 'carbon-icons-svelte/lib/Calendar16';
   import Category16 from 'carbon-icons-svelte/lib/Category16';
   import Pen16 from 'carbon-icons-svelte/lib/Pen16';
   import Document16 from 'carbon-icons-svelte/lib/Document16';
+  import Tag16 from 'carbon-icons-svelte/lib/Tag16';
 
   export let article;
   export let textXs = false;
   export let showModifiedAt = true;
+  export let showTags = false;
 </script>
 
 <ul class="tagsContainer font-light list-none p-0 flex flex-wrap gap-0.5">
@@ -73,9 +77,38 @@
       <span class="icon">
         <Category16 />
       </span>
-      <span class="text-carbongray-300 {textXs ? 'text-xs' : 'text-sm'}">
+      <a
+        sveltekit:prefetch
+        href="/categories/{categoriesConfiguration.categories.find(
+          (c) => c.name === article.category
+        ).slug}"
+        class="text-carbongray-300 hover:underline cursor-pointer {textXs ? 'text-xs' : 'text-sm'}">
         {article.category}
+      </a>
+    </li>
+  {/if}
+  {#if showTags && article.tags?.length > 0}
+    <li title="标签">
+      <span class="icon">
+        <Tag16 />
       </span>
+      {#each article.tags as tag, j}
+        {#if tagsConfiguration.tags.some((t) => t.name === tag)}
+          <a
+            sveltekit:prefetch
+            href="/tags/{tagsConfiguration.tags.find((t) => t.name === tag).slug}"
+            class="text-carbongray-300 hover:underline cursor-pointer {textXs
+              ? 'text-xs'
+              : 'text-sm'}">
+            {tag}
+          </a>
+        {:else}
+          <span class="text-carbongray-300 {textXs ? 'text-xs' : 'text-sm'}">{tag}</span>
+        {/if}
+        {#if j < article.tags.length - 1}
+          <span class="pl-0.5 pr-2 {textXs ? 'text-xs' : 'text-sm'}">,</span>
+        {/if}
+      {/each}
     </li>
   {/if}
 </ul>
