@@ -314,7 +314,7 @@ body {
 
 .markdown-body h1,
 .markdown-body h2 {
-  font-weight: 600;
+  font-weight: normal;
 }
 
 .markdown-body h2 {
@@ -327,7 +327,7 @@ body {
 
 .markdown-body h3,
 .markdown-body h4 {
-  font-weight: 600;
+  font-weight: normal;
 }
 
 .markdown-body h4 {
@@ -340,7 +340,7 @@ body {
 
 .markdown-body h5,
 .markdown-body h6 {
-  font-weight: 600;
+  font-weight: normal;
 }
 
 .markdown-body h6 {
@@ -764,7 +764,7 @@ body {
 .markdown-body h6 {
   margin-top: 24px;
   margin-bottom: 16px;
-  font-weight: 600;
+  font-weight: normal;
   line-height: 1.25;
   color: var(--bg-carbonblue-400);
 }
@@ -840,7 +840,7 @@ body {
   margin-top: 16px;
   font-size: 1em;
   font-style: italic;
-  font-weight: 600;
+  font-weight: normal;
 }
 
 .markdown-body dl dd {
@@ -855,7 +855,7 @@ body {
 }
 
 .markdown-body table th {
-  font-weight: 600;
+  font-weight: normal;
 }
 
 .markdown-body table td,

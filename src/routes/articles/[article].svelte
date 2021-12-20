@@ -149,7 +149,7 @@
       {article.title}
     </h1>
     <TagsSection article="{article}" />
-    <article id="article" class="mt-4 mb-24 markdown-body">
+    <article id="article" class="mt-8 mb-24 markdown-body">
       {@html article.html}
     </article>
     <div class="commentsContainer w-full" bind:this="{utterancesContainer}"></div>
