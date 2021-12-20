@@ -31,6 +31,11 @@
             caption="{item.caption}"
             route="/{item.slug}"
             active="{$page.path?.startsWith('/' + item.slug)}" />
+        {:else if item.type === 'categories'}
+          <NavItem
+            caption="{item.caption}"
+            route="/categories"
+            active="{$page.path?.startsWith('/categories')}" />
         {:else if item.type === 'tags'}
           <NavItem
             caption="{item.caption}"

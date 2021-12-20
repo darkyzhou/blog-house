@@ -9,6 +9,8 @@
   }
 
   .icon {
+    display: inline-flex;
+    align-items: center;
     color: var(--bg-carbonblue-100);
     margin-right: 4px;
   }
@@ -28,6 +30,7 @@
 
 <script>
   import Calendar16 from 'carbon-icons-svelte/lib/Calendar16';
+  import Category16 from 'carbon-icons-svelte/lib/Category16';
   import Pen16 from 'carbon-icons-svelte/lib/Pen16';
   import Document16 from 'carbon-icons-svelte/lib/Document16';
 
@@ -65,4 +68,14 @@
       {article.wordsCount} 字
     </span>
   </li>
+  {#if article.category}
+    <li title="分类">
+      <span class="icon">
+        <Category16 />
+      </span>
+      <span class="text-carbongray-300 {textXs ? 'text-xs' : 'text-sm'}">
+        {article.category}
+      </span>
+    </li>
+  {/if}
 </ul>

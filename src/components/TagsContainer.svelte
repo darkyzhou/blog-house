@@ -4,10 +4,11 @@
 
   let extraStyles;
   export { extraStyles as style };
-  export let tags;
+  export let items;
+  export let isCategories = false;
 
   let columns = [];
-  let controller = new WaterflowController('tags-container', 240, 4, tags, (c) => {
+  let controller = new WaterflowController('tags-container', 240, 4, items, (c) => {
     columns = c;
   });
 </script>
@@ -18,12 +19,12 @@
   use:controller.observeResize>
   {#each columns as column}
     <div class="flex-1 flex flex-col gap-4">
-      {#each column as tag}
+      {#each column as item}
         <a
           sveltekit:prefetch
-          href="/tags/{tag.slug}"
+          href="{isCategories ? `/categories/${item.slug}` : `/tags/${item.slug}`}"
           class="block outline-none border-transparent border-2 focus:border-carbongray-200">
-          <TagCard tag="{tag}" />
+          <TagCard item="{item}" />
         </a>
       {/each}
     </div>

@@ -3,6 +3,8 @@ navItems:
     caption: 首页
   - type: articles
     caption: 文章
+  - type: categories
+    caption: 分类
   - type: tags
     caption: 标签
   - type: page

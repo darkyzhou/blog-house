@@ -53,7 +53,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--bg-carbongray-400);
+  background-color: var(--bg-carbongray-500);
   border-radius: 0;
 }
 

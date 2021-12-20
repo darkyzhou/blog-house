@@ -99,6 +99,7 @@ function doTransform(mdContent, mdFilename) {
     date: data.date ? new Date(data.date) : lastModifiedAt,
     printDate: data.date ? getPrintDate(data.date) : printLastModifiedAt,
     wordsCount,
+    category: isPageArticle ? null : data.category,
     tags: isPageArticle ? null : data.tags,
     excerpt: data.excerpt || extractExcerpt(pureTextContent),
     tableOfContent: getTableOfContent(contentHtml),

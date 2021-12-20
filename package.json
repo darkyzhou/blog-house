@@ -1,15 +1,12 @@
 {
   "name": "blog-house",
-  "description": "A static site generator for personal blogs based on Sapper.",
-  "version": "0.1.0",
+  "description": "A static site generator for personal blogs based on Sveltekit.",
+  "version": "0.3.0",
   "private": false,
   "type": "module",
   "scripts": {
     "dev": "NODE_ENV=development svelte-kit dev",
-    "export": "NODE_ENV=production svelte-kit export --entry '/ stub'",
-    "watch:tailwind": "postcss static/global.css -o static/styles/global-compiled.css -w",
-    "build:tailwind": "NODE_ENV=production postcss static/global.css -o static/styles/global-compiled.css",
-    "build": "npm-run-all build:tailwind export"
+    "export": "NODE_ENV=production svelte-kit export --entry '/ stub'"
   },
   "devDependencies": {
     "@juggle/resize-observer": "^3.3.1",

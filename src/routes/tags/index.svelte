@@ -17,4 +17,4 @@
   <title>{makeTitle('标签')}</title>
 </svelte:head>
 
-<TagsContainer tags="{tags}" style="max-width: 1000px;" />
+<TagsContainer items="{tags}" style="max-width: 1000px;" />

@@ -22,6 +22,7 @@ collections:
     fields:
       - { label: '标题', name: 'title', widget: 'string' }
       - { label: '发表日期', name: 'date', widget: 'datetime' }
+      - { label: '分类', name: 'title', widget: 'string', hint: '留空则不会加入到分类中' }
       - { label: '标签', name: 'tags', widget: 'list', hint: '每个标签之间使用英文逗号,分割' }
       - {
           label: '摘要',
@@ -141,6 +142,7 @@ collections:
                 options:
                   - { label: '首页', value: 'home' }
                   - { label: '文章', value: 'articles' }
+                  - { label: '分类', value: 'categories' }
                   - { label: '标签', value: 'tags' }
                   - { label: '页面', value: 'page' }
               - label: '标题'
@@ -152,6 +154,27 @@ collections:
                 required: false
                 widget: 'string'
                 hint: '除了"页面"选项都不需要填写，"页面"选项必须填写，对应需要导航到的页面的路径名称'
+      - name: 'categoriesConfiguration'
+        label: '分类配置'
+        file: 'config/categories-configuration.yml'
+        fields:
+          - name: 'categories'
+            label: '标签'
+            widget: 'list'
+            fields:
+              - label: '路径名称'
+                name: 'slug'
+                widget: 'string'
+                hint: '纯英文数字以及下划线组合，如果填写“my-tag”，那么此标签页面的 URL 将会是 “https://xxx/categories/my-tag”'
+                pattern: ['^[\d\w_-]+$', '纯英文数字以及下划线组合']
+              - label: '名称'
+                name: 'name'
+                widget: 'string'
+                hint: '用于显示在文章的标签部分中，同时也用在编写文章时指定标签'
+              - label: '简介'
+                name: 'description'
+                widget: 'text'
+                required: false
       - name: 'tagsConfiguration'
         label: '标签配置'
         file: 'config/tags-configuration.yml'
