@@ -33,6 +33,7 @@
 
   export let article;
   export let textXs = false;
+  export let showModifiedAt = true;
 </script>
 
 <ul class="tagsContainer font-light list-none p-0 flex flex-wrap gap-0.5">
@@ -46,7 +47,7 @@
       </span>
     </li>
   {/if}
-  {#if article.lastModifiedAt && !isAtSameDay(article.date, article.lastModifiedAt)}
+  {#if showModifiedAt && article.lastModifiedAt && !isAtSameDay(article.date, article.lastModifiedAt)}
     <li title="最近修改日期">
       <span class="icon">
         <Pen16 />

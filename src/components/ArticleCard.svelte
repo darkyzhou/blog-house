@@ -9,15 +9,14 @@
   sveltekit:prefetch
   href="/articles/{article.slug}"
   class="outline-none border-transparent border-2 focus:border-carbongray-200">
-  <article
-    class="bg-carbongray-800 p-4 sm:p-6 hover:bg-carbongray-700 cursor-pointer">
+  <article class="bg-carbongray-800 p-4 sm:p-6 hover:bg-carbongray-700 cursor-pointer">
     <header>
       <strong class="text-xl sm:text-2xl text-carbonblue-400">
         {article.title}
       </strong>
       {#if article.printDate || article.tags?.length > 0}
         <div class="mt-2 my-4">
-          <TagsSection textXs="{true}" article="{article}" />
+          <TagsSection textXs="{true}" showModifiedAt="{false}" article="{article}" />
         </div>
       {/if}
     </header>
