@@ -122,9 +122,9 @@
 </svelte:head>
 
 <div
-  class="relative text-carbongray-200 px-8 lg:p-2 w-screen lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg"
+  class="relative text-carbongray-200 px-8 lg:p-2 w-screen md:max-w-[500px] lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg"
   use:scrollEvent>
-  <aside class="absolute left-[-220px] top-0 bottom-0 h-full m-4 hidden lg:block w-[200px]">
+  <aside class="absolute md:left-[-160px] lg:left-[-220px] top-0 bottom-0 h-full m-4 hidden md:block md:w-[160px] lg:w-[200px]">
     {#if article.tableOfContent?.length}
       <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
         <h1 class="font-bold px-6 pt-2">大纲</h1>

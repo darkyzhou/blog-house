@@ -30,7 +30,7 @@
   style="{extraStyles}">
   {#each resolved as item, i}
     <li
-      class="mt-2 mb-2 hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
+      class="mt-2 mb-2 break-all hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
         highlightedIndex && 'text-carbonblue-300'}"
       style="padding-left: {item.padding}rem">
       {#if item.id}
