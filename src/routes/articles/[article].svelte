@@ -7,9 +7,17 @@
 <script context="module">
   export async function load({ page, fetch }) {
     const articleSlug = page.params.article;
-    const response = await fetch(`/data/articles/${articleSlug}.json`);
-    const article = await response.json();
-    return { props: { article } };
+    const article = await (await fetch(`/data/articles/${articleSlug}.json`)).json();
+    const allArticles = !article.category ? [] : await (await fetch(`/data/articles.json`)).json();
+    const articlesOfSameCategories = allArticles.filter(
+      (a) => a.category === article.category && a.slug !== article.slug
+    );
+    return {
+      props: {
+        article,
+        articlesOfSameCategories
+      }
+    };
   }
 </script>
 
@@ -23,6 +31,7 @@
   import ArrowUp16 from 'carbon-icons-svelte/lib/ArrowUp16';
 
   export let article;
+  export let articlesOfSameCategories;
 
   let titleElement;
   let showBackToTop = false;
@@ -105,6 +114,13 @@
     });
   }
 
+  function padIfAlpha(str) {
+    if (str.length > 0 && /^\w/i.test(str)) {
+      return ` ${str}`;
+    }
+    return str;
+  }
+
   onMount(() => {
     checkShouldScrollToTop();
     initCodeCopying();
@@ -125,25 +141,41 @@
   class="relative text-carbongray-200 px-8 lg:p-2 w-screen md:max-w-[500px] lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg"
   use:scrollEvent>
   <aside
-    class="absolute md:left-[-160px] lg:left-[-220px] top-0 bottom-0 h-full my-10 hidden md:block md:w-[160px] lg:w-[200px]">
-    {#if article.tableOfContent?.length}
-      <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
-        <div class="flex-none text-sm px-4 lg:px-6 py-2 bg-carbongray-700 text-center">大纲</div>
+    class="absolute md:left-[-160px] lg:left-[-220px] top-0 bottom-0 h-full my-10 text-sm hidden md:block md:w-[160px] lg:w-[200px]">
+    <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
+      {#if article.tableOfContent?.length}
+        <div class="flex-none px-4 lg:px-6 py-2 bg-carbongray-700 text-center">大纲</div>
         <div class="flex-1 px-4 lg:px-6 overflow-auto">
           <TableOfContent
             tableOfContent="{article.tableOfContent}"
             highlightedIndex="{highlightedHeadingIndex}" />
         </div>
-        {#if showBackToTop}
-          <div
-            class="flex-none flex py-2 text-sm justify-center cursor-pointer bg-carbongray-700"
-            on:click="{backToTop}">
-            <ArrowUp16 />
-            <span class="pl-1">回到顶部</span>
+      {/if}
+      {#if articlesOfSameCategories?.length > 0}
+        <div class="bg-carbongray-800 max-h-[10vh]">
+          <div class="px-4 lg:px-6 py-2 bg-carbongray-700 text-center break-all">
+            其它{padIfAlpha(article.category)}文章
           </div>
-        {/if}
-      </div>
-    {/if}
+          <ul class="px-4 lg:px-6 py-2 list-none flex flex-col gap-4 overflow-auto">
+            {#each articlesOfSameCategories as a}
+              <li>
+                <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">
+                  {a.title}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      {/if}
+      {#if showBackToTop}
+        <div
+          class="flex-none flex py-2 justify-center cursor-pointer bg-carbongray-700"
+          on:click="{backToTop}">
+          <ArrowUp16 />
+          <span class="pl-1">回到顶部</span>
+        </div>
+      {/if}
+    </div>
   </aside>
   <div class="my-4 sm:my-8 px-2">
     <h1 class="text-2xl lg:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
