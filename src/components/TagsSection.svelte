@@ -43,7 +43,7 @@
   export let showTags = false;
 </script>
 
-<ul class="tagsContainer font-light list-none p-0 flex flex-wrap gap-0.5">
+<ul class="tagsContainer list-none p-0 flex flex-wrap gap-0.5">
   {#if article.printDate}
     <li title="发表日期">
       <span class="icon">
