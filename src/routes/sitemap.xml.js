@@ -15,8 +15,8 @@ export async function get() {
 
   items.push(
     ...articles.map((article) => ({
-      url: concatPageUrl(article.slug),
-      lastmod: new Date(article.lastModifiedAt).toISOString()
+      url: concatPageUrl(`articles/${article.slug}`),
+      lastmod: new Date(article.lastModifiedAt || article.date).toISOString()
     })),
     ...tags
       .filter((t) => t.slug)
