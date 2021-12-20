@@ -142,40 +142,42 @@
   use:scrollEvent>
   <aside
     class="absolute md:left-[-160px] lg:left-[-220px] top-0 bottom-0 h-full my-10 text-sm hidden md:block md:w-[160px] lg:w-[200px]">
-    <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
-      {#if article.tableOfContent?.length}
-        <div class="flex-none px-4 lg:px-6 py-2 bg-carbongray-700 text-center">大纲</div>
-        <div class="flex-1 px-4 lg:px-6 overflow-auto">
-          <TableOfContent
-            tableOfContent="{article.tableOfContent}"
-            highlightedIndex="{highlightedHeadingIndex}" />
-        </div>
-      {/if}
-      {#if articlesOfSameCategories?.length > 0}
-        <div class="bg-carbongray-800 max-h-[10vh]">
-          <div class="px-4 lg:px-6 py-2 bg-carbongray-700 text-center break-all">
-            其它{padIfAlpha(article.category)}文章
+    {#if article.tableOfContent?.length || articlesOfSameCategories?.length}
+      <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
+        {#if article.tableOfContent?.length}
+          <div class="flex-none px-4 lg:px-6 py-2 bg-carbongray-700 text-center">大纲</div>
+          <div class="flex-1 px-4 lg:px-6 overflow-auto">
+            <TableOfContent
+              tableOfContent="{article.tableOfContent}"
+              highlightedIndex="{highlightedHeadingIndex}" />
           </div>
-          <ul class="px-4 lg:px-6 py-2 list-none flex flex-col gap-4 overflow-auto">
-            {#each articlesOfSameCategories as a}
-              <li>
-                <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">
-                  {a.title}
-                </a>
-              </li>
-            {/each}
-          </ul>
-        </div>
-      {/if}
-      {#if showBackToTop}
-        <div
-          class="flex-none flex py-2 justify-center cursor-pointer bg-carbongray-700"
-          on:click="{backToTop}">
-          <ArrowUp16 />
-          <span class="pl-1">回到顶部</span>
-        </div>
-      {/if}
-    </div>
+        {/if}
+        {#if articlesOfSameCategories?.length}
+          <div class="bg-carbongray-800 max-h-[15vh]">
+            <div class="px-4 lg:px-6 py-2 bg-carbongray-700 text-center break-all">
+              其它{padIfAlpha(article.category)}文章
+            </div>
+            <ul class="px-4 lg:px-6 py-2 list-none flex flex-col gap-4 overflow-auto">
+              {#each articlesOfSameCategories as a}
+                <li>
+                  <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">
+                    {a.title}
+                  </a>
+                </li>
+              {/each}
+            </ul>
+          </div>
+        {/if}
+        {#if showBackToTop}
+          <div
+            class="flex-none flex py-2 justify-center cursor-pointer bg-carbongray-700"
+            on:click="{backToTop}">
+            <ArrowUp16 />
+            <span class="pl-1">回到顶部</span>
+          </div>
+        {/if}
+      </div>
+    {/if}
   </aside>
   <div class="my-4 sm:my-8 px-2">
     <h1 class="text-2xl lg:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">

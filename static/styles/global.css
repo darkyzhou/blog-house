@@ -26,7 +26,16 @@
 
 @font-face {
   font-family: 'Lxgw975GoSC';
+  font-weight: normal;
+  font-style: normal;
   src: url('/fonts/Lxgw975GoSC-200W.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lxgw975GoSC';
+  font-weight: bold;
+  font-style: normal;
+  src: url('/fonts/Lxgw975GoSC-400W.woff2') format('woff2');
 }
 
 body {
@@ -187,8 +196,7 @@ body {
 }
 
 .markdown-body strong {
-  font-weight: inherit;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .markdown-body h1 {
@@ -244,10 +252,6 @@ body {
 
 .markdown-body a:hover {
   text-decoration: underline;
-}
-
-.markdown-body strong {
-  font-weight: 600;
 }
 
 .markdown-body hr {
@@ -492,7 +496,7 @@ body {
 }
 
 .markdown-body .text-bold {
-  font-weight: 600 !important;
+  font-weight: bold !important;
 }
 
 .markdown-body .pl-c {
@@ -556,7 +560,7 @@ body {
 }
 
 .markdown-body .pl-sr .pl-cce {
-  font-weight: 700;
+  font-weight: bold;
   color: #22863a;
 }
 
@@ -567,7 +571,7 @@ body {
 .markdown-body .pl-mh,
 .markdown-body .pl-mh .pl-en,
 .markdown-body .pl-ms {
-  font-weight: 700;
+  font-weight: bold;
   color: #005cc5;
 }
 
@@ -577,7 +581,7 @@ body {
 }
 
 .markdown-body .pl-mb {
-  font-weight: 700;
+  font-weight: bold;
   color: #24292e;
 }
 
@@ -602,7 +606,7 @@ body {
 }
 
 .markdown-body .pl-mdr {
-  font-weight: 700;
+  font-weight: bold;
   color: #6f42c1;
 }
 
