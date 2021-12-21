@@ -27,6 +27,7 @@ specifiers:
   svelte-windicss-preprocess: ^4.2.5
   transliteration: ^2.2.0
   vite: ^2.7.3
+  yaml: ^1.10.2
 
 devDependencies:
   '@juggle/resize-observer': 3.3.1
@@ -55,6 +56,7 @@ devDependencies:
   svelte-windicss-preprocess: 4.2.5
   transliteration: 2.2.0
   vite: 2.7.3
+  yaml: 1.10.2
 
 packages:
 
@@ -1617,6 +1619,11 @@ packages:
   /y18n/5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /yaml/1.10.2:
+    resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
+    engines: {node: '>= 6'}
     dev: true
 
   /yargs-parser/20.2.9:

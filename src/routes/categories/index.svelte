@@ -11,6 +11,7 @@
   import TagsContainer from '../../components/TagsContainer.svelte';
 
   export let categories;
+  $: sorted = categories.sort((a, b) => b.articles.length - a.articles.length)
 </script>
 
 <svelte:head>

@@ -11,10 +11,11 @@
   import TagsContainer from '../../components/TagsContainer.svelte';
 
   export let tags;
+  $: sorted = tags.sort((a, b) => b.articles.length - a.articles.length)
 </script>
 
 <svelte:head>
   <title>{makeTitle('标签')}</title>
 </svelte:head>
 
-<TagsContainer items="{tags}" style="max-width: 1000px;" />
+<TagsContainer items="{sorted}" style="max-width: 1000px;" />

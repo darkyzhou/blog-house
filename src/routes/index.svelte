@@ -108,7 +108,9 @@
   import { onMount } from 'svelte';
   import TabContainer from '../components/TabContainer.svelte';
   import ArrowsHorizontal20 from 'carbon-icons-svelte/lib/ArrowsHorizontal20';
-  import Icon from '../components/Icon.svelte';
+
+  // must be right after the imports
+  const ICONS = []; //@MARK:CONTACTS
 
   onMount(() => {
     const toggle = document.getElementById('toggle');
@@ -162,10 +164,10 @@
           {basicConfiguration.description}
         </p>
         <ul class="list-none pl-0 flex gap-2 text-sm">
-          {#each homePageConfiguration.contact as info}
+          {#each homePageConfiguration.contact as info, i}
             <li class="mr-2 text-carbongray-300 flex leading-none items-center">
               <span class="inline-block w-4 h-4 mr-0.5 pb-1">
-                <Icon type="{info.type}" />
+                <svelte:component this="{ICONS[i]}" />
               </span>
               {#if info.type.includes('Github')}
                 <a

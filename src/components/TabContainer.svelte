@@ -32,7 +32,9 @@
 
 <script>
   import { getCssSegment } from '../routes/_utils';
-  import Icon from './Icon.svelte';
+
+  // must be right after the imports
+  const ICONS = []; //@MARK:TABS
 
   let extraClasses;
   export { extraClasses as class };
@@ -72,7 +74,7 @@
           for="toggle{i + 1}"
           tabindex="0">
           <span class="w-8 h-8">
-            <Icon type="{tab.icon}" />
+            <svelte:component this={ICONS[i]} />
           </span>
         </label>
       </li>

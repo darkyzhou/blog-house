@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "NODE_ENV=development svelte-kit dev",
-    "export": "NODE_ENV=production svelte-kit export --entry '/ stub'"
+    "export": "NODE_ENV=production svelte-kit build"
   },
   "devDependencies": {
     "@juggle/resize-observer": "^3.3.1",
@@ -34,6 +34,7 @@
     "svelte-preprocess": "^4.10.1",
     "svelte-windicss-preprocess": "^4.2.5",
     "transliteration": "^2.2.0",
-    "vite": "^2.7.3"
+    "vite": "^2.7.3",
+    "yaml": "^1.10.2"
   }
 }

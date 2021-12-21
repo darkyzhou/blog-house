@@ -44,12 +44,12 @@
         {/if}
       </li>
     {/each}
-    <li>
+    <!-- <li>
       <NavItem
         searchIcon="{true}"
         route="/search"
         active="{$page.path?.startsWith('/search')}"
         class="h-full" />
-    </li>
+    </li> -->
   </ul>
 </nav>
