@@ -15,7 +15,7 @@ export default {
     defaultHandler(warning);
   },
   kit: {
-    adapter: adapter({ out: '__sapper__/export' }),
+    adapter: adapter(),
     vite: {
       plugins: [
         replace({
