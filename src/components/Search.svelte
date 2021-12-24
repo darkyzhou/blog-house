@@ -7,7 +7,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { debounce } from 'lodash-es';
+  import debounce from 'debounce';
   import algoliasearch from 'algoliasearch/lite';
   import Search24 from 'carbon-icons-svelte/lib/Search24';
   import Warning24 from 'carbon-icons-svelte/lib/Warning24';

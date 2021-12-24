@@ -1,6 +1,6 @@
 import basicConfiguration from '../../config/basic-configuration.yml';
 import { ResizeObserver } from '@juggle/resize-observer';
-import { debounce } from 'lodash-es';
+import debounce from 'debounce';
 import { browser } from '$app/env';
 
 export function makeTitle(title) {
