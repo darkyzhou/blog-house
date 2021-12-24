@@ -32,12 +32,16 @@ export default {
   },
   kit: {
     adapter: adapter(),
+    prerender: {
+      crawl: true,
+      enabled: true
+    },
     vite: {
       plugins: [
         replace({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
           __BG__STATISTICS: JSON.stringify(statistics),
-          __BG_ALGOLIA: JSON.stringify(algoliaConfig)
+          __BG__ALGOLIA: JSON.stringify(algoliaConfig)
         }),
         yaml(),
         markdown(),

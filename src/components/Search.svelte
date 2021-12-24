@@ -8,7 +8,7 @@
 <script>
   import { onMount } from 'svelte';
   import debounce from 'debounce';
-  import algoliasearch from 'algoliasearch/lite';
+  import algoliasearch from 'algoliasearch/lite.js';
   import Search24 from 'carbon-icons-svelte/lib/Search24';
   import Warning24 from 'carbon-icons-svelte/lib/Warning24';
   import Calendar16 from 'carbon-icons-svelte/lib/Calendar16';
@@ -23,7 +23,7 @@
   import AlgoliaLogo from './AlgoliaLogo.svelte';
 
   const statistics = __BG__STATISTICS;
-  const config = __BG_ALGOLIA;
+  const config = __BG__ALGOLIA;
   const searchConfig = {
     attributesToHighlight: ['-*'],
     attributesToSnippet: ['content:50', 'title'],
@@ -47,7 +47,7 @@
     articles: []
   };
 
-  onMount(async () => {
+  onMount(() => {
     if (!config.enabled) {
       return;
     }
