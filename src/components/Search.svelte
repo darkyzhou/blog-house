@@ -22,15 +22,25 @@
   import FaceNeutral32 from 'carbon-icons-svelte/lib/FaceNeutral32';
   import AlgoliaLogo from './AlgoliaLogo.svelte';
 
-  let statistics = STATISTICS;
+  const statistics = __BG__STATISTICS;
+  const config = __BG_ALGOLIA;
+  const searchConfig = {
+    attributesToHighlight: ['-*'],
+    attributesToSnippet: ['content:50', 'title'],
+    attributesToRetrieve: ['*', '-content'],
+    snippetEllipsisText: '……',
+    highlightPreTag: '<span>',
+    highlightPostTag: '</span>'
+  };
 
-  let config;
-  let error = null;
   let clientIndex;
   let searchValue = '';
   let func;
+
   let pending = false;
   let searching = false;
+  let error = null;
+
   let result = {
     empty: true,
     categories: [],
@@ -38,15 +48,6 @@
   };
 
   onMount(async () => {
-    try {
-      const data = await (await fetch('/data/search.json')).json();
-      config = data;
-    } catch (err) {
-      console.error(err);
-      error = err.toString();
-      return;
-    }
-
     if (!config.enabled) {
       return;
     }
@@ -75,14 +76,7 @@
         }
         searching = true;
         try {
-          const result = await clientIndex.search(searchValue, {
-            attributesToHighlight: ['-*'],
-            attributesToSnippet: ['content:50', 'title'],
-            attributesToRetrieve: ['*', '-content'],
-            snippetEllipsisText: '……',
-            highlightPreTag: '<span>',
-            highlightPostTag: '</span>'
-          });
+          const result = await clientIndex.search(searchValue, searchConfig);
           resolveSearchResult(result.hits);
         } catch (err) {
           console.error(err);
@@ -167,7 +161,7 @@
     <div class="flex-1 overflow-y-auto">
       {#if !searching && !searchValue}
         <div class="p-4 h-full grid place-items-center">
-          <div class="break-all flex flex-col gap-4 md:gap-8 text-xl items-center text-gray-300">
+          <div class="break-all flex flex-col gap-4 md:gap-6 text-xl items-center text-gray-300">
             <p class="flex gap-2 items-center">
               <Tag24 />
               {statistics.tagsCount} 个标签

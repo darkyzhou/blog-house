@@ -74,7 +74,7 @@
 
 {#if searchDialogShown}
   <div class="mask z-100 absolute inset-0 grid place-items-center">
-    <div class="h-[80vh] md:h-[60vh] w-[80vw] max-w-[400px] bg-carbongray-800 relative">
+    <div class="h-[80vh] md:h-[70vh] w-[80vw] max-w-[400px] bg-carbongray-800 relative">
       <div
         class="absolute top-4 right-4 cursor-pointer z-10"
         on:click="{() => {
