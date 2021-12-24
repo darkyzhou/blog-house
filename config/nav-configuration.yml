@@ -10,3 +10,4 @@ navItems:
   - type: page
     caption: 关于
     slug: about
+  - type: search

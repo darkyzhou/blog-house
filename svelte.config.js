@@ -6,6 +6,12 @@ import { windi } from 'svelte-windicss-preprocess';
 import glob from 'rollup-plugin-glob';
 import preprocess from 'svelte-preprocess';
 import preprocessIcons from './scripts/preprocess-icons.js';
+import env from 'dotenv';
+import { getStatistics } from './scripts/resolve-statistics.js';
+
+env.config();
+
+const statistics = await getStatistics();
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
@@ -19,7 +25,8 @@ export default {
     vite: {
       plugins: [
         replace({
-          'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+          'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+          STATISTICS: JSON.stringify(statistics)
         }),
         yaml(),
         markdown(),

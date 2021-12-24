@@ -34,7 +34,7 @@
   import Calendar16 from 'carbon-icons-svelte/lib/Calendar16';
   import Category16 from 'carbon-icons-svelte/lib/Category16';
   import Pen16 from 'carbon-icons-svelte/lib/Pen16';
-  import Document16 from 'carbon-icons-svelte/lib/Document16';
+  import Language16 from 'carbon-icons-svelte/lib/Language16';
   import Tag16 from 'carbon-icons-svelte/lib/Tag16';
 
   export let article;
@@ -66,7 +66,7 @@
   {/if}
   <li title="字数">
     <span class="icon">
-      <Document16 />
+      <Language16 />
     </span>
     <span class="text-carbongray-300 {textXs ? 'text-xs' : 'text-sm'}">
       {article.wordsCount} 字

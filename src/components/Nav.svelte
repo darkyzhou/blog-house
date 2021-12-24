@@ -1,11 +1,34 @@
+<style>
+  @supports ((backdrop-filter: none) or (-webkit-backdrop-filter: none)) {
+    .mask {
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+  }
+
+  @supports not ((backdrop-filter: none) or (-webkit-backdrop-filter: none)) {
+    .mask {
+      background-color: rgba(38, 38, 38, 0.75);
+    }
+  }
+</style>
+
 <script>
   import basicConfiguration from '../../config/basic-configuration.yml';
   import NavItem from './NavItem.svelte';
   import navConfiguration from '../../config/nav-configuration.yml';
   import { page } from '$app/stores';
+  import Search from '../components/Search.svelte';
+  import Close32 from 'carbon-icons-svelte/lib/Close32';
 
   let extraClasses;
   export { extraClasses as class };
+
+  let searchDialogShown = false;
+
+  function showSearchDialog() {
+    searchDialogShown = true;
+  }
 </script>
 
 <nav
@@ -41,15 +64,25 @@
             caption="{item.caption}"
             route="/tags"
             active="{$page.path?.startsWith('/tags')}" />
+        {:else if item.type === 'search'}
+          <NavItem search="{true}" active="{false}" click="{() => showSearchDialog()}" />
         {/if}
       </li>
     {/each}
-    <!-- <li>
-      <NavItem
-        searchIcon="{true}"
-        route="/search"
-        active="{$page.path?.startsWith('/search')}"
-        class="h-full" />
-    </li> -->
   </ul>
 </nav>
+
+{#if searchDialogShown}
+  <div class="mask z-100 absolute inset-0 grid place-items-center">
+    <div class="h-[80vh] md:h-[60vh] w-[80vw] max-w-[400px] bg-carbongray-800 relative">
+      <div
+        class="absolute top-4 right-4 cursor-pointer z-10"
+        on:click="{() => {
+          searchDialogShown = false;
+        }}">
+        <Close32 />
+      </div>
+      <Search />
+    </div>
+  </div>
+{/if}

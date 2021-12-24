@@ -22,7 +22,13 @@ collections:
     fields:
       - { label: '标题', name: 'title', widget: 'string' }
       - { label: '发表日期', name: 'date', widget: 'datetime' }
-      - { label: '修改日期', name: 'modificationDate', widget: 'datetime', default: '', hint: '对已经发布的文章进行修改之后，可以修改此项内容来提示读者' }
+      - {
+          label: '修改日期',
+          name: 'modificationDate',
+          widget: 'datetime',
+          default: '',
+          hint: '对已经发布的文章进行修改之后，可以修改此项内容来提示读者'
+        }
       - { label: '分类', name: 'title', widget: 'string', hint: '留空则不会加入到分类中' }
       - { label: '标签', name: 'tags', widget: 'list', hint: '每个标签之间使用英文逗号,分隔' }
       - {
@@ -128,6 +134,33 @@ collections:
                     name: 'theme'
                     widget: 'string'
                     hint: '控制博客评论区的外观，可选的值见 utteranc.es'
+          - label: 'Algolia'
+            name: 'algolia'
+            widget: 'object'
+            hint: 'Algolia 搜索服务的配置，用来搜索博客的文章等内容，详情可见其官网'
+            required: false
+            fields:
+              - label: '启用'
+                name: 'enabled'
+                widget: 'select'
+                options:
+                  - { label: '开启', value: 'true' }
+                  - { label: '关闭', value: 'false' }
+              - label: 'Index ID'
+                name: 'indexId'
+                widget: 'string'
+                hint: '索引 ID，一般来说用默认的 blog-house 即可，若要自己指定，建议只使用全小写英文和-'
+              - label: 'Application ID'
+                name: 'applicationId'
+                widget: 'string'
+              - label: 'Search-Only API Key'
+                name: 'searchOnlyApiKey'
+                widget: 'string'
+                hint: '如果博客是公开的仓库，不建议在这里填写，请在仓库的 Secrets 填写，详情见文档'
+              - label: 'Admin API Key'
+                name: 'adminApiKey'
+                widget: 'string'
+                hint: '如果博客是公开的仓库，不建议在这里填写，请在仓库的 Secrets 填写，详情见文档'
       - name: 'navConfiguration'
         label: '导航栏配置'
         file: 'config/nav-configuration.yml'
@@ -149,12 +182,12 @@ collections:
               - label: '标题'
                 name: 'caption'
                 widget: 'string'
-                hint: '对应这个导航栏项目的按钮文本'
+                hint: '对应这个导航栏项目的按钮文本，对“搜索”选项无效'
               - label: '路径名称'
                 name: 'slug'
                 required: false
                 widget: 'string'
-                hint: '除了"页面"选项都不需要填写，"页面"选项必须填写，对应需要导航到的页面的路径名称'
+                hint: '对应需要导航到的页面的路径名称，除了“页面”选项都不需要填写，而“页面”选项必须填写'
       - name: 'categoriesConfiguration'
         label: '分类配置'
         file: 'config/categories-configuration.yml'

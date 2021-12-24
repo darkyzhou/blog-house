@@ -14,3 +14,9 @@ comments:
     label: ''
     theme: 'github-dark'
   - type: 'none'
+algolia:
+  enabled: false
+  index: 'blog_house'
+  applicationId: ''
+  searchOnlyApiKey: ''
+  adminApiKey: ''

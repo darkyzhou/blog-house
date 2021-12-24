@@ -18,7 +18,7 @@
 </script>
 
 <footer
-  class="footer text-carbongray-300 text-sm py-2 px-4 sm:py-4 sm:px-12 flex justify-between flex-wrap {useGrayBg &&
+  class="footer text-carbongray-300 text-sm py-2 sm:py-4 px-4 md:px-8 lg:px-12 xl:px-24 flex justify-between flex-wrap {useGrayBg &&
     'bg-carbongray-900'} {extraClasses}">
   {#if footerConfiguration.leftContentHtml}
     <p>

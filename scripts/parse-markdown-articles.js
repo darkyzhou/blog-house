@@ -1,4 +1,5 @@
 import path from 'path';
+import removeMarkdown from 'remove-markdown';
 import matter from 'gray-matter';
 import { format } from 'date-fns';
 import htmlParser from 'html5parser';
@@ -88,7 +89,7 @@ function doTransform(mdContent, mdFilename) {
     title: data.title,
     date: new Date(data.date),
     printDate: getPrintDate(data.date),
-    wordsCount: [...pureTextContent].length,
+    wordsCount: [...removeMarkdown(content)].length,
     category: isPageArticle ? null : data.category,
     tags: isPageArticle ? null : data.tags,
     excerpt: data.excerpt || extractExcerpt(pureTextContent),
