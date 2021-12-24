@@ -139,7 +139,6 @@
     }
 
     result = newResult;
-    console.log(result);
   }
 
   function formatDate(dateString) {
