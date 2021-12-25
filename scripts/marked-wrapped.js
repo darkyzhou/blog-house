@@ -21,7 +21,10 @@ renderer.link = (href, title, text) => {
 const originalCodeRenderer = renderer.code;
 renderer.code = (code, info, escaped) => {
   const result = originalCodeRenderer.call(renderer, code, info, escaped);
-  return `${result.replace(/^<pre><code[^>]*>/is, '').trim().replace(/<\/pre>(.*)<\/pre>$/is, '')}<div class='copy'></div></pre>\n`;
+  return `${result
+    .replace(/^<pre><code[^>]*>/is, '')
+    .trim()
+    .replace(/<\/pre>(.*)<\/pre>$/is, '')}<div class='copy'></div></pre>\n`;
 };
 
 const highlight = (code, lang) => {

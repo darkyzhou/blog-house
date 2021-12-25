@@ -62,7 +62,7 @@ async function resolveArticles() {
       title: data.title,
       content: removeMarkdown(content),
       category: data.category,
-      tags: data.tags?.join(' '),
+      tags: data.tags?.join(' ')
     };
     if (data.date) {
       article.printDate = new Date(data.date).toISOString();
