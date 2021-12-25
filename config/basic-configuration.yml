@@ -5,6 +5,8 @@ description: 'This is an example blog, enjoy it!'
 dir: 'ltr'
 language: 'zh-CN'
 analytics:
+  blockedDomains:
+  - 'localhost'
   gaMeasurementId: ''
   baiduId: ''
 comments:

@@ -98,6 +98,10 @@ collections:
             hint: '利用谷歌、百度的统计服务，获取你的博客访客情况'
             required: false
             fields:
+              - label: '屏蔽域名'
+                name: 'blockedDomains'
+                widget: 'list'
+                hint: '当用户通过这些域名访问时，屏蔽统计。每个域名之间使用英文逗号,分隔。例子：www.abc.com'
               - label: 'Google Analytics Measurement ID'
                 name: 'gaMeasurementId'
                 widget: 'string'
