@@ -3,6 +3,7 @@
 
 <script>
   import Nav from '../components/Nav.svelte';
+  import PortalFooter from '../components/PortalFooter.svelte';
   import Footer from '../components/Footer.svelte';
   import basicConfiguration from '../../config/basic-configuration.yml';
   import homeConfiguration from '../../config/home-page-configuration.yml';
@@ -38,5 +39,9 @@
     class="flex-grow flex flex-col items-center z-20 {$page.path !== '/' && 'bg-carbongray-900'}">
     <slot />
   </div>
-  <Footer class="my-4 sm:m-0 z-10" useGrayBg="{$page.path !== '/'}" />
+  {#if $page.path === '/'}
+    <PortalFooter class="my-4 sm:m-0 z-10" />
+  {:else}
+    <Footer class="my-4 sm:m-0 z-10" />
+  {/if}
 </div>

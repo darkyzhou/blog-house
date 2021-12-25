@@ -32,7 +32,7 @@
 </script>
 
 <nav
-  class="flex flex-col items-center md:items-baseline md:flex-row justify-between gap-2 md:gap-4 py-4 px-4 sm:px-12 mx-auto w-full {extraClasses}">
+  class="flex flex-col items-center md:items-baseline md:flex-row justify-between gap-2 md:gap-4 py-4 px-4 sm:px-12 mx-auto max-w-[960px] w-full {extraClasses}">
   <h1 class="text-carbongray-100 font-bold text-2xl tracking-wider">
     {basicConfiguration.blogName}
   </h1>
