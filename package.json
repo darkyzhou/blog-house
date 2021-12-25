@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "NODE_ENV=development svelte-kit dev",
     "algolia": "node ./scripts/upload-to-algolia.mjs",
-    "export": "NODE_ENV=production svelte-kit build"
+    "export": "NODE_ENV=production svelte-kit build",
+    "prettier": "prettier"
   },
   "devDependencies": {
     "@juggle/resize-observer": "^3.3.1",
