@@ -18,4 +18,11 @@
   <title>{makeTitle('标签')}</title>
 </svelte:head>
 
-<TagsContainer items="{sorted}" style="max-width: 1000px;" />
+<h1 class="w-full max-w-[1000px] mx-auto px-8 md:px-12 pt-4 md:text-xl">
+  {#if !sorted.length}
+    目前没有标签
+  {:else}
+    目前有 {sorted.length} 个标签：
+  {/if}
+</h1>
+<TagsContainer items={sorted} style="max-width: 1000px;" />

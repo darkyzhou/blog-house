@@ -18,4 +18,11 @@
   <title>{makeTitle('分类')}</title>
 </svelte:head>
 
-<CategoriesContainer items="{categories}" isCategories="{true}" style="max-width: 1000px;" />
+<h1 class="w-full max-w-[1000px] mx-auto px-8 md:px-12 pt-4 md:text-xl">
+  {#if !sorted.length}
+    目前没有分类
+  {:else}
+    目前有 {sorted.length} 个分类：
+  {/if}
+</h1>
+<CategoriesContainer items={categories} isCategories={true} style="max-width: 1000px;" />

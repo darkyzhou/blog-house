@@ -13,7 +13,7 @@
 </script>
 
 <div
-  class="flex gap-6 sm:gap-8 my-4 sm:my-8 px-24 sm:px-8 lg:px-16 w-full flex-grow justify-center"
+  class="flex gap-4 sm:gap-6 my-4 px-6 sm:px-8 lg:px-16 w-full flex-grow justify-center"
   style="{extraStyles}"
   use:controller.observeResize>
   {#each columns as column}
