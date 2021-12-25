@@ -10,7 +10,7 @@
 
 <script>
   import ArticleCard from '../../components/ArticleCard.svelte';
-  import TagCard from '../../components/TagCard.svelte';
+  import CategoryCard from '../../components/CategoryCard.svelte';
   import { makeTitle, WaterflowController } from '../_utils';
 
   export let category;
@@ -30,7 +30,7 @@
 
 <div class="my-4 sm:my-8 px-8 w-full" use:controller.observeResize>
   <div class="my-8 mx-auto max-w-96 min-w-64">
-    <TagCard item="{category}" displayMode="{true}" />
+    <CategoryCard item="{category}" displayMode="{true}" />
   </div>
   <div class="flex gap-6 w-full max-w-300 justify-center">
     {#if category.articles?.length <= 0}

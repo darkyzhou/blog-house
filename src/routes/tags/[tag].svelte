@@ -29,7 +29,7 @@
 </svelte:head>
 
 <div class="my-4 sm:my-8 px-8 w-full" use:controller.observeResize>
-  <div class="my-8 mx-auto max-w-96 min-w-64">
+  <div class="my-8 mx-auto max-w-64">
     <TagCard item="{tag}" displayMode="{true}" />
   </div>
   <div class="flex gap-6 w-full max-w-300 justify-center">

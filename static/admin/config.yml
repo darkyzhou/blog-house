@@ -216,6 +216,7 @@ collections:
           - name: 'tags'
             label: '标签'
             widget: 'list'
+            hint: 'Blog House 默认会给文章中出现的，但是这里没有配置的标签自动生成路径名称，但是生成的名称可能会比较“难看”'
             fields:
               - label: '路径名称'
                 name: 'slug'
@@ -226,10 +227,6 @@ collections:
                 name: 'name'
                 widget: 'string'
                 hint: '用于显示在文章的标签部分中，同时也用在编写文章时指定标签'
-              - label: '简介'
-                name: 'description'
-                widget: 'text'
-                required: false
       - name: 'homePageConfiguration'
         label: '首页组件配置'
         file: 'config/home-page-configuration.yml'
