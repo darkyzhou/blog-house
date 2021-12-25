@@ -273,7 +273,7 @@ collections:
             widget: 'markdown'
           - name: 'additional'
             label: '附加内容'
-            hint: '在非首页的底栏中，上面的左右侧内容会被放到左边，附加内容显示在右边'
+            hint: '在非首页的底栏中，上面的左右侧内容会被放到右边，附加内容显示在左边'
             widget: 'list'
             fields:
               - name: 'type'
