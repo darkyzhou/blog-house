@@ -6,7 +6,15 @@ dir: 'ltr'
 language: 'zh-CN'
 analytics:
   blockedDomains:
-  - 'localhost'
+    - 'localhost'
+  blockedUAs:
+    - 'googlebot'
+    - 'baiduspider'
+    - 'sogou web spider'
+    - 'bingbot'
+    - 'duckduckbot'
+    - 'yandexbot'
+    - 'yahoo! slurp'
   gaMeasurementId: ''
   baiduId: ''
 comments:
