@@ -246,7 +246,7 @@ body {
 }
 
 .markdown-body a {
-  color: var(--bg-carbonblue-400);
+  color: var(--bg-carbonblue-300);
   text-decoration: none;
 }
 

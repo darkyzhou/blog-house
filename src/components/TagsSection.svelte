@@ -13,6 +13,7 @@
     align-items: center;
     color: var(--bg-carbonblue-100);
     margin-right: 4px;
+    padding-bottom: 2px;
   }
 </style>
 
