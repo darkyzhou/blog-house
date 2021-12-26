@@ -42,6 +42,18 @@ body {
   font-family: 'Lxgw975GoSC', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji' !important;
 }
 
+@supports (-webkit-touch-callout: none) {
+  .fix-100vh {
+    min-height: -webkit-fill-available;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  .fix-100vh {
+    min-height: 100vh;
+  }
+}
+
 .utterances {
   max-width: unset;
 }

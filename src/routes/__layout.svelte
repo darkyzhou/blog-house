@@ -33,7 +33,7 @@
 
 <LoadingProgressIndicator loading="{loading}" />
 
-<div class="min-h-screen flex flex-col text-carbongray-200" style="{makeBackgroundStyle()}">
+<div class="fix-100vh flex flex-col text-carbongray-200" style="{makeBackgroundStyle()}">
   <Nav class="z-10" />
   <div
     class="flex-grow flex flex-col items-center z-20 {$page.path !== '/' && 'bg-carbongray-900'}">

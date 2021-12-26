@@ -165,8 +165,8 @@
         </p>
         <ul class="list-none pl-0 flex gap-2 text-sm">
           {#each homePageConfiguration.contact as info, i}
-            <li class="mr-2 text-carbongray-300 flex leading-none items-center">
-              <span class="inline-block w-4 h-4 mr-0.5 pb-1">
+            <li class="mr-2 text-carbongray-300 flex leading-none items-end">
+              <span class="inline-block mr-0.5">
                 <svelte:component this="{ICONS[i]}" />
               </span>
               {#if info.type.includes('Github')}
