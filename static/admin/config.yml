@@ -29,7 +29,7 @@ collections:
           default: '',
           hint: '对已经发布的文章进行修改之后，可以修改此项内容来提示读者'
         }
-      - { label: '分类', name: 'title', widget: 'string', hint: '留空则不会加入到分类中' }
+      - { label: '分类', name: 'category', widget: 'string', hint: '留空则不会加入到分类中' }
       - { label: '标签', name: 'tags', widget: 'list', hint: '每个标签之间使用英文逗号,分隔' }
       - {
           label: '摘要',
