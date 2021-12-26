@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#121619" />
     <style>
+      @media not all and (min-resolution: 0.001dpcm) {
+        body {
+          background: url('/images/uploads/background.jpg') fixed 50% / cover no-repeat #121619;
+        }
+      }
       body {
-        background: url('/images/uploads/background.jpg') fixed 50% / cover no-repeat #121619;
+        background: url('/images/uploads/background.webp') fixed 50% / cover no-repeat #121619;
       }
     </style>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
