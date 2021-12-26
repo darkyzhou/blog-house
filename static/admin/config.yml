@@ -46,6 +46,14 @@ collections:
     slug: '{{pageSlug}}'
     fields:
       - { label: '标题', name: 'title', widget: 'string' }
+      - { label: '发表日期', name: 'date', widget: 'datetime' }
+      - {
+          label: '修改日期',
+          name: 'modificationDate',
+          widget: 'datetime',
+          default: '',
+          hint: '对已经发布的页面进行修改之后，可以修改此项内容来提示读者'
+        }
       - {
           label: '路径名称',
           name: 'pageSlug',

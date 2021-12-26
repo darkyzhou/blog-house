@@ -14,10 +14,21 @@ export async function get() {
   });
 
   items.push(
-    ...articles.map((article) => ({
-      url: concatPageUrl(`articles/${article.slug}`),
-      lastmod: new Date(article.lastModifiedAt || article.date).toISOString()
-    })),
+    ...articles
+      .filter((a) => a.isPageArticle)
+      .map((article) => ({
+        url: concatPageUrl(article.slug),
+        lastmod: new Date(article.lastModifiedAt || article.date).toISOString()
+      })),
+    ...articles
+      .filter((a) => !a.isPageArticle)
+      .map((article) => ({
+        url: concatPageUrl(`articles/${article.slug}`),
+        lastmod:
+          article.lastModifiedAt || article.date
+            ? new Date(article.lastModifiedAt || article.date).toISOString()
+            : new Date().toISOString()
+      })),
     ...tags
       .filter((t) => t.slug)
       .map((tag) => ({
