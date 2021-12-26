@@ -41,7 +41,8 @@ export default {
         replace({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
           __BG__STATISTICS: JSON.stringify(statistics),
-          __BG__ALGOLIA: JSON.stringify(algoliaConfig)
+          __BG__ALGOLIA: JSON.stringify(algoliaConfig),
+          __BG__VERSION: JSON.stringify(process.env.npm_package_version || 'dev')
         }),
         yaml(),
         markdown(),

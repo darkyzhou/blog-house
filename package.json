@@ -34,6 +34,7 @@
     "rollup": "^2.61.1",
     "rollup-plugin-glob": "^1.0.2",
     "rollup-plugin-svelte": "^7.1.0",
+    "rss": "^1.2.2",
     "shiki": "^0.9.15",
     "svelte": "^3.44.3",
     "svelte-preprocess": "^4.10.1",

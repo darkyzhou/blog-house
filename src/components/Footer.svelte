@@ -48,7 +48,7 @@
               {item.caption}
             </div>
           {:else if item.type === 'rss'}
-            <a sveltekit:prefetch href="/rss.xml" class="flex flex-col items-center gap-1">
+            <a target="_blank" href="/rss.xml" class="flex flex-col items-center gap-1">
               <Rss16 />
               RSS
             </a>

@@ -24,6 +24,7 @@ specifiers:
   rollup: ^2.61.1
   rollup-plugin-glob: ^1.0.2
   rollup-plugin-svelte: ^7.1.0
+  rss: ^1.2.2
   shiki: ^0.9.15
   svelte: ^3.44.3
   svelte-preprocess: ^4.10.1
@@ -56,6 +57,7 @@ devDependencies:
   rollup: 2.61.1
   rollup-plugin-glob: 1.0.2
   rollup-plugin-svelte: 7.1.0_rollup@2.61.1+svelte@3.44.3
+  rss: 1.2.2
   shiki: 0.9.15
   svelte: 3.44.3
   svelte-preprocess: 4.10.1_svelte@3.44.3
@@ -1098,6 +1100,18 @@ packages:
       picomatch: 2.3.0
     dev: true
 
+  /mime-db/1.25.0:
+    resolution: {integrity: sha1-wY29fHOl2/b0SgJNwNFloeexw5I=}
+    engines: {node: '>= 0.6'}
+    dev: true
+
+  /mime-types/2.1.13:
+    resolution: {integrity: sha1-4HqqnGxrmnyjASxpADrSWjnpKog=}
+    engines: {node: '>= 0.6'}
+    dependencies:
+      mime-db: 1.25.0
+    dev: true
+
   /min-indent/1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
@@ -1362,6 +1376,13 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /rss/1.2.2:
+    resolution: {integrity: sha1-UKFpiHYTgTOnT5oF0r3I240nqSE=}
+    dependencies:
+      mime-types: 2.1.13
+      xml: 1.0.1
     dev: true
 
   /run-parallel/1.2.0:
@@ -1738,6 +1759,10 @@ packages:
 
   /wrappy/1.0.2:
     resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=}
+    dev: true
+
+  /xml/1.0.1:
+    resolution: {integrity: sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=}
     dev: true
 
   /y18n/5.0.8:
