@@ -6,7 +6,6 @@
   import PortalFooter from '../components/PortalFooter.svelte';
   import Footer from '../components/Footer.svelte';
   import basicConfiguration from '../../config/basic-configuration.yml';
-  import homeConfiguration from '../../config/home-page-configuration.yml';
   import Analytics from '../components/Analytics.svelte';
   import LoadingProgressIndicator from '../components/LoadingProgressIndicator.svelte';
   import { onMount } from 'svelte';
@@ -19,10 +18,6 @@
   onMount(() => {
     navigating.subscribe((val) => (loading = !!val));
   });
-
-  function makeBackgroundStyle() {
-    return `background: url('${homeConfiguration.background}') fixed 50% / cover no-repeat var(--bg-carbongray-900);`;
-  }
 </script>
 
 <svelte:head>
@@ -33,7 +28,7 @@
 
 <LoadingProgressIndicator loading="{loading}" />
 
-<div class="fix-100vh flex flex-col text-carbongray-200" style="{makeBackgroundStyle()}">
+<div class="fix-100vh flex flex-col text-carbongray-200">
   <Nav class="z-10" />
   <div
     class="flex-grow flex flex-col items-center z-20 {$page.path !== '/' && 'bg-carbongray-900'}">
