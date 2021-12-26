@@ -138,10 +138,10 @@
 </svelte:head>
 
 <div
-  class="relative text-carbongray-200 px-8 lg:p-2 w-screen md:max-w-[500px] lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg"
+  class="relative text-carbongray-200 lg:p-2 w-screen md:max-w-[500px] lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg"
   use:scrollEvent>
   <aside
-    class="absolute md:left-[-160px] lg:left-[-220px] top-0 bottom-0 h-full my-10 text-sm hidden md:block md:w-[160px] lg:w-[200px]">
+    class="absolute md:left-[-170px] lg:left-[-210px] top-0 bottom-0 h-full my-10 text-sm hidden md:block md:w-[160px] lg:w-[200px]">
     {#if article.tableOfContent?.length || articlesOfSameCategories?.length}
       <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
         {#if article.tableOfContent?.length}
