@@ -54,6 +54,57 @@ body {
   }
 }
 
+/* for custom markdown, see marked-wrapped.js */
+.bhem {
+  padding: 6px 12px;
+  margin-bottom: 16px;
+  border-left: 3px solid;
+  background-color: var(--bg-carbongray-800);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.bhem .bhemh {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.bhem .bhemh .bhemi {
+  margin-right: 4px;
+}
+
+.bhem.bh-info {
+  border-left-color: #4589ff;
+}
+
+.bhem.bh-info .bhemi {
+  color: #4589ff;
+}
+
+.bhem.bh-warn {
+  border-left-color: #f1c21b;
+}
+
+.bhem.bh-warn .bhemi {
+  color: #f1c21b;
+}
+
+.bhem.bh-check {
+  border-left-color: #42be65;
+}
+
+.bhem.bh-check .bhemi {
+  color: #42be65;
+}
+
+.bhem.bh-exception {
+  border-left-color: #fa4d56;
+}
+
+.bhem.bh-exception .bhemi {
+  color: #fa4d56;
+}
+
 .utterances {
   max-width: unset;
 }
@@ -363,7 +414,7 @@ body {
   font-size: 12px;
 }
 
-.markdown-body p {
+.markdown-body p:not(:last-child) {
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -745,14 +796,14 @@ body {
   text-decoration: none;
 }
 
-.markdown-body blockquote,
-.markdown-body details,
-.markdown-body dl,
-.markdown-body ol,
-.markdown-body p,
-.markdown-body pre,
-.markdown-body table,
-.markdown-body ul {
+.markdown-body blockquote:not(:last-child),
+.markdown-body details:not(:last-child),
+.markdown-body dl:not(:last-child),
+.markdown-body ol:not(:last-child),
+.markdown-body p:not(:last-child),
+.markdown-body pre:not(:last-child),
+.markdown-body table:not(:last-child),
+.markdown-body ul:not(:last-child) {
   margin-top: 0;
   margin-bottom: 16px;
 }
