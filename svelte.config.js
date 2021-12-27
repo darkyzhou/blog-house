@@ -31,7 +31,9 @@ export default {
     defaultHandler(warning);
   },
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      precompress: true
+    }),
     prerender: {
       crawl: true,
       enabled: true
