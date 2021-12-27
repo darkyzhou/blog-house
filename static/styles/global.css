@@ -105,6 +105,29 @@ body {
   color: #fa4d56;
 }
 
+.bhc {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.bhc .bhci {
+  height: 80px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+}
+
+.bhc .bhcc {
+  background-color: var(--bg-carbongray-800);
+  padding: 12px 16px;
+}
+
+a.bhc .bhcc:hover {
+  background-color: var(--bg-carbongray-700);
+}
+
 .utterances {
   max-width: unset;
 }
@@ -308,12 +331,12 @@ body {
   line-height: inherit;
 }
 
-.markdown-body a {
+.markdown-body a:not(.bhc) {
   color: var(--bg-carbonblue-300);
   text-decoration: none;
 }
 
-.markdown-body a:hover {
+.markdown-body a:not(.bhc):hover {
   text-decoration: underline;
 }
 
@@ -414,9 +437,13 @@ body {
   font-size: 12px;
 }
 
-.markdown-body p:not(:last-child) {
+.markdown-body p {
   margin-top: 0;
   margin-bottom: 10px;
+}
+
+.markdown-body p:last-child {
+  margin-bottom: 0;
 }
 
 .markdown-body blockquote {
@@ -823,17 +850,26 @@ body {
   margin-bottom: 0;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
+.markdown-body h6,
 .markdown-body h5,
-.markdown-body h6 {
+.markdown-body h4,
+.markdown-body h3,
+.markdown-body h2,
+.markdown-body h1 {
   margin-top: 24px;
   margin-bottom: 16px;
   font-weight: normal;
   line-height: 1.25;
   color: var(--bg-carbonblue-400);
+}
+
+.markdown-body h1:first-child,
+.markdown-body h2:first-child,
+.markdown-body h3:first-child,
+.markdown-body h4:first-child,
+.markdown-body h5:first-child,
+.markdown-body h6:first-child {
+  margin-top: 0;
 }
 
 .markdown-body h1 {

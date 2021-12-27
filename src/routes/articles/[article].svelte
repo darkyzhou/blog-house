@@ -179,7 +179,7 @@
       </div>
     {/if}
   </aside>
-  <div class="my-4 sm:my-8 px-2">
+  <div class="my-4 sm:my-8 px-4">
     <h1 class="text-2xl lg:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>

@@ -21,13 +21,17 @@ renderer.link = (href, title, text) => {
 const originalCodeRenderer = renderer.code;
 renderer.code = (code, info, escaped) => {
   const result = originalCodeRenderer.call(renderer, code, info, escaped).trim();
-  if (/<pre><code[^>]*><div class/i.test(result)) {
-    return result.substring(result.indexOf('<div'), result.lastIndexOf('</div>') + 6);
+  switch (true) {
+    case /<pre><code[^>]*><div class/i.test(result):
+      return result.substring(result.indexOf('<div'), result.lastIndexOf('</div>') + 6);
+    case /<pre><code[^>]*><a class/i.test(result):
+      return result.substring(result.indexOf('<a'), result.lastIndexOf('</a>') + 4);
+    default:
+      return `${result
+        .replace(/^<pre><code[^>]*>/i, '')
+        .trim()
+        .replace(/<\/pre>(.*)<\/pre>$/is, '')}<div class='copy'></div></pre>\n`;
   }
-  return `${result
-    .replace(/^<pre><code[^>]*>/i, '')
-    .trim()
-    .replace(/<\/pre>(.*)<\/pre>$/is, '')}<div class='copy'></div></pre>\n`;
 };
 
 const messages = {
@@ -60,25 +64,48 @@ function resolveMessageOptions(input) {
   };
 }
 
-function toHtml(option, content) {
+function toMessageHtml(option, content) {
   const { showIcon, type, caption } = resolveMessageOptions(option);
   return `<div class="bhem bh-${type}">
   ${!(showIcon || caption) ? '' : '<div class="bhemh">'}
   ${!showIcon ? '' : `<span class="bhemi">${messages[type].svg}</span>`}
   ${!caption ? '' : `<span class="bhemc">${caption || messages[type].caption}</span>`}
   ${!(showIcon || caption) ? '' : '</div>'}
-  ${marked(content)}
-  </div>`;
+  ${marked(content)}</div>`;
+}
+
+function resolveCardOptions(input) {
+  const regex = /^#(?:(?:\(([^\)]+)\))?)(?:(?:\[([^\]]+)\])?)$/i;
+  const result = regex.exec(input);
+  return {
+    imageUrl: result[1],
+    link: result[2]
+  };
+}
+
+function toCardHtml(option, content) {
+  const { imageUrl, link } = resolveCardOptions(option);
+  if (link) {
+    return `<a target="_blank" href="${link}" class="bhc">${
+      !imageUrl ? '' : `<div class="bhci" style="background-image: url('${imageUrl}')"></div>`
+    }<div class="bhcc">${marked(content)}</div></a>`;
+  }
+  return `<div class="bhc">${
+    !imageUrl ? '' : `<div class="bhci" style="background-image: url('${imageUrl}'}"></div>`
+  }<div class="bhcc">${marked(content)}</div></div>`;
 }
 
 const highlight = (code, lang) => {
-  if (lang?.startsWith('$')) {
-    return toHtml(lang, code);
+  switch (true) {
+    case lang?.startsWith('$'):
+      return toMessageHtml(lang, code);
+    case lang?.startsWith('#'):
+      return toCardHtml(lang, code);
+    case !highlighter.getLoadedLanguages().includes(lang):
+      return highlighter.codeToHtml(code, {});
+    default:
+      return highlighter.codeToHtml(code, { lang });
   }
-  if (!highlighter.getLoadedLanguages().includes(lang)) {
-    return highlighter.codeToHtml(code, {});
-  }
-  return highlighter.codeToHtml(code, { lang });
 };
 
 marked.setOptions({ renderer, highlight });
