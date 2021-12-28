@@ -25,7 +25,7 @@ comments:
     theme: github-dark
   - type: none
 algolia:
-  enabled: false
+  enabled: true
   index: 'darky_blog'
   applicationId: 'XP3BDSDXS9'
   searchOnlyApiKey: 'e225d83ac2d8b1aa0d8d573ba1be5be5'
