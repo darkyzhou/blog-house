@@ -9,6 +9,6 @@ Sitemap: ${concatPageUrl('sitemap.xml')}
 
 export async function get() {
   return {
-    body: sitemapContent.trimLeft()
+    body: sitemapContent.trim()
   };
 }
