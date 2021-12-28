@@ -1,19 +1,24 @@
 <script context="module">
-  export async function preload({ params, query }) {
-    const tagSlug = params.tag;
-    const response = await this.fetch('data/tags.json');
+  export async function load({ page, fetch }) {
+    const tagSlug = page.params.tag;
+    const response = await fetch('/data/tags.json');
     const tags = await response.json();
     const targetTag = tags.find((t) => t.slug === tagSlug);
-    return { tag: targetTag };
+    return { props: { tag: targetTag } };
   }
 </script>
 
 <script>
   import ArticleCard from '../../components/ArticleCard.svelte';
   import TagCard from '../../components/TagCard.svelte';
-  import { makeTitle } from '../_utils';
+  import { makeTitle, WaterflowController } from '../_utils';
 
   export let tag;
+
+  let columns = [];
+  let controller = new WaterflowController('tag-page', 336, 3, tag.articles, (c) => {
+    columns = c;
+  });
 </script>
 
 <svelte:head>
@@ -23,14 +28,21 @@
   {/if}
 </svelte:head>
 
-<div class="pageContainer max-w-screen-md mx-auto px-8">
-  <TagCard tag="{tag}" showArticlesCount="{false}" class="my-8" />
-  {#each tag.articles as article, i}
-    {#if i}
-      <hr class="border-carbonblue-50 mx-auto w-1/2 opacity-25 my-6" />
+<div class="my-4 sm:my-8 px-8 w-full" use:controller.observeResize>
+  <div class="my-8 mx-auto max-w-64">
+    <TagCard item="{tag}" displayMode="{true}" />
+  </div>
+  <div class="flex gap-6 w-full max-w-300 justify-center">
+    {#if tag.articles?.length <= 0}
+      <p class="text-center">暂无文章</p>
+    {:else}
+      {#each columns as column}
+        <div class="flex-1 flex flex-col gap-4 max-w-[336px]">
+          {#each column as article}
+            <ArticleCard article="{article}" />
+          {/each}
+        </div>
+      {/each}
     {/if}
-    <ArticleCard article="{article}" />
-  {:else}
-    <p class="text-center">暂无文章</p>
-  {/each}
+  </div>
 </div>

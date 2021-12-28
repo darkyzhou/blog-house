@@ -5,6 +5,16 @@ description: 'This is an example blog, enjoy it!'
 dir: 'ltr'
 language: 'zh-CN'
 analytics:
+  blockedDomains:
+    - 'localhost'
+  blockedUAs:
+    - 'googlebot'
+    - 'baiduspider'
+    - 'sogou web spider'
+    - 'bingbot'
+    - 'duckduckbot'
+    - 'yandexbot'
+    - 'yahoo! slurp'
   gaMeasurementId: ''
   baiduId: ''
 comments:
@@ -14,3 +24,9 @@ comments:
     label: ''
     theme: 'github-dark'
   - type: 'none'
+algolia:
+  enabled: false
+  index: 'blog_house'
+  applicationId: ''
+  searchOnlyApiKey: ''
+  adminApiKey: ''

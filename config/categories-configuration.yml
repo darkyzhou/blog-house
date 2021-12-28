@@ -1,0 +1,7 @@
+categories:
+  - slug: 'web-frontend'
+    name: 'Web 前端'
+    description: '你甚至能在 Web 前端里写 Go'
+  - slug: 'test'
+    name: '测试'
+    description: '一些测试'

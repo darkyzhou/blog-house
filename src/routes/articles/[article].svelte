@@ -5,11 +5,19 @@
 </style>
 
 <script context="module">
-  export async function preload({ params, query }) {
-    const articleSlug = params.article;
-    const response = await this.fetch(`data/articles/${articleSlug}.json`);
-    const article = await response.json();
-    return { article };
+  export async function load({ page, fetch }) {
+    const articleSlug = page.params.article;
+    const article = await (await fetch(`/data/articles/${articleSlug}.json`)).json();
+    const allArticles = !article.category ? [] : await (await fetch(`/data/articles.json`)).json();
+    const articlesOfSameCategories = allArticles.filter(
+      (a) => a.category === article.category && a.slug !== article.slug
+    );
+    return {
+      props: {
+        article,
+        articlesOfSameCategories
+      }
+    };
   }
 </script>
 
@@ -18,11 +26,12 @@
   import TagsSection from '../../components/TagsSection.svelte';
   import TableOfContent from '../../components/TableOfContent.svelte';
   import { makeTitle } from '../_utils';
-  import BackToTop from '../../components/BackToTop.svelte';
   import basicConfiguration from '../../../config/basic-configuration.yml';
   import ClipboardJS from 'clipboard';
+  import ArrowUp16 from 'carbon-icons-svelte/lib/ArrowUp16';
 
   export let article;
+  export let articlesOfSameCategories;
 
   let titleElement;
   let showBackToTop = false;
@@ -98,6 +107,20 @@
     clipboard.on('error', (e) => (e.trigger.textContent = '复制失败'));
   }
 
+  function backToTop() {
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  function padIfAlpha(str) {
+    if (str.length > 0 && /^\w/i.test(str)) {
+      return ` ${str}`;
+    }
+    return str;
+  }
+
   onMount(() => {
     checkShouldScrollToTop();
     initCodeCopying();
@@ -114,33 +137,57 @@
   {/if}
 </svelte:head>
 
-<div class="pageContainer flex text-carbongray-200 w-full sm:w-auto" use:scrollEvent>
-  <div
-    class="w-full sm:w-auto lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg flex-grow px-4 sm:px-6">
-    <h1 class="text-xl sm:text-2xl md:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
+<div
+  class="relative text-carbongray-200 lg:p-2 w-screen md:max-w-[500px] lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg"
+  use:scrollEvent>
+  <aside
+    class="absolute md:left-[-170px] lg:left-[-210px] top-0 bottom-0 h-full my-10 text-sm hidden md:block md:w-[160px] lg:w-[200px]">
+    {#if article.tableOfContent?.length || articlesOfSameCategories?.length}
+      <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
+        {#if article.tableOfContent?.length}
+          <div class="flex-none px-4 lg:px-6 py-2 bg-carbongray-700 text-center">大纲</div>
+          <div class="flex-1 px-4 lg:px-6 overflow-auto">
+            <TableOfContent
+              tableOfContent="{article.tableOfContent}"
+              highlightedIndex="{highlightedHeadingIndex}" />
+          </div>
+        {/if}
+        {#if articlesOfSameCategories?.length}
+          <div class="bg-carbongray-800 max-h-[15vh]">
+            <div class="px-4 lg:px-6 py-2 bg-carbongray-700 text-center break-all">
+              其它{padIfAlpha(article.category)}文章
+            </div>
+            <ul class="px-4 lg:px-6 py-2 list-none flex flex-col gap-4 overflow-auto">
+              {#each articlesOfSameCategories as a}
+                <li>
+                  <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">
+                    {a.title}
+                  </a>
+                </li>
+              {/each}
+            </ul>
+          </div>
+        {/if}
+        {#if showBackToTop}
+          <div
+            class="flex-none flex py-2 justify-center cursor-pointer bg-carbongray-700"
+            on:click="{backToTop}">
+            <ArrowUp16 />
+            <span class="pl-1">回到顶部</span>
+          </div>
+        {/if}
+      </div>
+    {/if}
+  </aside>
+  <div class="my-4 sm:my-8 px-4">
+    <h1 class="text-2xl lg:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
-    <TagsSection article="{article}" class="mb-6" />
-    <article id="article" class="mb-24 markdown-body">
+    <TagsSection article="{article}" showTags="{true}" />
+    <article id="article" class="mt-8 mb-24 markdown-body">
       {@html article.html}
     </article>
     <div class="commentsContainer w-full" bind:this="{utterancesContainer}"></div>
     <p class="loadingIndicator hidden text-center">评论区加载中...</p>
   </div>
-  {#if article.tableOfContent?.length}
-    <aside class="hidden lg:block px-4">
-      <div class="sticky top-8 overflow-x-hidden overflow-y-auto">
-        <h1 class="mb-2 font-bold">大纲</h1>
-        <TableOfContent
-          class="pl-4 w-full"
-          style="max-height: 85vh; max-width: 14em; width: max-content; min-width: 8em;"
-          tableOfContent="{article.tableOfContent}"
-          highlightedIndex="{highlightedHeadingIndex}" />
-      </div>
-    </aside>
-  {/if}
 </div>
-
-<BackToTop
-  class="fixed h-12 w-12 sm:h-16 sm:w-16 bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-16"
-  show="{showBackToTop}" />

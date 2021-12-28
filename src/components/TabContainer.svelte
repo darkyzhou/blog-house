@@ -31,8 +31,10 @@
 </style>
 
 <script>
-  import { getIcon } from './icons';
   import { getCssSegment } from '../routes/_utils';
+
+  // must be right after the imports
+  const ICONS = []; //@MARK:TABS
 
   let extraClasses;
   export { extraClasses as class };
@@ -71,13 +73,14 @@
           class="icon cursor-pointer outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2"
           for="toggle{i + 1}"
           tabindex="0">
-          <svelte:component this="{getIcon(tab.icon)}" extraClasses="w-8 h-8" />
+          <span class="w-8 h-8">
+            <svelte:component this={ICONS[i]} />
+          </span>
         </label>
       </li>
     {/each}
   </ul>
-  <div
-    class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
+  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
     {#each tabContents as tab}
       <div class="overflow-y-auto h-full markdown-body">
         {@html tab.contentHtml}

@@ -15,7 +15,8 @@ const data = {
   ]
 };
 
-export async function get(request, response) {
-  response.writeHead(200, { 'Content-Type': 'application/manifest+json' });
-  response.end(JSON.stringify(data));
+export async function get() {
+  return {
+    body: data
+  };
 }

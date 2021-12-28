@@ -14,27 +14,36 @@
 </style>
 
 <script>
-  import { getIcon } from './icons';
+  import Search16 from 'carbon-icons-svelte/lib/Search16';
 
   let extraClasses;
   export { extraClasses as class };
   export let caption = '';
-  export let icon = '';
+  export let search = false;
   export let route;
   export let active;
+  export let click;
 </script>
 
-<a
-  sapper:prefetch
-  tabindex="0"
-  class="grid place-items-center px-2 py-1 md:px-4 md:py-2 text-carbongray-100 outline-none border-transparent hover:border-carbongray-200 focus:border-carbongray-200 border-2 {active &&
-    'text-carbongray-600 bg-carbongray-100'} {extraClasses}"
-  class:inactive="{!active}"
-  href="{route}">
-  {#if icon}
-    <svelte:component this="{getIcon(icon)}" extraClasses="w-4 h-4" />
-  {/if}
-  {#if caption}
+{#if !search}
+  <a
+    sveltekit:prefetch
+    tabindex="0"
+    class="grid h-full place-items-center px-2 py-1 md:px-4 md:py-2 text-carbongray-100 outline-none border-transparent hover:border-carbongray-200 focus:border-carbongray-200 border-2 {active &&
+      'text-carbongray-600 bg-carbongray-100'} {extraClasses}"
+    class:inactive="{!active}"
+    href="{route}">
     {caption}
-  {/if}
-</a>
+  </a>
+{:else}
+  <span
+    tabindex="0"
+    class="cursor-pointer grid h-full place-items-center px-2 py-1 md:px-4 md:py-2 text-carbongray-100 outline-none border-transparent hover:border-carbongray-200 focus:border-carbongray-200 border-2 {active &&
+      'text-carbongray-600 bg-carbongray-100'} {extraClasses}"
+    class:inactive="{!active}"
+    on:click="{() => {
+      if (click) click();
+    }}">
+    <Search16 />
+  </span>
+{/if}

@@ -3,14 +3,14 @@ _markdownFields:
 avatar: '/images/uploads/avatar.jpg'
 background: '/images/uploads/background.jpg'
 contact:
-  - type: location
+  - type: Location16
     text: Guangzhou
-  - type: github
+  - type: LogoGithub16
     text: darkyzhou
 tabsContent:
-  - icon: message
+  - icon: InformationSquare32
     content: 'Here is my self-introduction: ...'
-  - icon: heart
+  - icon: Milestone32
     content: 'I love programming, collecting xxx...'
-  - icon: code
+  - icon: Code32
     content: "My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world!"

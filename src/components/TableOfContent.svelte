@@ -1,5 +1,5 @@
 <script>
-  import { stores } from '@sapper/app';
+  import { getStores } from '$app/stores';
 
   let extraClasses;
   export { extraClasses as class };
@@ -8,7 +8,7 @@
   export let tableOfContent;
   export let highlightedIndex;
 
-  const { page } = stores();
+  const { page } = getStores();
 
   let resolved;
   $: {
@@ -25,19 +25,24 @@
   }
 </script>
 
-<ul
-  class="list-none p-0 text-carbongray-200 font-light cursor-pointer break-words {extraClasses}"
-  style="{extraStyles}">
+<div class="py-2 text-carbongray-200 flex flex-col {extraClasses}" style="{extraStyles}">
   {#each resolved as item, i}
-    <li
-      class="mt-2 mb-2 hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
-        highlightedIndex && 'text-carbonblue-300'}"
-      style="padding-left: {item.padding}rem">
-      {#if item.id}
-        <a href="{$page.path}#{item.id}">{item.caption}</a>
-      {:else}
+    {#if item.id}
+      <a
+        class="py-1 break-all hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
+          highlightedIndex && 'text-carbonblue-300'}"
+        style="padding-left: {item.padding}rem"
+        sveltekit:noscroll
+        href="javascript:document.getElementById('{item.id.toLowerCase()}').scrollIntoView(true);">
         {item.caption}
-      {/if}
-    </li>
+      </a>
+    {:else}
+      <span
+        class="py-1 break-all hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
+          highlightedIndex && 'text-carbonblue-300'}"
+        style="padding-left: {item.padding}rem">
+        {item.caption}
+      </span>
+    {/if}
   {/each}
-</ul>
+</div>

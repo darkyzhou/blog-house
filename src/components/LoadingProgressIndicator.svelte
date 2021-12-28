@@ -1,7 +1,7 @@
 <style>
   :global(.indicator) {
     position: fixed;
-    height: 4px;
+    height: 3px;
     left: 0;
     pointer-events: none;
     will-change: opacity, right;

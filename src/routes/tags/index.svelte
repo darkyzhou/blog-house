@@ -1,8 +1,8 @@
 <script context="module">
-  export async function preload({ params, query }) {
-    const response = await this.fetch('data/tags.json');
+  export async function load({ fetch }) {
+    const response = await fetch('/data/tags.json');
     const tags = await response.json();
-    return { tags };
+    return { props: { tags } };
   }
 </script>
 
@@ -11,13 +11,25 @@
   import TagsContainer from '../../components/TagsContainer.svelte';
 
   export let tags;
+  $: sorted = tags.sort((a, b) => b.articles.length - a.articles.length);
 </script>
 
 <svelte:head>
   <title>{makeTitle('标签')}</title>
 </svelte:head>
 
-<TagsContainer
-  tags="{tags}"
-  class="pageContainer px-4 sm:px-8 lg:px-16 w-full flex-grow"
-  style="max-width: 1000px;" />
+<h1 class="w-full max-w-[1000px] mx-auto px-8 md:px-12 pt-4 md:text-xl">
+  {#if !sorted.length}
+    目前没有标签
+  {:else}
+    目前有 {sorted.length} 个标签：
+  {/if}
+</h1>
+<TagsContainer items={sorted} style="max-width: 1000px;" />
+
+<!-- workaround a bug that sveltekit static adapter cannot detect sveltekit:prefetch inside deeply nested <TagsContainer> structures here -->
+<div class="hidden">
+  {#each sorted as t}
+    <a sveltekit:prefetch href={`/tags/${t.slug}`}>X</a>
+  {/each}
+</div>
