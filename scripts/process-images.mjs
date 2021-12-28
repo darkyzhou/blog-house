@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+import { existsSync } from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 
@@ -35,14 +36,16 @@ async function getFileInfo(dir) {
         name
       )}`;
       if (files.includes(nameToCheck)) {
-        console.warn('find already optimized image, deleted', fullPath);
         fs.rm(fullPath);
         continue;
       }
-      console.warn('find already optimized image, ignored', fullPath);
       continue;
     }
-    const fileName = path.join(dir, path.parse(name).name);
+    const nameWithoutExt = path.parse(name).name;
+    const fileName = path.join(dir, nameWithoutExt);
+    if (existsSync(path.join(dir, `${nameWithoutExt}-bloghouse-opt.webp`))) {
+      continue;
+    }
     if (results.find((item) => item.name == fileName)) {
       console.warn('ignored image file with the same name', fullPath);
       continue;
