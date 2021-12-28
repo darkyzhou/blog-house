@@ -190,3 +190,11 @@
     </div>
   </div>
 </div>
+
+<!-- workaround for sveltekit static adapter to generate static files that are not neccessarily "used" (referenced by links) -->
+<div class="hidden">
+  <a sveltekit:prefetch href="/sitemap.xml">X</a>
+  <a sveltekit:prefetch href="/robots.txt">X</a>
+  <a sveltekit:prefetch href="/rss.xml">X</a>
+  <a sveltekit:prefetch href="/manifest.json">X</a>
+</div>

@@ -26,3 +26,10 @@
   {/if}
 </h1>
 <CategoriesContainer items={categories} isCategories={true} style="max-width: 1000px;" />
+
+<!-- workaround a bug that sveltekit static adapter cannot detect sveltekit:prefetch inside deeply nested <CategoriesContainer> structures here -->
+<div class="hidden">
+  {#each sorted as c}
+    <a sveltekit:prefetch href={`/categories/${c.slug}`}>X</a>
+  {/each}
+</div>

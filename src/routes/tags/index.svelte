@@ -26,3 +26,10 @@
   {/if}
 </h1>
 <TagsContainer items={sorted} style="max-width: 1000px;" />
+
+<!-- workaround a bug that sveltekit static adapter cannot detect sveltekit:prefetch inside deeply nested <TagsContainer> structures here -->
+<div class="hidden">
+  {#each sorted as t}
+    <a sveltekit:prefetch href={`/tags/${t.slug}`}>X</a>
+  {/each}
+</div>
