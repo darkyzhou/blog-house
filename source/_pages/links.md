@@ -1,7 +1,7 @@
 ---
 title: 友情链接
 date: 2021-12-28T11:28:40.425Z
-pageSlug: about
+pageSlug: links
 ---
 
 这里可以放一点友情链接。
