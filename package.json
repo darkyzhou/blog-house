@@ -8,8 +8,9 @@
     "dev": "NODE_ENV=development svelte-kit dev",
     "postcss": "postcss ./static/styles/global.css -o ./static/styles/global.css",
     "algolia": "node ./scripts/upload-to-algolia.mjs",
+    "process-image": "node ./scripts/process-images.mjs",
     "export": "NODE_ENV=production svelte-kit build",
-    "build": "npm-run-all --parallel algolia postcss --serial export",
+    "build": "npm-run-all --parallel algolia postcss process-image --serial export",
     "prettier": "prettier --write ./src ./scripts ./shared ./config"
   },
   "devDependencies": {
