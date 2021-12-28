@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#121619" />
     <style>
+      body {
+        min-height: 100vh;
+        min-width: 100vw;
+      }
       @media not all and (min-resolution: 0.001dpcm) {
         body {
-          background: url('/images/uploads/background.jpg') fixed 50% / cover no-repeat #121619;
+          background: url('/images/uploads/background-bloghouse-opt.jpg') fixed 50% / cover
+            no-repeat #121619;
         }
       }
       body {
-        background: url('/images/uploads/background.webp') fixed 50% / cover no-repeat #121619;
+        background: url('/images/uploads/background-bloghouse-opt.webp') fixed 50% / cover no-repeat
+          #121619;
       }
     </style>
+    <link rel="preload" href="/styles/global.css" as="style" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="preload" href="/fonts/Lxgw975GoSC-200W.woff2" as="font" crossorigin />
     <link rel="preload" href="/fonts/Lxgw975GoSC-400W.woff2" as="font" crossorigin />
-    <link rel="preload" href="/images/uploads/avatar.jpg" as="image" />
     <link rel="preconnect" href="https://utteranc.es" />
     <link rel="prefetch" href="https://utteranc.es/client.js" as="script" />
     <link rel="manifest" href="/manifest.json" />
