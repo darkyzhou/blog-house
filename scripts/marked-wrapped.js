@@ -17,7 +17,7 @@ renderer.image = (href, title, text) => {
   return `<picture>
   <source srcset="${getOptimizedImageName(href, 'avif')}" type="image/avif" />
   <source srcset="${getOptimizedImageName(href, 'webp')}" type="image/webp" />
-  <img src="${getOptimizedImageName(href, 'jpg')}" alt="${text}"/></picture>`;
+  <img src="${getOptimizedImageName(href, 'jpg')}" alt="${text}" loading="lazy" /></picture>`;
 };
 
 const originalLinkRenderer = renderer.link;
