@@ -108,6 +108,7 @@
   import { onMount } from 'svelte';
   import TabContainer from '../components/TabContainer.svelte';
   import ArrowsHorizontal20 from 'carbon-icons-svelte/lib/ArrowsHorizontal20';
+  import { getOptimizedImageName } from './_utils';
 
   // must be right after the imports
   const ICONS = []; //@MARK:CONTACTS
@@ -148,12 +149,17 @@
   </label>
   <div class="cardContent grid gap-2" style="grid-template-areas: 'stack'">
     <div class="aSideContent px-2 py-4 md:p-0 grid gap-1 md:gap-2" style="grid-area: stack;">
-      <img
-        alt="头像"
-        class="avatar block object-cover"
-        src="{homePageConfiguration.avatar}"
-        draggable="false"
-        style="grid-area: a" />
+      <picture>
+        <source srcset={getOptimizedImageName(homePageConfiguration.avatar, 'avif')} type="image/avif" />
+        <source srcset={getOptimizedImageName(homePageConfiguration.avatar, 'webp')} type="image/webp" />
+        <img
+          class="avatar block object-cover"
+          style="grid-area: a"
+          alt="头像"
+          src="{getOptimizedImageName(homePageConfiguration.avatar, 'jpg')}"
+          draggable="false"
+        />
+      </picture>
       <div
         class="info py-2 md:py-4 px-3 md:px-6 flex flex-col gap-2 justify-between items-center"
         style="grid-area: b">

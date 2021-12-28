@@ -4,6 +4,22 @@ import shiki from 'shiki';
 const renderer = new marked.Renderer();
 const highlighter = await shiki.getHighlighter({ theme: 'github-dark-dimmed' });
 
+function getOptimizedImageName(path, ext) {
+  return `${path.substring(0, path.lastIndexOf('.'))}-bloghouse-opt.${ext}`;
+}
+
+const originalImageRenderer = renderer.image;
+renderer.image = (href, title, text) => {
+  const result = originalImageRenderer.call(renderer, href, title, text);
+  if (!href.startsWith('/')) {
+    return result;
+  }
+  return `<picture>
+  <source srcset="${getOptimizedImageName(href, 'avif')}" type="image/avif" />
+  <source srcset="${getOptimizedImageName(href, 'webp')}" type="image/webp" />
+  <img src="${getOptimizedImageName(href, 'jpg')}" alt="${text}"/></picture>`;
+};
+
 const originalLinkRenderer = renderer.link;
 renderer.link = (href, title, text) => {
   const result = originalLinkRenderer.call(renderer, href, title, text);

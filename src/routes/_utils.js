@@ -3,6 +3,10 @@ import { ResizeObserver } from '@juggle/resize-observer';
 import debounce from 'debounce';
 import { browser } from '$app/env';
 
+export function getOptimizedImageName(path, ext) {
+  return `${path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'))}-bloghouse-opt.${ext}`;
+}
+
 export function makeTitle(title) {
   return `${title} · ${basicConfiguration.blogName}`;
 }
