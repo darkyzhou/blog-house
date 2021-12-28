@@ -13,7 +13,7 @@ async function doWork() {
   }
   console.log(`process-images.mjs: found ${infos.length} images, ready to optimize`);
   await Promise.all(infos.map((info) => getTask(info)).flat());
-  console.log(`process-images.mjg: done`);
+  console.log(`process-images.mjs: done`);
 }
 
 async function resolveFileInfos() {
@@ -31,7 +31,15 @@ async function getFileInfo(dir) {
       continue;
     }
     if (name.includes('-bloghouse-opt')) {
-      console.warn('ignored image file that is already optimized');
+      const nameToCheck = `${name.substring(0, name.lastIndexOf('-bloghouse-opt'))}.${path.extname(
+        name
+      )}`;
+      if (files.includes(nameToCheck)) {
+        console.warn('find already optimized image, deleted', fullPath);
+        fs.rm(fullPath);
+        continue;
+      }
+      console.warn('find already optimized image, ignored', fullPath);
       continue;
     }
     const fileName = path.join(dir, path.parse(name).name);
@@ -48,12 +56,22 @@ async function getFileInfo(dir) {
 }
 
 function getTask(info) {
+  const jpgName = getOutputFileName(info.name, 'jpg');
+  const webpName = getOutputFileName(info.name, 'webp');
+  const avifName = getOutputFileName(info.name, 'avif');
   return Promise.all([
     sharp(info.path)
       .toFormat('jpg', { progressive: true, mozjpeg: true })
-      .toFile(getOutputFileName(info.name, 'jpg')),
-    sharp(info.path).toFormat('webp').toFile(getOutputFileName(info.name, 'webp')),
-    sharp(info.path).toFormat('avif', { quality: 70 }).toFile(getOutputFileName(info.name, 'avif'))
+      .toFile(jpgName)
+      .then(() => console.log('optimized image file saved to ', jpgName)),
+    sharp(info.path)
+      .toFormat('webp')
+      .toFile(webpName)
+      .then(() => console.log('optimized image file saved to ', webpName)),
+    sharp(info.path)
+      .toFormat('avif', { quality: 70 })
+      .toFile(avifName)
+      .then(() => console.log('optimized image file saved to ', avifName))
   ]);
 }
 
