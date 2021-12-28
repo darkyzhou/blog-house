@@ -195,34 +195,6 @@ body {
 }
 
 /* Modified based on sindresorhus/github-markdown-css */
-.markdown-body .octicon {
-  display: inline-block;
-  fill: currentColor;
-  vertical-align: text-bottom;
-}
-
-.markdown-body .anchor {
-  float: left;
-  line-height: 1;
-  margin-left: -20px;
-  padding-right: 4px;
-}
-
-.markdown-body .anchor:focus {
-  outline: none;
-}
-
-.markdown-body h1 .octicon-link,
-.markdown-body h2 .octicon-link,
-.markdown-body h3 .octicon-link,
-.markdown-body h4 .octicon-link,
-.markdown-body h5 .octicon-link,
-.markdown-body h6 .octicon-link {
-  color: #1b1f23;
-  vertical-align: middle;
-  visibility: hidden;
-}
-
 .markdown-body h1:hover .anchor,
 .markdown-body h2:hover .anchor,
 .markdown-body h3:hover .anchor,
@@ -695,10 +667,8 @@ body {
 }
 
 .markdown-body code {
-  padding: 0.15em 0.5em;
-  margin: 0 0.05em;
-  border-radius: 4px;
-  font-size: 0.85em;
+  padding: 0.15rem 0.5rem;
+  vertical-align: middle;
   background-color: var(--bg-carbongray-800);
 }
 
@@ -706,32 +676,9 @@ body {
   word-wrap: normal;
 }
 
-.markdown-body pre > code {
-  padding: 0;
-  padding-bottom: 8px;
-  margin: 0;
-  font-size: 100%;
-  word-break: normal;
-  white-space: pre;
-  background: transparent;
-  border: 0;
-}
-
-.markdown-body .highlight {
-  margin-bottom: 16px;
-}
-
-.markdown-body .highlight pre {
-  margin-bottom: 0;
-  word-break: normal;
-}
-
-.markdown-body .highlight pre,
 .markdown-body pre {
   padding: 16px;
   overflow: hidden;
-  font-size: 85%;
-  line-height: 1.45;
   background-color: var(--bg-carbongray-800);
 }
 
@@ -739,155 +686,5 @@ body {
   display: block;
   padding: 0;
   margin: 0;
-  line-height: inherit;
-  word-wrap: normal;
-  background-color: initial;
-  border: 0;
-  width: auto;
   overflow: auto;
-}
-
-.markdown-body .commit-tease-sha {
-  display: inline-block;
-  /* font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
-  font-size: 90%;
-  color: #444d56;
-}
-
-.markdown-body .full-commit .btn-outline:not(:disabled):hover {
-  color: #005cc5;
-  border-color: #005cc5;
-}
-
-.markdown-body .blob-wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.markdown-body .blob-wrapper-embedded {
-  max-height: 240px;
-  overflow-y: auto;
-}
-
-.markdown-body .blob-num {
-  width: 1%;
-  min-width: 50px;
-  padding-right: 10px;
-  padding-left: 10px;
-  /* font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
-  font-size: 12px;
-  line-height: 20px;
-  color: rgba(27, 31, 35, 0.3);
-  text-align: right;
-  white-space: nowrap;
-  vertical-align: top;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.markdown-body .blob-num:hover {
-  color: rgba(27, 31, 35, 0.6);
-}
-
-.markdown-body .blob-num:before {
-  content: attr(data-line-number);
-}
-
-.markdown-body .blob-code {
-  position: relative;
-  padding-right: 10px;
-  padding-left: 10px;
-  line-height: 20px;
-  vertical-align: top;
-}
-
-.markdown-body .blob-code-inner {
-  overflow: visible;
-  /* font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; use the familiy provided by windicss */
-  font-size: 12px;
-  color: #24292e;
-  word-wrap: normal;
-  white-space: pre;
-}
-
-.markdown-body .pl-token.active,
-.markdown-body .pl-token:hover {
-  cursor: pointer;
-  background: #ffea7f;
-}
-
-.markdown-body .tab-size[data-tab-size='1'] {
-  -moz-tab-size: 1;
-  tab-size: 1;
-}
-
-.markdown-body .tab-size[data-tab-size='2'] {
-  -moz-tab-size: 2;
-  tab-size: 2;
-}
-
-.markdown-body .tab-size[data-tab-size='3'] {
-  -moz-tab-size: 3;
-  tab-size: 3;
-}
-
-.markdown-body .tab-size[data-tab-size='4'] {
-  -moz-tab-size: 4;
-  tab-size: 4;
-}
-
-.markdown-body .tab-size[data-tab-size='5'] {
-  -moz-tab-size: 5;
-  tab-size: 5;
-}
-
-.markdown-body .tab-size[data-tab-size='6'] {
-  -moz-tab-size: 6;
-  tab-size: 6;
-}
-
-.markdown-body .tab-size[data-tab-size='7'] {
-  -moz-tab-size: 7;
-  tab-size: 7;
-}
-
-.markdown-body .tab-size[data-tab-size='8'] {
-  -moz-tab-size: 8;
-  tab-size: 8;
-}
-
-.markdown-body .tab-size[data-tab-size='9'] {
-  -moz-tab-size: 9;
-  tab-size: 9;
-}
-
-.markdown-body .tab-size[data-tab-size='10'] {
-  -moz-tab-size: 10;
-  tab-size: 10;
-}
-
-.markdown-body .tab-size[data-tab-size='11'] {
-  -moz-tab-size: 11;
-  tab-size: 11;
-}
-
-.markdown-body .tab-size[data-tab-size='12'] {
-  -moz-tab-size: 12;
-  tab-size: 12;
-}
-
-.markdown-body .task-list-item {
-  list-style-type: none;
-}
-
-.markdown-body .task-list-item + .task-list-item {
-  margin-top: 3px;
-}
-
-.markdown-body .task-list-item input {
-  margin: 0 0.2em 0.25em -1.6em;
-  vertical-align: middle;
 }
