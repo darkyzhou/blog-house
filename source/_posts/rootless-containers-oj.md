@@ -1,11 +1,11 @@
 ---
-title: 测试文章一号
+title: 探索 Rootless Containers：应用于 OJ 的下一代技术
 date: 2021-10-11T12:44:40.425Z
-category: "Web 前端"
+category: 'Linux 研究日志'
 tags:
   - 容器技术
   - OJ
-  - RootlessContainer
+  - 'Rootless Container'
   - Docker
   - runc
   - libcontainer
@@ -274,7 +274,7 @@ root@dev /# umount -l old_root/
 root@dev /# rm -r old_root/
 root@dev /# exec bash
 bash-4.4# PS1='my-container => '
-my-container => 
+my-container =>
 ```
 
 `pivot_root` 命令将当前挂载命名空间的**根节点**切换到了 `~/rootfs` 之中，同时将原本的根节点绑定到了 `old_root/` 上。由于我们不再需要原本的根节点，可以对其进行 `umount`。我们在 `cd /` 之后就已经切换到了新容器的根文件系统中。笔者在最后手动输入 `exec bash` 来让当前运行的 fish shell 进程（来自宿主系统）切换为 bash shell 进程（来自 CentOS 容器），因为 fish shell 进程本身保留着一些来自容器外部的宿主系统的数据，在容器中运行容易出现各种奇怪的错误。
@@ -584,4 +584,5 @@ darkyzhou@dev ~> runc run -b centos/ my-container
 关于 OJ 评测环境的容器的具体配置方法，笔者将在一篇新的文章中继续讨论。
 
 **值得一提的是：即使本身已经处在一个普通容器（具备默认设置的普通权限）中时，runc 依然可以创建容器。**这意味着我们可以将 OJ 平台本身部署到容器中，甚至让整个 OJ 平台运行在 Kubernetes 这样的容器编排平台上，进而充分利用 Kubernetes 带来的高可用性、伸缩性和便捷性。
+
 

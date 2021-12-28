@@ -1,9 +1,9 @@
-blogName: 'Example Blog'
-authorName: 'darkyzhou'
-url: 'https://example.com'
-description: 'This is an example blog, enjoy it!'
-dir: 'ltr'
-language: 'zh-CN'
+blogName: Darky's Blog
+authorName: darkyzhou
+url: https://darkyzhou.net
+description: 别把看重的东西附上无边的价值
+dir: ltr
+language: zh-CN
 analytics:
   blockedDomains:
     - 'localhost'
@@ -15,18 +15,18 @@ analytics:
     - 'duckduckbot'
     - 'yandexbot'
     - 'yahoo! slurp'
-  gaMeasurementId: ''
-  baiduId: ''
+  baiduId: f60a9a2b48d8e5dd35145c273edec8ef
+  gaMeasurementId: UA-169813168-1
 comments:
-  - type: 'utterances'
-    repository: 'blog-house/blog-house'
-    issueTerm: 'title'
+  - type: utterances
+    repository: darkyzhou/blog-comments
+    issueTerm: title
     label: ''
-    theme: 'github-dark'
-  - type: 'none'
+    theme: github-dark
+  - type: none
 algolia:
   enabled: false
-  index: 'blog_house'
-  applicationId: ''
-  searchOnlyApiKey: ''
+  index: 'darky_blog'
+  applicationId: 'XP3BDSDXS9'
+  searchOnlyApiKey: 'e225d83ac2d8b1aa0d8d573ba1be5be5'
   adminApiKey: ''

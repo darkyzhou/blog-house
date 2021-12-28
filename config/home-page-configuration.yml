@@ -9,8 +9,45 @@ contact:
     text: darkyzhou
 tabsContent:
   - icon: InformationSquare32
-    content: 'Here is my self-introduction: ...'
+    content: >-
+      我叫 Darkyzhou，以前的 ID 是 Darkyoooooo，也可以简写成
+      Darky。朋友们因为一个奇怪的食用油广告，总是称我为“达克油”，但其实我不会制油。我生于 2001 年，在粤北的一座不算安静的小山城里。
+
+
+      六年级毕业后，想找些事情做，于是乘着学习 Minecraft 模组开发的道，买了本学习 Java 的书。我平凡的一生就此与计算机这项人类伟大的发明缠上了关系。也是因为模组开发接触到了 mcbbs.net，认识了在上面活跃过的许多志同道合的伙伴，至今仍有联系的不下十个人，他们或许也算是我在这虚无的网络世界里保持联系最久的一批人了。
+
+
+      可惜的是，初中的我编程学得太慢，有时也会缺乏动力，因此并没有掌握很多的知识。上了高中之后，由于是一所封闭寄宿高中，我没有任何时间能够继续接触电脑，学习编程。所以这三年我基本上都在死啃书本，一心备战高考了。
+
+
+      我目前就读于广州某高校的软件工程系，最近加入了学院的某课程平台的开发团队，经过奋斗，成为了其中前端团队的负责人。除了写代码，我平时还喜欢玩手游，收集手办、电子产品（也就是俗称的“捡垃圾”）。
+
+
+      如果你想知道更多关于我的信息，请阅读[“关于”页面](/about)。
   - icon: Milestone32
-    content: 'I love programming, collecting xxx...'
+    content: >-
+      我的爱好不算狭窄：
+
+
+      - 写点代码。最喜欢的语言是 JavaScript 和 TypeScript，目前主要在 Web 前端领域中上下求索。不过我其实还会写点后端、以及运维。虽然我不喜欢捣鼓数据库设计之类的东西，以及 Kubernetes 集群的维护工作已经给我的心灵造成了不小的阴影。不过我始终认为，程序员不能吊死在一棵树上，所以如果有时间我还是希望多多学习，让自己多掌握一门技术。
+
+      - 玩点手游。虽然很心疼钱包。有人也许会问，为什么不玩 PC 游戏？主机游戏也不错啊？请容我辩解一番：我的空闲时间非常琐碎，以至于我曾经配过一台不错的游戏 PC，但就摆在角落吃灰了半年。更糟的是，我竟然是个二次元。相比起3A大作中的写实画风，我更喜欢那些偏向幻想系的风格。
+
+      - 收集手办。要说这手办就像 CS:GO 里的首饰，好一点的如多普勒P3的M9，拿在手上，眼睛看着，心里面是莫名的享受。对我而言，手办就是一种看得见，摸得着的美。这种美可以是人物神情上的美、可以是身材曲线的美、可以是单纯作为工艺品而言的精细美。这种美经得起眼睛的反复推敲，经得起脑子里质问花这些钱是否值得的声音的追责。只可惜宿舍的桌子太小，我的爱好又太广泛，不足以摆下更多的手办。
+
   - icon: Code32
-    content: "My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world! My main programming language is TypeScript and in my mind it's the best programming language in the world!"
+    content: |
+      我的编程生涯从 Web 前端开始：
+
+      - HTML、CSS、JavaScript、TypeScript。
+      - Angular、React、Svelte。
+      - Webpack、Vite。
+
+      后来，对其他领域也产生了兴趣：
+
+      - Golang
+      - Rust
+      - 云原生
+      - 容器技术
+
+      单纯列举这些并不能囊括我知道的东西，因为太琐碎了……

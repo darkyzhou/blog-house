@@ -4,8 +4,6 @@ date: 2021-12-28T11:28:40.425Z
 pageSlug: links
 ---
 
-这里可以放一点友情链接。
-
 ```#(https://avatars.githubusercontent.com/u/7220778)[https://darkyzhou.net]
 ### Darky's Blog
 

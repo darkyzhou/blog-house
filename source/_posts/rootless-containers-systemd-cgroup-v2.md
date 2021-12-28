@@ -1,9 +1,9 @@
 ---
-title: "测试文章二号"
+title: "探究 rootless containers 下通过 systemd 配置 cgroup v2 "
 date: 2021-12-07T06:56:59.095Z
-category: "Web 前端"
+category: 'Linux 研究日志'
 tags:
-  - 容器
+  - 容器技术
   - runc
   - systemd
   - cgroup
@@ -23,17 +23,17 @@ excerpt: 本文将介绍如何在以一个普通用户的权限创建使用 Linu
 先来看看不使用 cgroup v1 的几个原因：
 
 1. cgroup v1 起初是提供给 root 使用的，普通用户使用 cgroup v1 需要经过某种委托机制，即由一个拥有 root 权限的服务去代替普通用户和 cgroup 进行交互，[但这存在安全风险](https://rootlesscontaine.rs/how-it-works/cgroups/#v1)，所以**在 Rootless Containers 的定义里不包含 cgroup v1，只能使用 cgroup v2**。
-  
+
   另外，如果跑在 Kubernetes 里的应用要使用 cgroup v1，则一般需要在 Pod 里挂载 cgroup 文件夹，还要给容器赋予足够的权限，这样来看是非常不安全的。
-  
+
 2. cgroup v1 因为各种历史原因，目前的实现很不统一，各种 controller 的开发工作没有很好地协调，导致 controller 之间存在许多不一致性。同时，也因为这种不统一的实现，用户使用 cgroup v1 也很麻烦，例如要限制某个进程的 cpu、内存、io 使用，需要分别到三个 controller 的目录下进行交互。
-  
+
   因此，cgroup v2 就被提了出来，拥有更统一、方便使用的 API。虽然因为兼容性考虑 cgroup v1 可能会一直留在内核里，但 **cgroup v2 已经开始在各大发行版中取代了 cgroup v1 的地位**。例如：Ubuntu 从最近的 21.10 版本开始就默认只开启 cgroup v2，禁用 cgroup v1。
-  
+
 3. 在 cgroup v1 中，一个进程的不同线程可以分别属于不同的 cgroup，很多人认为这个设计没什么用，还白白添加了复杂性。更糟糕的是，这给 cgroup v1 自身挖了许多坑，比如 memory controller（即管理内存限制的 controller）不能正常工作了，因为不同线程属于不同 cgroup，分属不同 memory controller 管辖，但是它们却又共享同一个进程的内存空间，这种情况下 memory controller 又该怎么工作呢？
-  
+
   因此在 cgroup v2 里就去掉了这种设计，一个进程的所有线程只能属于同一个 cgroup（虽然后来又在 threaded mode 里加了回来，不过加上了很多限制）。
-  
+
 
 在笔者看来，当前新开发的应用已经没有必要考虑 cgroup v1 了，cgroup v2 拥有更加统一、易用、符合直觉的 API 设计，并且已经开始取代 cgroup v1。
 
@@ -42,11 +42,11 @@ excerpt: 本文将介绍如何在以一个普通用户的权限创建使用 Linu
 cgroup v2 和 cgroup v1 的具体差别请读者自行查阅资料。根据 [man7 文档](https://man7.org/linux/man-pages/man7/cgroups.7.html)，cgroup v2 清楚地定义了如何向普通用户提供 cgroup v2 交互能力，粗略来说就是：
 
 1. 创建一个子文件夹作为 sub-cgroup
-  
+
 2. 在这个子文件夹的父文件夹（也是一个 cgroup）里，修改 `cgroup.subtree_control` 文件来控制 sub-cgroup 能使用的 controller 种类。
-  
+
 3. 通过 chown 给普通用户来让他能够使用这个 sub-cgroup。
-  
+
 
 在目前的许多发行版中，`/sys/fs/cgroup` 已经自动被 systemd 挂载。但 systemd 做的时期可不仅仅是帮你 `mount -t cgroup2` 这么简单，它做的事情是让自己“拥有”这个 cgroup v2。换句话说，任何想要使用 cgroup v2 的进程都需要经过 systemd 的管理。
 
@@ -99,10 +99,10 @@ Transient scope 代表的容器进程是一种由其他进程（也就是调用 
 
 但是 cgroup v2 里有一条坑爹的设定：
 
-> A domain cgroup is turned into a threaded domain when one of its child  
-> cgroup becomes threaded or threaded controllers are enabled in the  
-> "cgroup.subtree_control" file while there are processes in the cgroup.  
-> A threaded domain reverts to a normal domain when the conditions  
+> A domain cgroup is turned into a threaded domain when one of its child
+> cgroup becomes threaded or threaded controllers are enabled in the
+> "cgroup.subtree_control" file while there are processes in the cgroup.
+> A threaded domain reverts to a normal domain when the conditions
 > clear.
 
 如果一个 cgroup 已经包含了一个进程（比如上面笔者应用的进程），那么 runc 在开启 cpu controller 的时候会被 cgroup 以为是要开启 threaded mode，导致笔者应用自己的 cgroup 和传给 runc 的 sub-cgroup 全部变成 threaded mode。
@@ -116,21 +116,21 @@ Transient scope 代表的容器进程是一种由其他进程（也就是调用 
 经过笔者的思考和尝试，我总结出了以下的解决方法：
 
 1. 应用手动调用 DBus，为当前的应用进程创建一个 transient scope。systemd 保证创建出来的 cgroup 可以被当前用户（普通用户）读写。
-  
+
   这一步是为了确保 runc 创建的容器进程依然能够被当前用户的 cgroup 管辖。否则它默认会被 root cgroup（也就是 systemd 直接管理的那个顶层 cgroup）管辖，当前用户（普通用户）是没有权限的。
 
 2. 应用手动调用 DBus，创建一个 slice（这种 unit 不需要绑定进程）。systemd 保证创建出来的 cgroup 可以被当前用户（普通用户）读写。
-  
+
 3. 应用在上述 slice 文件夹里创建一个新的文件夹，即新的 sub-cgroup，将路径传给 runc，让它使用 fs driver 实现初始化 cgroup 设置。
-  
+
   此时 runc 会尝试向这个 cgroup 的 `cgroup.procs` 写入 runc 创建的容器进程的 PID。因为在 1 里我们提到这个进程目前已经处于一个属于当前用户的 cgroup 里面，所以 runc 可以成功写入 PID 来将进程迁移到这个 cgroup 里。反之，如果我们不做 1，那么 runc 会因为权限不足而失败，因为不能把进程从 root 的 cgroup 里移出来。
-  
+
 4. 我们已经可以在容器结束之后调用 runc 相关的 API 来获得 cgroup 的相关信息，比如 cpu 时间（包括用户态时间、内核态时间）、内存占用（包括 swap）等。
 
 经过测试，上述方法成功解决了问题。笔者的应用现在可以以一个普通用户的权限做到以下事情：
 
 1. 创建并运行容器
-  
+
 2. 配置 cgroup 来限制容器
-  
+
 3. 容器结束后读取 cgroup 文件获得各种占用数据
