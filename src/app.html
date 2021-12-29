@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#121619" />
     <style>
+      @supports (-webkit-touch-callout: none) {
+        body {
+          min-height: -webkit-fill-available;
+        }
+      }
+      @supports not (-webkit-touch-callout: none) {
+        body {
+          min-height: 100vh;
+        }
+      }
       body {
-        min-height: 100vh;
         min-width: 100vw;
       }
       @media not all and (min-resolution: 0.001dpcm) {
