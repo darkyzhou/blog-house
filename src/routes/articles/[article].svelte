@@ -2,6 +2,10 @@
   .commentsContainer:empty ~ .loadingIndicator {
     display: block;
   }
+
+  .commentsContainer ~ .loadingIndicator {
+    display: none;
+  }
 </style>
 
 <script context="module">
@@ -188,6 +192,6 @@
       {@html article.html}
     </article>
     <div class="commentsContainer w-full" bind:this="{utterancesContainer}"></div>
-    <p class="loadingIndicator hidden text-center">评论区加载中...</p>
+    <p class="loadingIndicator text-center">评论区加载中</p>
   </div>
 </div>

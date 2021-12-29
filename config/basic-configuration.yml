@@ -19,7 +19,7 @@ analytics:
   baiduId: ''
 comments:
   - type: 'utterances'
-    repository: 'blog-house/blog-house'
+    repository: 'darkyzhou/blog-house'
     issueTerm: 'title'
     label: ''
     theme: 'github-dark'
