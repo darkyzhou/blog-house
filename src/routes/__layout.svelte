@@ -1,6 +1,3 @@
-<style windi:preflights:global windi:safelist:global>
-</style>
-
 <script>
   import Nav from '../components/Nav.svelte';
   import PortalFooter from '../components/PortalFooter.svelte';
@@ -35,8 +32,8 @@
     <slot />
   </div>
   {#if $page.path === '/'}
-    <PortalFooter class="my-4 sm:m-0 z-10" />
+    <PortalFooter class="z-10" />
   {:else}
-    <Footer class="my-4 sm:m-0 z-10" />
+    <Footer class="z-10" />
   {/if}
 </div>

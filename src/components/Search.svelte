@@ -26,7 +26,7 @@
   const config = __BG__ALGOLIA;
   const searchConfig = {
     attributesToHighlight: ['-*'],
-    attributesToSnippet: ['content:50', 'title'],
+    attributesToSnippet: ['content:45', 'title:20'],
     attributesToRetrieve: ['*', '-content'],
     snippetEllipsisText: '……',
     highlightPreTag: '<span>',
@@ -160,7 +160,7 @@
     </div>
     <div class="flex-1 overflow-y-auto">
       {#if !searching && !searchValue}
-        <div class="p-4 h-full grid place-items-center">
+        <div class="px-4 py-8 h-full flex flex-col justify-between">
           <div class="break-all flex flex-col gap-4 md:gap-6 text-xl items-center text-gray-300">
             <p class="flex gap-2 items-center">
               <Tag24 />
@@ -179,7 +179,7 @@
               总字数 {statistics.wordsCount}
             </p>
           </div>
-          <div class="absolute bottom-8">
+          <div class="w-full grid place-items-center">
             <AlgoliaLogo />
           </div>
         </div>
@@ -226,7 +226,7 @@
               <div class="float-right pt-1 pr-1">
                 <ArrowRight16 />
               </div>
-              <strong class="text-sm md:text-base highlight">
+              <strong class="text-sm md:text-base highlight pr-2">
                 {@html article.snippet.title}
               </strong>
               <div class="p-0 flex flex-wrap gap-1 my-1">

@@ -18,7 +18,10 @@ export async function get() {
       .filter((a) => a.isPageArticle)
       .map((article) => ({
         url: concatPageUrl(article.slug),
-        lastmod: new Date(article.lastModifiedAt || article.date).toISOString()
+        lastmod:
+          article.lastModifiedAt || article.date
+            ? new Date(article.lastModifiedAt || article.date).toISOString()
+            : new Date().toISOString()
       })),
     ...articles
       .filter((a) => !a.isPageArticle)

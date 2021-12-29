@@ -1,7 +1,7 @@
 backend:
   name: github
-  branch: master
-  repo: blog-house/blog-house
+  branch: darkyzhou-blog
+  repo: darkyzhou/blog-house
   publish_mode: editorial_workflow
 
 media_folder: 'static/images/uploads'

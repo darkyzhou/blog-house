@@ -5,13 +5,15 @@
   "private": false,
   "type": "module",
   "scripts": {
+    "prettier": "prettier --write ./src ./scripts ./shared ./config",
     "dev": "NODE_ENV=development svelte-kit dev",
     "postcss": "postcss ./static/styles/global.css -o ./static/styles/global.css",
     "algolia": "node ./scripts/upload-to-algolia.mjs",
     "process-image": "node ./scripts/process-images.mjs",
+    "windi:dev": "windicss './**/*.svelte' --config ./windi.config.json --preflight --dev --output ./static/styles/windi.css",
+    "windi:prod": "windicss './**/*.svelte' --config ./windi.config.json --preflight --minify --output ./static/styles/windi.css",
     "export": "NODE_ENV=production svelte-kit build",
-    "build": "npm-run-all --parallel algolia postcss process-image --serial export",
-    "prettier": "prettier --write ./src ./scripts ./shared ./config"
+    "build": "npm-run-all --parallel algolia postcss process-image windi:prod --serial export"
   },
   "devDependencies": {
     "@juggle/resize-observer": "^3.3.1",
@@ -39,15 +41,13 @@
     "remove-markdown": "^0.3.0",
     "rollup": "^2.62.0",
     "rollup-plugin-glob": "^1.0.2",
-    "rollup-plugin-svelte": "^7.1.0",
     "rss": "^1.2.2",
     "sharp": "^0.29.3",
     "shiki": "^0.9.15",
     "svelte": "^3.44.3",
-    "svelte-preprocess": "^4.10.1",
-    "svelte-windicss-preprocess": "^4.2.5",
     "transliteration": "^2.2.0",
     "vite": "^2.7.8",
+    "windicss": "3.2.1",
     "yaml": "^1.10.2"
   }
 }
