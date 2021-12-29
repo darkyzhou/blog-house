@@ -58,14 +58,10 @@
     </div>
     <div class="flex flex-col gap-1 text-center sm:text-right">
       {#if footerConfiguration.leftHtml}
-        <p>
-          {@html footerConfiguration.leftHtml}
-        </p>
+        {@html footerConfiguration.leftHtml}
       {/if}
       {#if footerConfiguration.rightHtml}
-        <p>
-          {@html footerConfiguration.rightHtml}
-        </p>
+        {@html footerConfiguration.rightHtml}
       {/if}
     </div>
   </footer>

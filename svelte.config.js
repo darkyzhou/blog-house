@@ -2,9 +2,7 @@ import adapter from '@sveltejs/adapter-static';
 import replace from '@rollup/plugin-replace';
 import markdown from './scripts/parse-markdown-articles.js';
 import yaml from './scripts/parse-yaml.js';
-import { windi } from 'svelte-windicss-preprocess';
 import glob from 'rollup-plugin-glob';
-import preprocess from 'svelte-preprocess';
 import preprocessIcons from './scripts/preprocess-icons.js';
 import env from 'dotenv';
 import { getStatistics } from './scripts/resolve-statistics.js';
@@ -25,15 +23,13 @@ const algoliaConfig = {
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
-  preprocess: [preprocessIcons, preprocess(), windi({})],
+  preprocess: [preprocessIcons],
   onwarn(warning, defaultHandler) {
     if (warning.code.includes('a11y')) return;
     defaultHandler(warning);
   },
   kit: {
-    adapter: adapter({
-      precompress: true
-    }),
+    adapter: adapter(),
     prerender: {
       crawl: true,
       enabled: true
