@@ -180,7 +180,7 @@
     {/if}
   </aside>
   <div class="my-4 sm:my-8 px-4">
-    <h1 class="text-2xl lg:text-3xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
+    <h1 class="text-xl lg:text-2xl text-carbonblue-400 mb-2" bind:this="{titleElement}">
       {article.title}
     </h1>
     <TagsSection article="{article}" showTags="{true}" />
