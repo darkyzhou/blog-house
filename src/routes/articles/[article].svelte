@@ -157,11 +157,11 @@
           </div>
         {/if}
         {#if articlesOfSameCategories?.length}
-          <div class="bg-carbongray-800 max-h-[15vh]">
+          <div class="bg-carbongray-800">
             <div class="px-4 lg:px-6 py-2 bg-carbongray-700 text-center break-all">
               其它{padIfAlpha(article.category)}文章
             </div>
-            <ul class="px-4 lg:px-6 py-2 list-none flex flex-col gap-4 overflow-auto">
+            <ul class="px-4 lg:px-6 py-2 list-none flex flex-col gap-4 overflow-auto max-h-[15vh]">
               {#each articlesOfSameCategories as a}
                 <li>
                   <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">

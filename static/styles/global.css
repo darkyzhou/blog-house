@@ -638,9 +638,14 @@ body {
 .markdown-body code {
   word-break: break-all;
   padding: 0.15rem 0.3rem;
-  margin-bottom: 1px;
   vertical-align: middle;
   background-color: var(--bg-carbongray-800);
+}
+
+@media not all and (min-resolution: 0.001dpcm) {
+  .markdown-body code {
+    vertical-align: baseline !important;
+  }
 }
 
 .markdown-body pre {
