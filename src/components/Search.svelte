@@ -26,7 +26,7 @@
   const config = __BG__ALGOLIA;
   const searchConfig = {
     attributesToHighlight: ['-*'],
-    attributesToSnippet: ['content:50', 'title'],
+    attributesToSnippet: ['content:45', 'title:20'],
     attributesToRetrieve: ['*', '-content'],
     snippetEllipsisText: '……',
     highlightPreTag: '<span>',
@@ -226,7 +226,7 @@
               <div class="float-right pt-1 pr-1">
                 <ArrowRight16 />
               </div>
-              <strong class="text-sm md:text-base highlight">
+              <strong class="text-sm md:text-base highlight pr-2">
                 {@html article.snippet.title}
               </strong>
               <div class="p-0 flex flex-wrap gap-1 my-1">
