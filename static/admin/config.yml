@@ -163,7 +163,7 @@ collections:
                   - { label: '开启', value: 'true' }
                   - { label: '关闭', value: 'false' }
               - label: 'Index ID'
-                name: 'indexId'
+                name: 'index'
                 widget: 'string'
                 hint: '索引 ID，一般来说用默认的 blog-house 即可，若要自己指定，建议只使用全小写英文和-'
               - label: 'Application ID'
@@ -195,6 +195,7 @@ collections:
                   - { label: '分类', value: 'categories' }
                   - { label: '标签', value: 'tags' }
                   - { label: '页面', value: 'page' }
+                  - { label: '搜索', value: 'search' }
               - label: '标题'
                 name: 'caption'
                 widget: 'string'
