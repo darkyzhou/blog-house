@@ -44,7 +44,7 @@
 </svelte:head>
 
 <div
-  class="my-6 sm:my-8 px-4 sm:px-8 flex gap-6 w-full max-w-300 justify-center"
+  class="my-6 sm:my-8 px-4 sm:px-8 flex gap-6 w-full max-w-300 mx-auto justify-center"
   bind:this={containerElement}
   use:scrollEvent
   use:controller.observeResize
