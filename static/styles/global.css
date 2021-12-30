@@ -640,6 +640,8 @@ body {
   padding: 0.15rem 0.3rem;
   vertical-align: middle;
   background-color: var(--bg-carbongray-800);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
 }
 
 @media not all and (min-resolution: 0.001dpcm) {
