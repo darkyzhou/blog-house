@@ -10,8 +10,8 @@
     "postcss": "postcss ./static/styles/global.css -o ./static/styles/global.css",
     "algolia": "node ./scripts/upload-to-algolia.mjs",
     "process-image": "node ./scripts/process-images.mjs",
-    "windi:dev": "windicss './**/*.svelte' --config ./windi.config.json --preflight --dev --output ./static/styles/windi.css",
-    "windi:prod": "windicss './**/*.svelte' --config ./windi.config.json --preflight --minify --output ./static/styles/windi.css",
+    "windi:dev": "windicss 'src/**/*.svelte' --config ./windi.config.json --preflight --dev --output ./static/styles/windi.css",
+    "windi:prod": "windicss 'src/**/*.svelte' --config ./windi.config.json --preflight --minify --output ./static/styles/windi.css",
     "export": "NODE_ENV=production svelte-kit build",
     "build": "npm-run-all --parallel algolia postcss process-image windi:prod --serial export"
   },

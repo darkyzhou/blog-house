@@ -52,7 +52,7 @@
   <div class="my-8 mx-auto max-w-96 min-w-64" bind:this={cardElement}>
     <CategoryCard item={category} displayMode={true} />
   </div>
-  <div class="flex gap-6 w-full max-w-300 justify-center">
+  <div class="flex gap-6 w-full max-w-300 mx-auto justify-center">
     {#if category.articles?.length <= 0}
       <p class="text-center">暂无文章</p>
     {:else}
