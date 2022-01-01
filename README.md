@@ -12,25 +12,21 @@
 
 ### 简介
 
-[Blog House](https://github.com/blog-house/blog-house) 是一个基于 Web 前端框架 [Sapper](https://sapper.svelte.dev/) 的静态博客生成器，后者基于 [Svelte](https://svelte.dev/) 。
-除此之外，Blog House 还使用了 [Tailwind CSS](https://tailwindcss.com/) 框架，简化了样式代码的复杂度，同时结合 PurgeCSS 的使用，降低了构建产物的体积。
-
-为了提供完善的博客功能、提升用户体验，Blog House 还使用了 [Lunr](https://lunrjs.com/) 和 [Netlify CMS](https://www.netlifycms.org/) 框架，不仅带来了方便快捷的文章、标签搜索功能，还提供了功能强大的在线 Markdown 文章编辑器。
-Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来了基于 Github Issues 的评论区功能，用户的访客只需要登录 Github 即可发表评论。
-除此之外，Blog House 还提供了基本的 SEO 优化。
+[Blog House](https://github.com/blog-house/blog-house) 是一个基于 Web 前端框架 [SvelteKit](https://kit.svelte.dev/) 的静态博客生成器，后者基于 [Svelte](https://svelte.dev/)。
 
 ### 特色
 
-1. 编译速度快，产物体积小。Svelte 项目的编译产物仅包含框架自身的一些工具代码，并不像 React、Vue 等流行的框架那样还包含体积庞大的框架运行时。
-2. 源代码结构简单，高度可自定义。它使用 `routes` 文件夹下的各个源文件来表示网页路由、使用 `components` 文件夹存放各种可复用的组件源文件、使用 `source` 存放所有文章、页面的源 Markdown 文件。
-3. 配置简单。博客几乎所有的配置都可以在网页上直接配置，借助 Netlify CMS 的帮助。
-4. 自带的主题含有功能完整的各种页面。例如包含悬浮大纲栏目、评论功能的文章页，以及含有搜索、排序功能的文章列表页。
-5. 自带 Netlify CMS，用户只需使用浏览器打开它，就能在线编写、修改文章和页面，保存的修改会由 Netlify 的 Bot 自动更新到 Github 仓库中，同时借助 Github Actions 的帮助运行构建，在数分钟之内上线修改。整个过程不需要用户手动操作。
-6. 自带基本的 SEO 优化，例如 `name` 和 `description` 的 meta tag、自动生成的 Sitemap、内置 Google Analytics 和百度统计支持。
-7. 自带评论区功能，基于 Utterances 实现，用户的访客只需要登录 Github 即可发表评论，同时这些评论由于是对应于 Issue 的评论，可以被引用、保存。
-8. 自带搜索功能，基于 Lunr 实现，用户可以使用各种关键词搜索文章、页面和标签。此功能基于每次构建之后生成的静态索引文件，不需要依赖第三方的服务器实现。
+- **SSG + SPA 混合模式**。用户首次打开网站时会直接下载静态 html 展示页面，之后会自动加载 SvelteKit 运行时，[它能够预判用户的访问动作，自动预加载响应的网页数据](https://kit.svelte.dev/docs#anchor-options-sveltekit-prefetch)。当用户点击文章之后，SvelteKit 会在 SPA 的模式下立刻渲染出网页，而不是像传统的 SSG 博客那样需要浏览器再去下载 html 等，大大提升用户体验。
+- **Netlify CMS**。可以在浏览器上打开这个 CMS 网页，对博客进行各种配置，以及文章的撰写。不需要再和 Git 仓库打交道。
+- **Algolia 适配**。提供基于 [Algolia](https://algolia.com) 的搜索功能，且索引上传、同步工作完全全自动。
+- **Utterance 适配**。提供基于 [Utterance](https://utteranc.es/) 的评论区功能，用户使用 GitHub 账号登录即可发表评论。
+- **扩展 Markdown 语法**。可以通过 Markdown 引入提示、警告、错误文字块，以及可以带有图片、链接的卡片。
+- **自动图片优化**。博客中的所有图片都会被自动优化，转换为 AVIF、webp、progressive JPEG 格式，利用 `<picture>` 元素指示浏览器按需加载。同时自动加入 `loading=lazy` 来启动异步图片加载。
+- **RSS、SEO、Sitemap支持**。自动生成 `rss.xml`、`sitemap.xml` 等。
 
 ### Demo
+
+<img width="800" src="https://github.com/blog-house/blog-house/raw/master/demo.jpg" alt="Blog house demo">
 
 请见作者的个人博客：[Darky's Blog](https://darkyzhou.net)。
 
@@ -44,17 +40,6 @@ Blog House 还使用 [Utterances](https://utteranc.es/) 给文章和页面带来
 
 不过对于 House 音乐而言，本人其实更喜欢 Deep House，它们节奏更加舒缓、意境颇为深远。这里推荐一下 Haywyre 的《Do You Don't You》。
 
-### Roadmap
-
-目前，Blog house 仍处于早期阶段，还有许多有用的功能没有来得及实现：
-
-| 功能                      | 完成情况  |
-| ------------------------- | --------- |
-| 文章列表页面左侧的时间轴  | 🚧 工作中 |
-| 文章页面点击图片放大      | 🚧 工作中 |
-| 支持 RSS                  | 🚧 工作中 |
-| 使用 Netlify CMS 管理图标 | 🚧 工作中 |
-| 文章页分页                | 📅 计划中 |
-| 文章分类（Category）      | 📅 计划中 |
+### 发表 issue
 
 如果你有好的 good idea，欢迎[发表 issue](https://github.com/blog-house/blog-house/issues/new)！
