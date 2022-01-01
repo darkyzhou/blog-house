@@ -134,11 +134,11 @@
 </svelte:head>
 
 <div
-  class="container relative text-carbongray-200 lg:p-2 box-border w-full block my-4 md:grid"
+  class="contentContainer relative text-carbongray-200 lg:p-2 box-border w-full block my-4 md:grid"
   style="grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)"
   use:scrollEvent
 >
-  <aside class="justify-self-end h-full text-sm pl-4 hidden md:block">
+  <aside class="justify-self-end h-full text-sm pl-4 max-w-[210px] hidden md:block">
     {#if article.tableOfContent?.length || articlesOfSameCategories?.length}
       <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
         {#if article.tableOfContent?.length}
@@ -204,7 +204,7 @@
   }
 
   @media (max-width: 1080px) {
-    .container {
+    .contentContainer {
       grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 1fr) !important;
     }
   }
