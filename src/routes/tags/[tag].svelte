@@ -1,5 +1,5 @@
 <script context="module">
-  export async function load({ fetch }) {
+  export async function load({ params, fetch }) {
     const tagSlug = params.tag;
     const response = await fetch('/data/tags.json');
     const tags = await response.json();
