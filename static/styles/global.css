@@ -24,10 +24,20 @@
   --bg-carbonblue-900: #001141;
 }
 
+body {
+  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
 @font-face {
   font-family: 'Lxgw975GoSC';
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
   src: url('/fonts/Lxgw975GoSC-200W.woff2') format('woff2');
 }
 
@@ -35,6 +45,7 @@
   font-family: 'Lxgw975GoSC';
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
   src: url('/fonts/Lxgw975GoSC-400W.woff2') format('woff2');
 }
 
