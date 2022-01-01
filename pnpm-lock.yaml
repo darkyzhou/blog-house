@@ -4,13 +4,13 @@ specifiers:
   '@juggle/resize-observer': ^3.3.1
   '@rollup/plugin-replace': ^2.4.2
   '@rollup/plugin-yaml': ^3.1.0
-  '@sveltejs/adapter-static': ^1.0.0-next.23
+  '@sveltejs/adapter-static': ^1.0.0-next.24
   '@sveltejs/kit': next
   algoliasearch: ^4.11.0
   carbon-icons-svelte: ^10.44.3
   clipboard: ^2.0.8
   cssnano: ^5.0.14
-  date-fns: ^2.27.0
+  date-fns: ^2.28.0
   debounce: ^1.2.1
   dotenv: ^10.0.0
   gray-matter: ^4.0.3
@@ -31,7 +31,7 @@ specifiers:
   shiki: ^0.9.15
   svelte: ^3.44.3
   transliteration: ^2.2.0
-  vite: ^2.7.8
+  vite: ^2.7.10
   windicss: 3.2.1
   yaml: ^1.10.2
 
@@ -39,13 +39,13 @@ devDependencies:
   '@juggle/resize-observer': 3.3.1
   '@rollup/plugin-replace': 2.4.2_rollup@2.62.0
   '@rollup/plugin-yaml': 3.1.0_rollup@2.62.0
-  '@sveltejs/adapter-static': 1.0.0-next.23
-  '@sveltejs/kit': 1.0.0-next.206_svelte@3.44.3
+  '@sveltejs/adapter-static': 1.0.0-next.24
+  '@sveltejs/kit': 1.0.0-next.211_svelte@3.44.3
   algoliasearch: 4.11.0
   carbon-icons-svelte: 10.44.3
   clipboard: 2.0.8
   cssnano: 5.0.14_postcss@8.4.5
-  date-fns: 2.27.0
+  date-fns: 2.28.0
   debounce: 1.2.1
   dotenv: 10.0.0
   gray-matter: 4.0.3
@@ -66,7 +66,7 @@ devDependencies:
   shiki: 0.9.15
   svelte: 3.44.3
   transliteration: 2.2.0
-  vite: 2.7.8
+  vite: 2.7.10
   windicss: 3.2.1
   yaml: 1.10.2
 
@@ -229,24 +229,23 @@ packages:
       picomatch: 2.3.0
     dev: true
 
-  /@sveltejs/adapter-static/1.0.0-next.23:
-    resolution: {integrity: sha512-7fp+tVjh/Fi5PQxTBQAdwbOgBqtJYtNNVaa6Gb7nf7ETClojrZWFZq9ZtRfIkrrNyRNGPOl81IMO5tIHNkVfxw==}
+  /@sveltejs/adapter-static/1.0.0-next.24:
+    resolution: {integrity: sha512-lMiwZrZumWRrTQxaj9pFs5oW0h/97spyDl1QjmnkNaA006WeqornoETt31WpU0Lz2/2uYNXvUBBcL1LGc9Vylg==}
     dependencies:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.206_svelte@3.44.3:
-    resolution: {integrity: sha512-AQEOKZLG1GKkuBfWUKKxMs9A3AzE9tSHYc4Lu+AL/4BAs4erIFdOei2ldsxak2ICxxeaCloqVRPvIOtj7UEacg==}
+  /@sveltejs/kit/1.0.0-next.211_svelte@3.44.3:
+    resolution: {integrity: sha512-jS28R40H6BypK5rSVUzNmQW3NaBTFijj4fJPEtx8YeSLuzqm7ZGl3wwqF+FRxisP6oyz2GkYSARRxzemDOfn9A==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
       svelte: ^3.44.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 1.0.0-next.32_svelte@3.44.3+vite@2.7.8
-      cheap-watch: 1.0.4
-      sade: 1.7.4
+      '@sveltejs/vite-plugin-svelte': 1.0.0-next.33_svelte@3.44.3+vite@2.7.10
+      sade: 1.8.0
       svelte: 3.44.3
-      vite: 2.7.8
+      vite: 2.7.10
     transitivePeerDependencies:
       - diff-match-patch
       - less
@@ -255,8 +254,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/vite-plugin-svelte/1.0.0-next.32_svelte@3.44.3+vite@2.7.8:
-    resolution: {integrity: sha512-Lhf5BxVylosHIW6U2s6WDQA39ycd+bXivC8gHsXCJeLzxoHj7Pv7XAOk25xRSXT4wHg9DWFMBQh2DFU0DxHZ2g==}
+  /@sveltejs/vite-plugin-svelte/1.0.0-next.33_svelte@3.44.3+vite@2.7.10:
+    resolution: {integrity: sha512-aj0h2+ZixgT+yoJFIs8dRRw/Cj9tgNu3+hY4CJikpa04mfhR61wXqJFfi2ZEFMUvFda5nCxKYIChFkc6wq5fJA==}
     engines: {node: ^14.13.1 || >= 16}
     peerDependencies:
       diff-match-patch: ^1.0.5
@@ -273,7 +272,7 @@ packages:
       require-relative: 0.8.7
       svelte: 3.44.3
       svelte-hmr: 0.14.9_svelte@3.44.3
-      vite: 2.7.8
+      vite: 2.7.10
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -408,8 +407,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001292
-      electron-to-chromium: 1.4.28
+      caniuse-lite: 1.0.30001294
+      electron-to-chromium: 1.4.31
       escalade: 3.1.1
       node-releases: 2.0.1
       picocolors: 1.0.0
@@ -433,13 +432,13 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.19.1
-      caniuse-lite: 1.0.30001292
+      caniuse-lite: 1.0.30001294
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
-  /caniuse-lite/1.0.30001292:
-    resolution: {integrity: sha512-jnT4Tq0Q4ma+6nncYQVe7d73kmDmE9C3OGTx3MvW7lBM/eY1S1DZTMBON7dqV481RhNiS5OxD7k9JQvmDOTirw==}
+  /caniuse-lite/1.0.30001294:
+    resolution: {integrity: sha512-LiMlrs1nSKZ8qkNhpUf5KD0Al1KCBE3zaT7OLOwEkagXMEDij98SiOovn9wxVGQpklk9vVC/pUSqgYmkmKOS8g==}
     dev: true
 
   /carbon-icons-svelte/10.44.3:
@@ -457,11 +456,6 @@ packages:
 
   /charenc/0.0.2:
     resolution: {integrity: sha1-wKHS86cJLgN3S/qD8UwPxXkKhmc=}
-    dev: true
-
-  /cheap-watch/1.0.4:
-    resolution: {integrity: sha512-QR/9FrtRL5fjfUJBhAKCdi0lSRQ3rVRRum3GF9wDKp2TJbEIMGhUEr2yU8lORzm9Isdjx7/k9S0DFDx+z5VGtw==}
-    engines: {node: '>=8'}
     dev: true
 
   /chokidar/3.5.2:
@@ -680,8 +674,8 @@ packages:
       css-tree: 1.1.3
     dev: true
 
-  /date-fns/2.27.0:
-    resolution: {integrity: sha512-sj+J0Mo2p2X1e306MHq282WS4/A8Pz/95GIFcsPNMPMZVI3EUrAdSv90al1k+p74WGLCruMXk23bfEDZa71X9Q==}
+  /date-fns/2.28.0:
+    resolution: {integrity: sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==}
     engines: {node: '>=0.11'}
     dev: true
 
@@ -778,8 +772,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /electron-to-chromium/1.4.28:
-    resolution: {integrity: sha512-Gzbf0wUtKfyPaqf0Plz+Ctinf9eQIzxEqBHwSvbGfeOm9GMNdLxyu1dNiCUfM+x6r4BE0xUJNh3Nmg9gfAtTmg==}
+  /electron-to-chromium/1.4.31:
+    resolution: {integrity: sha512-t3XVQtk+Frkv6aTD4RRk0OqosU+VLe1dQFW83MDer78ZD6a52frgXuYOIsLYTQiH2Lm+JB2OKYcn7zrX+YGAiQ==}
     dev: true
 
   /emoji-regex/8.0.0:
@@ -2293,9 +2287,9 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /sade/1.7.4:
-    resolution: {integrity: sha512-y5yauMD93rX840MwUJr7C1ysLFBgMspsdTo4UVrDg3fXDvtwOyIqykhVAAm6fk/3au77773itJStObgK+LKaiA==}
-    engines: {node: '>= 6'}
+  /sade/1.8.0:
+    resolution: {integrity: sha512-NRfCA8AVYuAA7Hu8bs18od6J4BdcXXwOv6OJuNgwbw8LcLK8JKwaM3WckLZ+MGyPJUS/ivVgK3twltrOIJJnug==}
+    engines: {node: '>=6'}
     dependencies:
       mri: 1.2.0
     dev: true
@@ -2676,8 +2670,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite/2.7.8:
-    resolution: {integrity: sha512-NOgvRtXUq4/7srE2cTQ2IU1oERdGq2njVOlZtgRrjMO+PPJpncd61/AUzxzZklQ1zBkiWXEVrw3Csq0Sbgr0rQ==}
+  /vite/2.7.10:
+    resolution: {integrity: sha512-KEY96ntXUid1/xJihJbgmLZx7QSC2D4Tui0FdS0Old5OokYzFclcofhtxtjDdGOk/fFpPbHv9yw88+rB93Tb8w==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -2728,7 +2722,7 @@ packages:
   /wide-align/1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 4.2.3
+      string-width: 1.0.2
     dev: true
 
   /windicss/3.2.1:

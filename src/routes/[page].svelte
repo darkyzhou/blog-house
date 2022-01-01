@@ -1,6 +1,6 @@
 <script context="module">
-  export async function load({ page, fetch }) {
-    const articleSlug = page.params.page;
+  export async function load({ params, fetch }) {
+    const articleSlug = params.page;
     const response = await fetch(`/data/articles/${articleSlug}.json`);
     if (response.ok) {
       const article = await response.json();
