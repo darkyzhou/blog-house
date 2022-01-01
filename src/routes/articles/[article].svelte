@@ -134,12 +134,11 @@
 </svelte:head>
 
 <div
-  class="relative text-carbongray-200 lg:p-2 w-screen md:max-w-[500px] lg:max-w-screen-sm xl:max-w-screen-md 2xl:max-w-screen-lg"
+  class="container relative text-carbongray-200 lg:p-2 box-border w-full block my-4 md:grid"
+  style="grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)"
   use:scrollEvent
 >
-  <aside
-    class="absolute md:left-[-170px] lg:left-[-210px] top-0 bottom-0 h-full my-10 text-sm hidden md:block md:w-[160px] lg:w-[200px]"
-  >
+  <aside class="justify-self-end h-full text-sm pl-4 hidden md:block">
     {#if article.tableOfContent?.length || articlesOfSameCategories?.length}
       <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
         {#if article.tableOfContent?.length}
@@ -179,7 +178,7 @@
       </div>
     {/if}
   </aside>
-  <div class="my-4 sm:my-8 px-4">
+  <div class="px-4 mx-auto w-full min-w-0 max-w-screen-md">
     <h1 class="text-xl lg:text-2xl text-carbonblue-400 mb-2" bind:this={titleElement}>
       {article.title}
     </h1>
@@ -190,6 +189,7 @@
     <div class="commentsContainer w-full" bind:this={utterancesContainer} />
     <p class="loadingIndicator text-center">评论区加载中</p>
   </div>
+  <div class="hidden md:block" />
 </div>
 
 <BackToTop class="md:hidden" show={showBackToTop} />
@@ -201,5 +201,11 @@
 
   .commentsContainer ~ .loadingIndicator {
     display: none;
+  }
+
+  @media (max-width: 1080px) {
+    .container {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 1fr) !important;
+    }
   }
 </style>
