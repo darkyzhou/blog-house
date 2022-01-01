@@ -1,6 +1,6 @@
 <script context="module">
-  export async function load({ page, fetch }) {
-    const articleSlug = page.params.article;
+  export async function load({ params, fetch }) {
+    const articleSlug = params.article;
     const article = await (await fetch(`/data/articles/${articleSlug}.json`)).json();
     const allArticles = !article.category ? [] : await (await fetch(`/data/articles.json`)).json();
     const articlesOfSameCategories = allArticles.filter(

@@ -1,6 +1,6 @@
 <script context="module">
-  export async function load({ page, fetch }) {
-    const slug = page.params.category;
+  export async function load({ params, fetch }) {
+    const slug = params.category;
     const response = await fetch('/data/categories.json');
     const categories = await response.json();
     const target = categories.find((t) => t.slug === slug);

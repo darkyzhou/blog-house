@@ -28,10 +28,10 @@
 <div class="fix-100vh flex flex-col text-carbongray-200">
   <Nav class="z-10" />
   <div
-    class="flex-grow flex flex-col items-center z-20 {$page.path !== '/' && 'bg-carbongray-900'}">
+    class="flex-grow flex flex-col items-center z-20 {$page.url.pathname !== '/' && 'bg-carbongray-900'}">
     <slot />
   </div>
-  {#if $page.path === '/'}
+  {#if $page.url.pathname === '/'}
     <PortalFooter class="z-10" />
   {:else}
     <Footer class="z-10" />
