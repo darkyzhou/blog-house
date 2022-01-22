@@ -15,15 +15,17 @@
           min-height: 100vh;
         }
       }
+      body {
+          background-image: url('/images/uploads/background-bloghouse-opt.webp');
+          background-color: #121619;
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+      }
       @media not all and (min-resolution: 0.001dpcm) {
         body {
-          background: url('/images/uploads/background-bloghouse-opt.jpg') fixed 50% / auto 100vh repeat-y
-            #121619;
+          background-image: url('/images/uploads/background-bloghouse-opt.jpg');
         }
-      }
-      body {
-        background: url('/images/uploads/background-bloghouse-opt.webp') fixed 50% / auto 100vh repeat-y
-          #121619;
       }
     </style>
     <link rel="preload" href="/styles/global.css" as="style" />
