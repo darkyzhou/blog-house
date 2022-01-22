@@ -19,21 +19,16 @@
 
 <svelte:head>
   <Analytics
-    gaMeasurementId={basicConfiguration.analytics.gaMeasurementId}
-    baiduId={basicConfiguration.analytics.baiduId}
-  />
+    gaMeasurementId="{basicConfiguration.analytics.gaMeasurementId}"
+    baiduId="{basicConfiguration.analytics.baiduId}" />
 </svelte:head>
 
-<LoadingProgressIndicator {loading} />
+<LoadingProgressIndicator loading="{loading}" />
 
 <div class="fix-100vh flex flex-col text-carbongray-200">
   <Nav class="z-10" />
   <div
-    class="flex-grow flex flex-col items-center z-20 {(!!$page.url ||
-      !!$page.url.pathname ||
-      $page.url.pathname !== '/') &&
-      'bg-carbongray-900'}"
-  >
+    class="flex-grow flex flex-col items-center z-20 {$page.url.pathname !== '/' && 'bg-carbongray-900'}">
     <slot />
   </div>
   {#if $page.url.pathname === '/'}
