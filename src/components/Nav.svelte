@@ -36,7 +36,11 @@
     {#each navConfiguration.navItems as item}
       <li>
         {#if item.type === 'home'}
-          <NavItem caption={item.caption} route="/" active={!$page.url.pathname || $page.url.pathname === '/'} />
+          <NavItem
+            caption={item.caption}
+            route="/"
+            active={!$page.url || !$page.url.pathname || $page.url.pathname === '/'}
+          />
         {:else if item.type === 'articles'}
           <NavItem
             caption={item.caption}
@@ -56,7 +60,11 @@
             active={$page.url.pathname?.startsWith('/categories')}
           />
         {:else if item.type === 'tags'}
-          <NavItem caption={item.caption} route="/tags" active={$page.url.pathname?.startsWith('/tags')} />
+          <NavItem
+            caption={item.caption}
+            route="/tags"
+            active={$page.url.pathname?.startsWith('/tags')}
+          />
         {:else if item.type === 'search'}
           <NavItem search={true} active={false} click={() => showSearchDialog()} />
         {/if}
