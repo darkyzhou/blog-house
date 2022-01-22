@@ -34,6 +34,9 @@ export default {
       crawl: true,
       enabled: true
     },
+    serviceWorker: {
+      register: false
+    },
     vite: {
       plugins: [
         replace({
