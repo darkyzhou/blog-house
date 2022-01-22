@@ -21,6 +21,13 @@ export function getCssSegment(styles) {
   return `<style type='text/css'>${styles}</style>`;
 }
 
+// workaround for a very strange bug that for prerendered output,
+// the `page` from `$app/stores` will have a url whose `pathname`
+// has a prefix of `//prerender`
+export function removePrerenderPrefix(content) {
+  return content.replace('//prerender', '');
+}
+
 export class WaterflowController {
   constructor(cacheKey, preferredWidthPx, maxColumnsCount, data, onChange) {
     if (!data || !Array.isArray(data)) {

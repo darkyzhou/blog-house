@@ -5,6 +5,10 @@
   import { page } from '$app/stores';
   import Search from '../components/Search.svelte';
   import Close32 from 'carbon-icons-svelte/lib/Close32';
+  import { removePrerenderPrefix } from '../routes/_utils';
+  import { derived } from 'svelte/store';
+
+  const pathName = derived(page, (p) => (p.url ? removePrerenderPrefix(p.url.pathname) : null));
 
   let extraClasses;
   export { extraClasses as class };
@@ -36,35 +40,27 @@
     {#each navConfiguration.navItems as item}
       <li>
         {#if item.type === 'home'}
-          <NavItem
-            caption={item.caption}
-            route="/"
-            active={!$page.url || !$page.url.pathname || $page.url.pathname === '/'}
-          />
+          <NavItem caption={item.caption} route="/" active={!$pathName || $pathName === '/'} />
         {:else if item.type === 'articles'}
           <NavItem
             caption={item.caption}
             route="/articles"
-            active={$page.url.pathname?.startsWith('/articles')}
+            active={$pathName?.startsWith('/articles')}
           />
         {:else if item.type === 'page'}
           <NavItem
             caption={item.caption}
             route="/{item.slug}"
-            active={$page.url.pathname?.startsWith('/' + item.slug)}
+            active={$pathName?.startsWith('/' + item.slug)}
           />
         {:else if item.type === 'categories'}
           <NavItem
             caption={item.caption}
             route="/categories"
-            active={$page.url.pathname?.startsWith('/categories')}
+            active={$pathName?.startsWith('/categories')}
           />
         {:else if item.type === 'tags'}
-          <NavItem
-            caption={item.caption}
-            route="/tags"
-            active={$page.url.pathname?.startsWith('/tags')}
-          />
+          <NavItem caption={item.caption} route="/tags" active={$pathName?.startsWith('/tags')} />
         {:else if item.type === 'search'}
           <NavItem search={true} active={false} click={() => showSearchDialog()} />
         {/if}
