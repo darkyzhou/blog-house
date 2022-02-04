@@ -1,7 +1,7 @@
 _markdownFields:
-  - 'tabsContent.*.content'
-avatar: '/images/uploads/avatar.jpg'
-background: '/images/uploads/background.jpg'
+  - tabsContent.*.content
+avatar: /images/uploads/a4b03025-b383-4995-a5e9-15beca3a4c7a.jpeg
+background: /images/uploads/background.jpg
 contact:
   - type: Location16
     text: Guangzhou
@@ -34,7 +34,6 @@ tabsContent:
       - 玩点手游。虽然很心疼钱包。有人也许会问，为什么不玩 PC 游戏？主机游戏也不错啊？请容我辩解一番：我的空闲时间非常琐碎，以至于我曾经配过一台不错的游戏 PC，但就摆在角落吃灰了半年。更糟的是，我竟然是个二次元。相比起3A大作中的写实画风，我更喜欢那些偏向幻想系的风格。
 
       - 收集手办。要说这手办就像 CS:GO 里的首饰，好一点的如多普勒P3的M9，拿在手上，眼睛看着，心里面是莫名的享受。对我而言，手办就是一种看得见，摸得着的美。这种美可以是人物神情上的美、可以是身材曲线的美、可以是单纯作为工艺品而言的精细美。这种美经得起眼睛的反复推敲，经得起脑子里质问花这些钱是否值得的声音的追责。只可惜宿舍的桌子太小，我的爱好又太广泛，不足以摆下更多的手办。
-
   - icon: Code32
     content: |
       我的编程生涯从 Web 前端开始：
