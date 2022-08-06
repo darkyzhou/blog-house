@@ -1,0 +1,26 @@
+name: Build and Deploy
+on:
+  push:
+    branches: [ "darkyzhou-blog" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+      - name: Build project
+        run: npm install && npm run build
+      - name: Upload to COS
+        uses: Bluefissure/tencent-cos-action@v0.1.1
+        with:
+          args: delete -r -f / && upload -r ./build/ /
+          secret_id: ${{ secrets.SECRET_ID }}
+          secret_key: ${{ secrets.SECRET_KEY }}
+          bucket: ${{ secrets.BUCKET }}
+          region: ap-guangzhou
+          accelerate: false
