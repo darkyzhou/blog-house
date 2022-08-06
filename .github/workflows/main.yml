@@ -25,3 +25,4 @@ jobs:
           local_path: build
           remote_path: /
           clean: true
+          accelerate: true
