@@ -13,6 +13,7 @@
   }
 
   .card {
+    will-change: transform;
     transition: 600ms transform var(--flip);
   }
 
@@ -103,6 +104,8 @@
 </style>
 
 <script>
+  import 'virtual:uno.css';
+  import '@unocss/reset/tailwind-compat.css';
   import basicConfiguration from '../../config/basic-configuration.yml';
   import homePageConfiguration from '../../config/home-page-configuration.yml';
   import { onMount } from 'svelte';

@@ -17,13 +17,17 @@ analytics:
     - 'yahoo! slurp'
   baiduId: f60a9a2b48d8e5dd35145c273edec8ef
   gaMeasurementId: UA-169813168-1
-comments:
-  - type: utterances
-    repository: darkyzhou/blog-comments
-    issueTerm: title
-    label: ''
-    theme: github-dark
-  - type: none
+comment:
+  type: 'giscus'
+  config:
+    repo: 'darkyzhou/blog-comments'
+    repoId: 'R_kgDOGmBUJQ'
+    category: 'General'
+    categoryId: 'DIC_kwDOGmBUJc4CV92v'
+    mapping: 'og:title'
+    theme: 'dark_tritanopia'
+    lang: 'zh-CN'
+    loading: 'lazy'
 algolia:
   enabled: 'true'
   index: 'darky_blog'
