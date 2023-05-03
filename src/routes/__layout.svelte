@@ -29,7 +29,7 @@
 
 <LoadingProgressIndicator {loading} />
 
-<div class="fix-100vh flex flex-col text-carbongray-200">
+<div class="full-height flex flex-col text-carbongray-200">
   <Nav class="z-10" />
   <div
     class="flex-grow flex flex-col items-center z-20 {!!$pathName &&
@@ -44,3 +44,10 @@
     <Footer class="z-10" />
   {/if}
 </div>
+
+<style>
+  .full-height {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+</style>

@@ -8,6 +8,7 @@ import env from 'dotenv';
 import { getStatistics } from './scripts/resolve-statistics.js';
 import yamlJs from 'yaml';
 import fs from 'fs';
+import UnoCSS from 'unocss/vite';
 
 env.config();
 
@@ -39,6 +40,7 @@ export default {
     },
     vite: {
       plugins: [
+        UnoCSS(),
         replace({
           'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
           __BG__STATISTICS: JSON.stringify(statistics),

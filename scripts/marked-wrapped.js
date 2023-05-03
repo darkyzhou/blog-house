@@ -2,7 +2,7 @@ import marked from 'marked';
 import shiki from 'shiki';
 
 const renderer = new marked.Renderer();
-const highlighter = await shiki.getHighlighter({ theme: 'github-dark-dimmed' });
+const highlighter = await shiki.getHighlighter({ theme: 'nord' });
 
 const supportedImageFormats = ['jpg', 'jpeg', 'webp', 'avif', 'png'];
 

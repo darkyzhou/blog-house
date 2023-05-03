@@ -17,13 +17,8 @@ analytics:
     - 'yahoo! slurp'
   gaMeasurementId: ''
   baiduId: ''
-comments:
-  - type: 'utterances'
-    repository: 'darkyzhou/blog-house'
-    issueTerm: 'title'
-    label: ''
-    theme: 'github-dark'
-  - type: 'none'
+comment:
+  type: 'none'
 algolia:
   enabled: false
   index: 'blog_house'

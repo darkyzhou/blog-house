@@ -17,7 +17,6 @@
 ### 特色
 
 - **SSG + SPA 混合模式**。用户首次打开网站时会直接下载静态 html 展示页面，之后会自动加载 SvelteKit 运行时，[它能够预判用户的访问动作，自动预加载响应的网页数据](https://kit.svelte.dev/docs#anchor-options-sveltekit-prefetch)。当用户点击文章之后，SvelteKit 会在 SPA 的模式下立刻渲染出网页，而不是像传统的 SSG 博客那样需要浏览器再去下载 html 等，大大提升用户体验。
-- **Netlify CMS**。可以在浏览器上打开这个 CMS 网页，对博客进行各种配置，以及文章的撰写。不需要再和 Git 仓库打交道。
 - **Algolia 适配**。提供基于 [Algolia](https://algolia.com) 的搜索功能，且索引上传、同步工作完全全自动。
 - **Utterance 适配**。提供基于 [Utterance](https://utteranc.es/) 的评论区功能，用户使用 GitHub 账号登录即可发表评论。
 - **扩展 Markdown 语法**。可以通过 Markdown 引入提示、警告、错误文字块，以及可以带有图片、链接的卡片。
@@ -26,13 +25,13 @@
 
 ### Demo
 
-<img width="800" src="https://github.com/blog-house/blog-house/raw/master/demo.jpg" alt="Blog house demo">
-
 请见作者的个人博客：[Darky's Blog](https://darkyzhou.net)。
 
 ### 安装
 
-请见 Wiki 中的[安装方法](https://github.com/blog-house/blog-house/wiki/安装-&-配置方法)。
+* Fork
+* 修改 `config` 文件夹下的配置文件
+* 参考 `darkyzhou-blog` 分支
 
 ### 关于名称
 

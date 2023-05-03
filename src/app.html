@@ -5,22 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#121619" />
     <style>
-      @supports (-webkit-touch-callout: none) {
-        body {
-          min-height: -webkit-fill-available;
-        }
-      }
-      @supports not (-webkit-touch-callout: none) {
-        body {
-          min-height: 100vh;
-        }
-      }
       body {
-          background-image: url('/images/uploads/background-bloghouse-opt.webp');
-          background-color: #121619;
-          background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
+        background-image: url('/images/uploads/background-bloghouse-opt.webp');
+        background-color: #121619;
+        background-size: auto 100vh;
+        background-size: auto 100dvh;
+        background-position: center;
+        background-attachment: fixed;
       }
       @media not all and (min-resolution: 0.001dpcm) {
         body {
@@ -29,17 +20,13 @@
       }
     </style>
     <link rel="preload" href="/styles/global.css" as="style" />
-    <link rel="preload" href="/styles/windi.css" as="style" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="preload" href="/fonts/Lxgw975GoSC-200W.woff2" as="font" crossorigin />
     <link rel="preload" href="/fonts/Lxgw975GoSC-400W.woff2" as="font" crossorigin />
-    <link rel="preconnect" href="https://utteranc.es" />
-    <link rel="prefetch" href="https://utteranc.es/client.js" as="script" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="stylesheet" href="/styles/global.css" />
-    <link rel="stylesheet" href="/styles/windi.css" />
     %svelte.head%
   </head>
 

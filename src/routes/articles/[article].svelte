@@ -25,14 +25,16 @@
   import ClipboardJS from 'clipboard';
   import debounce from 'debounce';
   import ArrowUp16 from 'carbon-icons-svelte/lib/ArrowUp16';
+  import Giscus from '@giscus/svelte';
 
   export let article;
   export let articlesOfSameCategories;
 
+  const commentConfig = basicConfiguration.comment;
+
   let titleElement;
   let showBackToTop = false;
   let highlightedHeadingIndex = 0;
-  let utterancesContainer;
   let scrollToTopListener;
   let tableOfContentListener;
 
@@ -64,7 +66,7 @@
 
     const elements = Array.from(
       document.querySelectorAll(
-        ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map((item) => `.markdown-body > ${item}`).join(', ')
+        ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map((item) => `.markdown > ${item}`).join(', ')
       )
     );
     tableOfContentListener = debounce(() => updateHighlightedHeadingIndex(elements), 50);
@@ -78,23 +80,8 @@
     };
   }
 
-  function initUtterances(configuration) {
-    const utterances = document.createElement('script');
-    const config = Object.entries({
-      src: 'https://utteranc.es/client.js',
-      repo: configuration.repository,
-      'issue-term': configuration.issueTerm,
-      label: configuration.label,
-      theme: configuration.theme,
-      crossOrigin: 'anonymous',
-      async: 'true'
-    });
-    config.forEach(([key, value]) => utterances.setAttribute(key, value));
-    utterancesContainer.appendChild(utterances);
-  }
-
   function initCodeCopying() {
-    const elements = document.querySelectorAll('.markdown-body pre:not(:empty) .copy');
+    const elements = document.querySelectorAll('.markdown pre:not(:empty) .copy');
     elements.forEach((element) => (element.textContent = '复制代码'));
     const clipboard = new ClipboardJS(elements, {
       text: (element) => element.parentElement.querySelector('code').textContent
@@ -120,16 +107,17 @@
   onMount(() => {
     checkShouldScrollToTop();
     initCodeCopying();
-    if (basicConfiguration.comments[0]?.type === 'utterances') {
-      initUtterances(basicConfiguration.comments[0]);
-    }
   });
 </script>
 
 <svelte:head>
   <title>{makeTitle(article.title)}</title>
+  <meta property="og:title" content={article.title} />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content={basicConfiguration.blogName} />
   {#if article.excerpt}
     <meta name="description" content={article.excerpt} />
+    <meta name="og:description" content={article.excerpt} />
   {/if}
 </svelte:head>
 
@@ -138,7 +126,7 @@
   style="grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)"
   use:scrollEvent
 >
-  <aside class="justify-self-end h-full text-sm pl-4 max-w-[210px] hidden md:block">
+  <aside class="justify-self-end h-full text-sm pl-4 min-w-[10rem] max-w-[210px] hidden md:block">
     {#if article.tableOfContent?.length || articlesOfSameCategories?.length}
       <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
         {#if article.tableOfContent?.length}
@@ -157,7 +145,7 @@
             </div>
             <ul class="px-4 lg:px-6 py-2 list-none flex flex-col gap-4 overflow-auto max-h-[15vh]">
               {#each articlesOfSameCategories as a}
-                <li>
+                <li class="text-center">
                   <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">
                     {a.title}
                   </a>
@@ -183,11 +171,12 @@
       {article.title}
     </h1>
     <TagsSection {article} showTags={true} />
-    <article id="article" class="mt-8 mb-24 markdown-body">
+    <article id="article" class="mt-8 mb-24 prose markdown">
       {@html article.html}
     </article>
-    <div class="commentsContainer w-full" bind:this={utterancesContainer} />
-    <p class="loadingIndicator text-center">评论区加载中</p>
+    {#if commentConfig.type === 'giscus'}
+      <Giscus {...commentConfig.config} />
+    {/if}
   </div>
   <div class="hidden md:block" />
 </div>
@@ -195,14 +184,6 @@
 <BackToTop class="md:hidden" show={showBackToTop} />
 
 <style>
-  .commentsContainer:empty ~ .loadingIndicator {
-    display: block;
-  }
-
-  .commentsContainer ~ .loadingIndicator {
-    display: none;
-  }
-
   @media (max-width: 1080px) {
     .contentContainer {
       grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 1fr) !important;
