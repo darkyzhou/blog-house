@@ -194,3 +194,7 @@ body {
     pointer-events: auto !important;
   }
 }
+
+.prose {
+  max-width: none !important;
+}
