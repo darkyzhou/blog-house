@@ -9,6 +9,11 @@
   import { getStores, page } from '$app/stores';
   import { removePrerenderPrefix } from './_utils';
   import { derived } from 'svelte/store';
+  import { inject } from '@vercel/analytics';
+
+  if (basicConfiguration.analytics.vercelWebAnalytics) {
+    inject({ mode: process.env.NODE_ENV === 'production' ? 'production' : 'development' });
+  }
 
   const pathName = derived(page, (p) => (p.url ? removePrerenderPrefix(p.url.pathname) : null));
 

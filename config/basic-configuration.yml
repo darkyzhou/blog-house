@@ -15,8 +15,9 @@ analytics:
     - 'duckduckbot'
     - 'yandexbot'
     - 'yahoo! slurp'
-  baiduId: f60a9a2b48d8e5dd35145c273edec8ef
-  gaMeasurementId: UA-169813168-1
+  gaMeasurementId: ''
+  baiduId: ''
+  vercelWebAnalytics: true
 comment:
   type: 'giscus'
   config:
