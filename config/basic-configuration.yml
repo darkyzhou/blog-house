@@ -17,6 +17,7 @@ analytics:
     - 'yahoo! slurp'
   gaMeasurementId: ''
   baiduId: ''
+  vercelWebAnalytics: false
 comment:
   type: 'none'
 algolia:
