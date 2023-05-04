@@ -1,4 +1,6 @@
 <script>
+  import 'virtual:uno.css';
+  import '@unocss/reset/tailwind-compat.css';
   import Nav from '../components/Nav.svelte';
   import PortalFooter from '../components/PortalFooter.svelte';
   import Footer from '../components/Footer.svelte';
