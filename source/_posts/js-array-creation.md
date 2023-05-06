@@ -1,10 +1,10 @@
 ---
-title: 如何在 JavaScript 中优雅地初始化数组
+title: 如何在 JavaScript 中优雅地创建并初始化数组
 date: 2023-05-03T14:00:00.425Z
 category: 前端修炼手册
 tags:
   - JavaScript
-excerpt: 你知道在 JavaScript 中创建数组有多少种写法吗？我不是孔乙己，但也许真的有一种「最理想」的写法。
+excerpt: 你知道在 JavaScript 中创建并初始化数组有多少种写法吗？我不是孔乙己，但也许真的有一种「最理想」的写法。
 ---
 
 ## 背景
@@ -104,10 +104,10 @@ array[9] = 0;
 // 此时，数组在索引 6 到 8 上没有值，它变成了带洞数组
 ```
 
-此外，至少在 V8 引擎中，很多人使用的 `new Array(n)` 也会默认创建一个带洞数组。按照 [ECMAScript 2022 Language Specification](https://262.ecma-international.org/#sec-array)，以长度为参数调用数组的构造函数，其内部大致会发生下面的操作：
+此外，至少在 V8 引擎中，很多人使用的 `new Array(N)` 也会默认创建一个带洞数组。按照 [ECMAScript 2022 Language Specification](https://262.ecma-international.org/#sec-array)，以长度为参数调用数组的构造函数，其内部大致会发生下面的操作：
 
 1. `ArrayCreate(0)`，创建一个长度为 `0` 的数组对象
-2. `Set(array, "length", intLen, true)`，将数组对象的 `length` 设为 `n`
+2. `Set(array, "length", intLen, true)`，将数组对象的 `length` 设为 `N`
 3. 返回数组对象
 
 看到了吗？这里进行的操作跟上面的例子一样，破坏了 V8 引擎对于紧密数组的假设。
@@ -136,7 +136,7 @@ function sumArrayItems(arr) {
 
 另一个比较贴近生产的例子是 `Array.reverse()`。在 Chromium 的一个 issue [Array.reverse() is 25x slower than an in-place swapping for loop?](https://bugs.chromium.org/p/chromium/issues/detail?id=1305342) 中，楼主发现在 V8 引擎中调用带洞数组的 `reverse()` 函数要比直接用 `for` 循环实现要慢得多（大约 25 倍）。
 
-问题的原因是 V8 引擎先前只对紧密数组的 `reverse()` 函数进行了优化，而没有对带洞数组进行优化。这个问题后来被修复了，带洞数组的 `reverse()` 函数现在只比紧密数组慢一些了。这个 issue 在一定程度上反映了在 V8 引擎中带洞数组的各项优化可能不及紧密数组。
+问题的原因是 V8 引擎先前只对紧密数组的 `reverse()` 函数进行了优化，而没有对带洞数组进行优化。这个问题后来被修复了，带洞数组的 `reverse()` 函数会远快于使用 `for` 循环，但仍然比紧密数组慢一些。这在一定程度上反映了在 V8 引擎中带洞数组的各项优化可能不及紧密数组。
 
 ## 优雅的创建数组方法
 
