@@ -28,7 +28,7 @@ comment:
     mapping: 'og:title'
     theme: 'dark_tritanopia'
     lang: 'zh-CN'
-    loading: 'lazy'
+    loading: 'eager'
 algolia:
   enabled: 'true'
   index: 'darky_blog'

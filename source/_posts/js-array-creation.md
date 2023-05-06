@@ -18,7 +18,9 @@ excerpt: 你知道在 JavaScript 中创建并初始化数组有多少种写法�
 
 Array(N).fill(null); // 2
 
-Array(N).fill(null).map((i) => i); // 3
+Array(N)
+  .fill(null)
+  .map((i) => i); // 3
 
 Array.from(Array(N), (_, i) => i); // 4
 
@@ -93,7 +95,7 @@ array.push({});
 
 ### 带洞数组
 
-所谓的带洞数组，指的是程序员通过一些手段破坏了 V8 引擎对紧密数组的假设：对于一个长度为 `n` 的紧密数组，它在从 `0` 到 `n` 上的*每个*索引都有值。下面的代码展示了如何将一个紧密数组变成带洞数组：
+所谓的带洞数组，指的是程序员通过一些手段破坏了 V8 引擎对紧密数组的假设：对于一个长度为 `N` 的紧密数组，它在从 `0` 到 `N` 上的*每个*索引都有值。下面的代码展示了如何将一个紧密数组变成带洞数组：
 
 ```javascript
 const array = [1, 1, 4, 5, 1, 4];
@@ -159,11 +161,11 @@ for (let i = 0; i < 1e6; i++) {
 
 V8 引擎中对数组的实现和我们学习程序设计时使用的 `malloc` 类似，同样是分配一个连续的内存空间来存储数组元素。引擎很难知道我们要往里面填入 1000000 个元素，而且默认情况下分配的内存空间只能容纳数十个元素，当我们使用 `push` 函数添加更多元素时，V8 引擎会重新分配一个更大的内存空间，并将原来的元素复制到新的内存空间中。
 
-因此，使用 `for` 循环会使得 V8 引擎多次进行内存分配和复制，严重拖慢了速度。而在使用 `Array.from({ length: n })`，引擎可以根据给定的 `n` 事先就分配好一个巨大的连续内存空间，不需要再进行多次的内存分配和复制。
+因此，使用 `for` 循环会使 V8 引擎进行多次内存分配和复制，严重拖慢了速度。而使用 `Array.from({ length: N })` 时，引擎可以根据给定的 `N` 事先分配好一个巨大的连续内存空间，不需要再进行多次的内存分配和复制。
 
 ### V8 的优化
 
-在 issue 单中，Choongwoo Han 还额外提供了一个优化：使 `Array.of` 和 `Array.from` 返回一个紧密数组。下面的几种创建数组的方法都能得到一个紧密数组：
+在上述的 issue 中，Choongwoo Han 还额外带来了一个优化：使 `Array.of` 和 `Array.from` 返回一个紧密数组。下面的几种创建数组的方法都能得到一个紧密数组：
 
 ```javascript
 Array.of(1, 2, 3);
@@ -175,7 +177,7 @@ Array.from({ length: 3 }, (x) => 1);
 Array.from({ length: 3 }, (x) => 1.5);
 ```
 
-笔者认为 `Array.from` 具有更高的实用价值，因为它接受第二个参数： `(element, index) => value` 用于初始化每一个值，比文章开头提到的 `Array(n).fill(null).map()` 这类方法要更为简单，同时它也给了引擎进行 Fast Path 优化的机会，就像 Choongwoo Han 在优化中做的一样：
+笔者认为 `Array.from` 具有更高的实用价值，因为它接受第二个参数： `(element, index) => value` 用于初始化每一个值，比文章开头提到的 `Array(N).fill(null).map()` 这类方法要更为简单，同时它也给了引擎进行 Fast Path 优化的机会，就像 Choongwoo Han 在优化中做的一样：
 
 ```
 try {
@@ -205,8 +207,8 @@ try {
 
 在上面的代码中，Choongwoo Han 新增了一个创建紧密数组的 Fast Path，当我们对 `Array.from` 的调用满足下列条件时，会进入此 Fast Path 创建一个紧密数组对象：
 
-* `this` 指向 `Array` 函数
-* 第一个参数指定的 arrayLike 对象的长度（比如 `Array.from({ length: N })` 中的 `N`）小于 `kMaxFastArrayLength`，目前它的值被设为 `32 * 1024 * 1024`。
+- `this` 指向 `Array` 函数。
+- 第一个参数指定的 arrayLike 对象的长度（比如 `Array.from({ length: N })` 中的 `N`）小于 `kMaxFastArrayLength`，目前它的值被设为 `32 * 1024 * 1024`。
 
 这个 Fast Path 发生在 [ECMAScript 2022 Language Specification 的 Array.from 一节](https://262.ecma-international.org/#sec-array.from) 的第 8 步和第 9 步之间。
 
@@ -219,12 +221,16 @@ try {
 
 Array(N).fill(null); // 2
 
-Array(N).fill(null).map((i) => i); // 3
+Array(N)
+  .fill(null)
+  .map((i) => i); // 3
 
 Array.from(Array(N), (_, i) => i); // 4
 
 Array.from({ length: N }, (_, i) => i); // 5
 ```
+
+> Choongwoo Han 的优化被合入了 V8 版本 `11.0.141`。目前仅覆盖了 Node 的 `20.0.0` 及以上版本。以及 Chromium M111 及以上版本。
 
 笔者在 Node 版本 `20.0.0`（V8 版本 `11.3.244.4-node.3`）上通过 `node --allow-natives-syntax` 测试得到：
 
