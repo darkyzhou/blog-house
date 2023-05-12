@@ -2,7 +2,7 @@ import marked from 'marked';
 import shiki from 'shiki';
 
 const renderer = new marked.Renderer();
-const highlighter = await shiki.getHighlighter({ theme: 'nord' });
+const highlighter = await shiki.getHighlighter({ theme: 'poimandres' });
 
 const supportedImageFormats = ['jpg', 'jpeg', 'webp', 'avif', 'png'];
 
@@ -56,7 +56,7 @@ renderer.code = (code, info, escaped) => {
       return `${result
         .replace(/^<pre><code[^>]*>/i, '')
         .trim()
-        .replace(/<\/pre>(.*)<\/pre>$/is, '')}<div class='copy'></div></pre>\n`;
+        .replace(/<\/pre>(.*)<\/pre>$/is, '')}<div class="copy"></div></pre>\n`;
   }
 };
 

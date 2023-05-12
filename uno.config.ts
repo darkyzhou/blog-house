@@ -20,7 +20,8 @@ export default defineConfig({
         pre: {
           'border-radius': '0',
           padding: '0.5rem 1rem',
-          'font-size': '0.8rem'
+          'font-size': '0.9rem',
+          'line-height': '1.5'
         }
       }
     })

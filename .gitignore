@@ -44,5 +44,3 @@ Thumbs.db
 # Compodoc
 documentation/
 .env
-
-static/styles/windi.css
