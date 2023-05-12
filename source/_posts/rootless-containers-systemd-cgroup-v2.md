@@ -21,7 +21,7 @@ excerpt: 本文将介绍如何在以一个普通用户的权限创建使用 Linu
 
 ### cgroup v1
 
-先来看看不使用 cgroup v1 的几个原因：
+截至 2023 年 5 月，大多数的新的 Linux 发行版已经不再默认开启 cgroup v1 了，笔者认为它已经是一个过时的技术了，现有的程序应当尽快迁移至 cgroup v2。以下是笔者总结的一些 cgroup v1 的缺陷。
 
 #### 需要 root 权限
 
@@ -78,19 +78,17 @@ $ sudo systemctl daemon-reload
 
 > 有一点需要提前说明：**在这种场景下，和 runc 交互的最好方法应该是在 go 程序里进行调用，而不是通过容器的 json 文件**。因为 runc 和它内部的 libcontainer 有很多非常实用的 API 并没有通过 json 接口暴露。
 
-其实 runc 的 libcontainer 提供了一个 systemd driver，支持在 rootless 情景下利用 systemd 创建 cgroup v2 文件夹。但是它有一个严重的缺陷：当容器进程退出之后，systemd 会自动清理创建出来的 cgroup，导致我们的应用无法收集 cpu、内存占用等信息。
+runc 的 libcontainer 提供了一个 [`systemdManager`](https://github.com/opencontainers/runc/blob/268511680f4a72b4a0595497a37e4d6a7da0215c/libcontainer/cgroups/systemd/v2.go)，支持在 rootless 情景下利用 systemd 创建 cgroup v2 文件夹。但是它有一个缺陷：当容器进程退出之后，systemd 会自动清理创建出来的 cgroup，导致我们的应用无法收集 cpu、内存占用等信息。
 
 从 [runc 源码](https://github.com/opencontainers/runc/blob/HEAD/libcontainer/cgroups/systemd/v2.go) 中可以看到，它是通过 DBus 创建了一个 transient scope 来让 systemd 为创建的容器进程开一个 cgroup。问题的关键在于，依据 [systemd 对 transient scope 的定义](https://systemd.io/CGROUP_DELEGATION/)：
 
 > The .scope unit type. This is very similar to .service. The main difference: the processes the units of this type encapsulate are forked off by some unrelated manager process, and that manager asked systemd to expose them as a unit.
 
-Transient scope 代表的容器进程是一种由其他进程（也就是调用 runc 的我们的应用）创建的子进程，因此在子进程退出之后**应该自动清理掉**。对于 runc 本身来说这没有什么问题，但是对于我们的应用来说，自动清理就意味着无法知道容器运行结束之后它到底占用了多少 cpu 时间、占用了多少内存等信息。
+Transient scope 代表的容器进程是一种由其他进程（也就是调用 runc 的我们的应用）创建的子进程，因此在子进程退出之后**应该自动清理掉**。对于 runc 本身来说这没有什么问题，但是对于我们的应用来说，自动清理就意味着无法知道容器运行结束之后它到底占用了多少 cpu 时间、占用了多少内存等信息。而且 runc 的 `systemdManager` 的参数非常不人性化。它会在配置 cgroup 失败之后默默地打印一行 warning 然后继续运行容器，忽略用户给定的 cgroup 配置参数。在 OJ 的场景下这个行为是无法接受的，不能出现有些用户的提交的代码可以受到限制而有些不受限制的情况。
 
-而且 runc 的 systemd driver 的参数非常不人性化。它会在配置 cgroup 失败之后默默地打印一行 warning 然后继续运行容器，忽略用户给定的 cgroup 配置参数。在 OJ 的场景下这个行为是无法接受的，不能出现有些用户的提交的代码可以受到限制而有些不受限制的情况。
+因此，我们只好使用 runc 为 rootless 模式提供的另一个实现：[`fsManager`](https://github.com/opencontainers/runc/blob/268511680f4a72b4a0595497a37e4d6a7da0215c/libcontainer/cgroups/fs2/fs2.go)。这个实现做的事情就是直接读写给定的 cgroup 文件夹来为容器初始化相关设定，而且它不会在容器停止之后就马上删掉文件夹。至于如何给 runc 提供 cgroup 文件夹则需要我们另辟蹊径了。
 
-因此，我们只好使用 runc 为 rootless 模式提供的另一个实现：fs driver。这个实现做的事情就是直接读写给定的 cgroup 文件夹来为容器初始化相关设定，而且它不会在容器停止之后就马上删掉文件夹。至于如何给 runc 提供 cgroup 文件夹则需要我们另辟蹊径了。
-
-> 其实 runc 调用 systemd 的实现最终也是用到了这个 fs driver。它是先调用 systemd 申请到一个 cgroup，再输入给这个 fs driver 来初始化各种设定。
+> 其实 runc 调用 systemd 的实现最终也是用到了这个 `fsManager`。它是先调用 systemd 申请到一个 cgroup，再输入给这个 `fsManager` 来初始化各种设定。
 
 ### 尝试
 
@@ -118,7 +116,7 @@ Transient scope 代表的容器进程是一种由其他进程（也就是调用 
 
 1. 应用调用 DBus，为当前的应用进程创建一个 transient scope。systemd 保证创建出来的 cgroup 可以被当前用户（普通用户）读写。这一步是为了确保 runc 创建的容器进程依然能够被当前用户的 cgroup 管辖。否则它默认会被 root cgroup（也就是 systemd 直接管理的那个顶层 cgroup）管辖，当前用户（普通用户）是没有权限的。
 2. 在创建的父 cgroup 中建立一个子 cgroup，称为 `app.scope`（此命名风格不是必要的，但符合 systemd 的语义）。向后者的 `cgroup.procs` 中写入当前进程的 ID，即将当前进程移到 `app.scope` 中。
-3. 在创建的父 cgroup 中建立一个子 cgroup，称为 `container.slice`（此命名风格不是必要的，但符合 systemd 的语义）。将这个 cgroup 路径传给 runc，并启用它的 `fsDriver`。此时 runc 会尝试在 `container.slice` 中建立子 cgroup，并将创建的容器放置在其中进行管理。
+3. 在创建的父 cgroup 中建立一个子 cgroup，称为 `container.slice`（此命名风格不是必要的，但符合 systemd 的语义）。将这个 cgroup 路径传给 runc，并启用它的 `fsManager`。此时 runc 会尝试在 `container.slice` 中建立子 cgroup，并将创建的容器放置在其中进行管理。
 4. 我们已经可以在容器结束之后调用 runc 相关的 API 来获得 cgroup 的相关信息，比如 cpu 时间（包括用户态时间、内核态时间）、内存占用（包括 swap）等。
 
 > 上面省略了在父 cgroup 中配置 `cgroup.subtree_control` 和在子 cgroup 中开启相关 controller。
@@ -128,3 +126,5 @@ Transient scope 代表的容器进程是一种由其他进程（也就是调用 
 - 创建并运行容器
 - 配置 cgroup 来限制容器的资源占用
 - 容器结束后读取 cgroup 文件获得各种占用数据
+
+感兴趣的读者可以参考笔者的项目 [Seele](https://github.com/darkyzhou/seele/tree/main/src/cgroup) 中的实现，它做的事情和上面类似，同样是先将当前进程移动到 `app.scope` 中。不过，它还额外将进程的所有线程分配到了 `app.scope` 下的不同子 cgroup 中，用以配置 cpu controller 进行绑核。而进程创建的 `container.slice` 的路径则会被传给 runj（笔者包装的 runc），用来管理创建容器的各种资源。
