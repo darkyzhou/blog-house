@@ -4,7 +4,7 @@ avatar: /images/uploads/a4b03025-b383-4995-a5e9-15beca3a4c7a.jpeg
 background: /images/uploads/background.jpg
 contact:
   - type: Location16
-    text: Guangzhou
+    text: Shenzhen
   - type: LogoGithub16
     text: darkyzhou
 tabsContent:
