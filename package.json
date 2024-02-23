@@ -5,19 +5,20 @@
   "private": false,
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development svelte-kit dev --host",
+    "dev": "NODE_ENV=development vite dev --host",
     "algolia": "node ./scripts/upload-to-algolia.mjs",
     "process-image": "node ./scripts/process-images.mjs",
-    "export": "NODE_ENV=production svelte-kit build",
-    "build": "npm-run-all --parallel algolia process-image --serial export"
+    "export": "NODE_ENV=production vite build",
+    "build": "npm-run-all --parallel algolia process-image --serial export",
+    "format": "prettier --write src"
   },
   "devDependencies": {
     "@giscus/svelte": "^2.2.8",
     "@juggle/resize-observer": "^3.3.1",
     "@rollup/plugin-replace": "^2.4.2",
     "@rollup/plugin-yaml": "^3.1.0",
-    "@sveltejs/adapter-static": "1.0.0-next.24",
-    "@sveltejs/kit": "1.0.0-next.211",
+    "@sveltejs/adapter-static": "1.0.0-next.50",
+    "@sveltejs/kit": "1.0.0-next.588",
     "@unocss/preset-typography": "^0.51.8",
     "@unocss/preset-uno": "^0.51.8",
     "@unocss/reset": "^0.51.8",
@@ -34,7 +35,7 @@
     "npm-run-all": "^4.1.5",
     "object-path": "^0.11.8",
     "parse-html-text-content": "^1.1.1",
-    "prettier": "^2.5.1",
+    "prettier": "^3.2.5",
     "prettier-plugin-svelte": "^2.6.0",
     "remove-markdown": "^0.3.0",
     "rollup": "^2.66.0",
@@ -45,7 +46,7 @@
     "svelte": "^3.46.2",
     "transliteration": "^2.2.0",
     "unocss": "^0.51.8",
-    "vite": "^2.7.13",
+    "vite": "^4.5.2",
     "yaml": "^1.10.2"
   }
 }

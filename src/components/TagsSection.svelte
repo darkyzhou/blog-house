@@ -79,7 +79,7 @@
         <Category16 />
       </span>
       <a
-        sveltekit:prefetch
+        data-sveltekit-preload-data
         href="/categories/{categoriesConfiguration.categories.find(
           (c) => c.name === article.category
         ).slug}"
@@ -96,7 +96,7 @@
       {#each article.tags as tag, j}
         {#if tagsConfiguration.tags.some((t) => t.name === tag)}
           <a
-            sveltekit:prefetch
+            data-sveltekit-preload-data
             href="/tags/{tagsConfiguration.tags.find((t) => t.name === tag).slug}"
             class="text-carbongray-300 hover:underline cursor-pointer {textXs
               ? 'text-xs'

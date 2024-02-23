@@ -21,7 +21,7 @@
     <div class="flex-1 flex flex-col gap-4">
       {#each column as item}
         <a
-          sveltekit:prefetch
+          data-sveltekit-preload-data
           href={`/tags/${item.slug}`}
           class="block outline-none border-transparent border-2 focus:border-carbongray-200"
         >

@@ -1,17 +1,10 @@
-<script context="module">
-  export async function load({ fetch }) {
-    const response = await fetch('/data/tags.json');
-    const tags = await response.json();
-    return { props: { tags } };
-  }
-</script>
-
 <script>
   import { makeTitle } from '../_utils';
   import TagsContainer from '../../components/TagsContainer.svelte';
 
-  export let tags;
-  $: sorted = tags.sort((a, b) => b.articles.length - a.articles.length);
+  export let data;
+  let { tags } = data;
+  let sorted = tags.sort((a, b) => b.articles.length - a.articles.length);
 </script>
 
 <svelte:head>
@@ -27,9 +20,9 @@
 </h1>
 <TagsContainer items={sorted} style="max-width: 1000px;" />
 
-<!-- workaround a bug that sveltekit static adapter cannot detect sveltekit:prefetch inside deeply nested <TagsContainer> structures here -->
+<!-- workaround a bug that sveltekit static adapter cannot detect data-sveltekit-preload-data inside deeply nested <TagsContainer> structures here -->
 <div class="hidden">
   {#each sorted as t}
-    <a sveltekit:prefetch href={`/tags/${t.slug}`}>X</a>
+    <a data-sveltekit-preload-data href={`/tags/${t.slug}`}>X</a>
   {/each}
 </div>

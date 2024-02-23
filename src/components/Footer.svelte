@@ -27,7 +27,7 @@
       {#if footerConfiguration.additional}
         {#each footerConfiguration.additional as item, i}
           {#if item.type === 'page'}
-            <a sveltekit:prefetch href="/{item.target}" class="flex flex-col items-center gap-1">
+            <a data-sveltekit-preload-data href="/{item.target}" class="flex flex-col items-center gap-1">
               {#if ICONS[i]}
                 <svelte:component this="{ICONS[i]}" />
               {/if}

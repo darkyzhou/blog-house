@@ -1,34 +1,17 @@
-<script context="module">
-  export async function load({ params, fetch }) {
-    const articleSlug = params.article;
-    const article = await (await fetch(`/data/articles/${articleSlug}.json`)).json();
-    const allArticles = !article.category ? [] : await (await fetch(`/data/articles.json`)).json();
-    const articlesOfSameCategories = allArticles.filter(
-      (a) => a.category === article.category && a.slug !== article.slug
-    );
-    return {
-      props: {
-        article,
-        articlesOfSameCategories
-      }
-    };
-  }
-</script>
-
 <script>
   import { onMount } from 'svelte';
-  import TagsSection from '../../components/TagsSection.svelte';
-  import TableOfContent from '../../components/TableOfContent.svelte';
-  import BackToTop from '../../components/BackToTop.svelte';
-  import { makeTitle } from '../_utils';
-  import basicConfiguration from '../../../config/basic-configuration.yml';
+  import TagsSection from '../../../components/TagsSection.svelte';
+  import TableOfContent from '../../../components/TableOfContent.svelte';
+  import BackToTop from '../../../components/BackToTop.svelte';
+  import { makeTitle } from '../../_utils';
+  import basicConfiguration from '../../../../config/basic-configuration.yml';
   import ClipboardJS from 'clipboard';
   import debounce from 'debounce';
   import ArrowUp16 from 'carbon-icons-svelte/lib/ArrowUp16';
   import Giscus from '@giscus/svelte';
 
-  export let article;
-  export let articlesOfSameCategories;
+  export let data;
+  let { article, articlesOfSameCategories } = data;
 
   const commentConfig = basicConfiguration.comment;
 
