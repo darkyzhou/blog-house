@@ -1,5 +1,5 @@
 <script>
-  import Article from '../articles/[article]/+page.svelte'
+  import Article from '../articles/[article]/+page.svelte';
   import FaceDizzy32 from 'carbon-icons-svelte/lib/FaceDizzy32';
 
   export let data;

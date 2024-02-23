@@ -2,5 +2,16 @@
   "singleQuote": true,
   "trailingComma": "none",
   "printWidth": 100,
-  "htmlWhitespaceSensitivity": "ignore"
+  "htmlWhitespaceSensitivity": "ignore",
+  "plugins": [
+    "prettier-plugin-svelte"
+  ],
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 import basicConfiguration from '../../config/basic-configuration.yml';
 import { ResizeObserver } from '@juggle/resize-observer';
-import debounce from 'debounce';
+import { debounce } from 'lodash-es';
 import { browser } from '$app/environment';
 
 export function getOptimizedImageName(path, ext) {

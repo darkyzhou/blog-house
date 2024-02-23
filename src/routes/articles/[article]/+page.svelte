@@ -6,7 +6,7 @@
   import { makeTitle } from '../../_utils';
   import basicConfiguration from '../../../../config/basic-configuration.yml';
   import ClipboardJS from 'clipboard';
-  import debounce from 'debounce';
+  import { debounce } from 'lodash-es';
   import ArrowUp16 from 'carbon-icons-svelte/lib/ArrowUp16';
   import Giscus from '@giscus/svelte';
 

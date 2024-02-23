@@ -1,14 +1,3 @@
-<style>
-  :global(.footer a) {
-    color: var(--bg-carbonblue-100);
-  }
-
-  :global(.footer a:hover),
-  :global(.footer a:focus) {
-    text-decoration: underline;
-  }
-</style>
-
 <script>
   import footerConfiguration from '../../config/footer-configuration.yml';
   import Rss16 from 'carbon-icons-svelte/lib/Rss16';
@@ -22,28 +11,33 @@
 
 <div class="w-full">
   <footer
-    class="footer w-full max-w-[980px] mx-auto text-carbongray-300 text-sm py-2 sm:py-4 px-4 sm:px-12 flex justify-center sm:justify-between items-end flex-wrap gap-2 {extraClasses}">
+    class="footer w-full max-w-[980px] mx-auto text-carbongray-300 text-sm py-2 sm:py-4 px-4 sm:px-12 flex justify-center sm:justify-between items-end flex-wrap gap-2 {extraClasses}"
+  >
     <div class="flex gap-6 text-carbongray-200 text-sm">
       {#if footerConfiguration.additional}
         {#each footerConfiguration.additional as item, i}
           {#if item.type === 'page'}
-            <a data-sveltekit-preload-data href="/{item.target}" class="flex flex-col items-center gap-1">
+            <a
+              data-sveltekit-preload-data
+              href="/{item.target}"
+              class="flex flex-col items-center gap-1"
+            >
               {#if ICONS[i]}
-                <svelte:component this="{ICONS[i]}" />
+                <svelte:component this={ICONS[i]} />
               {/if}
               {item.caption}
             </a>
           {:else if item.type === 'link'}
-            <a target="_blank" href="{item.target}" class="flex flex-col items-center gap-1">
+            <a target="_blank" href={item.target} class="flex flex-col items-center gap-1">
               {#if ICONS[i]}
-                <svelte:component this="{ICONS[i]}" />
+                <svelte:component this={ICONS[i]} />
               {/if}
               {item.caption}
             </a>
           {:else if item.type === 'plain'}
             <div class="flex flex-col items-center gap-1">
               {#if ICONS[i]}
-                <svelte:component this="{ICONS[i]}" />
+                <svelte:component this={ICONS[i]} />
               {/if}
               {item.caption}
             </div>
@@ -66,3 +60,14 @@
     </div>
   </footer>
 </div>
+
+<style>
+  :global(.footer a) {
+    color: var(--bg-carbonblue-100);
+  }
+
+  :global(.footer a:hover),
+  :global(.footer a:focus) {
+    text-decoration: underline;
+  }
+</style>

@@ -1,16 +1,21 @@
 import marked from 'marked';
-import shiki from 'shiki';
+import { getHighlighter, bundledThemes, bundledLanguages } from 'shiki';
 
-const renderer = new marked.Renderer();
-const highlighter = await shiki.getHighlighter({ theme: 'poimandres' });
+const MARKED_RENDERER = new marked.Renderer();
 
-const supportedImageFormats = ['jpg', 'jpeg', 'webp', 'avif', 'png'];
+const SHIKI_HIGHLIGHTER = await getHighlighter({
+  themes: Object.keys(bundledThemes),
+  langs: Object.keys(bundledLanguages)
+});
+const SHIKI_THEME = 'poimandres';
+
+const SUPPORTED_IMAGE_FORMATS = ['jpg', 'jpeg', 'webp', 'avif', 'png'];
 
 function shouldOptimize(href) {
   return (
     href.startsWith('/') &&
     href.includes('.') &&
-    supportedImageFormats.includes(href.substring(href.lastIndexOf('.') + 1))
+    SUPPORTED_IMAGE_FORMATS.includes(href.substring(href.lastIndexOf('.') + 1))
   );
 }
 
@@ -18,9 +23,9 @@ function getOptimizedImageName(path, ext) {
   return `${path.substring(0, path.lastIndexOf('.'))}-bloghouse-opt.${ext}`;
 }
 
-const originalImageRenderer = renderer.image;
-renderer.image = (href, title, text) => {
-  const result = originalImageRenderer.call(renderer, href, title, text);
+const originalImageRenderer = MARKED_RENDERER.image;
+MARKED_RENDERER.image = (href, title, text) => {
+  const result = originalImageRenderer.call(MARKED_RENDERER, href, title, text);
   if (!shouldOptimize(href)) {
     return result;
   }
@@ -30,23 +35,23 @@ renderer.image = (href, title, text) => {
   <img src="${getOptimizedImageName(href, 'jpg')}" alt="${text}" loading="lazy" /></picture>`;
 };
 
-const originalLinkRenderer = renderer.link;
-renderer.link = (href, title, text) => {
-  const result = originalLinkRenderer.call(renderer, href, title, text);
+const originalLinkRenderer = MARKED_RENDERER.link;
+MARKED_RENDERER.link = (href, title, text) => {
+  const result = originalLinkRenderer.call(MARKED_RENDERER, href, title, text);
   switch (true) {
     case href.startsWith('/'):
       return result;
     case href.startsWith('#'):
-      const newResult = originalLinkRenderer.call(renderer, 'javascript:;', title, text);
+      const newResult = originalLinkRenderer.call(MARKED_RENDERER, 'javascript:;', title, text);
       return newResult.replace(/^<a /, `<a onclick="document.location.hash='${href.substr(1)}';" `);
     default:
       return result.replace(/^<a /, '<a target="_blank" rel="nofollow noopener" ');
   }
 };
 
-const originalCodeRenderer = renderer.code;
-renderer.code = (code, info, escaped) => {
-  const result = originalCodeRenderer.call(renderer, code, info, escaped).trim();
+const originalCodeRenderer = MARKED_RENDERER.code;
+MARKED_RENDERER.code = (code, info, escaped) => {
+  const result = originalCodeRenderer.call(MARKED_RENDERER, code, info, escaped).trim();
   switch (true) {
     case /<pre><code[^>]*><div class/i.test(result):
       return result.substring(result.indexOf('<div'), result.lastIndexOf('</div>') + 6);
@@ -127,13 +132,13 @@ const highlight = (code, lang) => {
       return toMessageHtml(lang, code);
     case lang?.startsWith('#'):
       return toCardHtml(lang, code);
-    case !highlighter.getLoadedLanguages().includes(lang):
-      return highlighter.codeToHtml(code, {});
+    case !SHIKI_HIGHLIGHTER.getLoadedLanguages().includes(lang):
+      return SHIKI_HIGHLIGHTER.codeToHtml(code, { theme: SHIKI_THEME });
     default:
-      return highlighter.codeToHtml(code, { lang });
+      return SHIKI_HIGHLIGHTER.codeToHtml(code, { theme: SHIKI_THEME, lang });
   }
 };
 
-marked.setOptions({ renderer, highlight });
+marked.setOptions({ renderer: MARKED_RENDERER, highlight });
 
 export default marked;

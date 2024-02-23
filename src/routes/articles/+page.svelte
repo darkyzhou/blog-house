@@ -2,7 +2,7 @@
   import { makeTitle, WaterflowController } from '../_utils';
   import ArticleCard from '../../components/ArticleCard.svelte';
   import BackToTop from '../../components/BackToTop.svelte';
-  import debounce from 'debounce';
+  import { debounce } from 'lodash-es';
 
   export let data;
   let realArticles = data.articles.filter((p) => !p.isPageArticle);

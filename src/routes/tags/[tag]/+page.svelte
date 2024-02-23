@@ -3,7 +3,7 @@
   import TagCard from '../../../components/TagCard.svelte';
   import BackToTop from '../../../components/BackToTop.svelte';
   import { makeTitle, WaterflowController } from '../../_utils';
-  import debounce from 'debounce';
+  import { debounce } from 'lodash-es';
 
   export let data;
   let { tag } = data;

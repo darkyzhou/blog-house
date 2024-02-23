@@ -25,7 +25,7 @@
   }
 </script>
 
-<div class="py-2 text-carbongray-200 flex flex-col {extraClasses}" style="{extraStyles}">
+<div class="py-2 text-carbongray-200 flex flex-col {extraClasses}" style={extraStyles}>
   {#each resolved as item, i}
     {#if item.id}
       <a
@@ -33,14 +33,16 @@
           highlightedIndex && 'text-carbonblue-300'}"
         style="padding-left: {item.padding}rem"
         sveltekit:noscroll
-        href="javascript:document.getElementById('{item.id.toLowerCase()}').scrollIntoView(true);">
+        href="javascript:document.getElementById('{item.id.toLowerCase()}').scrollIntoView(true);"
+      >
         {item.caption}
       </a>
     {:else}
       <span
         class="py-1 break-all hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
           highlightedIndex && 'text-carbonblue-300'}"
-        style="padding-left: {item.padding}rem">
+        style="padding-left: {item.padding}rem"
+      >
         {item.caption}
       </span>
     {/if}
