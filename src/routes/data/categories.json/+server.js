@@ -1,4 +1,5 @@
-import categories from '../../../shared/categories';
+import { json } from '@sveltejs/kit';
+import categories from '../../../../shared/categories';
 
 const minified = categories.map((t) => ({
   ...t,
@@ -10,8 +11,6 @@ const minified = categories.map((t) => ({
   }))
 }));
 
-export async function get() {
-  return {
-    body: minified
-  };
+export async function GET() {
+  return json(minified);
 }

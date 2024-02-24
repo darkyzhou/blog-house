@@ -1,37 +1,6 @@
-<style>
-  .tabHeader > * {
-    flex: 1 1 0%;
-  }
-
-  .tabHeader .icon {
-    color: var(--bg-carbongray-200);
-    display: flex;
-    align-items: center;
-    padding: 4px 6px;
-    height: 100%;
-  }
-
-  .tabContent > * {
-    display: none;
-  }
-
-  @media (max-width: 767px) {
-    .tabContent .markdown {
-      font-size: 0.875rem !important;
-      line-height: 1.5rem !important;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .tabContent .markdown {
-      font-size: 1rem !important;
-      line-height: 1.8rem !important;
-    }
-  }
-</style>
-
 <script>
   import { getCssSegment } from '../routes/_utils';
+  import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
 
   // must be right after the imports
   const ICONS = []; //@MARK:TABS
@@ -64,15 +33,32 @@
 
 <div class="flex {extraClasses}">
   {#each tabContents as _, i}
-    <input id="toggle{i + 1}" type="radio" name="tab" class="hidden" checked="{!i}" />
+    <input id="toggle{i + 1}" type="radio" name="tab" class="hidden" checked={!i} />
   {/each}
+  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
+    {#each tabContents as tab}
+      <div class="h-full hidden">
+        <OverlayScrollbarsComponent
+          class="h-full"
+          options={{
+            scrollbars: { theme: 'os-theme-other', autoHide: 'leave', autoHideDelay: 200 }
+          }}
+        >
+          <div class="h-full prose markdown">
+            {@html tab.contentHtml}
+          </div>
+        </OverlayScrollbarsComponent>
+      </div>
+    {/each}
+  </div>
   <ul class="tabHeader flex-none list-none flex flex-col">
     {#each tabContents as tab, i}
       <li>
         <label
           class="icon cursor-pointer outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2"
           for="toggle{i + 1}"
-          tabindex="0">
+          tabindex="0"
+        >
           <span class="w-8 h-8">
             <svelte:component this={ICONS[i]} />
           </span>
@@ -80,11 +66,36 @@
       </li>
     {/each}
   </ul>
-  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
-    {#each tabContents as tab}
-      <div class="overflow-y-auto h-full prose markdown">
-        {@html tab.contentHtml}
-      </div>
-    {/each}
-  </div>
 </div>
+
+<style>
+  .tabHeader > * {
+    flex: 1 1 0%;
+  }
+
+  .tabHeader .icon {
+    color: var(--bg-carbongray-200);
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    height: 100%;
+  }
+
+  .tabContent > * {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .tabContent .markdown {
+      font-size: 0.875rem !important;
+      line-height: 1.5rem !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .tabContent .markdown {
+      font-size: 1rem !important;
+      line-height: 1.8rem !important;
+    }
+  }
+</style>

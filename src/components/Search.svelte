@@ -1,13 +1,6 @@
-<style>
-  :global(.highlight span) {
-    font-weight: bold;
-    color: var(--bg-carbonblue-300);
-  }
-</style>
-
 <script>
   import { onMount } from 'svelte';
-  import debounce from 'debounce';
+  import { debounce } from 'lodash-es';
   import algoliasearch from 'algoliasearch/lite.js';
   import Search24 from 'carbon-icons-svelte/lib/Search24';
   import Warning24 from 'carbon-icons-svelte/lib/Warning24';
@@ -153,9 +146,10 @@
       </div>
       <input
         class="w-full h-10 p-2 pl-8 text-xl bg-transparent outline-none border-t-0 border-l-0 border-r-0 border-b-2 border-b-carbongray-600 focus:border-b-carbongray-400"
-        placeholder="{!clientIndex ? '请等待' : '搜索内容'}"
-        value="{searchValue}"
-        on:input="{(e) => onInput(e.target.value)}" />
+        placeholder={!clientIndex ? '请等待' : '搜索内容'}
+        value={searchValue}
+        on:input={(e) => onInput(e.target.value)}
+      />
       <div class="w-8"></div>
     </div>
     <div class="flex-1 overflow-y-auto">
@@ -201,7 +195,8 @@
             <a
               href="/categories/{category.slug}"
               target="_blank"
-              class="block bg-carbongray-800 mb-1 px-4 py-1 border-2 border-transparent hover:border-carbongray-200 mr-1">
+              class="block bg-carbongray-800 mb-1 px-4 py-1 border-2 border-transparent hover:border-carbongray-200 mr-1"
+            >
               <div class="float-right pt-1 pr-1">
                 <ArrowRight16 />
               </div>
@@ -222,7 +217,8 @@
             <a
               href="/articles/{article.slug}"
               target="_blank"
-              class="block bg-carbongray-800 mb-1 px-4 py-1 border-2 border-transparent hover:border-carbongray-200 mr-1">
+              class="block bg-carbongray-800 mb-1 px-4 py-1 border-2 border-transparent hover:border-carbongray-200 mr-1"
+            >
               <div class="float-right pt-1 pr-1">
                 <ArrowRight16 />
               </div>
@@ -271,3 +267,10 @@
     </div>
   </div>
 {/if}
+
+<style>
+  :global(.highlight span) {
+    font-weight: bold;
+    color: var(--bg-carbonblue-300);
+  }
+</style>

@@ -1,4 +1,5 @@
-import basicConfiguration from '../../config/basic-configuration.yml';
+import { json } from '@sveltejs/kit';
+import basicConfiguration from '../../../config/basic-configuration.yml';
 
 const data = {
   name: basicConfiguration.blogName,
@@ -15,8 +16,8 @@ const data = {
   ]
 };
 
-export async function get() {
-  return {
-    body: data
-  };
+export async function GET() {
+  return json(data);
 }
+
+export const prerender = true;

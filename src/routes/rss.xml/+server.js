@@ -1,5 +1,5 @@
-import articles from '../../shared/articles';
-import basicConfiguration from '../../config/basic-configuration.yml';
+import articles from '../../../shared/articles';
+import basicConfiguration from '../../../config/basic-configuration.yml';
 import RSS from 'rss';
 
 const version = __BG__VERSION;
@@ -28,8 +28,8 @@ for (const article of articles) {
   });
 }
 
-export async function get() {
-  return {
-    body: feed.xml()
-  };
+export async function GET() {
+  return new Response(feed.xml());
 }
+
+export const prerender = true;

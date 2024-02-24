@@ -1,10 +1,10 @@
-import articles from '../../shared/articles';
-import tags from '../../shared/tags';
-import basicConfiguration from '../../config/basic-configuration.yml';
-import sitemapXmlConfiguration from '../../config/sitemap-xml-configuration.yml';
-import { concatPageUrl } from './_utils';
+import articles from '../../../shared/articles';
+import tags from '../../../shared/tags';
+import basicConfiguration from '../../../config/basic-configuration.yml';
+import sitemapXmlConfiguration from '../../../config/sitemap-xml-configuration.yml';
+import { concatPageUrl } from '../_utils';
 
-export async function get() {
+export async function GET() {
   const now = new Date().toISOString();
   const items = [];
 
@@ -44,7 +44,9 @@ export async function get() {
     .map((item) => `<url><loc>${item.url}</loc><lastmod>${item.lastmod}</lastmod></url>`)
     .join('');
 
-  return {
-    body: `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${content}${sitemapXmlConfiguration.additionalContent.trim()}</urlset>`
-  };
+  return new Response(
+    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${content}${sitemapXmlConfiguration.additionalContent.trim()}</urlset>`
+  );
 }
+
+export const prerender = true;

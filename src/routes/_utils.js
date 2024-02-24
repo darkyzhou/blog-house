@@ -1,7 +1,7 @@
 import basicConfiguration from '../../config/basic-configuration.yml';
 import { ResizeObserver } from '@juggle/resize-observer';
-import debounce from 'debounce';
-import { browser } from '$app/env';
+import { debounce } from 'lodash-es';
+import { browser } from '$app/environment';
 
 export function getOptimizedImageName(path, ext) {
   return `${path.substring(0, path.lastIndexOf('.'))}-bloghouse-opt.${ext}`;

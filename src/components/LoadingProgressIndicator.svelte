@@ -1,3 +1,35 @@
+<script>
+  import { afterUpdate } from 'svelte';
+
+  export let loading = false;
+
+  let indicator;
+  let previousLoading = false;
+  let finished = false;
+
+  function setClassName(element, enable, className) {
+    if (enable) {
+      element.classList.add(className);
+    } else {
+      element.classList.remove(className);
+    }
+  }
+
+  afterUpdate(() => {
+    finished = previousLoading && !loading;
+    previousLoading = loading;
+
+    setClassName(indicator, finished, 'indicator--finished');
+    if (finished) {
+      setClassName(indicator, loading, 'indicator--loading');
+    } else {
+      setTimeout(() => setClassName(indicator, loading, 'indicator--loading'), 50);
+    }
+  });
+</script>
+
+<div class="indicator bg-carbonblue-400" bind:this={indicator}></div>
+
 <style>
   :global(.indicator) {
     position: fixed;
@@ -29,35 +61,3 @@
     right: 0;
   }
 </style>
-
-<script>
-  import { afterUpdate } from 'svelte';
-
-  export let loading = false;
-
-  let indicator;
-  let previousLoading = false;
-  let finished = false;
-
-  function setClassName(element, enable, className) {
-    if (enable) {
-      element.classList.add(className);
-    } else {
-      element.classList.remove(className);
-    }
-  }
-
-  afterUpdate(() => {
-    finished = previousLoading && !loading;
-    previousLoading = loading;
-
-    setClassName(indicator, finished, 'indicator--finished');
-    if (finished) {
-      setClassName(indicator, loading, 'indicator--loading');
-    } else {
-      setTimeout(() => setClassName(indicator, loading, 'indicator--loading'), 50);
-    }
-  });
-</script>
-
-<div class="indicator bg-carbonblue-400" bind:this="{indicator}"></div>

@@ -1,22 +1,3 @@
-<style>
-  .tagsContainer > li {
-    display: flex;
-    cursor: help;
-  }
-
-  .tagsContainer > li:not(:last-child) {
-    margin-right: 6px;
-  }
-
-  .icon {
-    display: inline-flex;
-    align-items: center;
-    color: var(--bg-carbonblue-100);
-    margin-right: 4px;
-    padding-bottom: 2px;
-  }
-</style>
-
 <script context="module">
   function isAtSameDay(a, b) {
     const dateA = new Date(a);
@@ -79,11 +60,12 @@
         <Category16 />
       </span>
       <a
-        sveltekit:prefetch
+        data-sveltekit-preload-data
         href="/categories/{categoriesConfiguration.categories.find(
           (c) => c.name === article.category
         ).slug}"
-        class="text-carbongray-300 hover:underline cursor-pointer {textXs ? 'text-xs' : 'text-sm'}">
+        class="text-carbongray-300 hover:underline cursor-pointer {textXs ? 'text-xs' : 'text-sm'}"
+      >
         {article.category}
       </a>
     </li>
@@ -96,11 +78,12 @@
       {#each article.tags as tag, j}
         {#if tagsConfiguration.tags.some((t) => t.name === tag)}
           <a
-            sveltekit:prefetch
+            data-sveltekit-preload-data
             href="/tags/{tagsConfiguration.tags.find((t) => t.name === tag).slug}"
             class="text-carbongray-300 hover:underline cursor-pointer {textXs
               ? 'text-xs'
-              : 'text-sm'}">
+              : 'text-sm'}"
+          >
             {tag}
           </a>
         {:else}
@@ -113,3 +96,22 @@
     </li>
   {/if}
 </ul>
+
+<style>
+  .tagsContainer > li {
+    display: flex;
+    cursor: help;
+  }
+
+  .tagsContainer > li:not(:last-child) {
+    margin-right: 6px;
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--bg-carbonblue-100);
+    margin-right: 4px;
+    padding-bottom: 2px;
+  }
+</style>

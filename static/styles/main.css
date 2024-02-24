@@ -20,6 +20,30 @@ html {
     'Segoe UI Emoji' !important;
 }
 
+.os-scrollbar.os-theme-body {
+  --os-handle-bg: rgba(255, 255, 255, 0.44);
+  --os-handle-bg-hover: rgba(255, 255, 255, 0.55);
+  --os-handle-bg-active: rgba(255, 255, 255, 0.66);
+  --os-size: 12px;
+  --os-track-border-radius: 0;
+  --os-handle-border-radius: 0;
+  --os-padding-perpendicular: 2px;
+  --os-padding-axis: 2px;
+  --os-handle-interactive-area-offset: 4px;
+}
+
+.os-scrollbar.os-theme-other {
+  --os-handle-bg: rgba(255, 255, 255, 0.44);
+  --os-handle-bg-hover: rgba(255, 255, 255, 0.55);
+  --os-handle-bg-active: rgba(255, 255, 255, 0.66);
+  --os-size: 8px;
+  --os-track-border-radius: 0;
+  --os-handle-border-radius: 0;
+  --os-padding-perpendicular: 2px;
+  --os-padding-axis: 2px;
+  --os-handle-interactive-area-offset: 4px;
+}
+
 :root {
   --bg-carbongray-50: #f2f4f8;
   --bg-carbongray-100: #dde1e6;
@@ -52,141 +76,41 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-.bhem {
-  padding: 2px 12px;
-  margin-bottom: 16px;
-  border-left: 3px solid;
-  background-color: var(--bg-carbongray-800);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.bhem .bhemh {
-  display: flex;
-  margin-top: 8px;
-  margin-bottom: 2px;
-}
-
-.bhem .bhemh .bhemi {
-  margin-right: 4px;
-}
-
-.bhem.bh-info {
-  border-left-color: #4589ff;
-}
-
-.bhem.bh-info .bhemi {
-  color: #4589ff;
-}
-
-.bhem.bh-warn {
-  border-left-color: #f1c21b;
-}
-
-.bhem.bh-warn .bhemi {
-  color: #f1c21b;
-}
-
-.bhem.bh-check {
-  border-left-color: #42be65;
-}
-
-.bhem.bh-check .bhemi {
-  color: #42be65;
-}
-
-.bhem.bh-exception {
-  border-left-color: #fa4d56;
-}
-
-.bhem.bh-exception .bhemi {
-  color: #fa4d56;
-}
-
-.bhc {
-  display: block;
-  margin-bottom: 16px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.bhc .bhci {
-  height: 80px;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: cover;
-}
-
-.bhc .bhcc {
-  background-color: var(--bg-carbongray-800);
-  padding: 12px 16px;
-}
-
-a.bhc .bhcc:hover {
-  background-color: var(--bg-carbongray-700);
-}
-
 .utterances {
   max-width: unset;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-
-::-webkit-scrollbar-corner,
-::-webkit-scrollbar-button {
-  background-color: var(--bg-carbongray-800);
-  display: none;
-}
-
-::-webkit-scrollbar-track {
-  background-color: var(--bg-carbongray-800);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--bg-carbongray-500);
-  border-radius: 0;
-}
-
-body {
-  /* For Firefox */
-  scrollbar-color: var(--bg-carbongray-400) var(--bg-carbongray-800);
-  scrollbar-width: thin;
+.markdown .code-wrapper {
+  position: relative;
 }
 
 .markdown pre {
-  position: relative;
   margin-inline: 12px;
   outline: none;
 }
 
-.markdown pre:not(:empty) .copy:empty {
-  display: none !important;
-}
-
-.markdown pre:not(:empty) .copy {
+.markdown pre:not(:empty) + .copy {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 6px 8px;
-  font-size: 12px;
+  top: 6px;
+  right: 20px;
+  padding: 4px;
   color: var(--bg-carbongray-200);
   background-color: var(--bg-carbongray-700);
   cursor: pointer;
   opacity: 0;
-  transition: 250ms opacity;
-  pointer-events: none;
+  transition: 300ms opacity ease-in-out;
   user-select: none;
 }
 
-.markdown pre:not(:empty):focus .copy,
-.markdown pre:not(:empty):hover .copy {
-  opacity: 1;
-  pointer-events: auto;
+.markdown .code-wrapper:hover .copy,
+.markdown .copy:hover {
+  opacity: 1 !important;
 }
 
 .prose {
   max-width: none !important;
+}
+
+.prose p:first-child {
+  margin-top: 0 !important;
 }

@@ -5,7 +5,8 @@
 
 <article
   class="relative flex flex-col gap-1 justify-between text-carbongray-100 bg-carbongray-800 px-4 py-3 {!displayMode &&
-    'hover:bg-carbongray-700'}">
+    'hover:bg-carbongray-700'}"
+>
   <h1>
     {#if displayMode}
       标签：

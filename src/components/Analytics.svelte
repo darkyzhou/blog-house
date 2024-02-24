@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import basicConfiguration from '../../config/basic-configuration.yml';
-  import { browser } from '$app/env';
+  import { browser } from '$app/environment';
 
   export let gaMeasurementId;
   export let baiduId;

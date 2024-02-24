@@ -1,16 +1,21 @@
 import marked from 'marked';
-import shiki from 'shiki';
+import { getHighlighter, bundledThemes, bundledLanguages } from 'shiki';
 
-const renderer = new marked.Renderer();
-const highlighter = await shiki.getHighlighter({ theme: 'poimandres' });
+const MARKED_RENDERER = new marked.Renderer();
 
-const supportedImageFormats = ['jpg', 'jpeg', 'webp', 'avif', 'png'];
+const SHIKI_HIGHLIGHTER = await getHighlighter({
+  themes: Object.keys(bundledThemes),
+  langs: Object.keys(bundledLanguages)
+});
+const SHIKI_THEME = 'poimandres';
+
+const SUPPORTED_IMAGE_FORMATS = ['jpg', 'jpeg', 'webp', 'avif', 'png'];
 
 function shouldOptimize(href) {
   return (
     href.startsWith('/') &&
     href.includes('.') &&
-    supportedImageFormats.includes(href.substring(href.lastIndexOf('.') + 1))
+    SUPPORTED_IMAGE_FORMATS.includes(href.substring(href.lastIndexOf('.') + 1))
   );
 }
 
@@ -18,9 +23,9 @@ function getOptimizedImageName(path, ext) {
   return `${path.substring(0, path.lastIndexOf('.'))}-bloghouse-opt.${ext}`;
 }
 
-const originalImageRenderer = renderer.image;
-renderer.image = (href, title, text) => {
-  const result = originalImageRenderer.call(renderer, href, title, text);
+const originalImageRenderer = MARKED_RENDERER.image;
+MARKED_RENDERER.image = (href, title, text) => {
+  const result = originalImageRenderer.call(MARKED_RENDERER, href, title, text);
   if (!shouldOptimize(href)) {
     return result;
   }
@@ -30,110 +35,40 @@ renderer.image = (href, title, text) => {
   <img src="${getOptimizedImageName(href, 'jpg')}" alt="${text}" loading="lazy" /></picture>`;
 };
 
-const originalLinkRenderer = renderer.link;
-renderer.link = (href, title, text) => {
-  const result = originalLinkRenderer.call(renderer, href, title, text);
+const originalLinkRenderer = MARKED_RENDERER.link;
+MARKED_RENDERER.link = (href, title, text) => {
+  const result = originalLinkRenderer.call(MARKED_RENDERER, href, title, text);
   switch (true) {
     case href.startsWith('/'):
       return result;
     case href.startsWith('#'):
-      const newResult = originalLinkRenderer.call(renderer, 'javascript:;', title, text);
+      const newResult = originalLinkRenderer.call(MARKED_RENDERER, 'javascript:;', title, text);
       return newResult.replace(/^<a /, `<a onclick="document.location.hash='${href.substr(1)}';" `);
     default:
       return result.replace(/^<a /, '<a target="_blank" rel="nofollow noopener" ');
   }
 };
 
-const originalCodeRenderer = renderer.code;
-renderer.code = (code, info, escaped) => {
-  const result = originalCodeRenderer.call(renderer, code, info, escaped).trim();
-  switch (true) {
-    case /<pre><code[^>]*><div class/i.test(result):
-      return result.substring(result.indexOf('<div'), result.lastIndexOf('</div>') + 6);
-    case /<pre><code[^>]*><a class/i.test(result):
-      return result.substring(result.indexOf('<a'), result.lastIndexOf('</a>') + 4);
-    default:
-      return `${result
-        .replace(/^<pre><code[^>]*>/i, '')
-        .trim()
-        .replace(/<\/pre>(.*)<\/pre>$/is, '')}<div class="copy"></div></pre>\n`;
-  }
+const originalCodeRenderer = MARKED_RENDERER.code;
+MARKED_RENDERER.code = (code, info, escaped) => {
+  const result = originalCodeRenderer.call(MARKED_RENDERER, code, info, escaped).trim();
+  const inner = result
+    .replace(/^<pre><code[^>]*>/i, '')
+    .replace(/<\/pre>.*/is, '</pre>')
+    .replace('<pre ', '<pre data-overlayscrollbars-initialize ')
+    .trim();
+  return `<div class="code-wrapper">${inner}<div class="copy"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"><path fill="currentColor" d="M28 10v18H10V10zm0-2H10a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2"/><path fill="currentColor" d="M4 18H2V4a2 2 0 0 1 2-2h14v2H4Z"/></svg></div></div>`;
 };
-
-const messages = {
-  info: {
-    caption: '提示',
-    svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--carbon" width="16" height="16" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><defs></defs><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 6a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 8zm4 16.125h-8v-2.25h2.875v-5.75H13v-2.25h4.125v8H20z" fill="currentColor"></path></svg>'
-  },
-  warn: {
-    caption: '警告',
-    svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--carbon" width="16" height="16" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14s14-6.3 14-14S23.7 2 16 2zm-1.1 6h2.2v11h-2.2V8zM16 25c-.8 0-1.5-.7-1.5-1.5S15.2 22 16 22s1.5.7 1.5 1.5S16.8 25 16 25z" fill="currentColor"></path></svg>'
-  },
-  check: {
-    caption: '提示',
-    svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--carbon" width="16" height="16" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><defs></defs><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm-2 19.59l-5-5L10.59 15L14 18.41L21.41 11l1.596 1.586z" fill="currentColor"></path></svg>'
-  },
-  exception: {
-    caption: '警告',
-    svg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--carbon" width="16" height="16" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2zm5.4 21L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4l-1.6 1.6z" fill="currentColor"></path></svg>'
-  }
-};
-const validTypes = Object.getOwnPropertyNames(messages);
-
-function resolveMessageOptions(input) {
-  const regex = /^\$([+-]?)(\w+)(?:"(.*)")?$/i;
-  const result = regex.exec(input);
-  return {
-    showIcon: !result[1] || result[1] === '+',
-    type: validTypes.includes(result[2]) ? result[2] : 'info',
-    caption: result[3] || null
-  };
-}
-
-function toMessageHtml(option, content) {
-  const { showIcon, type, caption } = resolveMessageOptions(option);
-  return `<div class="bhem bh-${type}">
-  ${!(showIcon || caption) ? '' : '<div class="bhemh">'}
-  ${!showIcon ? '' : `<span class="bhemi">${messages[type].svg}</span>`}
-  ${!caption ? '' : `<span class="bhemc">${caption || messages[type].caption}</span>`}
-  ${!(showIcon || caption) ? '' : '</div>'}
-  ${marked(content)}</div>`;
-}
-
-function resolveCardOptions(input) {
-  const regex = /^#(?:(?:\(([^\)]+)\))?)(?:(?:\[([^\]]+)\])?)$/i;
-  const result = regex.exec(input);
-  return {
-    imageUrl: result[1],
-    link: result[2]
-  };
-}
-
-function toCardHtml(option, content) {
-  const { imageUrl, link } = resolveCardOptions(option);
-  if (link) {
-    return `<a target="_blank" href="${link}" class="bhc">${
-      !imageUrl ? '' : `<div class="bhci" style="background-image: url('${imageUrl}')"></div>`
-    }<div class="bhcc">${marked(content)}</div></a>`;
-  }
-  return `<div class="bhc">${
-    !imageUrl ? '' : `<div class="bhci" style="background-image: url('${imageUrl}'}"></div>`
-  }<div class="bhcc">${marked(content)}</div></div>`;
-}
 
 const highlight = (code, lang) => {
   switch (true) {
-    case lang?.startsWith('$'):
-      return toMessageHtml(lang, code);
-    case lang?.startsWith('#'):
-      return toCardHtml(lang, code);
-    case !highlighter.getLoadedLanguages().includes(lang):
-      return highlighter.codeToHtml(code, {});
+    case !SHIKI_HIGHLIGHTER.getLoadedLanguages().includes(lang):
+      return SHIKI_HIGHLIGHTER.codeToHtml(code, { theme: SHIKI_THEME });
     default:
-      return highlighter.codeToHtml(code, { lang });
+      return SHIKI_HIGHLIGHTER.codeToHtml(code, { theme: SHIKI_THEME, lang });
   }
 };
 
-marked.setOptions({ renderer, highlight });
+marked.setOptions({ renderer: MARKED_RENDERER, highlight });
 
 export default marked;

@@ -7,7 +7,8 @@
 
 <article
   class="relative flex flex-col justify-between text-carbongray-100 bg-carbongray-800 px-4 py-3 {!displayMode &&
-    'hover:bg-carbongray-700'}">
+    'hover:bg-carbongray-700'}"
+>
   <header class="flex-none flex items-baseline justify-between">
     <h1>
       {#if displayMode}

@@ -1,4 +1,5 @@
-import tags from '../../../shared/tags';
+import tags from '../../../../shared/tags';
+import { json } from '@sveltejs/kit';
 
 const minifiedTags = tags.map((t) => ({
   ...t,
@@ -10,8 +11,6 @@ const minifiedTags = tags.map((t) => ({
   }))
 }));
 
-export async function get() {
-  return {
-    body: minifiedTags
-  };
+export async function GET() {
+  return json(minifiedTags);
 }

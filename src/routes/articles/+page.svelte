@@ -1,20 +1,11 @@
-<script context="module">
-  export async function load({ fetch }) {
-    const response = await fetch('/data/articles.json');
-    const articles = await response.json();
-    return { props: { articles } };
-  }
-</script>
-
 <script>
   import { makeTitle, WaterflowController } from '../_utils';
   import ArticleCard from '../../components/ArticleCard.svelte';
   import BackToTop from '../../components/BackToTop.svelte';
-  import debounce from 'debounce';
+  import { debounce } from 'lodash-es';
 
-  export let articles;
-
-  let realArticles = articles.filter((p) => !p.isPageArticle);
+  export let data;
+  let realArticles = data.articles.filter((p) => !p.isPageArticle);
   let columns = [];
   let controller = new WaterflowController('articles-page', 336, 3, realArticles, (c) => {
     columns = c;
@@ -60,9 +51,9 @@
 
 <BackToTop show={showBackToTop} />
 
-<!-- workaround a bug that sveltekit static adapter cannot detect sveltekit:prefetch inside deeply nested <ArticleCard> structures here -->
+<!-- workaround a bug that sveltekit static adapter cannot detect data-sveltekit-preload-data inside deeply nested <ArticleCard> structures here -->
 <div class="hidden">
   {#each realArticles as a}
-    <a sveltekit:prefetch href={`/articles/${a.slug}`}>X</a>
+    <a data-sveltekit-preload-data href={`/articles/${a.slug}`}>X</a>
   {/each}
 </div>
