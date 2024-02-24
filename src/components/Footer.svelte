@@ -11,7 +11,7 @@
 
 <div class="w-full">
   <footer
-    class="footer w-full max-w-[980px] mx-auto text-carbongray-300 text-sm py-2 sm:py-4 px-4 sm:px-12 flex justify-center sm:justify-between items-end flex-wrap gap-2 {extraClasses}"
+    class="footer w-full max-w-[980px] mx-auto text-carbongray-300 text-sm py-6 px-4 sm:px-12 flex justify-center sm:justify-between items-end flex-wrap gap-2 {extraClasses}"
   >
     <div class="flex gap-6 text-carbongray-200 text-sm">
       {#if footerConfiguration.additional}

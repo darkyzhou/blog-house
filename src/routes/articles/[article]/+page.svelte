@@ -64,13 +64,10 @@
   }
 
   function initCodeCopying() {
-    const elements = document.querySelectorAll('.markdown pre:not(:empty) .copy');
-    elements.forEach((element) => (element.textContent = '复制代码'));
-    const clipboard = new ClipboardJS(elements, {
+    const elements = document.querySelectorAll('.markdown pre:not(:empty) + .copy');
+    new ClipboardJS(elements, {
       text: (element) => element.parentElement.querySelector('code').textContent
     });
-    clipboard.on('success', (e) => (e.trigger.textContent = '复制成功'));
-    clipboard.on('error', (e) => (e.trigger.textContent = '复制失败'));
   }
 
   function backToTop() {

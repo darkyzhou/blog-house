@@ -34,6 +34,13 @@
   {#each tabContents as _, i}
     <input id="toggle{i + 1}" type="radio" name="tab" class="hidden" checked={!i} />
   {/each}
+  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
+    {#each tabContents as tab}
+      <div class="overflow-y-auto h-full prose markdown">
+        {@html tab.contentHtml}
+      </div>
+    {/each}
+  </div>
   <ul class="tabHeader flex-none list-none flex flex-col">
     {#each tabContents as tab, i}
       <li>
@@ -49,13 +56,6 @@
       </li>
     {/each}
   </ul>
-  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
-    {#each tabContents as tab}
-      <div class="overflow-y-auto h-full prose markdown">
-        {@html tab.contentHtml}
-      </div>
-    {/each}
-  </div>
 </div>
 
 <style>
