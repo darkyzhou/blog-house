@@ -101,6 +101,9 @@ devDependencies:
   svelte:
     specifier: ^3.59.2
     version: 3.59.2
+  svelte-action-balancer:
+    specifier: ^1.0.4
+    version: 1.0.4
   transliteration:
     specifier: ^2.2.0
     version: 2.2.0
@@ -3052,6 +3055,10 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /svelte-action-balancer@1.0.4:
+    resolution: {integrity: sha512-QEJ/UJ576/wt+Sr3Uhswg/6k1s98034QZQBbO3WuNeyPYKa+9w2z/W5SFlusdAi8H7IF+s8BaMptEsUZINfxbw==}
     dev: true
 
   /svelte-hmr@0.15.3(svelte@3.59.2):

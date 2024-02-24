@@ -1,6 +1,7 @@
 <script>
   import { getCssSegment } from '../routes/_utils';
   import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
+  import { OVERLAY_SCROLLBAR_SETTINGS_OTHER } from '../utils/constants';
 
   // must be right after the imports
   const ICONS = []; //@MARK:TABS
@@ -38,12 +39,7 @@
   <div class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
     {#each tabContents as tab}
       <div class="h-full hidden">
-        <OverlayScrollbarsComponent
-          class="h-full"
-          options={{
-            scrollbars: { theme: 'os-theme-other', autoHide: 'leave', autoHideDelay: 200 }
-          }}
-        >
+        <OverlayScrollbarsComponent class="h-full" options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}>
           <div class="h-full prose markdown">
             {@html tab.contentHtml}
           </div>

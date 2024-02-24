@@ -1,4 +1,7 @@
 <script>
+  import { balancer } from 'svelte-action-balancer';
+  import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
+  import { OVERLAY_SCROLLBAR_SETTINGS_OTHER } from '../../../utils/constants';
   import { onMount } from 'svelte';
   import TagsSection from '../../../components/TagsSection.svelte';
   import TableOfContent from '../../../components/TableOfContent.svelte';
@@ -111,27 +114,34 @@
       <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
         {#if article.tableOfContent?.length}
           <div class="flex-none px-4 lg:px-6 py-2 bg-carbongray-700 text-center">大纲</div>
-          <div class="flex-1 px-4 lg:px-6 overflow-auto">
+          <OverlayScrollbarsComponent
+            class="flex-1 px-4 lg:px-6"
+            options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}
+          >
             <TableOfContent
               tableOfContent={article.tableOfContent}
               highlightedIndex={highlightedHeadingIndex}
             />
-          </div>
+          </OverlayScrollbarsComponent>
         {/if}
         {#if articlesOfSameCategories?.length}
           <div class="bg-carbongray-800">
-            <div class="px-4 lg:px-6 py-2 bg-carbongray-700 text-center break-all">
-              其它{padIfAlpha(article.category)}文章
+            <div class="px-4 lg:px-6 py-2 bg-carbongray-700 grid place-items-center">
+              <span class="text-center" use:balancer={{ ratio: 0.2 }}>
+                其它{padIfAlpha(article.category)}文章
+              </span>
             </div>
-            <ul class="px-4 lg:px-6 py-2 list-none flex flex-col gap-4 overflow-auto max-h-[15vh]">
-              {#each articlesOfSameCategories as a}
-                <li class="text-center">
-                  <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">
-                    {a.title}
-                  </a>
-                </li>
-              {/each}
-            </ul>
+            <OverlayScrollbarsComponent class="py-2" options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}>
+              <div class="px-4 lg:px-6 py-2 flex flex-col gap-2 max-h-[15vh]">
+                {#each articlesOfSameCategories as a}
+                  <div class="text-center">
+                    <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">
+                      {a.title}
+                    </a>
+                  </div>
+                {/each}
+              </div>
+            </OverlayScrollbarsComponent>
           </div>
         {/if}
         {#if showBackToTop}

@@ -1,4 +1,5 @@
 <script>
+  import { balancer } from 'svelte-action-balancer';
   import { getStores } from '$app/stores';
 
   let extraClasses;
@@ -29,18 +30,21 @@
   {#each resolved as item, i}
     {#if item.id}
       <a
-        class="py-1 break-all hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
+        class="py-1 hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
           highlightedIndex && 'text-carbonblue-300'}"
         style="padding-left: {item.padding}rem"
         sveltekit:noscroll
+        use:balancer={{ ratio: 0.2 }}
         href="javascript:document.getElementById('{item.id.toLowerCase()}').scrollIntoView(true);"
       >
         {item.caption}
       </a>
     {:else}
       <span
-        class="py-1 break-all hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
+        class="py-1 hover:underline {item.padding <= 0 ? 'text-sm' : 'text-xs'} {i ===
           highlightedIndex && 'text-carbonblue-300'}"
+        sveltekit:noscroll
+        use:balancer={{ ratio: 0.2 }}
         style="padding-left: {item.padding}rem"
       >
         {item.caption}
