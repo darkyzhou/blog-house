@@ -2,7 +2,12 @@
   import 'virtual:uno.css';
   import '@unocss/reset/tailwind-compat.css';
   import 'overlayscrollbars/overlayscrollbars.css';
+  import { afterNavigate, beforeNavigate } from '$app/navigation';
   import { OverlayScrollbars } from 'overlayscrollbars';
+  import {
+    OVERLAY_SCROLLBAR_SETTINGS_BODY,
+    OVERLAY_SCROLLBAR_SETTINGS_OTHER
+  } from '../utils/constants';
   import Nav from '../components/Nav.svelte';
   import PortalFooter from '../components/PortalFooter.svelte';
   import Footer from '../components/Footer.svelte';
@@ -27,12 +32,20 @@
   onMount(() => {
     navigating.subscribe((val) => (loading = !!val));
 
-    OverlayScrollbars(document.body, { scrollbars: { theme: 'os-theme-body' } });
+    OverlayScrollbars(document.body, OVERLAY_SCROLLBAR_SETTINGS_BODY);
+  });
 
+  const scrollbarHandles = [];
+
+  beforeNavigate(() => {
+    for (const handle of scrollbarHandles) {
+      handle.destroy();
+    }
+  });
+
+  afterNavigate(() => {
     for (const element of document.querySelectorAll('.code-wrapper pre')) {
-      OverlayScrollbars(element, {
-        scrollbars: { theme: 'os-theme-other', autoHide: 'leave', autoHideDelay: 200 }
-      });
+      scrollbarHandles.push(OverlayScrollbars(element, OVERLAY_SCROLLBAR_SETTINGS_OTHER));
     }
   });
 </script>

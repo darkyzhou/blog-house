@@ -45,6 +45,7 @@
     "sharp": "^0.29.3",
     "shiki": "^1.1.6",
     "svelte": "^3.59.2",
+    "svelte-action-balancer": "^1.0.4",
     "transliteration": "^2.2.0",
     "unocss": "^0.58.5",
     "vite": "^4.5.2",

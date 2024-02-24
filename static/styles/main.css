@@ -36,7 +36,7 @@ html {
   --os-handle-bg: rgba(255, 255, 255, 0.44);
   --os-handle-bg-hover: rgba(255, 255, 255, 0.55);
   --os-handle-bg-active: rgba(255, 255, 255, 0.66);
-  --os-size: 8px;
+  --os-size: 10px;
   --os-track-border-radius: 0;
   --os-handle-border-radius: 0;
   --os-padding-perpendicular: 2px;
@@ -113,4 +113,9 @@ html {
 
 .prose p:first-child {
   margin-top: 0 !important;
+}
+
+.markdown pre code::before,
+.markdown pre code::after {
+  content: '' !important;
 }
