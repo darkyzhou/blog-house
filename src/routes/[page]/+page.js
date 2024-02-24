@@ -1,5 +1,10 @@
 export async function load({ params, fetch }) {
   const articleSlug = params.page;
-  const article = await (await fetch(`/data/articles/${articleSlug}.json`)).json();
+  const response = await fetch(`/data/articles/${articleSlug}.json`);
+  if (!response.ok) {
+    return null;
+  }
+
+  const article = await response.json();
   return { article };
 }

@@ -5,7 +5,7 @@
   export let data;
 </script>
 
-{#if data}
+{#if data.article}
   <Article {data} />
 {:else}
   <p class="mt-12 mx-auto flex flex-col items-center gap gap-2">

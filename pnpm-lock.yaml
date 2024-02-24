@@ -68,6 +68,12 @@ devDependencies:
   object-path:
     specifier: ^0.11.8
     version: 0.11.8
+  overlayscrollbars:
+    specifier: ^2.5.0
+    version: 2.5.0
+  overlayscrollbars-svelte:
+    specifier: ^0.5.3
+    version: 0.5.3(overlayscrollbars@2.5.0)(svelte@3.59.2)
   parse-html-text-content:
     specifier: ^1.1.1
     version: 1.1.1
@@ -2471,6 +2477,20 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       mimic-fn: 2.1.0
+    dev: true
+
+  /overlayscrollbars-svelte@0.5.3(overlayscrollbars@2.5.0)(svelte@3.59.2):
+    resolution: {integrity: sha512-oBuYVlCavo6FNSf+qnvrE9XGbRnnGmpLIGBMNBjlTieGB7v3/bPZ+/j06Zgs89sWn8mI73myMmgGXI97PHuxoQ==}
+    peerDependencies:
+      overlayscrollbars: ^2.0.0
+      svelte: '>=3.54.0'
+    dependencies:
+      overlayscrollbars: 2.5.0
+      svelte: 3.59.2
+    dev: true
+
+  /overlayscrollbars@2.5.0:
+    resolution: {integrity: sha512-CWVC2dwS07XZfLHDm5GmZN1iYggiJ8Vufnvzwt0gwR9Yz1hVckKeTxg7VILZeYVGhDYJHZ1Xc8Xfys5dWZ1qiA==}
     dev: true
 
   /p-limit@3.1.0:
