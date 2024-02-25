@@ -60,6 +60,7 @@
     }
 
     for (const element of document.querySelectorAll('.code-wrapper pre')) {
+      console.log('>>> init', element);
       scrollbarHandles.push(OverlayScrollbars(element, OVERLAY_SCROLLBAR_SETTINGS_OTHER));
     }
   });

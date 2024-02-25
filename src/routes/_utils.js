@@ -17,10 +17,6 @@ export function concatPageUrl(pathName) {
   return url.href;
 }
 
-export function getCssSegment(styles) {
-  return `<style type='text/css'>${styles}</style>`;
-}
-
 // workaround for a very strange bug that for prerendered output,
 // the `page` from `$app/stores` will have a url whose `pathname`
 // has a prefix of `//prerender`
