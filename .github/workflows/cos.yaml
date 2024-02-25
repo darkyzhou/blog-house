@@ -2,7 +2,7 @@ name: Deply to COS
 
 on:
   push:
-    branches: ['darkyzhou_blog']
+    branches: ['darkyzhou-blog']
 
 jobs:
   build:
