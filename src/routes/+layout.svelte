@@ -17,33 +17,44 @@
   import { onMount } from 'svelte';
   import { getStores, page } from '$app/stores';
   import { removePrerenderPrefix } from './_utils';
-  import { derived } from 'svelte/store';
+  import { derived, get } from 'svelte/store';
   import { inject } from '@vercel/analytics';
 
   if (basicConfiguration.analytics.vercelWebAnalytics) {
     inject({ mode: process.env.NODE_ENV === 'production' ? 'production' : 'development' });
   }
 
-  const pathName = derived(page, (p) => (p.url ? removePrerenderPrefix(p.url.pathname) : null));
-
   const { navigating } = getStores();
-  let loading = false;
+  const loading = derived(navigating, (value) => !!value, false);
+  const pathName = derived(page, (thePage) => {
+    if (!thePage.url) {
+      return null;
+    }
+
+    return removePrerenderPrefix(thePage.url.pathname);
+  });
+
+  let videoElement;
 
   onMount(() => {
-    navigating.subscribe((val) => (loading = !!val));
-
     OverlayScrollbars(document.body, OVERLAY_SCROLLBAR_SETTINGS_BODY);
   });
 
   const scrollbarHandles = [];
 
   beforeNavigate(() => {
+    videoElement?.pause();
+
     for (const handle of scrollbarHandles) {
       handle.destroy();
     }
   });
 
   afterNavigate(() => {
+    if (get(pathName) === '/') {
+      videoElement?.play();
+    }
+
     for (const element of document.querySelectorAll('.code-wrapper pre')) {
       scrollbarHandles.push(OverlayScrollbars(element, OVERLAY_SCROLLBAR_SETTINGS_OTHER));
     }
@@ -57,27 +68,53 @@
   />
 </svelte:head>
 
-<LoadingProgressIndicator {loading} />
+<div class="relative z-10">
+  <LoadingProgressIndicator loading={$loading} />
 
-<div class="full-height flex flex-col text-carbongray-200">
-  <Nav class="z-10" />
-  <div
-    class="flex-grow flex flex-col items-center z-20 {!!$pathName &&
-      $pathName !== '/' &&
-      'bg-carbongray-900'}"
-  >
-    <slot />
+  <div class="full-height flex flex-col text-carbongray-200">
+    <Nav class="z-10" />
+    <div
+      class="flex-grow flex flex-col items-center z-20 {!!$pathName &&
+        $pathName !== '/' &&
+        'bg-carbongray-900'}"
+    >
+      <slot />
+    </div>
+    {#if !$pathName || $pathName === '/'}
+      <PortalFooter class="z-10" />
+    {:else}
+      <Footer class="z-10" />
+    {/if}
   </div>
-  {#if !$pathName || $pathName === '/'}
-    <PortalFooter class="z-10" />
-  {:else}
-    <Footer class="z-10" />
-  {/if}
 </div>
+
+<video
+  playsinline
+  autoplay={$pathName === '/'}
+  muted
+  loop
+  poster="/images/uploads/background.jpg"
+  class="background-video"
+  bind:this={videoElement}
+>
+  <source src="/images/uploads/background.webm" type="video/webm" />
+  <source src="/images/uploads/background.mp4" type="video/mp4" />
+</video>
 
 <style>
   .full-height {
     min-height: 100vh;
     min-height: 100dvh;
+  }
+
+  .background-video {
+    object-fit: cover;
+    width: 100vw;
+    width: 100dvw;
+    height: 100vh;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 </style>

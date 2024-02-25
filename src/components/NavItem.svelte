@@ -38,8 +38,8 @@
 <style>
   @supports ((backdrop-filter: none) or (-webkit-backdrop-filter: none)) {
     .inactive {
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(24px) brightness(0.9) saturate(0.9);
+      -webkit-backdrop-filter: blur(24px) brightness(0.9) saturate(0.9);
     }
   }
 

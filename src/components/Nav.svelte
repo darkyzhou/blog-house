@@ -96,8 +96,8 @@
 <style>
   @supports ((backdrop-filter: none) or (-webkit-backdrop-filter: none)) {
     .mask {
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px) brightness(0.9) saturate(0.9);
+      -webkit-backdrop-filter: blur(12px) brightness(0.9) saturate(0.9);
     }
   }
 

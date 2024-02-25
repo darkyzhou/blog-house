@@ -110,8 +110,8 @@
 <style>
   @supports (backdrop-filter: none) or (-webkit-backdrop-filter: none) {
     .card {
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px) brightness(0.9) saturate(0.9);
+      -webkit-backdrop-filter: blur(12px) brightness(0.9) saturate(0.9);
     }
   }
 
