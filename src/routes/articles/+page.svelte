@@ -63,7 +63,9 @@
 
 <!-- workaround a bug that sveltekit static adapter cannot detect data-sveltekit-preload-data inside deeply nested <ArticleCard> structures here -->
 <div class="hidden">
-  {#each articles as a}
-    <a data-sveltekit-preload-data href={`/articles/${a.slug}`}>X</a>
+  {#each articles as [_, articlesOfYear]}
+    {#each articlesOfYear as article}
+      <a data-sveltekit-preload-data href={`/articles/${article.slug}`}>X</a>
+    {/each}
   {/each}
 </div>

@@ -6,7 +6,7 @@
 </script>
 
 <footer
-  class="footer w-full max-w-[980px] mx-auto text-carbongray-300 text-sm py-2 sm:py-4 px-4 sm:px-12 flex justify-center sm:justify-between flex-wrap {extraClasses}"
+  class="footer text-center w-full max-w-[980px] mx-auto text-carbongray-300 text-sm py-2 sm:py-4 px-4 sm:px-12 flex justify-center sm:justify-between flex-wrap {extraClasses}"
 >
   {#if footerConfiguration.leftHtml}
     {@html footerConfiguration.leftHtml}
