@@ -35,6 +35,9 @@ devDependencies:
   '@vercel/analytics':
     specifier: ^1.2.2
     version: 1.2.2
+  '@vercel/speed-insights':
+    specifier: ^1.0.10
+    version: 1.0.10(@sveltejs/kit@1.30.4)(svelte@3.59.2)
   algoliasearch:
     specifier: ^4.22.1
     version: 4.22.1
@@ -1207,6 +1210,34 @@ packages:
         optional: true
     dependencies:
       server-only: 0.0.1
+    dev: true
+
+  /@vercel/speed-insights@1.0.10(@sveltejs/kit@1.30.4)(svelte@3.59.2):
+    resolution: {integrity: sha512-4uzdKB0RW6Ff2FkzshzjZ+RlJfLPxgm/00i0XXgxfMPhwnnsk92YgtqsxT9OcPLdJUyVU1DqFlSWWjIQMPkh0g==}
+    requiresBuild: true
+    peerDependencies:
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19
+      svelte: ^4
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
+    dependencies:
+      '@sveltejs/kit': 1.30.4(svelte@3.59.2)(vite@4.5.2)
+      svelte: 3.59.2
     dev: true
 
   /acorn@8.11.3:
