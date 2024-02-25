@@ -18,7 +18,7 @@
     目前有 {sorted.length} 个分类：
   {/if}
 </h1>
-<CategoriesContainer items={categories} isCategories={true} style="max-width: 1000px;" />
+<CategoriesContainer items={categories} style="max-width: 1000px;" />
 
 <!-- workaround a bug that sveltekit static adapter cannot detect data-sveltekit-preload-data inside deeply nested <CategoriesContainer> structures here -->
 <div class="hidden">

@@ -1,5 +1,4 @@
 <script>
-  import { getCssSegment } from '../routes/_utils';
   import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
   import { OVERLAY_SCROLLBAR_SETTINGS_OTHER } from '../utils/constants';
 
@@ -10,77 +9,45 @@
   export { extraClasses as class };
   export let tabContents = [];
 
-  $: toggleCss = tabContents
-    .map(
-      (_, i) => `
-  #toggle${i + 1}:checked ~ .tabContent div:nth-child(${i + 1}) {
-    display: block;
-  }
-
-  #toggle${i + 1}:checked ~ .tabHeader li:nth-child(${i + 1}) .icon {
-    color: var(--bg-carbongray-800);
-    background-color: var(--bg-carbongray-200);
-  }
-  `
-    )
-    .join('');
-
-  $: toggleCssWrapped = getCssSegment(toggleCss);
+  let activeTabIndex = 0;
 </script>
 
-<svelte:head>
-  {@html toggleCssWrapped}
-</svelte:head>
-
 <div class="flex {extraClasses}">
-  {#each tabContents as _, i}
-    <input id="toggle{i + 1}" type="radio" name="tab" class="hidden" checked={!i} />
-  {/each}
-  <div class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed">
-    {#each tabContents as tab}
-      <div class="h-full hidden">
-        <OverlayScrollbarsComponent class="h-full" options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}>
-          <div class="h-full prose markdown">
-            {@html tab.contentHtml}
-          </div>
-        </OverlayScrollbarsComponent>
-      </div>
+  <div
+    id="profileTabContainer"
+    class="tabContent flex-grow p-2 h-full text-carbongray-100 leading-relaxed"
+  >
+    {#each tabContents as tab, i}
+      {#if activeTabIndex === i}
+        <div class="h-full">
+          <OverlayScrollbarsComponent class="h-full" options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}>
+            <div class="prose markdown">
+              {@html tab.contentHtml}
+            </div>
+          </OverlayScrollbarsComponent>
+        </div>
+      {/if}
     {/each}
   </div>
   <ul class="tabHeader flex-none list-none flex flex-col">
-    {#each tabContents as tab, i}
-      <li>
-        <label
-          class="icon cursor-pointer outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2"
-          for="toggle{i + 1}"
-          tabindex="0"
-        >
-          <span class="w-8 h-8">
-            <svelte:component this={ICONS[i]} />
-          </span>
-        </label>
+    {#each tabContents as _, i}
+      <li
+        class="flex-1 flex items-center px-1 py-2 h-full text-carbongray-200 cursor-pointer outline-none border-transparent hover:border-carbongray-300 focus:border-carbongray-300 border-2 {activeTabIndex ===
+          i && 'text-carbongray-800 bg-carbongray-200'}"
+        tabindex="0"
+        on:click={() => {
+          activeTabIndex = i;
+        }}
+      >
+        <span class="w-8 h-8">
+          <svelte:component this={ICONS[i]} />
+        </span>
       </li>
     {/each}
   </ul>
 </div>
 
 <style>
-  .tabHeader > * {
-    flex: 1 1 0%;
-  }
-
-  .tabHeader .icon {
-    color: var(--bg-carbongray-200);
-    display: flex;
-    align-items: center;
-    padding: 4px 6px;
-    height: 100%;
-  }
-
-  .tabContent > * {
-    display: none;
-  }
-
   @media (max-width: 767px) {
     .tabContent .markdown {
       font-size: 0.875rem !important;
