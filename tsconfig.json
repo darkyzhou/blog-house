@@ -2,13 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "sourceMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"],
-      "@shared/*": ["shared/*"]
-    }
+    "sourceMap": true
   },
-  "include": ["src", "shared"],
   "exclude": ["node_modules"]
 }

@@ -23,12 +23,6 @@ const algoliaConfig = {
 
 /** @type {import('vite').UserConfig} */
 const viteConfig = {
-  resolve: {
-    alias: {
-      '@src': './src',
-      '@shared': './shared'
-    }
-  },
   plugins: [
     sveltekit(),
     UnoCSS(),
