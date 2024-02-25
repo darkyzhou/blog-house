@@ -3,6 +3,7 @@
   import '@unocss/reset/tailwind-compat.css';
   import 'overlayscrollbars/overlayscrollbars.css';
   import { afterNavigate, beforeNavigate } from '$app/navigation';
+  import { sample } from 'lodash-es';
   import { OverlayScrollbars } from 'overlayscrollbars';
   import {
     OVERLAY_SCROLLBAR_SETTINGS_BODY,
@@ -59,6 +60,13 @@
       scrollbarHandles.push(OverlayScrollbars(element, OVERLAY_SCROLLBAR_SETTINGS_OTHER));
     }
   });
+
+  const BACKGROUND_OFFSETS = {
+    background_1: ['center', '35%'],
+    background_2: ['center', '45%'],
+    background_3: ['center', '40%']
+  };
+  const BACKGROUND_NAME = sample(Object.keys(BACKGROUND_OFFSETS));
 </script>
 
 <svelte:head>
@@ -93,12 +101,15 @@
   autoplay={$pathName === '/'}
   muted
   loop
-  poster="/images/uploads/background.jpg"
+  poster="/images/{BACKGROUND_NAME}.jpg"
   class="background-video"
+  style="object-position: {BACKGROUND_OFFSETS[BACKGROUND_NAME][0]} {BACKGROUND_OFFSETS[
+    BACKGROUND_NAME
+  ][1]}"
   bind:this={videoElement}
 >
-  <source src="/images/uploads/background.webm" type="video/webm" />
-  <source src="/images/uploads/background.mp4" type="video/mp4" />
+  <source src="/images/{BACKGROUND_NAME}.webm" type="video/webm" />
+  <source src="/images/{BACKGROUND_NAME}.mp4" type="video/mp4" />
 </video>
 
 <style>
@@ -108,7 +119,6 @@
   }
 
   .background-video {
-    object-fit: cover;
     width: 100vw;
     width: 100dvw;
     height: 100vh;
@@ -116,5 +126,6 @@
     position: fixed;
     top: 0;
     left: 0;
+    object-fit: cover;
   }
 </style>
