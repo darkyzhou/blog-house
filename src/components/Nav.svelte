@@ -28,7 +28,20 @@
     document.body.style.overflow = 'unset';
     searchDialogShown = false;
   }
+
+  function onKeydown(event) {
+    if (event.repeat) {
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      hideSearchDialog();
+    }
+  }
 </script>
+
+<svelte:window on:keydown={onKeydown} />
 
 <nav
   class="flex flex-col items-center md:items-baseline md:flex-row justify-between gap-2 md:gap-4 py-4 px-4 sm:px-12 mx-auto max-w-[980px] w-full {extraClasses}"

@@ -73,7 +73,7 @@
         <ul class="list-none pl-0 flex gap-2 text-sm">
           {#each homePageConfiguration.contact as info, i}
             <li class="mr-2 text-carbongray-300 flex leading-none items-end">
-              <span class="inline-block mr-0.5">
+              <span class="inline-block mr-1">
                 <svelte:component this={ICONS[i]} />
               </span>
               {#if info.type.includes('Github')}

@@ -1,33 +1,25 @@
 <script>
   import TagsSection from './TagsSection.svelte';
-  import ArrowRight24 from 'carbon-icons-svelte/lib/ArrowRight24';
 
   export let article;
 </script>
 
-<a
-  data-sveltekit-preload-data
-  href="/articles/{article.slug}"
-  class="outline-none border-transparent border-2 focus:border-carbongray-200"
->
-  <article class="bg-carbongray-800 p-4 sm:p-6 hover:bg-carbongray-700 cursor-pointer">
+<a data-sveltekit-preload-data href="/articles/{article.slug}" class="block">
+  <article
+    class="bg-carbongray-800 p-2 sm:p-4 cursor-pointer outline-none border-transparent border-2 hover:border-carbongray-200 focus:border-carbongray-200"
+  >
     <header>
-      <strong class="sm:text-xl text-carbonblue-400">
-        {article.title}
-      </strong>
+      <strong>{article.title}</strong>
       {#if article.printDate || article.tags?.length > 0}
-        <div class="mt-2 my-4">
+        <div class="my-2">
           <TagsSection textXs={true} showModifiedAt={false} {article} />
         </div>
       {/if}
     </header>
     {#if article.excerpt}
-      <p class="mt-4 text-xs sm:text-sm text-carbongray-200 break-all leading-relaxed">
+      <p class="text-xs sm:text-sm text-carbongray-300 break-words leading-relaxed">
         {article.excerpt}
       </p>
     {/if}
-    <div class="flex flex-row-reverse mt-2">
-      <ArrowRight24 />
-    </div>
   </article>
 </a>

@@ -1,4 +1,5 @@
 <script>
+  import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
   import { onMount } from 'svelte';
   import { debounce } from 'lodash-es';
   import algoliasearch from 'algoliasearch/lite.js';
@@ -13,6 +14,7 @@
   import Category24 from 'carbon-icons-svelte/lib/Category24';
   import Language24 from 'carbon-icons-svelte/lib/Language24';
   import FaceNeutral32 from 'carbon-icons-svelte/lib/FaceNeutral32';
+  import { OVERLAY_SCROLLBAR_SETTINGS_OTHER } from '../utils/constants.js';
   import AlgoliaLogo from './AlgoliaLogo.svelte';
 
   const statistics = __BG__STATISTICS;
@@ -152,7 +154,7 @@
       />
       <div class="w-8"></div>
     </div>
-    <div class="flex-1 overflow-y-auto">
+    <OverlayScrollbarsComponent class="flex-1" options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}>
       {#if !searching && !searchValue}
         <div class="px-4 py-8 h-full flex flex-col justify-between">
           <div class="break-all flex flex-col gap-4 md:gap-6 text-xl items-center text-gray-300">
@@ -195,11 +197,8 @@
             <a
               href="/categories/{category.slug}"
               target="_blank"
-              class="block bg-carbongray-800 mb-1 px-4 py-1 border-2 border-transparent hover:border-carbongray-200 mr-1"
+              class="block bg-carbongray-800 mb-1 px-4 py-1 border-2 border-transparent hover:border-carbongray-200"
             >
-              <div class="float-right pt-1 pr-1">
-                <ArrowRight16 />
-              </div>
               <strong class="text-sm md:text-base highlight">
                 {@html category.snippet.title}
               </strong>
@@ -217,11 +216,8 @@
             <a
               href="/articles/{article.slug}"
               target="_blank"
-              class="block bg-carbongray-800 mb-1 px-4 py-1 border-2 border-transparent hover:border-carbongray-200 mr-1"
+              class="block bg-carbongray-800 mb-1 px-4 py-1 border-2 border-transparent hover:border-carbongray-200"
             >
-              <div class="float-right pt-1 pr-1">
-                <ArrowRight16 />
-              </div>
               <strong class="text-sm md:text-base highlight pr-2">
                 {@html article.snippet.title}
               </strong>
@@ -264,7 +260,7 @@
           {/each}
         {/if}
       {/if}
-    </div>
+    </OverlayScrollbarsComponent>
   </div>
 {/if}
 

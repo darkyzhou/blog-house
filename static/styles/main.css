@@ -115,6 +115,14 @@ html {
   margin-top: 0 !important;
 }
 
+.prose h1:first-child,
+.prose h2:first-child,
+.prose h3:first-child,
+.prose h4:first-child,
+.prose h5:first-child {
+  margin-top: 0;
+}
+
 .markdown pre code::before,
 .markdown pre code::after {
   content: '' !important;

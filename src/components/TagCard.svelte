@@ -4,8 +4,8 @@
 </script>
 
 <article
-  class="relative flex flex-col gap-1 justify-between text-carbongray-100 bg-carbongray-800 px-4 py-3 {!displayMode &&
-    'hover:bg-carbongray-700'}"
+  class="relative flex flex-col gap-1 justify-between text-carbongray-100 bg-carbongray-800 outline-none border-transparent border-2 px-4 py-3 {!displayMode &&
+    'hover:border-carbongray-200 focus:border-carbongray-200'}"
 >
   <h1>
     {#if displayMode}

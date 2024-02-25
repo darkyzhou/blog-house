@@ -105,19 +105,18 @@
 </svelte:head>
 
 <div
-  class="contentContainer relative text-carbongray-200 lg:p-2 box-border w-full block my-4 md:grid"
+  class="contentContainer relative text-carbongray-200 box-border w-full block my-6 md:grid"
   style="grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)"
   use:scrollEvent
 >
-  <aside class="justify-self-end h-full text-sm pl-4 min-w-[10rem] max-w-[210px] hidden md:block">
+  <aside
+    class="sticky top-0 justify-self-end text-sm pl-4 min-w-[10rem] max-w-[230px] hidden md:block asideContainer"
+  >
     {#if article.tableOfContent?.length || articlesOfSameCategories?.length}
-      <div class="sticky top-0 bg-carbongray-800 max-h-[80vh] flex flex-col">
+      <div class="bg-carbongray-800 max-h-full flex flex-col">
         {#if article.tableOfContent?.length}
-          <div class="flex-none px-4 lg:px-6 py-2 bg-carbongray-700 text-center">大纲</div>
-          <OverlayScrollbarsComponent
-            class="flex-1 px-4 lg:px-6"
-            options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}
-          >
+          <div class="flex-none px-4 lg:px-6 py-2 bg-carbongray-600 text-center">大纲</div>
+          <OverlayScrollbarsComponent class="flex-1" options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}>
             <TableOfContent
               tableOfContent={article.tableOfContent}
               highlightedIndex={highlightedHeadingIndex}
@@ -125,24 +124,24 @@
           </OverlayScrollbarsComponent>
         {/if}
         {#if articlesOfSameCategories?.length}
-          <div class="bg-carbongray-800">
-            <div class="px-4 lg:px-6 py-2 bg-carbongray-700 grid place-items-center">
-              <span class="text-center" use:balancer={{ ratio: 0.2 }}>
-                其它{padIfAlpha(article.category)}文章
-              </span>
-            </div>
-            <OverlayScrollbarsComponent class="py-2" options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}>
-              <div class="px-4 lg:px-6 py-2 flex flex-col gap-2 max-h-[15vh]">
-                {#each articlesOfSameCategories as a}
-                  <div class="text-center">
-                    <a href="/articles/{a.slug}" class="hover:underline break-all" target="_blank">
-                      {a.title}
-                    </a>
-                  </div>
-                {/each}
-              </div>
-            </OverlayScrollbarsComponent>
+          <div class="flex-none px-4 lg:px-6 py-2 bg-carbongray-600 grid place-items-center">
+            <span class="text-center" use:balancer={{ ratio: 0.2 }}>
+              其它{padIfAlpha(article.category)}文章
+            </span>
           </div>
+          <OverlayScrollbarsComponent class="flex-1" options={OVERLAY_SCROLLBAR_SETTINGS_OTHER}>
+            <div class="flex flex-col max-h-[30vh]">
+              {#each articlesOfSameCategories as a}
+                <div
+                  class="w-full px-4 lg:px-6 py-1 border-transparent hover:border-carbongray-200 focus:border-carbongray-200 border-1 cursor-pointer"
+                >
+                  <a href="/articles/{a.slug}" target="_blank">
+                    {a.title}
+                  </a>
+                </div>
+              {/each}
+            </div>
+          </OverlayScrollbarsComponent>
         {/if}
         {#if showBackToTop}
           <div
@@ -157,7 +156,7 @@
     {/if}
   </aside>
   <div class="px-4 mx-auto w-full min-w-0 max-w-screen-md">
-    <h1 class="text-xl lg:text-2xl text-carbonblue-400 mb-2" bind:this={titleElement}>
+    <h1 class="text-2xl lg:text-3xl mb-2" bind:this={titleElement}>
       {article.title}
     </h1>
     <TagsSection {article} showTags={true} />
@@ -178,5 +177,9 @@
     .contentContainer {
       grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 1fr) !important;
     }
+  }
+
+  .asideContainer {
+    height: calc(100vh - 76px - 24px - 24px);
   }
 </style>
