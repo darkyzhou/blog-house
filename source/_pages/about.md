@@ -66,4 +66,6 @@ pageSlug: about
 
 ## 关于博客
 
-博客的背景图片来自 [Unsplash](https://unsplash.com/photos/a-black-and-white-photo-of-a-tunnel-72aEtYlS5K0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) 的 [Tareq Ajalyakin](https://unsplash.com/@tareq_aj?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)。
+你看到的这个博客网页是用本人写的 [Blog House](https://github.com/blog-house/blog-house) 框架生成的，它是一个基于 [SvelteKit](https://kit.svelte.dev/) 的静态博客生成器。
+
+博客的背景图和背景视频来自艺术家 [Friendly Robot](https://www.artstation.com/friendlyrobot)。
