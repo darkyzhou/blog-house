@@ -163,6 +163,7 @@
   .avatar {
     width: auto;
     object-fit: cover;
+    filter: brightness(0.75) saturate(0.9);
   }
 
   @media (max-width: 340px) {
