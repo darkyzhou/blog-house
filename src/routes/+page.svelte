@@ -73,7 +73,7 @@
         <ul class="list-none pl-0 flex gap-2 text-sm">
           {#each homePageConfiguration.contact as info, i}
             <li class="mr-2 text-carbongray-300 flex leading-none items-end">
-              <span class="inline-block mr-0.5">
+              <span class="inline-block mr-1">
                 <svelte:component this={ICONS[i]} />
               </span>
               {#if info.type.includes('Github')}
@@ -110,8 +110,8 @@
 <style>
   @supports (backdrop-filter: none) or (-webkit-backdrop-filter: none) {
     .card {
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px) brightness(0.9) saturate(0.9);
+      -webkit-backdrop-filter: blur(12px) brightness(0.9) saturate(0.9);
     }
   }
 
