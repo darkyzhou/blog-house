@@ -20,9 +20,7 @@
   import { derived, get } from 'svelte/store';
   import { inject } from '@vercel/analytics';
   import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-
-  export let data;
-  let { backgroundName, backgroundOffsets } = data;
+  import { BACKGROUND_NAME, BACKGROUND_OFFSETS } from '../utils/constants';
 
   if (basicConfiguration.analytics.vercelWebAnalytics) {
     inject({ mode: process.env.NODE_ENV === 'production' ? 'production' : 'development' });
@@ -71,6 +69,8 @@
     gaMeasurementId={basicConfiguration.analytics.gaMeasurementId}
     baiduId={basicConfiguration.analytics.baiduId}
   />
+  <link rel="preload" href="/images/{BACKGROUND_NAME}.jpg" as="image" type="image/jpeg" />
+  <link rel="preload" href="/images/{BACKGROUND_NAME}.webm" as="video" type="video/webm" />
 </svelte:head>
 
 <div class="relative z-10">
@@ -98,15 +98,15 @@
   autoplay={$pathName === '/'}
   muted
   loop
-  poster="/images/{backgroundName}.jpg"
+  poster="/images/{BACKGROUND_NAME}.jpg"
   class="background-video"
-  style="object-position: {backgroundOffsets[backgroundName][0]} {backgroundOffsets[
-    backgroundName
+  style="object-position: {BACKGROUND_OFFSETS[BACKGROUND_NAME][0]} {BACKGROUND_OFFSETS[
+    BACKGROUND_NAME
   ][1]}"
   bind:this={videoElement}
 >
-  <source src="/images/{backgroundName}.webm" type="video/webm" />
-  <source src="/images/{backgroundName}.mp4" type="video/mp4" />
+  <source src="/images/{BACKGROUND_NAME}.webm" type="video/webm" />
+  <source src="/images/{BACKGROUND_NAME}.mp4" type="video/mp4" />
 </video>
 
 <style>

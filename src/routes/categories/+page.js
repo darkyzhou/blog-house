@@ -1,5 +1,5 @@
-export async function load({ fetch }) {
-  const response = await fetch('/data/categories.json');
-  const categories = await response.json();
+import categories from '../../../shared/categories';
+
+export async function load() {
   return { categories };
 }
