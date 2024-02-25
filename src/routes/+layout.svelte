@@ -3,7 +3,6 @@
   import '@unocss/reset/tailwind-compat.css';
   import 'overlayscrollbars/overlayscrollbars.css';
   import { afterNavigate, beforeNavigate } from '$app/navigation';
-  import { sample } from 'lodash-es';
   import { OverlayScrollbars } from 'overlayscrollbars';
   import {
     OVERLAY_SCROLLBAR_SETTINGS_BODY,
@@ -20,6 +19,9 @@
   import { removePrerenderPrefix } from './_utils';
   import { derived, get } from 'svelte/store';
   import { inject } from '@vercel/analytics';
+
+  export let data;
+  let { backgroundName, backgroundOffsets } = data;
 
   if (basicConfiguration.analytics.vercelWebAnalytics) {
     inject({ mode: process.env.NODE_ENV === 'production' ? 'production' : 'development' });
@@ -60,13 +62,6 @@
       scrollbarHandles.push(OverlayScrollbars(element, OVERLAY_SCROLLBAR_SETTINGS_OTHER));
     }
   });
-
-  const BACKGROUND_OFFSETS = {
-    background_1: ['center', '35%'],
-    background_2: ['center', '45%'],
-    background_3: ['center', '40%']
-  };
-  const BACKGROUND_NAME = sample(Object.keys(BACKGROUND_OFFSETS));
 </script>
 
 <svelte:head>
@@ -101,15 +96,15 @@
   autoplay={$pathName === '/'}
   muted
   loop
-  poster="/images/{BACKGROUND_NAME}.jpg"
+  poster="/images/{backgroundName}.jpg"
   class="background-video"
-  style="object-position: {BACKGROUND_OFFSETS[BACKGROUND_NAME][0]} {BACKGROUND_OFFSETS[
-    BACKGROUND_NAME
+  style="object-position: {backgroundOffsets[backgroundName][0]} {backgroundOffsets[
+    backgroundName
   ][1]}"
   bind:this={videoElement}
 >
-  <source src="/images/{BACKGROUND_NAME}.webm" type="video/webm" />
-  <source src="/images/{BACKGROUND_NAME}.mp4" type="video/mp4" />
+  <source src="/images/{backgroundName}.webm" type="video/webm" />
+  <source src="/images/{backgroundName}.mp4" type="video/mp4" />
 </video>
 
 <style>
