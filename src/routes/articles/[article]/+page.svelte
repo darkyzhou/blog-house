@@ -1,7 +1,7 @@
 <script>
   import { balancer } from 'svelte-action-balancer';
   import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
-  import { OVERLAY_SCROLLBAR_SETTINGS_OTHER } from '../../../utils/constants';
+  import { OVERLAY_SCROLLBAR_SETTINGS_OTHER } from '@src/utils/constants.js';
   import { onMount } from 'svelte';
   import TagsSection from '../../../components/TagsSection.svelte';
   import TableOfContent from '../../../components/TableOfContent.svelte';

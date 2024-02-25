@@ -2,12 +2,10 @@
   import 'virtual:uno.css';
   import '@unocss/reset/tailwind-compat.css';
   import 'overlayscrollbars/overlayscrollbars.css';
+  import { browser } from '$app/environment';
   import { afterNavigate, beforeNavigate } from '$app/navigation';
+  import { sample } from 'lodash-es';
   import { OverlayScrollbars } from 'overlayscrollbars';
-  import {
-    OVERLAY_SCROLLBAR_SETTINGS_BODY,
-    OVERLAY_SCROLLBAR_SETTINGS_OTHER
-  } from '../utils/constants';
   import Nav from '../components/Nav.svelte';
   import PortalFooter from '../components/PortalFooter.svelte';
   import Footer from '../components/Footer.svelte';
@@ -20,7 +18,10 @@
   import { derived, get } from 'svelte/store';
   import { inject } from '@vercel/analytics';
   import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-  import { BACKGROUND_NAME, BACKGROUND_OFFSETS } from '../utils/constants';
+  import {
+    OVERLAY_SCROLLBAR_SETTINGS_BODY,
+    OVERLAY_SCROLLBAR_SETTINGS_OTHER
+  } from '../utils/constants';
 
   if (basicConfiguration.analytics.vercelWebAnalytics) {
     inject({ mode: process.env.NODE_ENV === 'production' ? 'production' : 'development' });
@@ -62,6 +63,14 @@
       scrollbarHandles.push(OverlayScrollbars(element, OVERLAY_SCROLLBAR_SETTINGS_OTHER));
     }
   });
+
+  const backgroundOffsets = {
+    background_1: ['center', '35%'],
+    background_2: ['center', '45%'],
+    background_3: ['center', '40%']
+  };
+
+  const backgroundName = sample(Object.keys(backgroundOffsets));
 </script>
 
 <svelte:head>
@@ -69,8 +78,6 @@
     gaMeasurementId={basicConfiguration.analytics.gaMeasurementId}
     baiduId={basicConfiguration.analytics.baiduId}
   />
-  <link rel="preload" href="/images/{BACKGROUND_NAME}.jpg" as="image" type="image/jpeg" />
-  <link rel="preload" href="/images/{BACKGROUND_NAME}.webm" as="video" type="video/webm" />
 </svelte:head>
 
 <div class="relative z-10">
@@ -93,21 +100,23 @@
   </div>
 </div>
 
-<video
-  playsinline
-  autoplay={$pathName === '/'}
-  muted
-  loop
-  poster="/images/{BACKGROUND_NAME}.jpg"
-  class="background-video"
-  style="object-position: {BACKGROUND_OFFSETS[BACKGROUND_NAME][0]} {BACKGROUND_OFFSETS[
-    BACKGROUND_NAME
-  ][1]}"
-  bind:this={videoElement}
->
-  <source src="/images/{BACKGROUND_NAME}.webm" type="video/webm" />
-  <source src="/images/{BACKGROUND_NAME}.mp4" type="video/mp4" />
-</video>
+{#if browser}
+  <video
+    playsinline
+    autoplay={$pathName === '/'}
+    muted
+    loop
+    poster="/images/{backgroundName}.jpg"
+    class="background-video"
+    style="object-position: {backgroundOffsets[backgroundName][0]} {backgroundOffsets[
+      backgroundName
+    ][1]}"
+    bind:this={videoElement}
+  >
+    <source src="/images/{backgroundName}.webm" type="video/webm" />
+    <source src="/images/{backgroundName}.mp4" type="video/mp4" />
+  </video>
+{/if}
 
 <style>
   .full-height {
