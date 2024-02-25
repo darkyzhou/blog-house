@@ -1,7 +1,11 @@
-export async function load({ params, fetch }) {
+import categories from '../../../../shared/categories';
+
+export function entries() {
+  return [...categories.map((item) => ({ category: item.slug }))];
+}
+
+export async function load({ params }) {
   const slug = params.category;
-  const response = await fetch('/data/categories.json');
-  const categories = await response.json();
-  const target = categories.find((t) => t.slug === slug);
-  return { category: target };
+  const category = categories.find((item) => item.slug === slug);
+  return { category };
 }

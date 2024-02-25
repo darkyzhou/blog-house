@@ -1,7 +1,11 @@
-export async function load({ params, fetch }) {
-  const tagSlug = params.tag;
-  const response = await fetch('/data/tags.json');
-  const tags = await response.json();
-  const targetTag = tags.find((t) => t.slug === tagSlug);
-  return { tag: targetTag };
+import tags from '../../../../shared/tags';
+
+export function entries() {
+  return [...tags.map((item) => ({ tag: item.slug }))];
+}
+
+export async function load({ params }) {
+  const slug = params.tag;
+  const tag = tags.find((item) => item.slug === slug);
+  return { tag };
 }

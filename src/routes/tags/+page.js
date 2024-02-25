@@ -1,5 +1,5 @@
-export async function load({ fetch }) {
-  const response = await fetch('/data/tags.json');
-  const tags = await response.json();
+import tags from '../../../shared/tags.js';
+
+export async function load() {
   return { tags };
 }

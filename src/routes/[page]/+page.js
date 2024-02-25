@@ -1,10 +1,15 @@
-export async function load({ params, fetch }) {
-  const articleSlug = params.page;
-  const response = await fetch(`/data/articles/${articleSlug}.json`);
-  if (!response.ok) {
+import articles from '../../../shared/articles';
+
+export function entries() {
+  const pages = articles.filter((item) => item.isPageArticle);
+  return [...pages.map((item) => ({ page: item.slug }))];
+}
+
+export async function load({ params }) {
+  const slug = params.page;
+  const article = articles.find((item) => item.slug === slug);
+  if (!article) {
     return null;
   }
-
-  const article = await response.json();
   return { article };
 }
