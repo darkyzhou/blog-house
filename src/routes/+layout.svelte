@@ -19,12 +19,14 @@
   import { removePrerenderPrefix } from './_utils';
   import { derived, get } from 'svelte/store';
   import { inject } from '@vercel/analytics';
+  import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
   export let data;
   let { backgroundName, backgroundOffsets } = data;
 
   if (basicConfiguration.analytics.vercelWebAnalytics) {
     inject({ mode: process.env.NODE_ENV === 'production' ? 'production' : 'development' });
+    injectSpeedInsights();
   }
 
   const { navigating } = getStores();
