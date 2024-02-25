@@ -2,6 +2,7 @@
   import 'virtual:uno.css';
   import '@unocss/reset/tailwind-compat.css';
   import 'overlayscrollbars/overlayscrollbars.css';
+  import '../styles.css';
   import { browser } from '$app/environment';
   import { afterNavigate, beforeNavigate } from '$app/navigation';
   import { sample } from 'lodash-es';
@@ -60,7 +61,6 @@
     }
 
     for (const element of document.querySelectorAll('.code-wrapper pre')) {
-      console.log('>>> init', element);
       scrollbarHandles.push(OverlayScrollbars(element, OVERLAY_SCROLLBAR_SETTINGS_OTHER));
     }
   });
