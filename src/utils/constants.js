@@ -1,5 +1,8 @@
 export const OVERLAY_SCROLLBAR_SETTINGS_BODY = {
-  scrollbars: { theme: 'os-theme-body' }
+  scrollbars: { theme: 'os-theme-body' },
+  overflow: {
+    x: 'hidden'
+  }
 };
 
 export const OVERLAY_SCROLLBAR_SETTINGS_OTHER = {
