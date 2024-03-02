@@ -11,3 +11,6 @@ categories:
   - slug: 'programming-miscellaneous'
     name: '编程杂谈'
     description: '老河兵们都有一套自己的经验准则，我虽然不老，却也有些小发现想分享出来'
+  - slug: 'thoughts'
+    name: '随笔'
+    description: '和编程技术不那么强相关的一些想法'
