@@ -67,13 +67,11 @@
   const backgroundName = sample(Object.keys(backgroundOffsets));
 </script>
 
-<svelte:head>
-  <Analytics
-    gaMeasurementId={basicConfiguration.analytics.gaMeasurementId}
-    baiduId={basicConfiguration.analytics.baiduId}
-    umamiId={basicConfiguration.analytics.umamiId}
-  />
-</svelte:head>
+<Analytics
+  gaMeasurementId={basicConfiguration.analytics.gaMeasurementId}
+  baiduId={basicConfiguration.analytics.baiduId}
+  umamiId={basicConfiguration.analytics.umamiId}
+/>
 
 <div class="relative z-10">
   <LoadingProgressIndicator loading={$loading} />
