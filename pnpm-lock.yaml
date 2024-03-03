@@ -32,12 +32,6 @@ devDependencies:
   '@unocss/reset':
     specifier: ^0.58.5
     version: 0.58.5
-  '@vercel/analytics':
-    specifier: ^1.2.2
-    version: 1.2.2
-  '@vercel/speed-insights':
-    specifier: ^1.0.10
-    version: 1.0.10(@sveltejs/kit@1.30.4)(svelte@3.59.2)
   algoliasearch:
     specifier: ^4.22.1
     version: 4.22.1
@@ -1196,48 +1190,6 @@ packages:
       vite: 4.5.2
     transitivePeerDependencies:
       - rollup
-    dev: true
-
-  /@vercel/analytics@1.2.2:
-    resolution: {integrity: sha512-X0rctVWkQV1e5Y300ehVNqpOfSOufo7ieA5PIdna8yX/U7Vjz0GFsGf4qvAhxV02uQ2CVt7GYcrFfddXXK2Y4A==}
-    peerDependencies:
-      next: '>= 13'
-      react: ^18 || ^19
-    peerDependenciesMeta:
-      next:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      server-only: 0.0.1
-    dev: true
-
-  /@vercel/speed-insights@1.0.10(@sveltejs/kit@1.30.4)(svelte@3.59.2):
-    resolution: {integrity: sha512-4uzdKB0RW6Ff2FkzshzjZ+RlJfLPxgm/00i0XXgxfMPhwnnsk92YgtqsxT9OcPLdJUyVU1DqFlSWWjIQMPkh0g==}
-    requiresBuild: true
-    peerDependencies:
-      '@sveltejs/kit': ^1 || ^2
-      next: '>= 13'
-      react: ^18 || ^19
-      svelte: ^4
-      vue: ^3
-      vue-router: ^4
-    peerDependenciesMeta:
-      '@sveltejs/kit':
-        optional: true
-      next:
-        optional: true
-      react:
-        optional: true
-      svelte:
-        optional: true
-      vue:
-        optional: true
-      vue-router:
-        optional: true
-    dependencies:
-      '@sveltejs/kit': 1.30.4(svelte@3.59.2)(vite@4.5.2)
-      svelte: 3.59.2
     dev: true
 
   /acorn@8.11.3:
@@ -2848,10 +2800,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: true
-
-  /server-only@0.0.1:
-    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
     dev: true
 
   /set-blocking@2.0.0:

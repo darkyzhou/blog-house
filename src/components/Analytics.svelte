@@ -5,6 +5,7 @@
 
   export let gaMeasurementId;
   export let baiduId;
+  export let umamiId;
 
   let enabled = false;
 
@@ -20,27 +21,23 @@
     const userAgent = navigator.userAgent.toLocaleLowerCase();
     return basicConfiguration.analytics.blockedUAs?.some((ua) => userAgent.includes(ua));
   }
-
-  // workaround for a stupid vscode svelte plugin bug and a prettier svelte plugin bug,
-  // both of them are still not fixed even after a whole fucking year
-  function resolve(input) {
-    return input.replace(/\\/g, '<');
-  }
 </script>
 
 {#if enabled}
   {#if gaMeasurementId}
-    {@html resolve(`\\script src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}" async>\\/script>
-    \\script>
+    {@html `<script src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}" async></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
       gtag('config', '${gaMeasurementId}');
-    \\/script>`)}
+    </script>`}
   {/if}
   {#if baiduId}
-    {@html resolve(`\\script src="https://hm.baidu.com/hm.js?${baiduId}" async>\\/script>`)}
+    {@html `<script src="https://hm.baidu.com/hm.js?${baiduId}" async></script>`}
+  {/if}
+  {#if umamiId}
+    {@html `<script defer src="https://analytics.us.umami.is/script.js" data-website-id="${umamiId}"></script>`}
   {/if}
 {/if}
