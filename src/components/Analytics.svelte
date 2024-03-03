@@ -23,21 +23,28 @@
   }
 </script>
 
-{#if enabled}
-  {#if gaMeasurementId}
-    {@html `<script src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}" async></script><script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', '${gaMeasurementId}');
-    </script>`}
+<svelte:head>
+  {#if enabled}
+    {#if gaMeasurementId}
+      <script src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}" async></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', '${gaMeasurementId}');
+      </script>
+    {/if}
+    {#if baiduId}
+      <script src="https://hm.baidu.com/hm.js?${baiduId}" async></script>
+    {/if}
+    {#if umamiId}
+      <script
+        src="https://analytics.us.umami.is/script.js"
+        data-website-id="${umamiId}"
+        async
+      ></script>
+    {/if}
   {/if}
-  {#if baiduId}
-    {@html `<script src="https://hm.baidu.com/hm.js?${baiduId}" async></script>`}
-  {/if}
-  {#if umamiId}
-    {@html `<script defer src="https://analytics.us.umami.is/script.js" data-website-id="${umamiId}"></script>`}
-  {/if}
-{/if}
+</svelte:head>
