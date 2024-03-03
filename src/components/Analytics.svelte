@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import basicConfiguration from '../../config/basic-configuration.yml';
   import { browser } from '$app/environment';
-  import { afterNavigate } from '$app/navigation';
 
   export let gaMeasurementId;
   export let baiduId;
@@ -22,16 +21,6 @@
     const userAgent = navigator.userAgent.toLocaleLowerCase();
     return basicConfiguration.analytics.blockedUAs?.some((ua) => userAgent.includes(ua));
   }
-
-  afterNavigate(() => {
-    if (!enabled) {
-      return;
-    }
-
-    if (window.umami) {
-      window.umami.track();
-    }
-  });
 </script>
 
 <svelte:head>
