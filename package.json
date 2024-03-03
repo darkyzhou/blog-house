@@ -22,8 +22,6 @@
     "@unocss/preset-typography": "^0.58.5",
     "@unocss/preset-uno": "^0.58.5",
     "@unocss/reset": "^0.58.5",
-    "@vercel/analytics": "^1.2.2",
-    "@vercel/speed-insights": "^1.0.10",
     "algoliasearch": "^4.22.1",
     "carbon-icons-svelte": "^10.44.3",
     "clipboard": "^2.0.8",

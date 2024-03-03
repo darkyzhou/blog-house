@@ -17,17 +17,10 @@
   import { getStores, page } from '$app/stores';
   import { removePrerenderPrefix } from './_utils';
   import { derived, get } from 'svelte/store';
-  import { inject } from '@vercel/analytics';
-  import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
   import {
     OVERLAY_SCROLLBAR_SETTINGS_BODY,
     OVERLAY_SCROLLBAR_SETTINGS_OTHER
   } from '../utils/constants';
-
-  if (basicConfiguration.analytics.vercelWebAnalytics) {
-    inject({ mode: process.env.NODE_ENV === 'production' ? 'production' : 'development' });
-    injectSpeedInsights();
-  }
 
   const { navigating } = getStores();
   const loading = derived(navigating, (value) => !!value, false);
@@ -78,6 +71,7 @@
   <Analytics
     gaMeasurementId={basicConfiguration.analytics.gaMeasurementId}
     baiduId={basicConfiguration.analytics.baiduId}
+    umamiId={basicConfiguration.analytics.umamiId}
   />
 </svelte:head>
 

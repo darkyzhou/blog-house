@@ -17,7 +17,7 @@ analytics:
     - 'yahoo! slurp'
   gaMeasurementId: ''
   baiduId: ''
-  vercelWebAnalytics: true
+  umamiId: ''
 comment:
   type: 'giscus'
   config:
