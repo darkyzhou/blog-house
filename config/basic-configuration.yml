@@ -17,7 +17,7 @@ analytics:
     - 'yahoo! slurp'
   gaMeasurementId: ''
   baiduId: ''
-  umamiId: ''
+  umamiId: '80896038-fb37-4ccc-95cd-704631ca747a'
 comment:
   type: 'giscus'
   config:
